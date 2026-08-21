@@ -1,0 +1,84 @@
+{
+  "m": 2,
+  "ps": [
+    2,
+    2
+  ],
+  "N": 4,
+  "certification_mode": "enumeration",
+  "category_ok": true,
+  "c0_full_ok": true,
+  "f0_ok": true,
+  "ext_count": 4387,
+  "lan_sizes": {
+    "b1": 1,
+    "b2": 1
+  },
+  "ran_sizes": {
+    "b1": 1,
+    "b2": 1
+  },
+  "lan_eq_ran": true,
+  "kan_trivial": true,
+  "lan_in_ext": true,
+  "ran_in_ext": true,
+  "adm_count": 9,
+  "chance": 0.0020515158422612263,
+  "adm_count_formula": 9,
+  "adm_count_matches_formula": true,
+  "J1": true,
+  "J2": true,
+  "kan_violations": {
+    "Lan*": [
+      "K1_1",
+      "K1_2"
+    ],
+    "Ran*": [
+      "K1_1",
+      "K1_2"
+    ]
+  },
+  "J2_each_kan_violates": true,
+  "J3": true,
+  "J4": true,
+  "J4_strong": true,
+  "adm_structure_ok": true,
+  "bound_entailed": true,
+  "non_pinning": {
+    "K1_1": {
+      "alive": 1983,
+      "fraction": 0.45201732391155686
+    },
+    "K2_1": {
+      "alive": 763,
+      "fraction": 0.17392295418281287
+    },
+    "K1_2": {
+      "alive": 1311,
+      "fraction": 0.29883747435605196
+    },
+    "K2_2": {
+      "alive": 1083,
+      "fraction": 0.24686573968543424
+    }
+  },
+  "non_pinning_floor": 0.1,
+  "non_pinning_ok": true,
+  "certified": true,
+  "control": {
+    "m": 2,
+    "ps": [
+      2,
+      2
+    ],
+    "N": 4,
+    "certification_mode": "enumeration",
+    "adm_count": 1,
+    "J1": true,
+    "adm_equals_lan_component": true,
+    "lan_eq_ran": true,
+    "J3": true,
+    "J4_strong": true,
+    "certified": true
+  }
+}

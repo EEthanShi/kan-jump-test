@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: VUDU, JAGU, TIFI, KUNU. Books move VUDU -> JAGU -> TIFI -> KUNU.
+There are 5 moving steps:
+- "goro" carries each VUDU tray to a JAGU tray.
+- "pomo" is an internal rearrangement of JAGU: it carries each JAGU tray to a JAGU tray.
+- "vago" carries each JAGU tray to a TIFI tray.
+- "dazi" is an internal rearrangement of TIFI: it carries each TIFI tray to a TIFI tray.
+- "rizu" carries each TIFI tray to a KUNU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "goro" and then "pomo" lands on the same tray as running "goro" alone.
+     ("pomo" leaves every tray that "goro" produces unchanged.)
+R1.2 Running "pomo" and then "vago" gives the same result as running "vago" alone.
+     ("vago" cannot tell whether "pomo" was applied first.)
+R1.3 Running "pomo" twice in a row leaves every JAGU tray exactly where it started.
+R2.1 Running "vago" and then "dazi" lands on the same tray as running "vago" alone.
+     ("dazi" leaves every tray that "vago" produces unchanged.)
+R2.2 Running "dazi" and then "rizu" gives the same result as running "rizu" alone.
+     ("rizu" cannot tell whether "dazi" was applied first.)
+R2.3 Running "dazi" three times in a row leaves every TIFI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUDU has exactly one tray, called n1.
+- KUNU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JAGU, TIFI):
+D1.1 JAGU must be a finite set with at most 1 tray.
+D1.2 List the "pomo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 TIFI must be a finite set with at most 1 tray.
+D2.2 List the "dazi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JAGU = {q1_1, ..., q1_k}
+goro: n1 -> <JAGU tray>
+pomo: q1_1 -> <JAGU tray>, ..., q1_k -> <JAGU tray>
+TIFI = {q2_1, ..., q2_k}
+vago: q1_1 -> <TIFI tray>, ... (one entry per JAGU tray)
+dazi: q2_1 -> <TIFI tray>, ..., q2_k -> <TIFI tray>
+rizu: q2_1 -> <KUNU tray>, ... (one entry per TIFI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

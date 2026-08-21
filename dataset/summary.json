@@ -1,0 +1,230 @@
+[
+  {
+    "id": "m1_p2",
+    "skipped": false,
+    "m": 1,
+    "ps": [
+      2
+    ],
+    "N": 4,
+    "ext_count": 25,
+    "adm_count": 3,
+    "chance": 0.12,
+    "certified": true,
+    "certification_mode": "enumeration",
+    "control_certified": true,
+    "non_pinning_ok": true,
+    "headline": true,
+    "non_pinning": {
+      "K1_1": 0.6,
+      "K2_1": 0.36
+    },
+    "seconds": 0.0
+  },
+  {
+    "id": "m1_p3",
+    "skipped": false,
+    "m": 1,
+    "ps": [
+      3
+    ],
+    "N": 5,
+    "ext_count": 63,
+    "adm_count": 8,
+    "chance": 0.12698412698412698,
+    "certified": true,
+    "certification_mode": "enumeration",
+    "control_certified": true,
+    "non_pinning_ok": true,
+    "headline": true,
+    "non_pinning": {
+      "K1_1": 0.7619,
+      "K2_1": 0.2857
+    },
+    "seconds": 0.0
+  },
+  {
+    "id": "m2_p22",
+    "skipped": false,
+    "m": 2,
+    "ps": [
+      2,
+      2
+    ],
+    "N": 4,
+    "ext_count": 4387,
+    "adm_count": 9,
+    "chance": 0.0020515158422612263,
+    "certified": true,
+    "certification_mode": "enumeration",
+    "control_certified": true,
+    "non_pinning_ok": true,
+    "headline": true,
+    "non_pinning": {
+      "K1_1": 0.452,
+      "K2_1": 0.1739,
+      "K1_2": 0.2988,
+      "K2_2": 0.2469
+    },
+    "seconds": 0.9
+  },
+  {
+    "id": "m2_p23",
+    "skipped": false,
+    "m": 2,
+    "ps": [
+      2,
+      3
+    ],
+    "N": 5,
+    "ext_count": 82371,
+    "adm_count": 24,
+    "chance": 0.00029136467931674984,
+    "certified": true,
+    "certification_mode": "enumeration",
+    "control_certified": true,
+    "non_pinning_ok": false,
+    "headline": false,
+    "non_pinning": {
+      "K1_1": 0.61,
+      "K2_1": 0.0238,
+      "K1_2": 0.2418,
+      "K2_2": 0.2707
+    },
+    "seconds": 2.1
+  },
+  {
+    "id": "m2_p32",
+    "skipped": false,
+    "m": 2,
+    "ps": [
+      3,
+      2
+    ],
+    "N": 4,
+    "ext_count": 2860,
+    "adm_count": 24,
+    "chance": 0.008391608391608392,
+    "certified": true,
+    "certification_mode": "enumeration",
+    "control_certified": true,
+    "non_pinning_ok": true,
+    "headline": true,
+    "non_pinning": {
+      "K1_1": 0.1594,
+      "K2_1": 1.0,
+      "K1_2": 0.2916,
+      "K2_2": 0.2448
+    },
+    "seconds": 0.1
+  },
+  {
+    "id": "m2_p33",
+    "skipped": false,
+    "m": 2,
+    "ps": [
+      3,
+      3
+    ],
+    "N": 5,
+    "ext_count": 48985,
+    "adm_count": 64,
+    "chance": 0.0013065224048178013,
+    "certified": true,
+    "certification_mode": "enumeration",
+    "control_certified": true,
+    "non_pinning_ok": true,
+    "headline": true,
+    "non_pinning": {
+      "K1_1": 0.3443,
+      "K2_1": 0.1613,
+      "K1_2": 0.2593,
+      "K2_2": 0.266
+    },
+    "seconds": 1.4
+  },
+  {
+    "id": "m3_p222",
+    "skipped": false,
+    "m": 3,
+    "ps": [
+      2,
+      2,
+      2
+    ],
+    "N": 4,
+    "ext_count": 1257409,
+    "adm_count": 27,
+    "chance": 2.147272685339456e-05,
+    "certified": true,
+    "certification_mode": "theorem",
+    "control_certified": true,
+    "non_pinning_ok": true,
+    "headline": true,
+    "non_pinning": {
+      "K1_1": 0.4212,
+      "K2_1": 0.1516,
+      "K1_2": 0.1518,
+      "K2_2": 0.1065,
+      "K1_3": 0.2508,
+      "K2_3": 0.2325
+    },
+    "seconds": 0.0
+  },
+  {
+    "id": "m3_p233",
+    "skipped": false,
+    "m": 3,
+    "ps": [
+      2,
+      3,
+      3
+    ],
+    "N": 5,
+    "ext_count": 237155745,
+    "adm_count": 192,
+    "chance": 8.095945556790117e-07,
+    "certified": true,
+    "certification_mode": "theorem",
+    "control_certified": true,
+    "non_pinning_ok": false,
+    "headline": false,
+    "non_pinning": {
+      "K1_1": 0.5565,
+      "K2_1": 0.0141,
+      "K1_2": 0.0324,
+      "K2_2": 0.0962,
+      "K1_3": 0.151,
+      "K2_3": 0.2602
+    },
+    "seconds": 0.0
+  },
+  {
+    "id": "m3_p333",
+    "skipped": false,
+    "m": 3,
+    "ps": [
+      3,
+      3,
+      3
+    ],
+    "N": 5,
+    "ext_count": 138406055,
+    "adm_count": 512,
+    "chance": 3.6992601226875513e-06,
+    "certified": true,
+    "certification_mode": "theorem",
+    "control_certified": true,
+    "non_pinning_ok": false,
+    "headline": false,
+    "non_pinning": {
+      "K1_1": 0.24,
+      "K2_1": 0.1368,
+      "K1_2": 0.0352,
+      "K2_2": 0.0947,
+      "K1_3": 0.1516,
+      "K2_3": 0.2602
+    },
+    "seconds": 0.0
+  }
+]

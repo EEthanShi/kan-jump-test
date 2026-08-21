@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: NILA, PUGU, LATU. Books move NILA -> PUGU -> LATU.
+There are 3 moving steps:
+- "mumo" carries each NILA tray to a PUGU tray.
+- "sito" is an internal rearrangement of PUGU: it carries each PUGU tray to a PUGU tray.
+- "pisi" carries each PUGU tray to a LATU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mumo" and then "sito" lands on the same tray as running "mumo" alone.
+     ("sito" leaves every tray that "mumo" produces unchanged.)
+R1.2 Running "sito" and then "pisi" gives the same result as running "pisi" alone.
+     ("pisi" cannot tell whether "sito" was applied first.)
+R1.3 Running "sito" three times in a row leaves every PUGU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NILA has exactly one tray, called n1.
+- LATU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (PUGU):
+D1.1 List the trays of PUGU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "sito" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PUGU = {q1_1, ..., q1_k}
+mumo: n1 -> <PUGU tray>
+sito: q1_1 -> <PUGU tray>, ..., q1_k -> <PUGU tray>
+pisi: q1_1 -> <LATU tray>, ... (one entry per PUGU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

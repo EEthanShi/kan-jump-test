@@ -1,0 +1,39 @@
+You are completing the design of a small three-stage signal pipeline.
+
+The pipeline has three stages: NARV, QUILB, and SORM. Signals flow NARV -> QUILB -> SORM.
+There are three processing steps:
+- "dax" carries each NARV state to a QUILB state.
+- "rell" carries each QUILB state to a SORM state.
+- "fen" is an internal rearrangement of QUILB: it carries each QUILB state to a QUILB state.
+
+The pipeline's wiring rules. These must hold exactly, state by state:
+R1. Running dax and then fen lands on the same state as running dax alone.
+    (fen leaves every state that dax produces unchanged.)
+R2. Running fen and then rell gives the same result as running rell alone.
+    (rell cannot tell whether fen was applied first.)
+R3. Running fen twice in a row leaves every QUILB state exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NARV has exactly one state, called n1.
+- SORM has exactly one state, called s1.
+- The observed end-to-end behavior of the pipeline sends n1 to s1.
+
+Engineering requirements for the hidden stage:
+D1. QUILB must be a finite set with at most 3 states.
+D2. fen must NOT be the do-nothing map (it must move at least one QUILB state).
+
+Your task: give one complete concrete implementation of the hidden stage.
+
+Answer format bound: designs with up to 4 QUILB states are well-formed answers
+(the requirements above may restrict this further).
+
+Answer in exactly this format (listing every state and every table entry; use
+state names q1, q2, ... for QUILB):
+
+QUILB = {q1, ..., qk}
+dax:  n1 -> <QUILB state>
+rell: q1 -> <SORM state>, ..., qk -> <SORM state>
+fen:  q1 -> <QUILB state>, ..., qk -> <QUILB state>
+
+Every rule R1-R3 and requirement D1-D2 must hold exactly for your tables. Do not
+explain; output only the four lines in the format above.

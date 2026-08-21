@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: PIFO, TOLU, FABA, ROFO. Books move PIFO -> TOLU -> FABA -> ROFO.
+There are 5 moving steps:
+- "vibo" carries each PIFO tray to a TOLU tray.
+- "difi" is an internal rearrangement of TOLU: it carries each TOLU tray to a TOLU tray.
+- "jomo" carries each TOLU tray to a FABA tray.
+- "vona" is an internal rearrangement of FABA: it carries each FABA tray to a FABA tray.
+- "tagu" carries each FABA tray to a ROFO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vibo" and then "difi" lands on the same tray as running "vibo" alone.
+     ("difi" leaves every tray that "vibo" produces unchanged.)
+R1.2 Running "difi" and then "jomo" gives the same result as running "jomo" alone.
+     ("jomo" cannot tell whether "difi" was applied first.)
+R1.3 Running "difi" three times in a row leaves every TOLU tray exactly where it started.
+R2.1 Running "jomo" and then "vona" lands on the same tray as running "jomo" alone.
+     ("vona" leaves every tray that "jomo" produces unchanged.)
+R2.2 Running "vona" and then "tagu" gives the same result as running "tagu" alone.
+     ("tagu" cannot tell whether "vona" was applied first.)
+R2.3 Running "vona" twice in a row leaves every FABA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PIFO has exactly one tray, called n1.
+- ROFO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TOLU, FABA):
+D1.1 TOLU must be a finite set with at most 1 tray.
+D1.2 List the "difi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 FABA must be a finite set with at most 1 tray.
+D2.2 List the "vona" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TOLU = {q1_1, ..., q1_k}
+vibo: n1 -> <TOLU tray>
+difi: q1_1 -> <TOLU tray>, ..., q1_k -> <TOLU tray>
+FABA = {q2_1, ..., q2_k}
+jomo: q1_1 -> <FABA tray>, ... (one entry per TOLU tray)
+vona: q2_1 -> <FABA tray>, ..., q2_k -> <FABA tray>
+tagu: q2_1 -> <ROFO tray>, ... (one entry per FABA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MADO, BULU, POKO, POTO, BIJA. Books move MADO -> BULU -> POKO -> POTO -> BIJA.
+There are 7 moving steps:
+- "pazi" carries each MADO tray to a BULU tray.
+- "nika" is an internal rearrangement of BULU: it carries each BULU tray to a BULU tray.
+- "tizi" carries each BULU tray to a POKO tray.
+- "pimi" is an internal rearrangement of POKO: it carries each POKO tray to a POKO tray.
+- "luka" carries each POKO tray to a POTO tray.
+- "toni" is an internal rearrangement of POTO: it carries each POTO tray to a POTO tray.
+- "gali" carries each POTO tray to a BIJA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "pazi" and then "nika" lands on the same tray as running "pazi" alone.
+     ("nika" leaves every tray that "pazi" produces unchanged.)
+R1.2 Running "nika" and then "tizi" gives the same result as running "tizi" alone.
+     ("tizi" cannot tell whether "nika" was applied first.)
+R1.3 Running "nika" twice in a row leaves every BULU tray exactly where it started.
+R2.1 Running "tizi" and then "pimi" lands on the same tray as running "tizi" alone.
+     ("pimi" leaves every tray that "tizi" produces unchanged.)
+R2.2 Running "pimi" and then "luka" gives the same result as running "luka" alone.
+     ("luka" cannot tell whether "pimi" was applied first.)
+R2.3 Running "pimi" twice in a row leaves every POKO tray exactly where it started.
+R3.1 Running "luka" and then "toni" lands on the same tray as running "luka" alone.
+     ("toni" leaves every tray that "luka" produces unchanged.)
+R3.2 Running "toni" and then "gali" gives the same result as running "gali" alone.
+     ("gali" cannot tell whether "toni" was applied first.)
+R3.3 Running "toni" twice in a row leaves every POTO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MADO has exactly one tray, called n1.
+- BIJA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BULU, POKO, POTO):
+D1.1 BULU must be a finite set with at most 1 tray.
+D1.2 List the "nika" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 POKO must be a finite set with at most 1 tray.
+D2.2 List the "pimi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 POTO must be a finite set with at most 1 tray.
+D3.2 List the "toni" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BULU = {q1_1, ..., q1_k}
+pazi: n1 -> <BULU tray>
+nika: q1_1 -> <BULU tray>, ..., q1_k -> <BULU tray>
+POKO = {q2_1, ..., q2_k}
+tizi: q1_1 -> <POKO tray>, ... (one entry per BULU tray)
+pimi: q2_1 -> <POKO tray>, ..., q2_k -> <POKO tray>
+POTO = {q3_1, ..., q3_k}
+luka: q2_1 -> <POTO tray>, ... (one entry per POKO tray)
+toni: q3_1 -> <POTO tray>, ..., q3_k -> <POTO tray>
+gali: q3_1 -> <BIJA tray>, ... (one entry per POTO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

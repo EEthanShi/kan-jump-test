@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: SOKU, GINU, ZOZU, ROMU. Toys move SOKU -> GINU -> ZOZU -> ROMU.
+There are 5 moving steps:
+- "nivu" carries each SOKU slot to a GINU slot.
+- "dato" is an internal reshuffle of GINU: it carries each GINU slot to a GINU slot.
+- "nimi" carries each GINU slot to a ZOZU slot.
+- "limi" is an internal reshuffle of ZOZU: it carries each ZOZU slot to a ZOZU slot.
+- "rabo" carries each ZOZU slot to a ROMU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nivu" and then "dato" lands on the same slot as running "nivu" alone.
+     ("dato" leaves every slot that "nivu" produces unchanged.)
+R1.2 Running "dato" and then "nimi" gives the same result as running "nimi" alone.
+     ("nimi" cannot tell whether "dato" was applied first.)
+R1.3 Running "dato" twice in a row leaves every GINU slot exactly where it started.
+R2.1 Running "nimi" and then "limi" lands on the same slot as running "nimi" alone.
+     ("limi" leaves every slot that "nimi" produces unchanged.)
+R2.2 Running "limi" and then "rabo" gives the same result as running "rabo" alone.
+     ("rabo" cannot tell whether "limi" was applied first.)
+R2.3 Running "limi" three times in a row leaves every ZOZU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOKU has exactly one slot, called n1.
+- ROMU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (GINU, ZOZU):
+D1.1 List the slots of GINU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "dato" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of ZOZU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "limi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GINU = {q1_1, ..., q1_k}
+nivu: n1 -> <GINU slot>
+dato: q1_1 -> <GINU slot>, ..., q1_k -> <GINU slot>
+ZOZU = {q2_1, ..., q2_k}
+nimi: q1_1 -> <ZOZU slot>, ... (one entry per GINU slot)
+limi: q2_1 -> <ZOZU slot>, ..., q2_k -> <ZOZU slot>
+rabo: q2_1 -> <ROMU slot>, ... (one entry per ZOZU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

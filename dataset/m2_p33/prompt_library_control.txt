@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: NOLI, SAFI, VUTO, KIRA. Books move NOLI -> SAFI -> VUTO -> KIRA.
+There are 5 moving steps:
+- "vopo" carries each NOLI tray to a SAFI tray.
+- "boja" is an internal rearrangement of SAFI: it carries each SAFI tray to a SAFI tray.
+- "tigo" carries each SAFI tray to a VUTO tray.
+- "ziki" is an internal rearrangement of VUTO: it carries each VUTO tray to a VUTO tray.
+- "kigo" carries each VUTO tray to a KIRA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vopo" and then "boja" lands on the same tray as running "vopo" alone.
+     ("boja" leaves every tray that "vopo" produces unchanged.)
+R1.2 Running "boja" and then "tigo" gives the same result as running "tigo" alone.
+     ("tigo" cannot tell whether "boja" was applied first.)
+R1.3 Running "boja" three times in a row leaves every SAFI tray exactly where it started.
+R2.1 Running "tigo" and then "ziki" lands on the same tray as running "tigo" alone.
+     ("ziki" leaves every tray that "tigo" produces unchanged.)
+R2.2 Running "ziki" and then "kigo" gives the same result as running "kigo" alone.
+     ("kigo" cannot tell whether "ziki" was applied first.)
+R2.3 Running "ziki" three times in a row leaves every VUTO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NOLI has exactly one tray, called n1.
+- KIRA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SAFI, VUTO):
+D1.1 SAFI must be a finite set with at most 1 tray.
+D1.2 List the "boja" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VUTO must be a finite set with at most 1 tray.
+D2.2 List the "ziki" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SAFI = {q1_1, ..., q1_k}
+vopo: n1 -> <SAFI tray>
+boja: q1_1 -> <SAFI tray>, ..., q1_k -> <SAFI tray>
+VUTO = {q2_1, ..., q2_k}
+tigo: q1_1 -> <VUTO tray>, ... (one entry per SAFI tray)
+ziki: q2_1 -> <VUTO tray>, ..., q2_k -> <VUTO tray>
+kigo: q2_1 -> <KIRA tray>, ... (one entry per VUTO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: PUKI, BUTU, PADI, KUFA, LUTA. Toys move PUKI -> BUTU -> PADI -> KUFA -> LUTA.
+There are 7 moving steps:
+- "fovu" carries each PUKI slot to a BUTU slot.
+- "jibu" is an internal reshuffle of BUTU: it carries each BUTU slot to a BUTU slot.
+- "komu" carries each BUTU slot to a PADI slot.
+- "naga" is an internal reshuffle of PADI: it carries each PADI slot to a PADI slot.
+- "ronu" carries each PADI slot to a KUFA slot.
+- "riti" is an internal reshuffle of KUFA: it carries each KUFA slot to a KUFA slot.
+- "risi" carries each KUFA slot to a LUTA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "fovu" and then "jibu" lands on the same slot as running "fovu" alone.
+     ("jibu" leaves every slot that "fovu" produces unchanged.)
+R1.2 Running "jibu" and then "komu" gives the same result as running "komu" alone.
+     ("komu" cannot tell whether "jibu" was applied first.)
+R1.3 Running "jibu" twice in a row leaves every BUTU slot exactly where it started.
+R2.1 Running "komu" and then "naga" lands on the same slot as running "komu" alone.
+     ("naga" leaves every slot that "komu" produces unchanged.)
+R2.2 Running "naga" and then "ronu" gives the same result as running "ronu" alone.
+     ("ronu" cannot tell whether "naga" was applied first.)
+R2.3 Running "naga" three times in a row leaves every PADI slot exactly where it started.
+R3.1 Running "ronu" and then "riti" lands on the same slot as running "ronu" alone.
+     ("riti" leaves every slot that "ronu" produces unchanged.)
+R3.2 Running "riti" and then "risi" gives the same result as running "risi" alone.
+     ("risi" cannot tell whether "riti" was applied first.)
+R3.3 Running "riti" three times in a row leaves every KUFA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUKI has exactly one slot, called n1.
+- LUTA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BUTU, PADI, KUFA):
+D1.1 List the slots of BUTU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "jibu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of PADI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "naga" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of KUFA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "riti" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BUTU = {q1_1, ..., q1_k}
+fovu: n1 -> <BUTU slot>
+jibu: q1_1 -> <BUTU slot>, ..., q1_k -> <BUTU slot>
+PADI = {q2_1, ..., q2_k}
+komu: q1_1 -> <PADI slot>, ... (one entry per BUTU slot)
+naga: q2_1 -> <PADI slot>, ..., q2_k -> <PADI slot>
+KUFA = {q3_1, ..., q3_k}
+ronu: q2_1 -> <KUFA slot>, ... (one entry per PADI slot)
+riti: q3_1 -> <KUFA slot>, ..., q3_k -> <KUFA slot>
+risi: q3_1 -> <LUTA slot>, ... (one entry per KUFA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: PUSU, SIMI, LAJO, LOSA, RUDA. Books move PUSU -> SIMI -> LAJO -> LOSA -> RUDA.
+There are 7 moving steps:
+- "liki" carries each PUSU tray to a SIMI tray.
+- "kiba" is an internal rearrangement of SIMI: it carries each SIMI tray to a SIMI tray.
+- "litu" carries each SIMI tray to a LAJO tray.
+- "firu" is an internal rearrangement of LAJO: it carries each LAJO tray to a LAJO tray.
+- "vabo" carries each LAJO tray to a LOSA tray.
+- "dosu" is an internal rearrangement of LOSA: it carries each LOSA tray to a LOSA tray.
+- "toba" carries each LOSA tray to a RUDA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "liki" and then "kiba" lands on the same tray as running "liki" alone.
+     ("kiba" leaves every tray that "liki" produces unchanged.)
+R1.2 Running "kiba" and then "litu" gives the same result as running "litu" alone.
+     ("litu" cannot tell whether "kiba" was applied first.)
+R1.3 Running "kiba" three times in a row leaves every SIMI tray exactly where it started.
+R2.1 Running "litu" and then "firu" lands on the same tray as running "litu" alone.
+     ("firu" leaves every tray that "litu" produces unchanged.)
+R2.2 Running "firu" and then "vabo" gives the same result as running "vabo" alone.
+     ("vabo" cannot tell whether "firu" was applied first.)
+R2.3 Running "firu" three times in a row leaves every LAJO tray exactly where it started.
+R3.1 Running "vabo" and then "dosu" lands on the same tray as running "vabo" alone.
+     ("dosu" leaves every tray that "vabo" produces unchanged.)
+R3.2 Running "dosu" and then "toba" gives the same result as running "toba" alone.
+     ("toba" cannot tell whether "dosu" was applied first.)
+R3.3 Running "dosu" three times in a row leaves every LOSA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUSU has exactly one tray, called n1.
+- RUDA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SIMI, LAJO, LOSA):
+D1.1 SIMI must be a finite set with at most 1 tray.
+D1.2 List the "kiba" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 LAJO must be a finite set with at most 1 tray.
+D2.2 List the "firu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 LOSA must be a finite set with at most 1 tray.
+D3.2 List the "dosu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SIMI = {q1_1, ..., q1_k}
+liki: n1 -> <SIMI tray>
+kiba: q1_1 -> <SIMI tray>, ..., q1_k -> <SIMI tray>
+LAJO = {q2_1, ..., q2_k}
+litu: q1_1 -> <LAJO tray>, ... (one entry per SIMI tray)
+firu: q2_1 -> <LAJO tray>, ..., q2_k -> <LAJO tray>
+LOSA = {q3_1, ..., q3_k}
+vabo: q2_1 -> <LOSA tray>, ... (one entry per LAJO tray)
+dosu: q3_1 -> <LOSA tray>, ..., q3_k -> <LOSA tray>
+toba: q3_1 -> <RUDA tray>, ... (one entry per LOSA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: ZUNU, JOZI, VOVI, KAVI. Toys move ZUNU -> JOZI -> VOVI -> KAVI.
+There are 5 moving steps:
+- "dofi" carries each ZUNU slot to a JOZI slot.
+- "zalo" is an internal reshuffle of JOZI: it carries each JOZI slot to a JOZI slot.
+- "gipu" carries each JOZI slot to a VOVI slot.
+- "zomu" is an internal reshuffle of VOVI: it carries each VOVI slot to a VOVI slot.
+- "runu" carries each VOVI slot to a KAVI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "dofi" and then "zalo" lands on the same slot as running "dofi" alone.
+     ("zalo" leaves every slot that "dofi" produces unchanged.)
+R1.2 Running "zalo" and then "gipu" gives the same result as running "gipu" alone.
+     ("gipu" cannot tell whether "zalo" was applied first.)
+R1.3 Running "zalo" twice in a row leaves every JOZI slot exactly where it started.
+R2.1 Running "gipu" and then "zomu" lands on the same slot as running "gipu" alone.
+     ("zomu" leaves every slot that "gipu" produces unchanged.)
+R2.2 Running "zomu" and then "runu" gives the same result as running "runu" alone.
+     ("runu" cannot tell whether "zomu" was applied first.)
+R2.3 Running "zomu" twice in a row leaves every VOVI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZUNU has exactly one slot, called n1.
+- KAVI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (JOZI, VOVI):
+D1.1 JOZI must be a finite set with at most 1 slot.
+D1.2 List the "zalo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 VOVI must be a finite set with at most 1 slot.
+D2.2 List the "zomu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+JOZI = {q1_1, ..., q1_k}
+dofi: n1 -> <JOZI slot>
+zalo: q1_1 -> <JOZI slot>, ..., q1_k -> <JOZI slot>
+VOVI = {q2_1, ..., q2_k}
+gipu: q1_1 -> <VOVI slot>, ... (one entry per JOZI slot)
+zomu: q2_1 -> <VOVI slot>, ..., q2_k -> <VOVI slot>
+runu: q2_1 -> <KAVI slot>, ... (one entry per VOVI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

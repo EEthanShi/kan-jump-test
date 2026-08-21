@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: BODA, KIVA, VOJA, FOMI, VAFU. Toys move BODA -> KIVA -> VOJA -> FOMI -> VAFU.
+There are 7 moving steps:
+- "gapu" carries each BODA slot to a KIVA slot.
+- "goso" is an internal reshuffle of KIVA: it carries each KIVA slot to a KIVA slot.
+- "pamo" carries each KIVA slot to a VOJA slot.
+- "fali" is an internal reshuffle of VOJA: it carries each VOJA slot to a VOJA slot.
+- "loma" carries each VOJA slot to a FOMI slot.
+- "laga" is an internal reshuffle of FOMI: it carries each FOMI slot to a FOMI slot.
+- "zuri" carries each FOMI slot to a VAFU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "gapu" and then "goso" lands on the same slot as running "gapu" alone.
+     ("goso" leaves every slot that "gapu" produces unchanged.)
+R1.2 Running "goso" and then "pamo" gives the same result as running "pamo" alone.
+     ("pamo" cannot tell whether "goso" was applied first.)
+R1.3 Running "goso" twice in a row leaves every KIVA slot exactly where it started.
+R2.1 Running "pamo" and then "fali" lands on the same slot as running "pamo" alone.
+     ("fali" leaves every slot that "pamo" produces unchanged.)
+R2.2 Running "fali" and then "loma" gives the same result as running "loma" alone.
+     ("loma" cannot tell whether "fali" was applied first.)
+R2.3 Running "fali" twice in a row leaves every VOJA slot exactly where it started.
+R3.1 Running "loma" and then "laga" lands on the same slot as running "loma" alone.
+     ("laga" leaves every slot that "loma" produces unchanged.)
+R3.2 Running "laga" and then "zuri" gives the same result as running "zuri" alone.
+     ("zuri" cannot tell whether "laga" was applied first.)
+R3.3 Running "laga" twice in a row leaves every FOMI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BODA has exactly one slot, called n1.
+- VAFU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KIVA, VOJA, FOMI):
+D1.1 List the slots of KIVA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "goso" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of VOJA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fali" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of FOMI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "laga" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KIVA = {q1_1, ..., q1_k}
+gapu: n1 -> <KIVA slot>
+goso: q1_1 -> <KIVA slot>, ..., q1_k -> <KIVA slot>
+VOJA = {q2_1, ..., q2_k}
+pamo: q1_1 -> <VOJA slot>, ... (one entry per KIVA slot)
+fali: q2_1 -> <VOJA slot>, ..., q2_k -> <VOJA slot>
+FOMI = {q3_1, ..., q3_k}
+loma: q2_1 -> <FOMI slot>, ... (one entry per VOJA slot)
+laga: q3_1 -> <FOMI slot>, ..., q3_k -> <FOMI slot>
+zuri: q3_1 -> <VAFU slot>, ... (one entry per FOMI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

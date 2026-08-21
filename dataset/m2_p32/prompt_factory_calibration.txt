@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: DOKI, GUFO, GOJO, KOPA. Toys move DOKI -> GUFO -> GOJO -> KOPA.
+There are 5 moving steps:
+- "zofo" carries each DOKI slot to a GUFO slot.
+- "kima" is an internal reshuffle of GUFO: it carries each GUFO slot to a GUFO slot.
+- "koda" carries each GUFO slot to a GOJO slot.
+- "guki" is an internal reshuffle of GOJO: it carries each GOJO slot to a GOJO slot.
+- "tozu" carries each GOJO slot to a KOPA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zofo" and then "kima" lands on the same slot as running "zofo" alone.
+     ("kima" leaves every slot that "zofo" produces unchanged.)
+R1.2 Running "kima" and then "koda" gives the same result as running "koda" alone.
+     ("koda" cannot tell whether "kima" was applied first.)
+R1.3 Running "kima" three times in a row leaves every GUFO slot exactly where it started.
+R2.1 Running "koda" and then "guki" lands on the same slot as running "koda" alone.
+     ("guki" leaves every slot that "koda" produces unchanged.)
+R2.2 Running "guki" and then "tozu" gives the same result as running "tozu" alone.
+     ("tozu" cannot tell whether "guki" was applied first.)
+R2.3 Running "guki" twice in a row leaves every GOJO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DOKI has exactly one slot, called n1.
+- KOPA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (GUFO, GOJO):
+D1.1 List the slots of GUFO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kima" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of GOJO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "guki" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GUFO = {q1_1, ..., q1_k}
+zofo: n1 -> <GUFO slot>
+kima: q1_1 -> <GUFO slot>, ..., q1_k -> <GUFO slot>
+GOJO = {q2_1, ..., q2_k}
+koda: q1_1 -> <GOJO slot>, ... (one entry per GUFO slot)
+guki: q2_1 -> <GOJO slot>, ..., q2_k -> <GOJO slot>
+tozu: q2_1 -> <KOPA slot>, ... (one entry per GOJO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

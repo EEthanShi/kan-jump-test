@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: MOMI, TAJI, SIDO. Books move MOMI -> TAJI -> SIDO.
+There are 3 moving steps:
+- "tano" carries each MOMI tray to a TAJI tray.
+- "duvo" is an internal rearrangement of TAJI: it carries each TAJI tray to a TAJI tray.
+- "gobo" carries each TAJI tray to a SIDO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tano" and then "duvo" lands on the same tray as running "tano" alone.
+     ("duvo" leaves every tray that "tano" produces unchanged.)
+R1.2 Running "duvo" and then "gobo" gives the same result as running "gobo" alone.
+     ("gobo" cannot tell whether "duvo" was applied first.)
+R1.3 Running "duvo" twice in a row leaves every TAJI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOMI has exactly one tray, called n1.
+- SIDO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (TAJI):
+D1.1 TAJI must be a finite set with at most 1 tray.
+D1.2 List the "duvo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TAJI = {q1_1, ..., q1_k}
+tano: n1 -> <TAJI tray>
+duvo: q1_1 -> <TAJI tray>, ..., q1_k -> <TAJI tray>
+gobo: q1_1 -> <SIDO tray>, ... (one entry per TAJI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

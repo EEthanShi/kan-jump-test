@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: GILU, POFI, JURA, BIDA, VAVU. Toys move GILU -> POFI -> JURA -> BIDA -> VAVU.
+There are 7 moving steps:
+- "tina" carries each GILU slot to a POFI slot.
+- "poni" is an internal reshuffle of POFI: it carries each POFI slot to a POFI slot.
+- "zoso" carries each POFI slot to a JURA slot.
+- "dari" is an internal reshuffle of JURA: it carries each JURA slot to a JURA slot.
+- "zoti" carries each JURA slot to a BIDA slot.
+- "jigi" is an internal reshuffle of BIDA: it carries each BIDA slot to a BIDA slot.
+- "zido" carries each BIDA slot to a VAVU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tina" and then "poni" lands on the same slot as running "tina" alone.
+     ("poni" leaves every slot that "tina" produces unchanged.)
+R1.2 Running "poni" and then "zoso" gives the same result as running "zoso" alone.
+     ("zoso" cannot tell whether "poni" was applied first.)
+R1.3 Running "poni" three times in a row leaves every POFI slot exactly where it started.
+R2.1 Running "zoso" and then "dari" lands on the same slot as running "zoso" alone.
+     ("dari" leaves every slot that "zoso" produces unchanged.)
+R2.2 Running "dari" and then "zoti" gives the same result as running "zoti" alone.
+     ("zoti" cannot tell whether "dari" was applied first.)
+R2.3 Running "dari" three times in a row leaves every JURA slot exactly where it started.
+R3.1 Running "zoti" and then "jigi" lands on the same slot as running "zoti" alone.
+     ("jigi" leaves every slot that "zoti" produces unchanged.)
+R3.2 Running "jigi" and then "zido" gives the same result as running "zido" alone.
+     ("zido" cannot tell whether "jigi" was applied first.)
+R3.3 Running "jigi" three times in a row leaves every BIDA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GILU has exactly one slot, called n1.
+- VAVU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (POFI, JURA, BIDA):
+D1.1 POFI must be a finite set with at most 1 slot.
+D1.2 List the "poni" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 JURA must be a finite set with at most 1 slot.
+D2.2 List the "dari" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 BIDA must be a finite set with at most 1 slot.
+D3.2 List the "jigi" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+POFI = {q1_1, ..., q1_k}
+tina: n1 -> <POFI slot>
+poni: q1_1 -> <POFI slot>, ..., q1_k -> <POFI slot>
+JURA = {q2_1, ..., q2_k}
+zoso: q1_1 -> <JURA slot>, ... (one entry per POFI slot)
+dari: q2_1 -> <JURA slot>, ..., q2_k -> <JURA slot>
+BIDA = {q3_1, ..., q3_k}
+zoti: q2_1 -> <BIDA slot>, ... (one entry per JURA slot)
+jigi: q3_1 -> <BIDA slot>, ..., q3_k -> <BIDA slot>
+zido: q3_1 -> <VAVU slot>, ... (one entry per BIDA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MUVI, KONU, KIJO, DUMA, FOKA. Books move MUVI -> KONU -> KIJO -> DUMA -> FOKA.
+There are 7 moving steps:
+- "nifa" carries each MUVI tray to a KONU tray.
+- "sagi" is an internal rearrangement of KONU: it carries each KONU tray to a KONU tray.
+- "taki" carries each KONU tray to a KIJO tray.
+- "razu" is an internal rearrangement of KIJO: it carries each KIJO tray to a KIJO tray.
+- "noku" carries each KIJO tray to a DUMA tray.
+- "duku" is an internal rearrangement of DUMA: it carries each DUMA tray to a DUMA tray.
+- "paka" carries each DUMA tray to a FOKA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nifa" and then "sagi" lands on the same tray as running "nifa" alone.
+     ("sagi" leaves every tray that "nifa" produces unchanged.)
+R1.2 Running "sagi" and then "taki" gives the same result as running "taki" alone.
+     ("taki" cannot tell whether "sagi" was applied first.)
+R1.3 Running "sagi" twice in a row leaves every KONU tray exactly where it started.
+R2.1 Running "taki" and then "razu" lands on the same tray as running "taki" alone.
+     ("razu" leaves every tray that "taki" produces unchanged.)
+R2.2 Running "razu" and then "noku" gives the same result as running "noku" alone.
+     ("noku" cannot tell whether "razu" was applied first.)
+R2.3 Running "razu" three times in a row leaves every KIJO tray exactly where it started.
+R3.1 Running "noku" and then "duku" lands on the same tray as running "noku" alone.
+     ("duku" leaves every tray that "noku" produces unchanged.)
+R3.2 Running "duku" and then "paka" gives the same result as running "paka" alone.
+     ("paka" cannot tell whether "duku" was applied first.)
+R3.3 Running "duku" three times in a row leaves every DUMA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MUVI has exactly one tray, called n1.
+- FOKA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KONU, KIJO, DUMA):
+D1.1 List the trays of KONU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "sagi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of KIJO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "razu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of DUMA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "duku" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KONU = {q1_1, ..., q1_k}
+nifa: n1 -> <KONU tray>
+sagi: q1_1 -> <KONU tray>, ..., q1_k -> <KONU tray>
+KIJO = {q2_1, ..., q2_k}
+taki: q1_1 -> <KIJO tray>, ... (one entry per KONU tray)
+razu: q2_1 -> <KIJO tray>, ..., q2_k -> <KIJO tray>
+DUMA = {q3_1, ..., q3_k}
+noku: q2_1 -> <DUMA tray>, ... (one entry per KIJO tray)
+duku: q3_1 -> <DUMA tray>, ..., q3_k -> <DUMA tray>
+paka: q3_1 -> <FOKA tray>, ... (one entry per DUMA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

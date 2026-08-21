@@ -1,0 +1,39 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: ZUVU, GUTO, NOPU. Toys move ZUVU -> GUTO -> NOPU.
+There are 3 moving steps:
+- "novi" carries each ZUVU slot to a GUTO slot.
+- "soma" is an internal reshuffle of GUTO: it carries each GUTO slot to a GUTO slot.
+- "sujo" carries each GUTO slot to a NOPU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "novi" and then "soma" lands on the same slot as running "novi" alone.
+     ("soma" leaves every slot that "novi" produces unchanged.)
+R1.2 Running "soma" and then "sujo" gives the same result as running "sujo" alone.
+     ("sujo" cannot tell whether "soma" was applied first.)
+R1.3 Running "soma" three times in a row leaves every GUTO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZUVU has exactly one slot, called n1.
+- NOPU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (GUTO):
+D1.1 GUTO must be a finite set with at most 1 slot.
+D1.2 List the "soma" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GUTO = {q1_1, ..., q1_k}
+novi: n1 -> <GUTO slot>
+soma: q1_1 -> <GUTO slot>, ..., q1_k -> <GUTO slot>
+sujo: q1_1 -> <NOPU slot>, ... (one entry per GUTO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

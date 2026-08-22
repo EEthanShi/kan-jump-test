@@ -628,7 +628,10 @@ def certify(inst, ext=None, non_pinning_floor=0.10):
         len(homC(inst, 'a', o)) > 0 for o in inst['new_objects'])
 
     rep['adm_structure_ok'] = all(adm_structure_ok(inst, F) for F in Adm)
-    rep['bound_entailed'] = all(
+    # A5 (entailment of the size bound by K): every hidden object carries an
+    # explicit cardinality cap 1+p_i in K2_i, and the cap must not exceed N;
+    # this is a genuine check on (K, N), not a tautology over Ext_N.
+    rep['bound_entailed'] = all(1 + p <= inst['N'] for p in inst['ps']) and all(
         F[f'id_b{i}'][0] <= inst['N']
         for F in Adm for i in range(1, inst['m'] + 1))
 

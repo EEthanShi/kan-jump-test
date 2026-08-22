@@ -226,6 +226,36 @@ def test_grader():
                   and grade_gen.verdict('jump', got['kan']) == 'FAIL')
 
 
+def test_grader_exhaustive():
+    """For every enumerated extension of every enumeration-certified (m<=2)
+    instance, under both renderings, the grader must return ADM exactly on
+    the admissible tables, KAN exactly on the trivial (all-singleton)
+    extension, and VALID_OTHER on everything else; RULE_VIOL/INVALID must
+    never occur on a genuine member of Ext_N. This is the check the paper
+    cites (138,691 extensions across the six released m<=2 instances)."""
+    print("\n== exhaustive grader-vs-enumeration check (m<=2, both renderings) ==")
+    total = 0
+    for m, ps in make_dataset.CONFIGS:
+        N = make_dataset.N_OVERRIDE.get((m, tuple(ps)))
+        inst = engine.build_family(m, ps, N=N)
+        ext = engine.enumerate_ext(inst)
+        total += len(ext)
+        for rd in render.RENDERINGS:
+            naming = render.make_naming(inst, rd)
+            meta = grade_gen.make_grade_meta(inst, naming)
+            mism = 0
+            for F in ext:
+                adm = engine.adm_structure_ok(inst, F)
+                triv = all(F[f'id_b{i}'][0] == 1 for i in range(1, m + 1))
+                want = 'ADM' if adm else ('KAN' if triv else 'VALID_OTHER')
+                got = grade_gen.classify(meta, render.answer_text(inst, naming, F))
+                if got != want:
+                    mism += 1
+            check(f"grader == certified membership m={m} ps={ps} {rd} "
+                  f"({len(ext)} extensions)", mism == 0, f"{mism} mismatches")
+    check("total enumerated extensions over the six m<=2 instances",
+          total == 138691, str(total))
+
 def print_summary_table(summary):
     print("\n" + "=" * 78)
     print("DATASET SUMMARY")
@@ -266,6 +296,7 @@ def main():
     summary = test_dataset()
     test_render_hygiene()
     test_grader()
+    test_grader_exhaustive()
     print_summary_table(summary)
     print("\n" + "=" * 78)
     if FAILURES:

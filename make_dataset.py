@@ -45,6 +45,11 @@ def inst_id(m, ps):
 # floor on K2_2 (5.3%), while N=4 passes every floor (verified independently).
 N_OVERRIDE = {(2, (3, 2)): 4}
 
+# Seed tag for nonce-name generation. 'v1' reproduces the released dataset
+# byte for byte; any other tag yields fresh names over the same certified
+# structure (see --seed-tag).
+SEED_TAG = 'v1'
+
 
 def build_and_certify(m, ps):
     t0 = time.time()
@@ -117,7 +122,8 @@ def make_instance_dir(inst, rep, crep, out_dir):
         'renderings': {}}
 
     for rd in render.RENDERINGS:
-        naming = render.make_naming(inst, rd, global_used=GLOBAL_NAME_REGISTRY)
+        naming = render.make_naming(inst, rd, seed_tag=SEED_TAG,
+                                    global_used=GLOBAL_NAME_REGISTRY)
         namings[rd] = naming
         for variant in render.VARIANTS:
             text, _ = render.render(inst, rd, variant, naming=naming)
@@ -199,4 +205,12 @@ def main(out_dir=DATASET_DIR, verbose=True):
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    ap = argparse.ArgumentParser(description="Build and certify the dataset.")
+    ap.add_argument('--seed-tag', default='v1',
+                    help="nonce-name seed; 'v1' regenerates the released dataset "
+                         "byte for byte, any other value gives fresh names")
+    ap.add_argument('--out-dir', default=DATASET_DIR)
+    args = ap.parse_args()
+    SEED_TAG = args.seed_tag
+    main(out_dir=args.out_dir)

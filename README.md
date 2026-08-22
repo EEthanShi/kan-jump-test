@@ -40,12 +40,17 @@ python3 run_gen.py --smoke
 python3 run_gen.py --report
 ```
 
-Regenerate a fresh, contamination-proof copy of the benchmark (new nonce
-names, same certified structure):
+Regenerate the released dataset byte for byte (default seed tag `v1`), or a
+fresh, contamination-proof copy with new nonce names over the same certified
+structure by choosing any other seed tag and output directory:
 
 ```bash
 python3 make_dataset.py
+python3 make_dataset.py --seed-tag v2 --out-dir dataset_v2
 ```
+
+Nonce names are CVCV strings screened against a short blocklist; a handful
+coincide with real words in some language, none related to the task.
 
 ## Layout
 

@@ -151,6 +151,36 @@ def report(results_path):
               f"{frac(cal,'KAN'):5.2f} {frac(jmp,'KAN'):5.2f} "
               f"{frac(jmp,'ADM'):7.2f} {frac(ctl,'KAN'):7.2f} {inv:5.2f} {trunc:5.2f}")
 
+    # ---- pooled aggregates with the paper's definitions ----
+    def is_trunc(r): return r.get("finish") == "length"
+    def is_empty(r): return not (r.get("answer") or "").strip()
+    jmp = [r for r in rows if r["variant"] == "jump"]
+    cal = [r for r in rows if r["variant"] == "calibration"]
+    ctl = [r for r in rows if r["variant"] == "control"]
+    n = lambda xs, c: sum(r["class"] == c for r in xs)
+    cal_cond = [r for r in cal if not is_trunc(r) and not is_empty(r)]
+    cal_nolen = [r for r in cal if not is_trunc(r)]
+    greedy = [r for r in jmp if r["temperature"] == 0.0]
+    sampled = [r for r in jmp if r["temperature"] > 0]
+    print("\n== pooled aggregates (paper definitions) ==")
+    print(f"KD (jump answers equal to the Kan default): {n(jmp,'KAN')}/{len(jmp)}")
+    print(f"jump accuracy (ADM): {n(jmp,'ADM')}/{len(jmp)}  "
+          f"greedy {n(greedy,'ADM')}/{len(greedy)}  sampled {n(sampled,'ADM')}/{len(sampled)}")
+    print(f"DC | neither truncated nor empty: {n(cal_cond,'KAN')}/{len(cal_cond)}   "
+          f"DC | not truncated: {n(cal_nolen,'KAN')}/{len(cal_nolen)}   "
+          f"DC unconditional: {n(cal,'KAN')}/{len(cal)}")
+    print(f"controls (KAN): {n(ctl,'KAN')}/{len(ctl)}")
+    fails = [r for r in jmp if r["class"] != "ADM"]
+    print(f"jump failures: {len(fails)} = {sum(is_trunc(r) for r in fails)} truncated + "
+          f"{sum((not is_trunc(r)) and is_empty(r) for r in fails)} empty + "
+          f"{n(fails,'RULE_VIOL')} rule violations + {n(fails,'VALID_OTHER')} valid-but-inadmissible "
+          f"(+ {sum(r['class']=='INVALID' and not is_trunc(r) and not is_empty(r) for r in fails)} other invalid)")
+    for rd in sorted({r["rendering"] for r in rows}):
+        if rd == "factory": continue
+        for iid in sorted({r["instance"] for r in rows if r["rendering"] == rd}):
+            xs = [r for r in jmp if r["rendering"] == rd and r["instance"] == iid]
+            print(f"wording arm {rd} {iid}: jump ADM {n(xs,'ADM')}/{len(xs)}")
+
 
 if __name__ == "__main__":
     main()

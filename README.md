@@ -1,9 +1,9 @@
 # kan-jump-test
 
-A certified, regenerable test of whether a language model can abandon its
+A certified, reproducible test of whether a language model can abandon its
 canonical completion when explicitly stated constraints rule it out.
 Companion code for the paper *When the Canonical Completion Is Wrong:
-Formalizing and Measuring the Jump in Language Models* (under review).
+Formalizing and Measuring the Jump in Language Models*.
 
 The test hands a model a finite category as explicit tables, a functor on an
 observed subcategory, and a list of machine-checkable constraints. Every
@@ -15,7 +15,8 @@ default. Calibration and matched control instances make the measurement
 attributable: KD is read only against each model's measured unconstrained
 default, and controls separate default lock-in from failure to extend at all.
 
-Everything runs on the Python standard library. There are no dependencies.
+PS: I am kind of a beginner to category theory; if you spot anything wrong, I am very happy to discuss with you to improve the paper :).
+
 
 ## Quick start
 
@@ -77,3 +78,4 @@ the paper's appendix on the experimental protocol.
 ## License
 
 MIT. See `LICENSE`.
+

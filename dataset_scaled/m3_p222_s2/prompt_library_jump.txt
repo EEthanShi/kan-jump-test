@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: TOPU, FIBU, TUMI, NORU, JUGO. Books move TOPU -> FIBU -> TUMI -> NORU -> JUGO.
+There are 7 moving steps:
+- "bamo" carries each TOPU tray to a FIBU tray.
+- "luva" is an internal rearrangement of FIBU: it carries each FIBU tray to a FIBU tray.
+- "foma" carries each FIBU tray to a TUMI tray.
+- "povu" is an internal rearrangement of TUMI: it carries each TUMI tray to a TUMI tray.
+- "zaru" carries each TUMI tray to a NORU tray.
+- "jagu" is an internal rearrangement of NORU: it carries each NORU tray to a NORU tray.
+- "damo" carries each NORU tray to a JUGO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bamo" and then "luva" lands on the same tray as running "bamo" alone.
+     ("luva" leaves every tray that "bamo" produces unchanged.)
+R1.2 Running "luva" and then "foma" gives the same result as running "foma" alone.
+     ("foma" cannot tell whether "luva" was applied first.)
+R1.3 Running "luva" twice in a row leaves every FIBU tray exactly where it started.
+R2.1 Running "foma" and then "povu" lands on the same tray as running "foma" alone.
+     ("povu" leaves every tray that "foma" produces unchanged.)
+R2.2 Running "povu" and then "zaru" gives the same result as running "zaru" alone.
+     ("zaru" cannot tell whether "povu" was applied first.)
+R2.3 Running "povu" twice in a row leaves every TUMI tray exactly where it started.
+R3.1 Running "zaru" and then "jagu" lands on the same tray as running "zaru" alone.
+     ("jagu" leaves every tray that "zaru" produces unchanged.)
+R3.2 Running "jagu" and then "damo" gives the same result as running "damo" alone.
+     ("damo" cannot tell whether "jagu" was applied first.)
+R3.3 Running "jagu" twice in a row leaves every NORU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TOPU has exactly one tray, called n1.
+- JUGO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FIBU, TUMI, NORU):
+D1.1 FIBU must be a finite set with at most 3 trays.
+D1.2 "luva" must NOT be the do-nothing move (it must move at least one FIBU tray).
+D2.1 TUMI must be a finite set with at most 3 trays.
+D2.2 "povu" must NOT be the do-nothing move (it must move at least one TUMI tray).
+D3.1 NORU must be a finite set with at most 3 trays.
+D3.2 "jagu" must NOT be the do-nothing move (it must move at least one NORU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FIBU = {q1_1, ..., q1_k}
+bamo: n1 -> <FIBU tray>
+luva: q1_1 -> <FIBU tray>, ..., q1_k -> <FIBU tray>
+TUMI = {q2_1, ..., q2_k}
+foma: q1_1 -> <TUMI tray>, ... (one entry per FIBU tray)
+povu: q2_1 -> <TUMI tray>, ..., q2_k -> <TUMI tray>
+NORU = {q3_1, ..., q3_k}
+zaru: q2_1 -> <NORU tray>, ... (one entry per TUMI tray)
+jagu: q3_1 -> <NORU tray>, ..., q3_k -> <NORU tray>
+damo: q3_1 -> <JUGO tray>, ... (one entry per NORU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: TAFA, PIJU, GANO. Books move TAFA -> PIJU -> GANO.
+There are 3 moving steps:
+- "suso" carries each TAFA tray to a PIJU tray.
+- "kala" is an internal rearrangement of PIJU: it carries each PIJU tray to a PIJU tray.
+- "poda" carries each PIJU tray to a GANO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "suso" and then "kala" lands on the same tray as running "suso" alone.
+     ("kala" leaves every tray that "suso" produces unchanged.)
+R1.2 Running "kala" and then "poda" gives the same result as running "poda" alone.
+     ("poda" cannot tell whether "kala" was applied first.)
+R1.3 Running "kala" twice in a row leaves every PIJU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TAFA has exactly one tray, called n1.
+- GANO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (PIJU):
+D1.1 PIJU must be a finite set with at most 3 trays.
+D1.2 "kala" must NOT be the do-nothing move (it must move at least one PIJU tray).
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PIJU = {q1_1, ..., q1_k}
+suso: n1 -> <PIJU tray>
+kala: q1_1 -> <PIJU tray>, ..., q1_k -> <PIJU tray>
+poda: q1_1 -> <GANO tray>, ... (one entry per PIJU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

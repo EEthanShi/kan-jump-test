@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SAVI, KOJO, LADA. Books move SAVI -> KOJO -> LADA.
+There are 3 moving steps:
+- "laza" carries each SAVI tray to a KOJO tray.
+- "vino" is an internal rearrangement of KOJO: it carries each KOJO tray to a KOJO tray.
+- "vuju" carries each KOJO tray to a LADA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "laza" and then "vino" lands on the same tray as running "laza" alone.
+     ("vino" leaves every tray that "laza" produces unchanged.)
+R1.2 Running "vino" and then "vuju" gives the same result as running "vuju" alone.
+     ("vuju" cannot tell whether "vino" was applied first.)
+R1.3 Running "vino" twice in a row leaves every KOJO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SAVI has exactly 3 trays, called n1, n2, n3.
+- LADA has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (KOJO):
+D1.1 KOJO must be a finite set with at most 2 trays.
+D1.2 List the "vino" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "laza" table entries in SAVI tray order n1, n2, n3.
+D1.4 Every LADA tray must be reached by "vuju" from at least one KOJO tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+KOJO = {q1_1, ..., q1_k}
+laza: n1 -> <KOJO tray>, n2 -> <KOJO tray>, n3 -> <KOJO tray>
+vino: q1_1 -> <KOJO tray>, ..., q1_k -> <KOJO tray>
+vuju: q1_1 -> <LADA tray>, ... (one entry per KOJO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

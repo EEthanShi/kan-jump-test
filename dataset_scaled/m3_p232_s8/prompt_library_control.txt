@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: SARA, JIKI, RIVU, BUNU, VIBU. Books move SARA -> JIKI -> RIVU -> BUNU -> VIBU.
+There are 7 moving steps:
+- "fobi" carries each SARA tray to a JIKI tray.
+- "tala" is an internal rearrangement of JIKI: it carries each JIKI tray to a JIKI tray.
+- "vuji" carries each JIKI tray to a RIVU tray.
+- "rita" is an internal rearrangement of RIVU: it carries each RIVU tray to a RIVU tray.
+- "tabu" carries each RIVU tray to a BUNU tray.
+- "pusu" is an internal rearrangement of BUNU: it carries each BUNU tray to a BUNU tray.
+- "foju" carries each BUNU tray to a VIBU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "fobi" and then "tala" lands on the same tray as running "fobi" alone.
+     ("tala" leaves every tray that "fobi" produces unchanged.)
+R1.2 Running "tala" and then "vuji" gives the same result as running "vuji" alone.
+     ("vuji" cannot tell whether "tala" was applied first.)
+R1.3 Running "tala" twice in a row leaves every JIKI tray exactly where it started.
+R2.1 Running "vuji" and then "rita" lands on the same tray as running "vuji" alone.
+     ("rita" leaves every tray that "vuji" produces unchanged.)
+R2.2 Running "rita" and then "tabu" gives the same result as running "tabu" alone.
+     ("tabu" cannot tell whether "rita" was applied first.)
+R2.3 Running "rita" three times in a row leaves every RIVU tray exactly where it started.
+R3.1 Running "tabu" and then "pusu" lands on the same tray as running "tabu" alone.
+     ("pusu" leaves every tray that "tabu" produces unchanged.)
+R3.2 Running "pusu" and then "foju" gives the same result as running "foju" alone.
+     ("foju" cannot tell whether "pusu" was applied first.)
+R3.3 Running "pusu" twice in a row leaves every BUNU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SARA has exactly one tray, called n1.
+- VIBU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JIKI, RIVU, BUNU):
+D1.1 JIKI must be a finite set with at most 1 tray.
+D1.2 List the "tala" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 RIVU must be a finite set with at most 1 tray.
+D2.2 List the "rita" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 BUNU must be a finite set with at most 1 tray.
+D3.2 List the "pusu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JIKI = {q1_1, ..., q1_k}
+fobi: n1 -> <JIKI tray>
+tala: q1_1 -> <JIKI tray>, ..., q1_k -> <JIKI tray>
+RIVU = {q2_1, ..., q2_k}
+vuji: q1_1 -> <RIVU tray>, ... (one entry per JIKI tray)
+rita: q2_1 -> <RIVU tray>, ..., q2_k -> <RIVU tray>
+BUNU = {q3_1, ..., q3_k}
+tabu: q2_1 -> <BUNU tray>, ... (one entry per RIVU tray)
+pusu: q3_1 -> <BUNU tray>, ..., q3_k -> <BUNU tray>
+foju: q3_1 -> <VIBU tray>, ... (one entry per BUNU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: DARA, DAPA, JUJO. Books move DARA -> DAPA -> JUJO.
+There are 3 moving steps:
+- "filu" carries each DARA tray to a DAPA tray.
+- "sodo" is an internal rearrangement of DAPA: it carries each DAPA tray to a DAPA tray.
+- "soju" carries each DAPA tray to a JUJO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "filu" and then "sodo" lands on the same tray as running "filu" alone.
+     ("sodo" leaves every tray that "filu" produces unchanged.)
+R1.2 Running "sodo" and then "soju" gives the same result as running "soju" alone.
+     ("soju" cannot tell whether "sodo" was applied first.)
+R1.3 Running "sodo" twice in a row leaves every DAPA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DARA has exactly 2 trays, called n1, n2.
+- JUJO has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (DAPA):
+D1.1 DAPA must be a finite set with at most 4 trays.
+D1.2 "sodo" must NOT be the do-nothing move (it must move at least one DAPA tray).
+D1.3 "filu" must carry different DARA trays to different DAPA trays.
+D1.4 Every JUJO tray must be reached by "soju" from at least one DAPA tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+DAPA = {q1_1, ..., q1_k}
+filu: n1 -> <DAPA tray>, n2 -> <DAPA tray>
+sodo: q1_1 -> <DAPA tray>, ..., q1_k -> <DAPA tray>
+soju: q1_1 -> <JUJO tray>, ... (one entry per DAPA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

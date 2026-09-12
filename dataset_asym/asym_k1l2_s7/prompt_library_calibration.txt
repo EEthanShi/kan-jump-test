@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: GOGA, SAMU, GOFO. Books move GOGA -> SAMU -> GOFO.
+There are 3 moving steps:
+- "salu" carries each GOGA tray to a SAMU tray.
+- "jilo" is an internal rearrangement of SAMU: it carries each SAMU tray to a SAMU tray.
+- "muga" carries each SAMU tray to a GOFO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "salu" and then "jilo" lands on the same tray as running "salu" alone.
+     ("jilo" leaves every tray that "salu" produces unchanged.)
+R1.2 Running "jilo" and then "muga" gives the same result as running "muga" alone.
+     ("muga" cannot tell whether "jilo" was applied first.)
+R1.3 Running "jilo" twice in a row leaves every SAMU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GOGA has exactly 1 tray, called n1.
+- GOFO has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (SAMU):
+D1.1 List the trays of SAMU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "jilo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "salu" table entries in GOGA tray order n1.
+D1.4 List the "muga" table entries in SAMU tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 3 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+SAMU = {q1_1, ..., q1_k}
+salu: n1 -> <SAMU tray>
+jilo: q1_1 -> <SAMU tray>, ..., q1_k -> <SAMU tray>
+muga: q1_1 -> <GOFO tray>, ... (one entry per SAMU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: KAVI, NOBI, VUKU, PUNA, NAFO. Toys move KAVI -> NOBI -> VUKU -> PUNA -> NAFO.
+There are 7 moving steps:
+- "bisi" carries each KAVI slot to a NOBI slot.
+- "tola" is an internal reshuffle of NOBI: it carries each NOBI slot to a NOBI slot.
+- "mopo" carries each NOBI slot to a VUKU slot.
+- "fugi" is an internal reshuffle of VUKU: it carries each VUKU slot to a VUKU slot.
+- "karo" carries each VUKU slot to a PUNA slot.
+- "jola" is an internal reshuffle of PUNA: it carries each PUNA slot to a PUNA slot.
+- "ripa" carries each PUNA slot to a NAFO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "bisi" and then "tola" lands on the same slot as running "bisi" alone.
+     ("tola" leaves every slot that "bisi" produces unchanged.)
+R1.2 Running "tola" and then "mopo" gives the same result as running "mopo" alone.
+     ("mopo" cannot tell whether "tola" was applied first.)
+R1.3 Running "tola" three times in a row leaves every NOBI slot exactly where it started.
+R2.1 Running "mopo" and then "fugi" lands on the same slot as running "mopo" alone.
+     ("fugi" leaves every slot that "mopo" produces unchanged.)
+R2.2 Running "fugi" and then "karo" gives the same result as running "karo" alone.
+     ("karo" cannot tell whether "fugi" was applied first.)
+R2.3 Running "fugi" twice in a row leaves every VUKU slot exactly where it started.
+R3.1 Running "karo" and then "jola" lands on the same slot as running "karo" alone.
+     ("jola" leaves every slot that "karo" produces unchanged.)
+R3.2 Running "jola" and then "ripa" gives the same result as running "ripa" alone.
+     ("ripa" cannot tell whether "jola" was applied first.)
+R3.3 Running "jola" twice in a row leaves every PUNA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KAVI has exactly one slot, called n1.
+- NAFO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NOBI, VUKU, PUNA):
+D1.1 List the slots of NOBI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "tola" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of VUKU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fugi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of PUNA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "jola" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NOBI = {q1_1, ..., q1_k}
+bisi: n1 -> <NOBI slot>
+tola: q1_1 -> <NOBI slot>, ..., q1_k -> <NOBI slot>
+VUKU = {q2_1, ..., q2_k}
+mopo: q1_1 -> <VUKU slot>, ... (one entry per NOBI slot)
+fugi: q2_1 -> <VUKU slot>, ..., q2_k -> <VUKU slot>
+PUNA = {q3_1, ..., q3_k}
+karo: q2_1 -> <PUNA slot>, ... (one entry per VUKU slot)
+jola: q3_1 -> <PUNA slot>, ..., q3_k -> <PUNA slot>
+ripa: q3_1 -> <NAFO slot>, ... (one entry per PUNA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

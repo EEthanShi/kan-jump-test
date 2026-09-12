@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s8",
+          "stations": [
+            "ZIGA",
+            "DUKA",
+            "GULA",
+            "LOKI"
+          ],
+          "chain_moves": [
+            "mizo",
+            "pumu",
+            "moli"
+          ],
+          "endo_moves": [
+            "vuza",
+            "kisi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "DUKA = {q1_1, q1_2, q1_3}\nmizo: n1 -> q1_1\nvuza: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nGULA = {q2_1, q2_2, q2_3}\npumu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nkisi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nmoli: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "DUKA = {q1_1}\nmizo: n1 -> q1_1\nvuza: q1_1 -> q1_1\nGULA = {q2_1}\npumu: q1_1 -> q2_1\nkisi: q2_1 -> q2_1\nmoli: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s8",
+          "stations": [
+            "LIMI",
+            "FOLU",
+            "MIJU",
+            "NOPA"
+          ],
+          "chain_moves": [
+            "rodu",
+            "subo",
+            "zufu"
+          ],
+          "endo_moves": [
+            "kati",
+            "bala"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "FOLU = {q1_1, q1_2, q1_3}\nrodu: n1 -> q1_1\nkati: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nMIJU = {q2_1, q2_2, q2_3}\nsubo: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nbala: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nzufu: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "FOLU = {q1_1}\nrodu: n1 -> q1_1\nkati: q1_1 -> q1_1\nMIJU = {q2_1}\nsubo: q1_1 -> q2_1\nbala: q2_1 -> q2_1\nzufu: q2_1 -> s1"
+    }
+  }
+}

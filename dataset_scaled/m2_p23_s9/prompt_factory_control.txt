@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: TUPI, PUBA, JUPA, LUKO. Toys move TUPI -> PUBA -> JUPA -> LUKO.
+There are 5 moving steps:
+- "jika" carries each TUPI slot to a PUBA slot.
+- "jivi" is an internal reshuffle of PUBA: it carries each PUBA slot to a PUBA slot.
+- "paju" carries each PUBA slot to a JUPA slot.
+- "japo" is an internal reshuffle of JUPA: it carries each JUPA slot to a JUPA slot.
+- "tago" carries each JUPA slot to a LUKO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "jika" and then "jivi" lands on the same slot as running "jika" alone.
+     ("jivi" leaves every slot that "jika" produces unchanged.)
+R1.2 Running "jivi" and then "paju" gives the same result as running "paju" alone.
+     ("paju" cannot tell whether "jivi" was applied first.)
+R1.3 Running "jivi" twice in a row leaves every PUBA slot exactly where it started.
+R2.1 Running "paju" and then "japo" lands on the same slot as running "paju" alone.
+     ("japo" leaves every slot that "paju" produces unchanged.)
+R2.2 Running "japo" and then "tago" gives the same result as running "tago" alone.
+     ("tago" cannot tell whether "japo" was applied first.)
+R2.3 Running "japo" three times in a row leaves every JUPA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TUPI has exactly one slot, called n1.
+- LUKO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PUBA, JUPA):
+D1.1 PUBA must be a finite set with at most 1 slot.
+D1.2 List the "jivi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 JUPA must be a finite set with at most 1 slot.
+D2.2 List the "japo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PUBA = {q1_1, ..., q1_k}
+jika: n1 -> <PUBA slot>
+jivi: q1_1 -> <PUBA slot>, ..., q1_k -> <PUBA slot>
+JUPA = {q2_1, ..., q2_k}
+paju: q1_1 -> <JUPA slot>, ... (one entry per PUBA slot)
+japo: q2_1 -> <JUPA slot>, ..., q2_k -> <JUPA slot>
+tago: q2_1 -> <LUKO slot>, ... (one entry per JUPA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

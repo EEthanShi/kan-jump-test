@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KALO, BAMI, FUSA, ZISI, KIGI. Books move KALO -> BAMI -> FUSA -> ZISI -> KIGI.
+There are 7 moving steps:
+- "bomu" carries each KALO tray to a BAMI tray.
+- "zaju" is an internal rearrangement of BAMI: it carries each BAMI tray to a BAMI tray.
+- "miza" carries each BAMI tray to a FUSA tray.
+- "nubo" is an internal rearrangement of FUSA: it carries each FUSA tray to a FUSA tray.
+- "nuzi" carries each FUSA tray to a ZISI tray.
+- "zoku" is an internal rearrangement of ZISI: it carries each ZISI tray to a ZISI tray.
+- "guzu" carries each ZISI tray to a KIGI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bomu" and then "zaju" lands on the same tray as running "bomu" alone.
+     ("zaju" leaves every tray that "bomu" produces unchanged.)
+R1.2 Running "zaju" and then "miza" gives the same result as running "miza" alone.
+     ("miza" cannot tell whether "zaju" was applied first.)
+R1.3 Running "zaju" three times in a row leaves every BAMI tray exactly where it started.
+R2.1 Running "miza" and then "nubo" lands on the same tray as running "miza" alone.
+     ("nubo" leaves every tray that "miza" produces unchanged.)
+R2.2 Running "nubo" and then "nuzi" gives the same result as running "nuzi" alone.
+     ("nuzi" cannot tell whether "nubo" was applied first.)
+R2.3 Running "nubo" three times in a row leaves every FUSA tray exactly where it started.
+R3.1 Running "nuzi" and then "zoku" lands on the same tray as running "nuzi" alone.
+     ("zoku" leaves every tray that "nuzi" produces unchanged.)
+R3.2 Running "zoku" and then "guzu" gives the same result as running "guzu" alone.
+     ("guzu" cannot tell whether "zoku" was applied first.)
+R3.3 Running "zoku" three times in a row leaves every ZISI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KALO has exactly one tray, called n1.
+- KIGI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BAMI, FUSA, ZISI):
+D1.1 BAMI must be a finite set with at most 1 tray.
+D1.2 List the "zaju" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 FUSA must be a finite set with at most 1 tray.
+D2.2 List the "nubo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 ZISI must be a finite set with at most 1 tray.
+D3.2 List the "zoku" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BAMI = {q1_1, ..., q1_k}
+bomu: n1 -> <BAMI tray>
+zaju: q1_1 -> <BAMI tray>, ..., q1_k -> <BAMI tray>
+FUSA = {q2_1, ..., q2_k}
+miza: q1_1 -> <FUSA tray>, ... (one entry per BAMI tray)
+nubo: q2_1 -> <FUSA tray>, ..., q2_k -> <FUSA tray>
+ZISI = {q3_1, ..., q3_k}
+nuzi: q2_1 -> <ZISI tray>, ... (one entry per FUSA tray)
+zoku: q3_1 -> <ZISI tray>, ..., q3_k -> <ZISI tray>
+guzu: q3_1 -> <KIGI tray>, ... (one entry per ZISI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

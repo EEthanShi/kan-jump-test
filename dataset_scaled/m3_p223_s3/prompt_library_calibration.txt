@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: NUTO, BIJI, TINI, MIBO, ZUSA. Books move NUTO -> BIJI -> TINI -> MIBO -> ZUSA.
+There are 7 moving steps:
+- "mumu" carries each NUTO tray to a BIJI tray.
+- "rogu" is an internal rearrangement of BIJI: it carries each BIJI tray to a BIJI tray.
+- "situ" carries each BIJI tray to a TINI tray.
+- "giji" is an internal rearrangement of TINI: it carries each TINI tray to a TINI tray.
+- "padu" carries each TINI tray to a MIBO tray.
+- "kisu" is an internal rearrangement of MIBO: it carries each MIBO tray to a MIBO tray.
+- "mobu" carries each MIBO tray to a ZUSA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mumu" and then "rogu" lands on the same tray as running "mumu" alone.
+     ("rogu" leaves every tray that "mumu" produces unchanged.)
+R1.2 Running "rogu" and then "situ" gives the same result as running "situ" alone.
+     ("situ" cannot tell whether "rogu" was applied first.)
+R1.3 Running "rogu" twice in a row leaves every BIJI tray exactly where it started.
+R2.1 Running "situ" and then "giji" lands on the same tray as running "situ" alone.
+     ("giji" leaves every tray that "situ" produces unchanged.)
+R2.2 Running "giji" and then "padu" gives the same result as running "padu" alone.
+     ("padu" cannot tell whether "giji" was applied first.)
+R2.3 Running "giji" twice in a row leaves every TINI tray exactly where it started.
+R3.1 Running "padu" and then "kisu" lands on the same tray as running "padu" alone.
+     ("kisu" leaves every tray that "padu" produces unchanged.)
+R3.2 Running "kisu" and then "mobu" gives the same result as running "mobu" alone.
+     ("mobu" cannot tell whether "kisu" was applied first.)
+R3.3 Running "kisu" three times in a row leaves every MIBO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NUTO has exactly one tray, called n1.
+- ZUSA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BIJI, TINI, MIBO):
+D1.1 List the trays of BIJI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "rogu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of TINI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "giji" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of MIBO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "kisu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BIJI = {q1_1, ..., q1_k}
+mumu: n1 -> <BIJI tray>
+rogu: q1_1 -> <BIJI tray>, ..., q1_k -> <BIJI tray>
+TINI = {q2_1, ..., q2_k}
+situ: q1_1 -> <TINI tray>, ... (one entry per BIJI tray)
+giji: q2_1 -> <TINI tray>, ..., q2_k -> <TINI tray>
+MIBO = {q3_1, ..., q3_k}
+padu: q2_1 -> <MIBO tray>, ... (one entry per TINI tray)
+kisu: q3_1 -> <MIBO tray>, ..., q3_k -> <MIBO tray>
+mobu: q3_1 -> <ZUSA tray>, ... (one entry per MIBO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

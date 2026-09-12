@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: GAKU, DANA, DIKI, DUJI. Books move GAKU -> DANA -> DIKI -> DUJI.
+There are 5 moving steps:
+- "robi" carries each GAKU tray to a DANA tray.
+- "guzu" is an internal rearrangement of DANA: it carries each DANA tray to a DANA tray.
+- "fiji" carries each DANA tray to a DIKI tray.
+- "piko" is an internal rearrangement of DIKI: it carries each DIKI tray to a DIKI tray.
+- "rofo" carries each DIKI tray to a DUJI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "robi" and then "guzu" lands on the same tray as running "robi" alone.
+     ("guzu" leaves every tray that "robi" produces unchanged.)
+R1.2 Running "guzu" and then "fiji" gives the same result as running "fiji" alone.
+     ("fiji" cannot tell whether "guzu" was applied first.)
+R1.3 Running "guzu" twice in a row leaves every DANA tray exactly where it started.
+R2.1 Running "fiji" and then "piko" lands on the same tray as running "fiji" alone.
+     ("piko" leaves every tray that "fiji" produces unchanged.)
+R2.2 Running "piko" and then "rofo" gives the same result as running "rofo" alone.
+     ("rofo" cannot tell whether "piko" was applied first.)
+R2.3 Running "piko" three times in a row leaves every DIKI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GAKU has exactly one tray, called n1.
+- DUJI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DANA, DIKI):
+D1.1 List the trays of DANA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "guzu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of DIKI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "piko" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DANA = {q1_1, ..., q1_k}
+robi: n1 -> <DANA tray>
+guzu: q1_1 -> <DANA tray>, ..., q1_k -> <DANA tray>
+DIKI = {q2_1, ..., q2_k}
+fiji: q1_1 -> <DIKI tray>, ... (one entry per DANA tray)
+piko: q2_1 -> <DIKI tray>, ..., q2_k -> <DIKI tray>
+rofo: q2_1 -> <DUJI tray>, ... (one entry per DIKI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

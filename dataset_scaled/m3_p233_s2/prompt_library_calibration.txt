@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: RUKO, TOMI, ROLA, PUTU, MOKA. Books move RUKO -> TOMI -> ROLA -> PUTU -> MOKA.
+There are 7 moving steps:
+- "nopu" carries each RUKO tray to a TOMI tray.
+- "vagi" is an internal rearrangement of TOMI: it carries each TOMI tray to a TOMI tray.
+- "pofa" carries each TOMI tray to a ROLA tray.
+- "ginu" is an internal rearrangement of ROLA: it carries each ROLA tray to a ROLA tray.
+- "vifa" carries each ROLA tray to a PUTU tray.
+- "turo" is an internal rearrangement of PUTU: it carries each PUTU tray to a PUTU tray.
+- "lado" carries each PUTU tray to a MOKA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nopu" and then "vagi" lands on the same tray as running "nopu" alone.
+     ("vagi" leaves every tray that "nopu" produces unchanged.)
+R1.2 Running "vagi" and then "pofa" gives the same result as running "pofa" alone.
+     ("pofa" cannot tell whether "vagi" was applied first.)
+R1.3 Running "vagi" twice in a row leaves every TOMI tray exactly where it started.
+R2.1 Running "pofa" and then "ginu" lands on the same tray as running "pofa" alone.
+     ("ginu" leaves every tray that "pofa" produces unchanged.)
+R2.2 Running "ginu" and then "vifa" gives the same result as running "vifa" alone.
+     ("vifa" cannot tell whether "ginu" was applied first.)
+R2.3 Running "ginu" three times in a row leaves every ROLA tray exactly where it started.
+R3.1 Running "vifa" and then "turo" lands on the same tray as running "vifa" alone.
+     ("turo" leaves every tray that "vifa" produces unchanged.)
+R3.2 Running "turo" and then "lado" gives the same result as running "lado" alone.
+     ("lado" cannot tell whether "turo" was applied first.)
+R3.3 Running "turo" three times in a row leaves every PUTU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RUKO has exactly one tray, called n1.
+- MOKA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TOMI, ROLA, PUTU):
+D1.1 List the trays of TOMI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vagi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of ROLA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "ginu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of PUTU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "turo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TOMI = {q1_1, ..., q1_k}
+nopu: n1 -> <TOMI tray>
+vagi: q1_1 -> <TOMI tray>, ..., q1_k -> <TOMI tray>
+ROLA = {q2_1, ..., q2_k}
+pofa: q1_1 -> <ROLA tray>, ... (one entry per TOMI tray)
+ginu: q2_1 -> <ROLA tray>, ..., q2_k -> <ROLA tray>
+PUTU = {q3_1, ..., q3_k}
+vifa: q2_1 -> <PUTU tray>, ... (one entry per ROLA tray)
+turo: q3_1 -> <PUTU tray>, ..., q3_k -> <PUTU tray>
+lado: q3_1 -> <MOKA tray>, ... (one entry per PUTU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

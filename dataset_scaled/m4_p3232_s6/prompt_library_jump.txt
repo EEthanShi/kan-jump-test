@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: MOLU, TIPU, SUZU, ZOSA, ZIRO, RADU. Books move MOLU -> TIPU -> SUZU -> ZOSA -> ZIRO -> RADU.
+There are 9 moving steps:
+- "nuja" carries each MOLU tray to a TIPU tray.
+- "kigi" is an internal rearrangement of TIPU: it carries each TIPU tray to a TIPU tray.
+- "ruju" carries each TIPU tray to a SUZU tray.
+- "turu" is an internal rearrangement of SUZU: it carries each SUZU tray to a SUZU tray.
+- "lubi" carries each SUZU tray to a ZOSA tray.
+- "novi" is an internal rearrangement of ZOSA: it carries each ZOSA tray to a ZOSA tray.
+- "poza" carries each ZOSA tray to a ZIRO tray.
+- "vika" is an internal rearrangement of ZIRO: it carries each ZIRO tray to a ZIRO tray.
+- "tifu" carries each ZIRO tray to a RADU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nuja" and then "kigi" lands on the same tray as running "nuja" alone.
+     ("kigi" leaves every tray that "nuja" produces unchanged.)
+R1.2 Running "kigi" and then "ruju" gives the same result as running "ruju" alone.
+     ("ruju" cannot tell whether "kigi" was applied first.)
+R1.3 Running "kigi" three times in a row leaves every TIPU tray exactly where it started.
+R2.1 Running "ruju" and then "turu" lands on the same tray as running "ruju" alone.
+     ("turu" leaves every tray that "ruju" produces unchanged.)
+R2.2 Running "turu" and then "lubi" gives the same result as running "lubi" alone.
+     ("lubi" cannot tell whether "turu" was applied first.)
+R2.3 Running "turu" twice in a row leaves every SUZU tray exactly where it started.
+R3.1 Running "lubi" and then "novi" lands on the same tray as running "lubi" alone.
+     ("novi" leaves every tray that "lubi" produces unchanged.)
+R3.2 Running "novi" and then "poza" gives the same result as running "poza" alone.
+     ("poza" cannot tell whether "novi" was applied first.)
+R3.3 Running "novi" three times in a row leaves every ZOSA tray exactly where it started.
+R4.1 Running "poza" and then "vika" lands on the same tray as running "poza" alone.
+     ("vika" leaves every tray that "poza" produces unchanged.)
+R4.2 Running "vika" and then "tifu" gives the same result as running "tifu" alone.
+     ("tifu" cannot tell whether "vika" was applied first.)
+R4.3 Running "vika" twice in a row leaves every ZIRO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOLU has exactly one tray, called n1.
+- RADU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TIPU, SUZU, ZOSA, ZIRO):
+D1.1 TIPU must be a finite set with at most 4 trays.
+D1.2 "kigi" must NOT be the do-nothing move (it must move at least one TIPU tray).
+D2.1 SUZU must be a finite set with at most 3 trays.
+D2.2 "turu" must NOT be the do-nothing move (it must move at least one SUZU tray).
+D3.1 ZOSA must be a finite set with at most 4 trays.
+D3.2 "novi" must NOT be the do-nothing move (it must move at least one ZOSA tray).
+D4.1 ZIRO must be a finite set with at most 3 trays.
+D4.2 "vika" must NOT be the do-nothing move (it must move at least one ZIRO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TIPU = {q1_1, ..., q1_k}
+nuja: n1 -> <TIPU tray>
+kigi: q1_1 -> <TIPU tray>, ..., q1_k -> <TIPU tray>
+SUZU = {q2_1, ..., q2_k}
+ruju: q1_1 -> <SUZU tray>, ... (one entry per TIPU tray)
+turu: q2_1 -> <SUZU tray>, ..., q2_k -> <SUZU tray>
+ZOSA = {q3_1, ..., q3_k}
+lubi: q2_1 -> <ZOSA tray>, ... (one entry per SUZU tray)
+novi: q3_1 -> <ZOSA tray>, ..., q3_k -> <ZOSA tray>
+ZIRO = {q4_1, ..., q4_k}
+poza: q3_1 -> <ZIRO tray>, ... (one entry per ZOSA tray)
+vika: q4_1 -> <ZIRO tray>, ..., q4_k -> <ZIRO tray>
+tifu: q4_1 -> <RADU tray>, ... (one entry per ZIRO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

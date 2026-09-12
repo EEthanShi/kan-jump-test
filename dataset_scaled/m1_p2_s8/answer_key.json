@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s8",
+          "stations": [
+            "NUDA",
+            "TAJA",
+            "RARA"
+          ],
+          "chain_moves": [
+            "davu",
+            "gavi"
+          ],
+          "endo_moves": [
+            "baru"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "TAJA = {q1_1, q1_2, q1_3}\ndavu: n1 -> q1_1\nbaru: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ngavi: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "TAJA = {q1_1}\ndavu: n1 -> q1_1\nbaru: q1_1 -> q1_1\ngavi: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s8",
+          "stations": [
+            "MUNA",
+            "MOSI",
+            "GIJU"
+          ],
+          "chain_moves": [
+            "viju",
+            "jomo"
+          ],
+          "endo_moves": [
+            "loba"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "MOSI = {q1_1, q1_2, q1_3}\nviju: n1 -> q1_1\nloba: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\njomo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "MOSI = {q1_1}\nviju: n1 -> q1_1\nloba: q1_1 -> q1_1\njomo: q1_1 -> s1"
+    }
+  }
+}

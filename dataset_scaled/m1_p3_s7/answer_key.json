@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s7",
+          "stations": [
+            "KAFI",
+            "SABU",
+            "KIFU"
+          ],
+          "chain_moves": [
+            "pigu",
+            "baza"
+          ],
+          "endo_moves": [
+            "nogu"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SABU = {q1_1, q1_2, q1_3, q1_4}\npigu: n1 -> q1_1\nnogu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nbaza: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+      "kan_answer": "SABU = {q1_1}\npigu: n1 -> q1_1\nnogu: q1_1 -> q1_1\nbaza: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s7",
+          "stations": [
+            "RAJI",
+            "TIDA",
+            "DIBI"
+          ],
+          "chain_moves": [
+            "galo",
+            "kana"
+          ],
+          "endo_moves": [
+            "lupi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "TIDA = {q1_1, q1_2, q1_3, q1_4}\ngalo: n1 -> q1_1\nlupi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nkana: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+      "kan_answer": "TIDA = {q1_1}\ngalo: n1 -> q1_1\nlupi: q1_1 -> q1_1\nkana: q1_1 -> s1"
+    }
+  }
+}

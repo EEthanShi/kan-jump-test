@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: JADU, TORA, POVO. Books move JADU -> TORA -> POVO.
+There are 3 moving steps:
+- "gisu" carries each JADU tray to a TORA tray.
+- "fomi" is an internal rearrangement of TORA: it carries each TORA tray to a TORA tray.
+- "vima" carries each TORA tray to a POVO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gisu" and then "fomi" lands on the same tray as running "gisu" alone.
+     ("fomi" leaves every tray that "gisu" produces unchanged.)
+R1.2 Running "fomi" and then "vima" gives the same result as running "vima" alone.
+     ("vima" cannot tell whether "fomi" was applied first.)
+R1.3 Running "fomi" twice in a row leaves every TORA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JADU has exactly 3 trays, called n1, n2, n3.
+- POVO has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (TORA):
+D1.1 List the trays of TORA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "fomi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "gisu" table entries in JADU tray order n1, n2, n3.
+D1.4 List the "vima" table entries in TORA tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+TORA = {q1_1, ..., q1_k}
+gisu: n1 -> <TORA tray>, n2 -> <TORA tray>, n3 -> <TORA tray>
+fomi: q1_1 -> <TORA tray>, ..., q1_k -> <TORA tray>
+vima: q1_1 -> <POVO tray>, ... (one entry per TORA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

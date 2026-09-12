@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: DUMI, SIKA, KANA, TOSA, ZILO. Books move DUMI -> SIKA -> KANA -> TOSA -> ZILO.
+There are 7 moving steps:
+- "modi" carries each DUMI tray to a SIKA tray.
+- "rako" is an internal rearrangement of SIKA: it carries each SIKA tray to a SIKA tray.
+- "ruma" carries each SIKA tray to a KANA tray.
+- "ludi" is an internal rearrangement of KANA: it carries each KANA tray to a KANA tray.
+- "fira" carries each KANA tray to a TOSA tray.
+- "domo" is an internal rearrangement of TOSA: it carries each TOSA tray to a TOSA tray.
+- "tuga" carries each TOSA tray to a ZILO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "modi" and then "rako" lands on the same tray as running "modi" alone.
+     ("rako" leaves every tray that "modi" produces unchanged.)
+R1.2 Running "rako" and then "ruma" gives the same result as running "ruma" alone.
+     ("ruma" cannot tell whether "rako" was applied first.)
+R1.3 Running "rako" three times in a row leaves every SIKA tray exactly where it started.
+R2.1 Running "ruma" and then "ludi" lands on the same tray as running "ruma" alone.
+     ("ludi" leaves every tray that "ruma" produces unchanged.)
+R2.2 Running "ludi" and then "fira" gives the same result as running "fira" alone.
+     ("fira" cannot tell whether "ludi" was applied first.)
+R2.3 Running "ludi" three times in a row leaves every KANA tray exactly where it started.
+R3.1 Running "fira" and then "domo" lands on the same tray as running "fira" alone.
+     ("domo" leaves every tray that "fira" produces unchanged.)
+R3.2 Running "domo" and then "tuga" gives the same result as running "tuga" alone.
+     ("tuga" cannot tell whether "domo" was applied first.)
+R3.3 Running "domo" three times in a row leaves every TOSA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DUMI has exactly one tray, called n1.
+- ZILO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SIKA, KANA, TOSA):
+D1.1 List the trays of SIKA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "rako" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of KANA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "ludi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of TOSA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "domo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SIKA = {q1_1, ..., q1_k}
+modi: n1 -> <SIKA tray>
+rako: q1_1 -> <SIKA tray>, ..., q1_k -> <SIKA tray>
+KANA = {q2_1, ..., q2_k}
+ruma: q1_1 -> <KANA tray>, ... (one entry per SIKA tray)
+ludi: q2_1 -> <KANA tray>, ..., q2_k -> <KANA tray>
+TOSA = {q3_1, ..., q3_k}
+fira: q2_1 -> <TOSA tray>, ... (one entry per KANA tray)
+domo: q3_1 -> <TOSA tray>, ..., q3_k -> <TOSA tray>
+tuga: q3_1 -> <ZILO tray>, ... (one entry per TOSA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

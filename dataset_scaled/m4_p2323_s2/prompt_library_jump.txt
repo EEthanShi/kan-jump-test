@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: FUPU, MUVU, ZIDI, MAPI, RIJI, LAGI. Books move FUPU -> MUVU -> ZIDI -> MAPI -> RIJI -> LAGI.
+There are 9 moving steps:
+- "gupo" carries each FUPU tray to a MUVU tray.
+- "toja" is an internal rearrangement of MUVU: it carries each MUVU tray to a MUVU tray.
+- "goni" carries each MUVU tray to a ZIDI tray.
+- "tadi" is an internal rearrangement of ZIDI: it carries each ZIDI tray to a ZIDI tray.
+- "loda" carries each ZIDI tray to a MAPI tray.
+- "najo" is an internal rearrangement of MAPI: it carries each MAPI tray to a MAPI tray.
+- "mofu" carries each MAPI tray to a RIJI tray.
+- "pugo" is an internal rearrangement of RIJI: it carries each RIJI tray to a RIJI tray.
+- "nugu" carries each RIJI tray to a LAGI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gupo" and then "toja" lands on the same tray as running "gupo" alone.
+     ("toja" leaves every tray that "gupo" produces unchanged.)
+R1.2 Running "toja" and then "goni" gives the same result as running "goni" alone.
+     ("goni" cannot tell whether "toja" was applied first.)
+R1.3 Running "toja" twice in a row leaves every MUVU tray exactly where it started.
+R2.1 Running "goni" and then "tadi" lands on the same tray as running "goni" alone.
+     ("tadi" leaves every tray that "goni" produces unchanged.)
+R2.2 Running "tadi" and then "loda" gives the same result as running "loda" alone.
+     ("loda" cannot tell whether "tadi" was applied first.)
+R2.3 Running "tadi" three times in a row leaves every ZIDI tray exactly where it started.
+R3.1 Running "loda" and then "najo" lands on the same tray as running "loda" alone.
+     ("najo" leaves every tray that "loda" produces unchanged.)
+R3.2 Running "najo" and then "mofu" gives the same result as running "mofu" alone.
+     ("mofu" cannot tell whether "najo" was applied first.)
+R3.3 Running "najo" twice in a row leaves every MAPI tray exactly where it started.
+R4.1 Running "mofu" and then "pugo" lands on the same tray as running "mofu" alone.
+     ("pugo" leaves every tray that "mofu" produces unchanged.)
+R4.2 Running "pugo" and then "nugu" gives the same result as running "nugu" alone.
+     ("nugu" cannot tell whether "pugo" was applied first.)
+R4.3 Running "pugo" three times in a row leaves every RIJI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FUPU has exactly one tray, called n1.
+- LAGI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MUVU, ZIDI, MAPI, RIJI):
+D1.1 MUVU must be a finite set with at most 3 trays.
+D1.2 "toja" must NOT be the do-nothing move (it must move at least one MUVU tray).
+D2.1 ZIDI must be a finite set with at most 4 trays.
+D2.2 "tadi" must NOT be the do-nothing move (it must move at least one ZIDI tray).
+D3.1 MAPI must be a finite set with at most 3 trays.
+D3.2 "najo" must NOT be the do-nothing move (it must move at least one MAPI tray).
+D4.1 RIJI must be a finite set with at most 4 trays.
+D4.2 "pugo" must NOT be the do-nothing move (it must move at least one RIJI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MUVU = {q1_1, ..., q1_k}
+gupo: n1 -> <MUVU tray>
+toja: q1_1 -> <MUVU tray>, ..., q1_k -> <MUVU tray>
+ZIDI = {q2_1, ..., q2_k}
+goni: q1_1 -> <ZIDI tray>, ... (one entry per MUVU tray)
+tadi: q2_1 -> <ZIDI tray>, ..., q2_k -> <ZIDI tray>
+MAPI = {q3_1, ..., q3_k}
+loda: q2_1 -> <MAPI tray>, ... (one entry per ZIDI tray)
+najo: q3_1 -> <MAPI tray>, ..., q3_k -> <MAPI tray>
+RIJI = {q4_1, ..., q4_k}
+mofu: q3_1 -> <RIJI tray>, ... (one entry per MAPI tray)
+pugo: q4_1 -> <RIJI tray>, ..., q4_k -> <RIJI tray>
+nugu: q4_1 -> <LAGI tray>, ... (one entry per RIJI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

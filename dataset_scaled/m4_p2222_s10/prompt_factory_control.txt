@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: JINA, PUZU, GOMO, DOKA, POFA, LAKA. Toys move JINA -> PUZU -> GOMO -> DOKA -> POFA -> LAKA.
+There are 9 moving steps:
+- "pufu" carries each JINA slot to a PUZU slot.
+- "kupo" is an internal reshuffle of PUZU: it carries each PUZU slot to a PUZU slot.
+- "tora" carries each PUZU slot to a GOMO slot.
+- "maza" is an internal reshuffle of GOMO: it carries each GOMO slot to a GOMO slot.
+- "zoga" carries each GOMO slot to a DOKA slot.
+- "toji" is an internal reshuffle of DOKA: it carries each DOKA slot to a DOKA slot.
+- "koki" carries each DOKA slot to a POFA slot.
+- "jafi" is an internal reshuffle of POFA: it carries each POFA slot to a POFA slot.
+- "nofi" carries each POFA slot to a LAKA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pufu" and then "kupo" lands on the same slot as running "pufu" alone.
+     ("kupo" leaves every slot that "pufu" produces unchanged.)
+R1.2 Running "kupo" and then "tora" gives the same result as running "tora" alone.
+     ("tora" cannot tell whether "kupo" was applied first.)
+R1.3 Running "kupo" twice in a row leaves every PUZU slot exactly where it started.
+R2.1 Running "tora" and then "maza" lands on the same slot as running "tora" alone.
+     ("maza" leaves every slot that "tora" produces unchanged.)
+R2.2 Running "maza" and then "zoga" gives the same result as running "zoga" alone.
+     ("zoga" cannot tell whether "maza" was applied first.)
+R2.3 Running "maza" twice in a row leaves every GOMO slot exactly where it started.
+R3.1 Running "zoga" and then "toji" lands on the same slot as running "zoga" alone.
+     ("toji" leaves every slot that "zoga" produces unchanged.)
+R3.2 Running "toji" and then "koki" gives the same result as running "koki" alone.
+     ("koki" cannot tell whether "toji" was applied first.)
+R3.3 Running "toji" twice in a row leaves every DOKA slot exactly where it started.
+R4.1 Running "koki" and then "jafi" lands on the same slot as running "koki" alone.
+     ("jafi" leaves every slot that "koki" produces unchanged.)
+R4.2 Running "jafi" and then "nofi" gives the same result as running "nofi" alone.
+     ("nofi" cannot tell whether "jafi" was applied first.)
+R4.3 Running "jafi" twice in a row leaves every POFA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JINA has exactly one slot, called n1.
+- LAKA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PUZU, GOMO, DOKA, POFA):
+D1.1 PUZU must be a finite set with at most 1 slot.
+D1.2 List the "kupo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 GOMO must be a finite set with at most 1 slot.
+D2.2 List the "maza" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 DOKA must be a finite set with at most 1 slot.
+D3.2 List the "toji" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 POFA must be a finite set with at most 1 slot.
+D4.2 List the "jafi" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PUZU = {q1_1, ..., q1_k}
+pufu: n1 -> <PUZU slot>
+kupo: q1_1 -> <PUZU slot>, ..., q1_k -> <PUZU slot>
+GOMO = {q2_1, ..., q2_k}
+tora: q1_1 -> <GOMO slot>, ... (one entry per PUZU slot)
+maza: q2_1 -> <GOMO slot>, ..., q2_k -> <GOMO slot>
+DOKA = {q3_1, ..., q3_k}
+zoga: q2_1 -> <DOKA slot>, ... (one entry per GOMO slot)
+toji: q3_1 -> <DOKA slot>, ..., q3_k -> <DOKA slot>
+POFA = {q4_1, ..., q4_k}
+koki: q3_1 -> <POFA slot>, ... (one entry per DOKA slot)
+jafi: q4_1 -> <POFA slot>, ..., q4_k -> <POFA slot>
+nofi: q4_1 -> <LAKA slot>, ... (one entry per POFA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

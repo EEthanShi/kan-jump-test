@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SIDA, PUMI, NIVO, TUZU, NIDO. Toys move SIDA -> PUMI -> NIVO -> TUZU -> NIDO.
+There are 7 moving steps:
+- "musu" carries each SIDA slot to a PUMI slot.
+- "toni" is an internal reshuffle of PUMI: it carries each PUMI slot to a PUMI slot.
+- "jobo" carries each PUMI slot to a NIVO slot.
+- "nuna" is an internal reshuffle of NIVO: it carries each NIVO slot to a NIVO slot.
+- "kofi" carries each NIVO slot to a TUZU slot.
+- "bujo" is an internal reshuffle of TUZU: it carries each TUZU slot to a TUZU slot.
+- "tira" carries each TUZU slot to a NIDO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "musu" and then "toni" lands on the same slot as running "musu" alone.
+     ("toni" leaves every slot that "musu" produces unchanged.)
+R1.2 Running "toni" and then "jobo" gives the same result as running "jobo" alone.
+     ("jobo" cannot tell whether "toni" was applied first.)
+R1.3 Running "toni" twice in a row leaves every PUMI slot exactly where it started.
+R2.1 Running "jobo" and then "nuna" lands on the same slot as running "jobo" alone.
+     ("nuna" leaves every slot that "jobo" produces unchanged.)
+R2.2 Running "nuna" and then "kofi" gives the same result as running "kofi" alone.
+     ("kofi" cannot tell whether "nuna" was applied first.)
+R2.3 Running "nuna" twice in a row leaves every NIVO slot exactly where it started.
+R3.1 Running "kofi" and then "bujo" lands on the same slot as running "kofi" alone.
+     ("bujo" leaves every slot that "kofi" produces unchanged.)
+R3.2 Running "bujo" and then "tira" gives the same result as running "tira" alone.
+     ("tira" cannot tell whether "bujo" was applied first.)
+R3.3 Running "bujo" twice in a row leaves every TUZU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SIDA has exactly one slot, called n1.
+- NIDO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PUMI, NIVO, TUZU):
+D1.1 PUMI must be a finite set with at most 3 slots.
+D1.2 "toni" must NOT be the do-nothing move (it must move at least one PUMI slot).
+D2.1 NIVO must be a finite set with at most 3 slots.
+D2.2 "nuna" must NOT be the do-nothing move (it must move at least one NIVO slot).
+D3.1 TUZU must be a finite set with at most 3 slots.
+D3.2 "bujo" must NOT be the do-nothing move (it must move at least one TUZU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PUMI = {q1_1, ..., q1_k}
+musu: n1 -> <PUMI slot>
+toni: q1_1 -> <PUMI slot>, ..., q1_k -> <PUMI slot>
+NIVO = {q2_1, ..., q2_k}
+jobo: q1_1 -> <NIVO slot>, ... (one entry per PUMI slot)
+nuna: q2_1 -> <NIVO slot>, ..., q2_k -> <NIVO slot>
+TUZU = {q3_1, ..., q3_k}
+kofi: q2_1 -> <TUZU slot>, ... (one entry per NIVO slot)
+bujo: q3_1 -> <TUZU slot>, ..., q3_k -> <TUZU slot>
+tira: q3_1 -> <NIDO slot>, ... (one entry per TUZU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

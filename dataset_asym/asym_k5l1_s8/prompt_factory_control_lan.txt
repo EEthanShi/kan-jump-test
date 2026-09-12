@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: LUNA, RONU, DODA. Toys move LUNA -> RONU -> DODA.
+There are 3 moving steps:
+- "jata" carries each LUNA slot to a RONU slot.
+- "tana" is an internal reshuffle of RONU: it carries each RONU slot to a RONU slot.
+- "luba" carries each RONU slot to a DODA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "jata" and then "tana" lands on the same slot as running "jata" alone.
+     ("tana" leaves every slot that "jata" produces unchanged.)
+R1.2 Running "tana" and then "luba" gives the same result as running "luba" alone.
+     ("luba" cannot tell whether "tana" was applied first.)
+R1.3 Running "tana" twice in a row leaves every RONU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LUNA has exactly 5 slots, called n1, n2, n3, n4, n5.
+- DODA has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1, n4 to s1, n5 to s1.
+
+Requirements for the middle station (RONU):
+D1.1 RONU must be a finite set with at most 5 slots.
+D1.2 List the "tana" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 "jata" must carry different LUNA slots to different RONU slots.
+D1.4 List the "luba" table entries in RONU slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 7 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+RONU = {q1_1, ..., q1_k}
+jata: n1 -> <RONU slot>, n2 -> <RONU slot>, n3 -> <RONU slot>, n4 -> <RONU slot>, n5 -> <RONU slot>
+tana: q1_1 -> <RONU slot>, ..., q1_k -> <RONU slot>
+luba: q1_1 -> <DODA slot>, ... (one entry per RONU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

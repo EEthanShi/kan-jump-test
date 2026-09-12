@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: VOVI, GASI, VIJI, LIJA. Books move VOVI -> GASI -> VIJI -> LIJA.
+There are 5 moving steps:
+- "vaku" carries each VOVI tray to a GASI tray.
+- "foba" is an internal rearrangement of GASI: it carries each GASI tray to a GASI tray.
+- "papo" carries each GASI tray to a VIJI tray.
+- "kuto" is an internal rearrangement of VIJI: it carries each VIJI tray to a VIJI tray.
+- "vuri" carries each VIJI tray to a LIJA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vaku" and then "foba" lands on the same tray as running "vaku" alone.
+     ("foba" leaves every tray that "vaku" produces unchanged.)
+R1.2 Running "foba" and then "papo" gives the same result as running "papo" alone.
+     ("papo" cannot tell whether "foba" was applied first.)
+R1.3 Running "foba" twice in a row leaves every GASI tray exactly where it started.
+R2.1 Running "papo" and then "kuto" lands on the same tray as running "papo" alone.
+     ("kuto" leaves every tray that "papo" produces unchanged.)
+R2.2 Running "kuto" and then "vuri" gives the same result as running "vuri" alone.
+     ("vuri" cannot tell whether "kuto" was applied first.)
+R2.3 Running "kuto" three times in a row leaves every VIJI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VOVI has exactly one tray, called n1.
+- LIJA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (GASI, VIJI):
+D1.1 GASI must be a finite set with at most 1 tray.
+D1.2 List the "foba" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VIJI must be a finite set with at most 1 tray.
+D2.2 List the "kuto" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GASI = {q1_1, ..., q1_k}
+vaku: n1 -> <GASI tray>
+foba: q1_1 -> <GASI tray>, ..., q1_k -> <GASI tray>
+VIJI = {q2_1, ..., q2_k}
+papo: q1_1 -> <VIJI tray>, ... (one entry per GASI tray)
+kuto: q2_1 -> <VIJI tray>, ..., q2_k -> <VIJI tray>
+vuri: q2_1 -> <LIJA tray>, ... (one entry per VIJI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

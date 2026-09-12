@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          3,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s9",
+          "stations": [
+            "MOSO",
+            "BARU",
+            "FIDU",
+            "LOTO"
+          ],
+          "chain_moves": [
+            "zoki",
+            "kifu",
+            "tamo"
+          ],
+          "endo_moves": [
+            "kiru",
+            "bozu"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "BARU = {q1_1, q1_2, q1_3, q1_4}\nzoki: n1 -> q1_1\nkiru: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nFIDU = {q2_1, q2_2, q2_3, q2_4}\nkifu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1, q1_4 -> q2_1\nbozu: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\ntamo: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "BARU = {q1_1}\nzoki: n1 -> q1_1\nkiru: q1_1 -> q1_1\nFIDU = {q2_1}\nkifu: q1_1 -> q2_1\nbozu: q2_1 -> q2_1\ntamo: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          3,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s9",
+          "stations": [
+            "ZOPO",
+            "BINU",
+            "GARI",
+            "GOTI"
+          ],
+          "chain_moves": [
+            "dubo",
+            "tozu",
+            "zovo"
+          ],
+          "endo_moves": [
+            "pifa",
+            "romi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "BINU = {q1_1, q1_2, q1_3, q1_4}\ndubo: n1 -> q1_1\npifa: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nGARI = {q2_1, q2_2, q2_3, q2_4}\ntozu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1, q1_4 -> q2_1\nromi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\nzovo: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "BINU = {q1_1}\ndubo: n1 -> q1_1\npifa: q1_1 -> q1_1\nGARI = {q2_1}\ntozu: q1_1 -> q2_1\nromi: q2_1 -> q2_1\nzovo: q2_1 -> s1"
+    }
+  }
+}

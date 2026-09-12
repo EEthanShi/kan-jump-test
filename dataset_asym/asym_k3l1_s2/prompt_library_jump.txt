@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: PILU, FIPU, VASU. Books move PILU -> FIPU -> VASU.
+There are 3 moving steps:
+- "gulu" carries each PILU tray to a FIPU tray.
+- "digo" is an internal rearrangement of FIPU: it carries each FIPU tray to a FIPU tray.
+- "judi" carries each FIPU tray to a VASU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gulu" and then "digo" lands on the same tray as running "gulu" alone.
+     ("digo" leaves every tray that "gulu" produces unchanged.)
+R1.2 Running "digo" and then "judi" gives the same result as running "judi" alone.
+     ("judi" cannot tell whether "digo" was applied first.)
+R1.3 Running "digo" twice in a row leaves every FIPU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PILU has exactly 3 trays, called n1, n2, n3.
+- VASU has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (FIPU):
+D1.1 FIPU must be a finite set with at most 5 trays.
+D1.2 "digo" must NOT be the do-nothing move (it must move at least one FIPU tray).
+D1.3 "gulu" must carry different PILU trays to different FIPU trays.
+D1.4 Every VASU tray must be reached by "judi" from at least one FIPU tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+FIPU = {q1_1, ..., q1_k}
+gulu: n1 -> <FIPU tray>, n2 -> <FIPU tray>, n3 -> <FIPU tray>
+digo: q1_1 -> <FIPU tray>, ..., q1_k -> <FIPU tray>
+judi: q1_1 -> <VASU tray>, ... (one entry per FIPU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

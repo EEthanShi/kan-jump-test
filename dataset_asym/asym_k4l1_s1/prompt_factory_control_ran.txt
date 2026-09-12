@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: FUFI, PUTI, LOKO. Toys move FUFI -> PUTI -> LOKO.
+There are 3 moving steps:
+- "zusu" carries each FUFI slot to a PUTI slot.
+- "kaju" is an internal reshuffle of PUTI: it carries each PUTI slot to a PUTI slot.
+- "mifo" carries each PUTI slot to a LOKO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zusu" and then "kaju" lands on the same slot as running "zusu" alone.
+     ("kaju" leaves every slot that "zusu" produces unchanged.)
+R1.2 Running "kaju" and then "mifo" gives the same result as running "mifo" alone.
+     ("mifo" cannot tell whether "kaju" was applied first.)
+R1.3 Running "kaju" twice in a row leaves every PUTI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FUFI has exactly 4 slots, called n1, n2, n3, n4.
+- LOKO has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1, n4 to s1.
+
+Requirements for the middle station (PUTI):
+D1.1 PUTI must be a finite set with at most 1 slot.
+D1.2 List the "kaju" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "zusu" table entries in FUFI slot order n1, n2, n3, n4.
+D1.4 Every LOKO slot must be reached by "mifo" from at least one PUTI slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 6 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+PUTI = {q1_1, ..., q1_k}
+zusu: n1 -> <PUTI slot>, n2 -> <PUTI slot>, n3 -> <PUTI slot>, n4 -> <PUTI slot>
+kaju: q1_1 -> <PUTI slot>, ..., q1_k -> <PUTI slot>
+mifo: q1_1 -> <LOKO slot>, ... (one entry per PUTI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

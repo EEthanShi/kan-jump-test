@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: FOBI, PUBA, PORU. Books move FOBI -> PUBA -> PORU.
+There are 3 moving steps:
+- "zari" carries each FOBI tray to a PUBA tray.
+- "rofo" is an internal rearrangement of PUBA: it carries each PUBA tray to a PUBA tray.
+- "gubo" carries each PUBA tray to a PORU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zari" and then "rofo" lands on the same tray as running "zari" alone.
+     ("rofo" leaves every tray that "zari" produces unchanged.)
+R1.2 Running "rofo" and then "gubo" gives the same result as running "gubo" alone.
+     ("gubo" cannot tell whether "rofo" was applied first.)
+R1.3 Running "rofo" twice in a row leaves every PUBA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FOBI has exactly 2 trays, called n1, n2.
+- PORU has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (PUBA):
+D1.1 PUBA must be a finite set with at most 2 trays.
+D1.2 List the "rofo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 "zari" must carry different FOBI trays to different PUBA trays.
+D1.4 List the "gubo" table entries in PUBA tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+PUBA = {q1_1, ..., q1_k}
+zari: n1 -> <PUBA tray>, n2 -> <PUBA tray>
+rofo: q1_1 -> <PUBA tray>, ..., q1_k -> <PUBA tray>
+gubo: q1_1 -> <PORU tray>, ... (one entry per PUBA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: LOSU, ROTO, BINI, POJU, POVU. Books move LOSU -> ROTO -> BINI -> POJU -> POVU.
+There are 7 moving steps:
+- "bolu" carries each LOSU tray to a ROTO tray.
+- "vagu" is an internal rearrangement of ROTO: it carries each ROTO tray to a ROTO tray.
+- "tala" carries each ROTO tray to a BINI tray.
+- "niso" is an internal rearrangement of BINI: it carries each BINI tray to a BINI tray.
+- "viju" carries each BINI tray to a POJU tray.
+- "riva" is an internal rearrangement of POJU: it carries each POJU tray to a POJU tray.
+- "dozo" carries each POJU tray to a POVU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bolu" and then "vagu" lands on the same tray as running "bolu" alone.
+     ("vagu" leaves every tray that "bolu" produces unchanged.)
+R1.2 Running "vagu" and then "tala" gives the same result as running "tala" alone.
+     ("tala" cannot tell whether "vagu" was applied first.)
+R1.3 Running "vagu" twice in a row leaves every ROTO tray exactly where it started.
+R2.1 Running "tala" and then "niso" lands on the same tray as running "tala" alone.
+     ("niso" leaves every tray that "tala" produces unchanged.)
+R2.2 Running "niso" and then "viju" gives the same result as running "viju" alone.
+     ("viju" cannot tell whether "niso" was applied first.)
+R2.3 Running "niso" three times in a row leaves every BINI tray exactly where it started.
+R3.1 Running "viju" and then "riva" lands on the same tray as running "viju" alone.
+     ("riva" leaves every tray that "viju" produces unchanged.)
+R3.2 Running "riva" and then "dozo" gives the same result as running "dozo" alone.
+     ("dozo" cannot tell whether "riva" was applied first.)
+R3.3 Running "riva" three times in a row leaves every POJU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LOSU has exactly one tray, called n1.
+- POVU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ROTO, BINI, POJU):
+D1.1 ROTO must be a finite set with at most 3 trays.
+D1.2 "vagu" must NOT be the do-nothing move (it must move at least one ROTO tray).
+D2.1 BINI must be a finite set with at most 4 trays.
+D2.2 "niso" must NOT be the do-nothing move (it must move at least one BINI tray).
+D3.1 POJU must be a finite set with at most 4 trays.
+D3.2 "riva" must NOT be the do-nothing move (it must move at least one POJU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ROTO = {q1_1, ..., q1_k}
+bolu: n1 -> <ROTO tray>
+vagu: q1_1 -> <ROTO tray>, ..., q1_k -> <ROTO tray>
+BINI = {q2_1, ..., q2_k}
+tala: q1_1 -> <BINI tray>, ... (one entry per ROTO tray)
+niso: q2_1 -> <BINI tray>, ..., q2_k -> <BINI tray>
+POJU = {q3_1, ..., q3_k}
+viju: q2_1 -> <POJU tray>, ... (one entry per BINI tray)
+riva: q3_1 -> <POJU tray>, ..., q3_k -> <POJU tray>
+dozo: q3_1 -> <POVU tray>, ... (one entry per POJU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

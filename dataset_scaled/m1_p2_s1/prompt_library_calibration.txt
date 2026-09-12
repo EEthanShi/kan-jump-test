@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: MIBO, GUMO, TIBA. Books move MIBO -> GUMO -> TIBA.
+There are 3 moving steps:
+- "namo" carries each MIBO tray to a GUMO tray.
+- "pomi" is an internal rearrangement of GUMO: it carries each GUMO tray to a GUMO tray.
+- "mubo" carries each GUMO tray to a TIBA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "namo" and then "pomi" lands on the same tray as running "namo" alone.
+     ("pomi" leaves every tray that "namo" produces unchanged.)
+R1.2 Running "pomi" and then "mubo" gives the same result as running "mubo" alone.
+     ("mubo" cannot tell whether "pomi" was applied first.)
+R1.3 Running "pomi" twice in a row leaves every GUMO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MIBO has exactly one tray, called n1.
+- TIBA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (GUMO):
+D1.1 List the trays of GUMO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "pomi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GUMO = {q1_1, ..., q1_k}
+namo: n1 -> <GUMO tray>
+pomi: q1_1 -> <GUMO tray>, ..., q1_k -> <GUMO tray>
+mubo: q1_1 -> <TIBA tray>, ... (one entry per GUMO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

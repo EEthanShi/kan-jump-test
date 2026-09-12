@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: NOZI, KAKO, RUMU, RULU. Toys move NOZI -> KAKO -> RUMU -> RULU.
+There are 5 moving steps:
+- "somi" carries each NOZI slot to a KAKO slot.
+- "vipa" is an internal reshuffle of KAKO: it carries each KAKO slot to a KAKO slot.
+- "mutu" carries each KAKO slot to a RUMU slot.
+- "jori" is an internal reshuffle of RUMU: it carries each RUMU slot to a RUMU slot.
+- "gafa" carries each RUMU slot to a RULU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "somi" and then "vipa" lands on the same slot as running "somi" alone.
+     ("vipa" leaves every slot that "somi" produces unchanged.)
+R1.2 Running "vipa" and then "mutu" gives the same result as running "mutu" alone.
+     ("mutu" cannot tell whether "vipa" was applied first.)
+R1.3 Running "vipa" twice in a row leaves every KAKO slot exactly where it started.
+R2.1 Running "mutu" and then "jori" lands on the same slot as running "mutu" alone.
+     ("jori" leaves every slot that "mutu" produces unchanged.)
+R2.2 Running "jori" and then "gafa" gives the same result as running "gafa" alone.
+     ("gafa" cannot tell whether "jori" was applied first.)
+R2.3 Running "jori" three times in a row leaves every RUMU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NOZI has exactly one slot, called n1.
+- RULU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KAKO, RUMU):
+D1.1 List the slots of KAKO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vipa" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of RUMU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "jori" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KAKO = {q1_1, ..., q1_k}
+somi: n1 -> <KAKO slot>
+vipa: q1_1 -> <KAKO slot>, ..., q1_k -> <KAKO slot>
+RUMU = {q2_1, ..., q2_k}
+mutu: q1_1 -> <RUMU slot>, ... (one entry per KAKO slot)
+jori: q2_1 -> <RUMU slot>, ..., q2_k -> <RUMU slot>
+gafa: q2_1 -> <RULU slot>, ... (one entry per RUMU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s10",
+          "stations": [
+            "MUZI",
+            "SIPU",
+            "SAJU"
+          ],
+          "chain_moves": [
+            "rusi",
+            "garo"
+          ],
+          "endo_moves": [
+            "jotu"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SIPU = {q1_1, q1_2, q1_3}\nrusi: n1 -> q1_1\njotu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ngaro: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "SIPU = {q1_1}\nrusi: n1 -> q1_1\njotu: q1_1 -> q1_1\ngaro: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s10",
+          "stations": [
+            "JOPU",
+            "ZUTU",
+            "GUSO"
+          ],
+          "chain_moves": [
+            "vubu",
+            "bura"
+          ],
+          "endo_moves": [
+            "vuni"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "ZUTU = {q1_1, q1_2, q1_3}\nvubu: n1 -> q1_1\nvuni: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nbura: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "ZUTU = {q1_1}\nvubu: n1 -> q1_1\nvuni: q1_1 -> q1_1\nbura: q1_1 -> s1"
+    }
+  }
+}

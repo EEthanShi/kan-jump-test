@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: BIMU, GUJI, SILU. Books move BIMU -> GUJI -> SILU.
+There are 3 moving steps:
+- "ragi" carries each BIMU tray to a GUJI tray.
+- "davo" is an internal rearrangement of GUJI: it carries each GUJI tray to a GUJI tray.
+- "jabi" carries each GUJI tray to a SILU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "ragi" and then "davo" lands on the same tray as running "ragi" alone.
+     ("davo" leaves every tray that "ragi" produces unchanged.)
+R1.2 Running "davo" and then "jabi" gives the same result as running "jabi" alone.
+     ("jabi" cannot tell whether "davo" was applied first.)
+R1.3 Running "davo" twice in a row leaves every GUJI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BIMU has exactly 5 trays, called n1, n2, n3, n4, n5.
+- SILU has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1, n4 to s1, n5 to s1.
+
+Requirements for the middle cart (GUJI):
+D1.1 List the trays of GUJI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "davo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "ragi" table entries in BIMU tray order n1, n2, n3, n4, n5.
+D1.4 List the "jabi" table entries in GUJI tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 7 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+GUJI = {q1_1, ..., q1_k}
+ragi: n1 -> <GUJI tray>, n2 -> <GUJI tray>, n3 -> <GUJI tray>, n4 -> <GUJI tray>, n5 -> <GUJI tray>
+davo: q1_1 -> <GUJI tray>, ..., q1_k -> <GUJI tray>
+jabi: q1_1 -> <SILU tray>, ... (one entry per GUJI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

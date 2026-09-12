@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: KORI, SUKA, ZUKA, KOGU, PIMI. Toys move KORI -> SUKA -> ZUKA -> KOGU -> PIMI.
+There are 7 moving steps:
+- "sano" carries each KORI slot to a SUKA slot.
+- "tidu" is an internal reshuffle of SUKA: it carries each SUKA slot to a SUKA slot.
+- "vodu" carries each SUKA slot to a ZUKA slot.
+- "fapo" is an internal reshuffle of ZUKA: it carries each ZUKA slot to a ZUKA slot.
+- "toru" carries each ZUKA slot to a KOGU slot.
+- "suju" is an internal reshuffle of KOGU: it carries each KOGU slot to a KOGU slot.
+- "kigo" carries each KOGU slot to a PIMI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "sano" and then "tidu" lands on the same slot as running "sano" alone.
+     ("tidu" leaves every slot that "sano" produces unchanged.)
+R1.2 Running "tidu" and then "vodu" gives the same result as running "vodu" alone.
+     ("vodu" cannot tell whether "tidu" was applied first.)
+R1.3 Running "tidu" twice in a row leaves every SUKA slot exactly where it started.
+R2.1 Running "vodu" and then "fapo" lands on the same slot as running "vodu" alone.
+     ("fapo" leaves every slot that "vodu" produces unchanged.)
+R2.2 Running "fapo" and then "toru" gives the same result as running "toru" alone.
+     ("toru" cannot tell whether "fapo" was applied first.)
+R2.3 Running "fapo" twice in a row leaves every ZUKA slot exactly where it started.
+R3.1 Running "toru" and then "suju" lands on the same slot as running "toru" alone.
+     ("suju" leaves every slot that "toru" produces unchanged.)
+R3.2 Running "suju" and then "kigo" gives the same result as running "kigo" alone.
+     ("kigo" cannot tell whether "suju" was applied first.)
+R3.3 Running "suju" twice in a row leaves every KOGU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KORI has exactly one slot, called n1.
+- PIMI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SUKA, ZUKA, KOGU):
+D1.1 SUKA must be a finite set with at most 3 slots.
+D1.2 "tidu" must NOT be the do-nothing move (it must move at least one SUKA slot).
+D2.1 ZUKA must be a finite set with at most 3 slots.
+D2.2 "fapo" must NOT be the do-nothing move (it must move at least one ZUKA slot).
+D3.1 KOGU must be a finite set with at most 3 slots.
+D3.2 "suju" must NOT be the do-nothing move (it must move at least one KOGU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SUKA = {q1_1, ..., q1_k}
+sano: n1 -> <SUKA slot>
+tidu: q1_1 -> <SUKA slot>, ..., q1_k -> <SUKA slot>
+ZUKA = {q2_1, ..., q2_k}
+vodu: q1_1 -> <ZUKA slot>, ... (one entry per SUKA slot)
+fapo: q2_1 -> <ZUKA slot>, ..., q2_k -> <ZUKA slot>
+KOGU = {q3_1, ..., q3_k}
+toru: q2_1 -> <KOGU slot>, ... (one entry per ZUKA slot)
+suju: q3_1 -> <KOGU slot>, ..., q3_k -> <KOGU slot>
+kigo: q3_1 -> <PIMI slot>, ... (one entry per KOGU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

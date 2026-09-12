@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: LOTO, ROGI, SUJA, NUPO, SABA, NIBU. Toys move LOTO -> ROGI -> SUJA -> NUPO -> SABA -> NIBU.
+There are 9 moving steps:
+- "nuzo" carries each LOTO slot to a ROGI slot.
+- "biki" is an internal reshuffle of ROGI: it carries each ROGI slot to a ROGI slot.
+- "gosa" carries each ROGI slot to a SUJA slot.
+- "jata" is an internal reshuffle of SUJA: it carries each SUJA slot to a SUJA slot.
+- "rufi" carries each SUJA slot to a NUPO slot.
+- "lato" is an internal reshuffle of NUPO: it carries each NUPO slot to a NUPO slot.
+- "zika" carries each NUPO slot to a SABA slot.
+- "batu" is an internal reshuffle of SABA: it carries each SABA slot to a SABA slot.
+- "lolu" carries each SABA slot to a NIBU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nuzo" and then "biki" lands on the same slot as running "nuzo" alone.
+     ("biki" leaves every slot that "nuzo" produces unchanged.)
+R1.2 Running "biki" and then "gosa" gives the same result as running "gosa" alone.
+     ("gosa" cannot tell whether "biki" was applied first.)
+R1.3 Running "biki" three times in a row leaves every ROGI slot exactly where it started.
+R2.1 Running "gosa" and then "jata" lands on the same slot as running "gosa" alone.
+     ("jata" leaves every slot that "gosa" produces unchanged.)
+R2.2 Running "jata" and then "rufi" gives the same result as running "rufi" alone.
+     ("rufi" cannot tell whether "jata" was applied first.)
+R2.3 Running "jata" twice in a row leaves every SUJA slot exactly where it started.
+R3.1 Running "rufi" and then "lato" lands on the same slot as running "rufi" alone.
+     ("lato" leaves every slot that "rufi" produces unchanged.)
+R3.2 Running "lato" and then "zika" gives the same result as running "zika" alone.
+     ("zika" cannot tell whether "lato" was applied first.)
+R3.3 Running "lato" three times in a row leaves every NUPO slot exactly where it started.
+R4.1 Running "zika" and then "batu" lands on the same slot as running "zika" alone.
+     ("batu" leaves every slot that "zika" produces unchanged.)
+R4.2 Running "batu" and then "lolu" gives the same result as running "lolu" alone.
+     ("lolu" cannot tell whether "batu" was applied first.)
+R4.3 Running "batu" twice in a row leaves every SABA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LOTO has exactly one slot, called n1.
+- NIBU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (ROGI, SUJA, NUPO, SABA):
+D1.1 ROGI must be a finite set with at most 1 slot.
+D1.2 List the "biki" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 SUJA must be a finite set with at most 1 slot.
+D2.2 List the "jata" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 NUPO must be a finite set with at most 1 slot.
+D3.2 List the "lato" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 SABA must be a finite set with at most 1 slot.
+D4.2 List the "batu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+ROGI = {q1_1, ..., q1_k}
+nuzo: n1 -> <ROGI slot>
+biki: q1_1 -> <ROGI slot>, ..., q1_k -> <ROGI slot>
+SUJA = {q2_1, ..., q2_k}
+gosa: q1_1 -> <SUJA slot>, ... (one entry per ROGI slot)
+jata: q2_1 -> <SUJA slot>, ..., q2_k -> <SUJA slot>
+NUPO = {q3_1, ..., q3_k}
+rufi: q2_1 -> <NUPO slot>, ... (one entry per SUJA slot)
+lato: q3_1 -> <NUPO slot>, ..., q3_k -> <NUPO slot>
+SABA = {q4_1, ..., q4_k}
+zika: q3_1 -> <SABA slot>, ... (one entry per NUPO slot)
+batu: q4_1 -> <SABA slot>, ..., q4_k -> <SABA slot>
+lolu: q4_1 -> <NIBU slot>, ... (one entry per SABA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

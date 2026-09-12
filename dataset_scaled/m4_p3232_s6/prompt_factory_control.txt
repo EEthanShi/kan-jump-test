@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: TUJI, JUGO, ZUSO, RUSI, ZUBA, ZUZO. Toys move TUJI -> JUGO -> ZUSO -> RUSI -> ZUBA -> ZUZO.
+There are 9 moving steps:
+- "fuvo" carries each TUJI slot to a JUGO slot.
+- "vato" is an internal reshuffle of JUGO: it carries each JUGO slot to a JUGO slot.
+- "gago" carries each JUGO slot to a ZUSO slot.
+- "dava" is an internal reshuffle of ZUSO: it carries each ZUSO slot to a ZUSO slot.
+- "lulo" carries each ZUSO slot to a RUSI slot.
+- "muti" is an internal reshuffle of RUSI: it carries each RUSI slot to a RUSI slot.
+- "rovu" carries each RUSI slot to a ZUBA slot.
+- "duki" is an internal reshuffle of ZUBA: it carries each ZUBA slot to a ZUBA slot.
+- "munu" carries each ZUBA slot to a ZUZO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "fuvo" and then "vato" lands on the same slot as running "fuvo" alone.
+     ("vato" leaves every slot that "fuvo" produces unchanged.)
+R1.2 Running "vato" and then "gago" gives the same result as running "gago" alone.
+     ("gago" cannot tell whether "vato" was applied first.)
+R1.3 Running "vato" three times in a row leaves every JUGO slot exactly where it started.
+R2.1 Running "gago" and then "dava" lands on the same slot as running "gago" alone.
+     ("dava" leaves every slot that "gago" produces unchanged.)
+R2.2 Running "dava" and then "lulo" gives the same result as running "lulo" alone.
+     ("lulo" cannot tell whether "dava" was applied first.)
+R2.3 Running "dava" twice in a row leaves every ZUSO slot exactly where it started.
+R3.1 Running "lulo" and then "muti" lands on the same slot as running "lulo" alone.
+     ("muti" leaves every slot that "lulo" produces unchanged.)
+R3.2 Running "muti" and then "rovu" gives the same result as running "rovu" alone.
+     ("rovu" cannot tell whether "muti" was applied first.)
+R3.3 Running "muti" three times in a row leaves every RUSI slot exactly where it started.
+R4.1 Running "rovu" and then "duki" lands on the same slot as running "rovu" alone.
+     ("duki" leaves every slot that "rovu" produces unchanged.)
+R4.2 Running "duki" and then "munu" gives the same result as running "munu" alone.
+     ("munu" cannot tell whether "duki" was applied first.)
+R4.3 Running "duki" twice in a row leaves every ZUBA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TUJI has exactly one slot, called n1.
+- ZUZO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (JUGO, ZUSO, RUSI, ZUBA):
+D1.1 JUGO must be a finite set with at most 1 slot.
+D1.2 List the "vato" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 ZUSO must be a finite set with at most 1 slot.
+D2.2 List the "dava" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 RUSI must be a finite set with at most 1 slot.
+D3.2 List the "muti" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 ZUBA must be a finite set with at most 1 slot.
+D4.2 List the "duki" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+JUGO = {q1_1, ..., q1_k}
+fuvo: n1 -> <JUGO slot>
+vato: q1_1 -> <JUGO slot>, ..., q1_k -> <JUGO slot>
+ZUSO = {q2_1, ..., q2_k}
+gago: q1_1 -> <ZUSO slot>, ... (one entry per JUGO slot)
+dava: q2_1 -> <ZUSO slot>, ..., q2_k -> <ZUSO slot>
+RUSI = {q3_1, ..., q3_k}
+lulo: q2_1 -> <RUSI slot>, ... (one entry per ZUSO slot)
+muti: q3_1 -> <RUSI slot>, ..., q3_k -> <RUSI slot>
+ZUBA = {q4_1, ..., q4_k}
+rovu: q3_1 -> <ZUBA slot>, ... (one entry per RUSI slot)
+duki: q4_1 -> <ZUBA slot>, ..., q4_k -> <ZUBA slot>
+munu: q4_1 -> <ZUZO slot>, ... (one entry per ZUBA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: NUPA, LUBO, VAMO, JOTA. Books move NUPA -> LUBO -> VAMO -> JOTA.
+There are 5 moving steps:
+- "moza" carries each NUPA tray to a LUBO tray.
+- "livu" is an internal rearrangement of LUBO: it carries each LUBO tray to a LUBO tray.
+- "rano" carries each LUBO tray to a VAMO tray.
+- "jafu" is an internal rearrangement of VAMO: it carries each VAMO tray to a VAMO tray.
+- "risa" carries each VAMO tray to a JOTA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "moza" and then "livu" lands on the same tray as running "moza" alone.
+     ("livu" leaves every tray that "moza" produces unchanged.)
+R1.2 Running "livu" and then "rano" gives the same result as running "rano" alone.
+     ("rano" cannot tell whether "livu" was applied first.)
+R1.3 Running "livu" three times in a row leaves every LUBO tray exactly where it started.
+R2.1 Running "rano" and then "jafu" lands on the same tray as running "rano" alone.
+     ("jafu" leaves every tray that "rano" produces unchanged.)
+R2.2 Running "jafu" and then "risa" gives the same result as running "risa" alone.
+     ("risa" cannot tell whether "jafu" was applied first.)
+R2.3 Running "jafu" twice in a row leaves every VAMO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NUPA has exactly one tray, called n1.
+- JOTA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LUBO, VAMO):
+D1.1 LUBO must be a finite set with at most 4 trays.
+D1.2 "livu" must NOT be the do-nothing move (it must move at least one LUBO tray).
+D2.1 VAMO must be a finite set with at most 3 trays.
+D2.2 "jafu" must NOT be the do-nothing move (it must move at least one VAMO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LUBO = {q1_1, ..., q1_k}
+moza: n1 -> <LUBO tray>
+livu: q1_1 -> <LUBO tray>, ..., q1_k -> <LUBO tray>
+VAMO = {q2_1, ..., q2_k}
+rano: q1_1 -> <VAMO tray>, ... (one entry per LUBO tray)
+jafu: q2_1 -> <VAMO tray>, ..., q2_k -> <VAMO tray>
+risa: q2_1 -> <JOTA tray>, ... (one entry per VAMO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

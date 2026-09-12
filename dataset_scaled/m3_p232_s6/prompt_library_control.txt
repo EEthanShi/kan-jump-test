@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: BULO, SADU, DASU, SUJO, BIZI. Books move BULO -> SADU -> DASU -> SUJO -> BIZI.
+There are 7 moving steps:
+- "vugu" carries each BULO tray to a SADU tray.
+- "papu" is an internal rearrangement of SADU: it carries each SADU tray to a SADU tray.
+- "kodi" carries each SADU tray to a DASU tray.
+- "puzo" is an internal rearrangement of DASU: it carries each DASU tray to a DASU tray.
+- "tuju" carries each DASU tray to a SUJO tray.
+- "taga" is an internal rearrangement of SUJO: it carries each SUJO tray to a SUJO tray.
+- "runi" carries each SUJO tray to a BIZI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vugu" and then "papu" lands on the same tray as running "vugu" alone.
+     ("papu" leaves every tray that "vugu" produces unchanged.)
+R1.2 Running "papu" and then "kodi" gives the same result as running "kodi" alone.
+     ("kodi" cannot tell whether "papu" was applied first.)
+R1.3 Running "papu" twice in a row leaves every SADU tray exactly where it started.
+R2.1 Running "kodi" and then "puzo" lands on the same tray as running "kodi" alone.
+     ("puzo" leaves every tray that "kodi" produces unchanged.)
+R2.2 Running "puzo" and then "tuju" gives the same result as running "tuju" alone.
+     ("tuju" cannot tell whether "puzo" was applied first.)
+R2.3 Running "puzo" three times in a row leaves every DASU tray exactly where it started.
+R3.1 Running "tuju" and then "taga" lands on the same tray as running "tuju" alone.
+     ("taga" leaves every tray that "tuju" produces unchanged.)
+R3.2 Running "taga" and then "runi" gives the same result as running "runi" alone.
+     ("runi" cannot tell whether "taga" was applied first.)
+R3.3 Running "taga" twice in a row leaves every SUJO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BULO has exactly one tray, called n1.
+- BIZI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SADU, DASU, SUJO):
+D1.1 SADU must be a finite set with at most 1 tray.
+D1.2 List the "papu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 DASU must be a finite set with at most 1 tray.
+D2.2 List the "puzo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 SUJO must be a finite set with at most 1 tray.
+D3.2 List the "taga" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SADU = {q1_1, ..., q1_k}
+vugu: n1 -> <SADU tray>
+papu: q1_1 -> <SADU tray>, ..., q1_k -> <SADU tray>
+DASU = {q2_1, ..., q2_k}
+kodi: q1_1 -> <DASU tray>, ... (one entry per SADU tray)
+puzo: q2_1 -> <DASU tray>, ..., q2_k -> <DASU tray>
+SUJO = {q3_1, ..., q3_k}
+tuju: q2_1 -> <SUJO tray>, ... (one entry per DASU tray)
+taga: q3_1 -> <SUJO tray>, ..., q3_k -> <SUJO tray>
+runi: q3_1 -> <BIZI tray>, ... (one entry per SUJO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

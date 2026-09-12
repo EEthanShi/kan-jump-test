@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SIFO, GUNO, TIBI. Books move SIFO -> GUNO -> TIBI.
+There are 3 moving steps:
+- "zina" carries each SIFO tray to a GUNO tray.
+- "losu" is an internal rearrangement of GUNO: it carries each GUNO tray to a GUNO tray.
+- "boka" carries each GUNO tray to a TIBI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zina" and then "losu" lands on the same tray as running "zina" alone.
+     ("losu" leaves every tray that "zina" produces unchanged.)
+R1.2 Running "losu" and then "boka" gives the same result as running "boka" alone.
+     ("boka" cannot tell whether "losu" was applied first.)
+R1.3 Running "losu" twice in a row leaves every GUNO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SIFO has exactly 3 trays, called n1, n2, n3.
+- TIBI has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (GUNO):
+D1.1 List the trays of GUNO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "losu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "zina" table entries in SIFO tray order n1, n2, n3.
+D1.4 List the "boka" table entries in GUNO tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+GUNO = {q1_1, ..., q1_k}
+zina: n1 -> <GUNO tray>, n2 -> <GUNO tray>, n3 -> <GUNO tray>
+losu: q1_1 -> <GUNO tray>, ..., q1_k -> <GUNO tray>
+boka: q1_1 -> <TIBI tray>, ... (one entry per GUNO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

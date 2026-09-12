@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: NUTI, RUVI, LUTA, KOTA, ZIJU, DAFO. Toys move NUTI -> RUVI -> LUTA -> KOTA -> ZIJU -> DAFO.
+There are 9 moving steps:
+- "pogu" carries each NUTI slot to a RUVI slot.
+- "maji" is an internal reshuffle of RUVI: it carries each RUVI slot to a RUVI slot.
+- "toji" carries each RUVI slot to a LUTA slot.
+- "rigu" is an internal reshuffle of LUTA: it carries each LUTA slot to a LUTA slot.
+- "nozu" carries each LUTA slot to a KOTA slot.
+- "jaso" is an internal reshuffle of KOTA: it carries each KOTA slot to a KOTA slot.
+- "lora" carries each KOTA slot to a ZIJU slot.
+- "jila" is an internal reshuffle of ZIJU: it carries each ZIJU slot to a ZIJU slot.
+- "doku" carries each ZIJU slot to a DAFO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pogu" and then "maji" lands on the same slot as running "pogu" alone.
+     ("maji" leaves every slot that "pogu" produces unchanged.)
+R1.2 Running "maji" and then "toji" gives the same result as running "toji" alone.
+     ("toji" cannot tell whether "maji" was applied first.)
+R1.3 Running "maji" twice in a row leaves every RUVI slot exactly where it started.
+R2.1 Running "toji" and then "rigu" lands on the same slot as running "toji" alone.
+     ("rigu" leaves every slot that "toji" produces unchanged.)
+R2.2 Running "rigu" and then "nozu" gives the same result as running "nozu" alone.
+     ("nozu" cannot tell whether "rigu" was applied first.)
+R2.3 Running "rigu" three times in a row leaves every LUTA slot exactly where it started.
+R3.1 Running "nozu" and then "jaso" lands on the same slot as running "nozu" alone.
+     ("jaso" leaves every slot that "nozu" produces unchanged.)
+R3.2 Running "jaso" and then "lora" gives the same result as running "lora" alone.
+     ("lora" cannot tell whether "jaso" was applied first.)
+R3.3 Running "jaso" twice in a row leaves every KOTA slot exactly where it started.
+R4.1 Running "lora" and then "jila" lands on the same slot as running "lora" alone.
+     ("jila" leaves every slot that "lora" produces unchanged.)
+R4.2 Running "jila" and then "doku" gives the same result as running "doku" alone.
+     ("doku" cannot tell whether "jila" was applied first.)
+R4.3 Running "jila" three times in a row leaves every ZIJU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NUTI has exactly one slot, called n1.
+- DAFO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (RUVI, LUTA, KOTA, ZIJU):
+D1.1 List the slots of RUVI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "maji" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of LUTA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "rigu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of KOTA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "jaso" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of ZIJU in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "jila" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+RUVI = {q1_1, ..., q1_k}
+pogu: n1 -> <RUVI slot>
+maji: q1_1 -> <RUVI slot>, ..., q1_k -> <RUVI slot>
+LUTA = {q2_1, ..., q2_k}
+toji: q1_1 -> <LUTA slot>, ... (one entry per RUVI slot)
+rigu: q2_1 -> <LUTA slot>, ..., q2_k -> <LUTA slot>
+KOTA = {q3_1, ..., q3_k}
+nozu: q2_1 -> <KOTA slot>, ... (one entry per LUTA slot)
+jaso: q3_1 -> <KOTA slot>, ..., q3_k -> <KOTA slot>
+ZIJU = {q4_1, ..., q4_k}
+lora: q3_1 -> <ZIJU slot>, ... (one entry per KOTA slot)
+jila: q4_1 -> <ZIJU slot>, ..., q4_k -> <ZIJU slot>
+doku: q4_1 -> <DAFO slot>, ... (one entry per ZIJU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

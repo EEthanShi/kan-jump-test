@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: DASU, VUJA, RILA, DAPI, BAGA. Books move DASU -> VUJA -> RILA -> DAPI -> BAGA.
+There are 7 moving steps:
+- "vogu" carries each DASU tray to a VUJA tray.
+- "luga" is an internal rearrangement of VUJA: it carries each VUJA tray to a VUJA tray.
+- "nozi" carries each VUJA tray to a RILA tray.
+- "sajo" is an internal rearrangement of RILA: it carries each RILA tray to a RILA tray.
+- "koku" carries each RILA tray to a DAPI tray.
+- "sija" is an internal rearrangement of DAPI: it carries each DAPI tray to a DAPI tray.
+- "nidu" carries each DAPI tray to a BAGA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vogu" and then "luga" lands on the same tray as running "vogu" alone.
+     ("luga" leaves every tray that "vogu" produces unchanged.)
+R1.2 Running "luga" and then "nozi" gives the same result as running "nozi" alone.
+     ("nozi" cannot tell whether "luga" was applied first.)
+R1.3 Running "luga" three times in a row leaves every VUJA tray exactly where it started.
+R2.1 Running "nozi" and then "sajo" lands on the same tray as running "nozi" alone.
+     ("sajo" leaves every tray that "nozi" produces unchanged.)
+R2.2 Running "sajo" and then "koku" gives the same result as running "koku" alone.
+     ("koku" cannot tell whether "sajo" was applied first.)
+R2.3 Running "sajo" three times in a row leaves every RILA tray exactly where it started.
+R3.1 Running "koku" and then "sija" lands on the same tray as running "koku" alone.
+     ("sija" leaves every tray that "koku" produces unchanged.)
+R3.2 Running "sija" and then "nidu" gives the same result as running "nidu" alone.
+     ("nidu" cannot tell whether "sija" was applied first.)
+R3.3 Running "sija" three times in a row leaves every DAPI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DASU has exactly one tray, called n1.
+- BAGA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VUJA, RILA, DAPI):
+D1.1 VUJA must be a finite set with at most 1 tray.
+D1.2 List the "luga" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 RILA must be a finite set with at most 1 tray.
+D2.2 List the "sajo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 DAPI must be a finite set with at most 1 tray.
+D3.2 List the "sija" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VUJA = {q1_1, ..., q1_k}
+vogu: n1 -> <VUJA tray>
+luga: q1_1 -> <VUJA tray>, ..., q1_k -> <VUJA tray>
+RILA = {q2_1, ..., q2_k}
+nozi: q1_1 -> <RILA tray>, ... (one entry per VUJA tray)
+sajo: q2_1 -> <RILA tray>, ..., q2_k -> <RILA tray>
+DAPI = {q3_1, ..., q3_k}
+koku: q2_1 -> <DAPI tray>, ... (one entry per RILA tray)
+sija: q3_1 -> <DAPI tray>, ..., q3_k -> <DAPI tray>
+nidu: q3_1 -> <BAGA tray>, ... (one entry per DAPI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: VORO, NOVO, RURI. Toys move VORO -> NOVO -> RURI.
+There are 3 moving steps:
+- "rulo" carries each VORO slot to a NOVO slot.
+- "vani" is an internal reshuffle of NOVO: it carries each NOVO slot to a NOVO slot.
+- "zoku" carries each NOVO slot to a RURI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "rulo" and then "vani" lands on the same slot as running "rulo" alone.
+     ("vani" leaves every slot that "rulo" produces unchanged.)
+R1.2 Running "vani" and then "zoku" gives the same result as running "zoku" alone.
+     ("zoku" cannot tell whether "vani" was applied first.)
+R1.3 Running "vani" twice in a row leaves every NOVO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VORO has exactly 5 slots, called n1, n2, n3, n4, n5.
+- RURI has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1, n4 to s1, n5 to s1.
+
+Requirements for the middle station (NOVO):
+D1.1 NOVO must be a finite set with at most 7 slots.
+D1.2 "vani" must NOT be the do-nothing move (it must move at least one NOVO slot).
+D1.3 "rulo" must carry different VORO slots to different NOVO slots.
+D1.4 Every RURI slot must be reached by "zoku" from at least one NOVO slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 7 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+NOVO = {q1_1, ..., q1_k}
+rulo: n1 -> <NOVO slot>, n2 -> <NOVO slot>, n3 -> <NOVO slot>, n4 -> <NOVO slot>, n5 -> <NOVO slot>
+vani: q1_1 -> <NOVO slot>, ..., q1_k -> <NOVO slot>
+zoku: q1_1 -> <RURI slot>, ... (one entry per NOVO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

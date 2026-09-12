@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZOKU, GAJA, BAGO, RIVO, JOPI. Books move ZOKU -> GAJA -> BAGO -> RIVO -> JOPI.
+There are 7 moving steps:
+- "kogu" carries each ZOKU tray to a GAJA tray.
+- "jigu" is an internal rearrangement of GAJA: it carries each GAJA tray to a GAJA tray.
+- "fobu" carries each GAJA tray to a BAGO tray.
+- "naro" is an internal rearrangement of BAGO: it carries each BAGO tray to a BAGO tray.
+- "suvu" carries each BAGO tray to a RIVO tray.
+- "tupo" is an internal rearrangement of RIVO: it carries each RIVO tray to a RIVO tray.
+- "mita" carries each RIVO tray to a JOPI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kogu" and then "jigu" lands on the same tray as running "kogu" alone.
+     ("jigu" leaves every tray that "kogu" produces unchanged.)
+R1.2 Running "jigu" and then "fobu" gives the same result as running "fobu" alone.
+     ("fobu" cannot tell whether "jigu" was applied first.)
+R1.3 Running "jigu" twice in a row leaves every GAJA tray exactly where it started.
+R2.1 Running "fobu" and then "naro" lands on the same tray as running "fobu" alone.
+     ("naro" leaves every tray that "fobu" produces unchanged.)
+R2.2 Running "naro" and then "suvu" gives the same result as running "suvu" alone.
+     ("suvu" cannot tell whether "naro" was applied first.)
+R2.3 Running "naro" three times in a row leaves every BAGO tray exactly where it started.
+R3.1 Running "suvu" and then "tupo" lands on the same tray as running "suvu" alone.
+     ("tupo" leaves every tray that "suvu" produces unchanged.)
+R3.2 Running "tupo" and then "mita" gives the same result as running "mita" alone.
+     ("mita" cannot tell whether "tupo" was applied first.)
+R3.3 Running "tupo" twice in a row leaves every RIVO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZOKU has exactly one tray, called n1.
+- JOPI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (GAJA, BAGO, RIVO):
+D1.1 GAJA must be a finite set with at most 1 tray.
+D1.2 List the "jigu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 BAGO must be a finite set with at most 1 tray.
+D2.2 List the "naro" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 RIVO must be a finite set with at most 1 tray.
+D3.2 List the "tupo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GAJA = {q1_1, ..., q1_k}
+kogu: n1 -> <GAJA tray>
+jigu: q1_1 -> <GAJA tray>, ..., q1_k -> <GAJA tray>
+BAGO = {q2_1, ..., q2_k}
+fobu: q1_1 -> <BAGO tray>, ... (one entry per GAJA tray)
+naro: q2_1 -> <BAGO tray>, ..., q2_k -> <BAGO tray>
+RIVO = {q3_1, ..., q3_k}
+suvu: q2_1 -> <RIVO tray>, ... (one entry per BAGO tray)
+tupo: q3_1 -> <RIVO tray>, ..., q3_k -> <RIVO tray>
+mita: q3_1 -> <JOPI tray>, ... (one entry per RIVO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

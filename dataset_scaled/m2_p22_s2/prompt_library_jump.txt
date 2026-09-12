@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: GADA, JORU, BIPU, LUFI. Books move GADA -> JORU -> BIPU -> LUFI.
+There are 5 moving steps:
+- "tasu" carries each GADA tray to a JORU tray.
+- "zapu" is an internal rearrangement of JORU: it carries each JORU tray to a JORU tray.
+- "kipo" carries each JORU tray to a BIPU tray.
+- "fudo" is an internal rearrangement of BIPU: it carries each BIPU tray to a BIPU tray.
+- "dusa" carries each BIPU tray to a LUFI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tasu" and then "zapu" lands on the same tray as running "tasu" alone.
+     ("zapu" leaves every tray that "tasu" produces unchanged.)
+R1.2 Running "zapu" and then "kipo" gives the same result as running "kipo" alone.
+     ("kipo" cannot tell whether "zapu" was applied first.)
+R1.3 Running "zapu" twice in a row leaves every JORU tray exactly where it started.
+R2.1 Running "kipo" and then "fudo" lands on the same tray as running "kipo" alone.
+     ("fudo" leaves every tray that "kipo" produces unchanged.)
+R2.2 Running "fudo" and then "dusa" gives the same result as running "dusa" alone.
+     ("dusa" cannot tell whether "fudo" was applied first.)
+R2.3 Running "fudo" twice in a row leaves every BIPU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GADA has exactly one tray, called n1.
+- LUFI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JORU, BIPU):
+D1.1 JORU must be a finite set with at most 3 trays.
+D1.2 "zapu" must NOT be the do-nothing move (it must move at least one JORU tray).
+D2.1 BIPU must be a finite set with at most 3 trays.
+D2.2 "fudo" must NOT be the do-nothing move (it must move at least one BIPU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JORU = {q1_1, ..., q1_k}
+tasu: n1 -> <JORU tray>
+zapu: q1_1 -> <JORU tray>, ..., q1_k -> <JORU tray>
+BIPU = {q2_1, ..., q2_k}
+kipo: q1_1 -> <BIPU tray>, ... (one entry per JORU tray)
+fudo: q2_1 -> <BIPU tray>, ..., q2_k -> <BIPU tray>
+dusa: q2_1 -> <LUFI tray>, ... (one entry per BIPU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

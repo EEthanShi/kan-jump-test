@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: JIMA, PUSO, FUZA. Toys move JIMA -> PUSO -> FUZA.
+There are 3 moving steps:
+- "boto" carries each JIMA slot to a PUSO slot.
+- "pugo" is an internal reshuffle of PUSO: it carries each PUSO slot to a PUSO slot.
+- "zuku" carries each PUSO slot to a FUZA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "boto" and then "pugo" lands on the same slot as running "boto" alone.
+     ("pugo" leaves every slot that "boto" produces unchanged.)
+R1.2 Running "pugo" and then "zuku" gives the same result as running "zuku" alone.
+     ("zuku" cannot tell whether "pugo" was applied first.)
+R1.3 Running "pugo" twice in a row leaves every PUSO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JIMA has exactly 2 slots, called n1, n2.
+- FUZA has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1.
+
+Requirements for the middle station (PUSO):
+D1.1 PUSO must be a finite set with at most 4 slots.
+D1.2 "pugo" must NOT be the do-nothing move (it must move at least one PUSO slot).
+D1.3 "boto" must carry different JIMA slots to different PUSO slots.
+D1.4 Every FUZA slot must be reached by "zuku" from at least one PUSO slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+PUSO = {q1_1, ..., q1_k}
+boto: n1 -> <PUSO slot>, n2 -> <PUSO slot>
+pugo: q1_1 -> <PUSO slot>, ..., q1_k -> <PUSO slot>
+zuku: q1_1 -> <FUZA slot>, ... (one entry per PUSO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

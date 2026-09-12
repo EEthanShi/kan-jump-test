@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: BOFU, VOMU, GIJI, ZOPI, ZAGA, MOTU. Toys move BOFU -> VOMU -> GIJI -> ZOPI -> ZAGA -> MOTU.
+There are 9 moving steps:
+- "zomo" carries each BOFU slot to a VOMU slot.
+- "fogi" is an internal reshuffle of VOMU: it carries each VOMU slot to a VOMU slot.
+- "posu" carries each VOMU slot to a GIJI slot.
+- "sufa" is an internal reshuffle of GIJI: it carries each GIJI slot to a GIJI slot.
+- "sugu" carries each GIJI slot to a ZOPI slot.
+- "zodi" is an internal reshuffle of ZOPI: it carries each ZOPI slot to a ZOPI slot.
+- "lapu" carries each ZOPI slot to a ZAGA slot.
+- "rizi" is an internal reshuffle of ZAGA: it carries each ZAGA slot to a ZAGA slot.
+- "tipa" carries each ZAGA slot to a MOTU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zomo" and then "fogi" lands on the same slot as running "zomo" alone.
+     ("fogi" leaves every slot that "zomo" produces unchanged.)
+R1.2 Running "fogi" and then "posu" gives the same result as running "posu" alone.
+     ("posu" cannot tell whether "fogi" was applied first.)
+R1.3 Running "fogi" three times in a row leaves every VOMU slot exactly where it started.
+R2.1 Running "posu" and then "sufa" lands on the same slot as running "posu" alone.
+     ("sufa" leaves every slot that "posu" produces unchanged.)
+R2.2 Running "sufa" and then "sugu" gives the same result as running "sugu" alone.
+     ("sugu" cannot tell whether "sufa" was applied first.)
+R2.3 Running "sufa" three times in a row leaves every GIJI slot exactly where it started.
+R3.1 Running "sugu" and then "zodi" lands on the same slot as running "sugu" alone.
+     ("zodi" leaves every slot that "sugu" produces unchanged.)
+R3.2 Running "zodi" and then "lapu" gives the same result as running "lapu" alone.
+     ("lapu" cannot tell whether "zodi" was applied first.)
+R3.3 Running "zodi" three times in a row leaves every ZOPI slot exactly where it started.
+R4.1 Running "lapu" and then "rizi" lands on the same slot as running "lapu" alone.
+     ("rizi" leaves every slot that "lapu" produces unchanged.)
+R4.2 Running "rizi" and then "tipa" gives the same result as running "tipa" alone.
+     ("tipa" cannot tell whether "rizi" was applied first.)
+R4.3 Running "rizi" three times in a row leaves every ZAGA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BOFU has exactly one slot, called n1.
+- MOTU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (VOMU, GIJI, ZOPI, ZAGA):
+D1.1 List the slots of VOMU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "fogi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of GIJI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "sufa" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of ZOPI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "zodi" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of ZAGA in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "rizi" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+VOMU = {q1_1, ..., q1_k}
+zomo: n1 -> <VOMU slot>
+fogi: q1_1 -> <VOMU slot>, ..., q1_k -> <VOMU slot>
+GIJI = {q2_1, ..., q2_k}
+posu: q1_1 -> <GIJI slot>, ... (one entry per VOMU slot)
+sufa: q2_1 -> <GIJI slot>, ..., q2_k -> <GIJI slot>
+ZOPI = {q3_1, ..., q3_k}
+sugu: q2_1 -> <ZOPI slot>, ... (one entry per GIJI slot)
+zodi: q3_1 -> <ZOPI slot>, ..., q3_k -> <ZOPI slot>
+ZAGA = {q4_1, ..., q4_k}
+lapu: q3_1 -> <ZAGA slot>, ... (one entry per ZOPI slot)
+rizi: q4_1 -> <ZAGA slot>, ..., q4_k -> <ZAGA slot>
+tipa: q4_1 -> <MOTU slot>, ... (one entry per ZAGA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

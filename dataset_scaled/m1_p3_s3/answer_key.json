@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s3",
+          "stations": [
+            "VABO",
+            "RATU",
+            "FOGU"
+          ],
+          "chain_moves": [
+            "kalo",
+            "tovi"
+          ],
+          "endo_moves": [
+            "bivi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "RATU = {q1_1, q1_2, q1_3, q1_4}\nkalo: n1 -> q1_1\nbivi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\ntovi: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+      "kan_answer": "RATU = {q1_1}\nkalo: n1 -> q1_1\nbivi: q1_1 -> q1_1\ntovi: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s3",
+          "stations": [
+            "SUVI",
+            "NALA",
+            "JISU"
+          ],
+          "chain_moves": [
+            "mumu",
+            "bumi"
+          ],
+          "endo_moves": [
+            "gugo"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "NALA = {q1_1, q1_2, q1_3, q1_4}\nmumu: n1 -> q1_1\ngugo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nbumi: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+      "kan_answer": "NALA = {q1_1}\nmumu: n1 -> q1_1\ngugo: q1_1 -> q1_1\nbumi: q1_1 -> s1"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZOBI, LOPI, BOTA, TAMO, FOVU. Books move ZOBI -> LOPI -> BOTA -> TAMO -> FOVU.
+There are 7 moving steps:
+- "bara" carries each ZOBI tray to a LOPI tray.
+- "dara" is an internal rearrangement of LOPI: it carries each LOPI tray to a LOPI tray.
+- "katu" carries each LOPI tray to a BOTA tray.
+- "vaka" is an internal rearrangement of BOTA: it carries each BOTA tray to a BOTA tray.
+- "kafi" carries each BOTA tray to a TAMO tray.
+- "viso" is an internal rearrangement of TAMO: it carries each TAMO tray to a TAMO tray.
+- "baji" carries each TAMO tray to a FOVU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bara" and then "dara" lands on the same tray as running "bara" alone.
+     ("dara" leaves every tray that "bara" produces unchanged.)
+R1.2 Running "dara" and then "katu" gives the same result as running "katu" alone.
+     ("katu" cannot tell whether "dara" was applied first.)
+R1.3 Running "dara" twice in a row leaves every LOPI tray exactly where it started.
+R2.1 Running "katu" and then "vaka" lands on the same tray as running "katu" alone.
+     ("vaka" leaves every tray that "katu" produces unchanged.)
+R2.2 Running "vaka" and then "kafi" gives the same result as running "kafi" alone.
+     ("kafi" cannot tell whether "vaka" was applied first.)
+R2.3 Running "vaka" twice in a row leaves every BOTA tray exactly where it started.
+R3.1 Running "kafi" and then "viso" lands on the same tray as running "kafi" alone.
+     ("viso" leaves every tray that "kafi" produces unchanged.)
+R3.2 Running "viso" and then "baji" gives the same result as running "baji" alone.
+     ("baji" cannot tell whether "viso" was applied first.)
+R3.3 Running "viso" three times in a row leaves every TAMO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZOBI has exactly one tray, called n1.
+- FOVU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LOPI, BOTA, TAMO):
+D1.1 LOPI must be a finite set with at most 3 trays.
+D1.2 "dara" must NOT be the do-nothing move (it must move at least one LOPI tray).
+D2.1 BOTA must be a finite set with at most 3 trays.
+D2.2 "vaka" must NOT be the do-nothing move (it must move at least one BOTA tray).
+D3.1 TAMO must be a finite set with at most 4 trays.
+D3.2 "viso" must NOT be the do-nothing move (it must move at least one TAMO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LOPI = {q1_1, ..., q1_k}
+bara: n1 -> <LOPI tray>
+dara: q1_1 -> <LOPI tray>, ..., q1_k -> <LOPI tray>
+BOTA = {q2_1, ..., q2_k}
+katu: q1_1 -> <BOTA tray>, ... (one entry per LOPI tray)
+vaka: q2_1 -> <BOTA tray>, ..., q2_k -> <BOTA tray>
+TAMO = {q3_1, ..., q3_k}
+kafi: q2_1 -> <TAMO tray>, ... (one entry per BOTA tray)
+viso: q3_1 -> <TAMO tray>, ..., q3_k -> <TAMO tray>
+baji: q3_1 -> <FOVU tray>, ... (one entry per TAMO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

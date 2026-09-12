@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: GORA, POSO, VAKA, NOFI, ZILI. Toys move GORA -> POSO -> VAKA -> NOFI -> ZILI.
+There are 7 moving steps:
+- "lozu" carries each GORA slot to a POSO slot.
+- "tavo" is an internal reshuffle of POSO: it carries each POSO slot to a POSO slot.
+- "tima" carries each POSO slot to a VAKA slot.
+- "satu" is an internal reshuffle of VAKA: it carries each VAKA slot to a VAKA slot.
+- "tidi" carries each VAKA slot to a NOFI slot.
+- "joji" is an internal reshuffle of NOFI: it carries each NOFI slot to a NOFI slot.
+- "midu" carries each NOFI slot to a ZILI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "lozu" and then "tavo" lands on the same slot as running "lozu" alone.
+     ("tavo" leaves every slot that "lozu" produces unchanged.)
+R1.2 Running "tavo" and then "tima" gives the same result as running "tima" alone.
+     ("tima" cannot tell whether "tavo" was applied first.)
+R1.3 Running "tavo" twice in a row leaves every POSO slot exactly where it started.
+R2.1 Running "tima" and then "satu" lands on the same slot as running "tima" alone.
+     ("satu" leaves every slot that "tima" produces unchanged.)
+R2.2 Running "satu" and then "tidi" gives the same result as running "tidi" alone.
+     ("tidi" cannot tell whether "satu" was applied first.)
+R2.3 Running "satu" twice in a row leaves every VAKA slot exactly where it started.
+R3.1 Running "tidi" and then "joji" lands on the same slot as running "tidi" alone.
+     ("joji" leaves every slot that "tidi" produces unchanged.)
+R3.2 Running "joji" and then "midu" gives the same result as running "midu" alone.
+     ("midu" cannot tell whether "joji" was applied first.)
+R3.3 Running "joji" three times in a row leaves every NOFI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GORA has exactly one slot, called n1.
+- ZILI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (POSO, VAKA, NOFI):
+D1.1 POSO must be a finite set with at most 1 slot.
+D1.2 List the "tavo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 VAKA must be a finite set with at most 1 slot.
+D2.2 List the "satu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 NOFI must be a finite set with at most 1 slot.
+D3.2 List the "joji" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+POSO = {q1_1, ..., q1_k}
+lozu: n1 -> <POSO slot>
+tavo: q1_1 -> <POSO slot>, ..., q1_k -> <POSO slot>
+VAKA = {q2_1, ..., q2_k}
+tima: q1_1 -> <VAKA slot>, ... (one entry per POSO slot)
+satu: q2_1 -> <VAKA slot>, ..., q2_k -> <VAKA slot>
+NOFI = {q3_1, ..., q3_k}
+tidi: q2_1 -> <NOFI slot>, ... (one entry per VAKA slot)
+joji: q3_1 -> <NOFI slot>, ..., q3_k -> <NOFI slot>
+midu: q3_1 -> <ZILI slot>, ... (one entry per NOFI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

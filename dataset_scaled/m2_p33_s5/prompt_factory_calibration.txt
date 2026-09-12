@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: SAJU, FAPI, KARO, NAKA. Toys move SAJU -> FAPI -> KARO -> NAKA.
+There are 5 moving steps:
+- "nuja" carries each SAJU slot to a FAPI slot.
+- "nobo" is an internal reshuffle of FAPI: it carries each FAPI slot to a FAPI slot.
+- "mogo" carries each FAPI slot to a KARO slot.
+- "lali" is an internal reshuffle of KARO: it carries each KARO slot to a KARO slot.
+- "tugu" carries each KARO slot to a NAKA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nuja" and then "nobo" lands on the same slot as running "nuja" alone.
+     ("nobo" leaves every slot that "nuja" produces unchanged.)
+R1.2 Running "nobo" and then "mogo" gives the same result as running "mogo" alone.
+     ("mogo" cannot tell whether "nobo" was applied first.)
+R1.3 Running "nobo" three times in a row leaves every FAPI slot exactly where it started.
+R2.1 Running "mogo" and then "lali" lands on the same slot as running "mogo" alone.
+     ("lali" leaves every slot that "mogo" produces unchanged.)
+R2.2 Running "lali" and then "tugu" gives the same result as running "tugu" alone.
+     ("tugu" cannot tell whether "lali" was applied first.)
+R2.3 Running "lali" three times in a row leaves every KARO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SAJU has exactly one slot, called n1.
+- NAKA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (FAPI, KARO):
+D1.1 List the slots of FAPI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "nobo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of KARO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "lali" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+FAPI = {q1_1, ..., q1_k}
+nuja: n1 -> <FAPI slot>
+nobo: q1_1 -> <FAPI slot>, ..., q1_k -> <FAPI slot>
+KARO = {q2_1, ..., q2_k}
+mogo: q1_1 -> <KARO slot>, ... (one entry per FAPI slot)
+lali: q2_1 -> <KARO slot>, ..., q2_k -> <KARO slot>
+tugu: q2_1 -> <NAKA slot>, ... (one entry per KARO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

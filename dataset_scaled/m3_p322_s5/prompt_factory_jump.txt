@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: FONI, TOTI, ROJI, KATI, VAKA. Toys move FONI -> TOTI -> ROJI -> KATI -> VAKA.
+There are 7 moving steps:
+- "mumi" carries each FONI slot to a TOTI slot.
+- "jopo" is an internal reshuffle of TOTI: it carries each TOTI slot to a TOTI slot.
+- "kuno" carries each TOTI slot to a ROJI slot.
+- "busa" is an internal reshuffle of ROJI: it carries each ROJI slot to a ROJI slot.
+- "roma" carries each ROJI slot to a KATI slot.
+- "dava" is an internal reshuffle of KATI: it carries each KATI slot to a KATI slot.
+- "bita" carries each KATI slot to a VAKA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "mumi" and then "jopo" lands on the same slot as running "mumi" alone.
+     ("jopo" leaves every slot that "mumi" produces unchanged.)
+R1.2 Running "jopo" and then "kuno" gives the same result as running "kuno" alone.
+     ("kuno" cannot tell whether "jopo" was applied first.)
+R1.3 Running "jopo" three times in a row leaves every TOTI slot exactly where it started.
+R2.1 Running "kuno" and then "busa" lands on the same slot as running "kuno" alone.
+     ("busa" leaves every slot that "kuno" produces unchanged.)
+R2.2 Running "busa" and then "roma" gives the same result as running "roma" alone.
+     ("roma" cannot tell whether "busa" was applied first.)
+R2.3 Running "busa" twice in a row leaves every ROJI slot exactly where it started.
+R3.1 Running "roma" and then "dava" lands on the same slot as running "roma" alone.
+     ("dava" leaves every slot that "roma" produces unchanged.)
+R3.2 Running "dava" and then "bita" gives the same result as running "bita" alone.
+     ("bita" cannot tell whether "dava" was applied first.)
+R3.3 Running "dava" twice in a row leaves every KATI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FONI has exactly one slot, called n1.
+- VAKA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TOTI, ROJI, KATI):
+D1.1 TOTI must be a finite set with at most 4 slots.
+D1.2 "jopo" must NOT be the do-nothing move (it must move at least one TOTI slot).
+D2.1 ROJI must be a finite set with at most 3 slots.
+D2.2 "busa" must NOT be the do-nothing move (it must move at least one ROJI slot).
+D3.1 KATI must be a finite set with at most 3 slots.
+D3.2 "dava" must NOT be the do-nothing move (it must move at least one KATI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TOTI = {q1_1, ..., q1_k}
+mumi: n1 -> <TOTI slot>
+jopo: q1_1 -> <TOTI slot>, ..., q1_k -> <TOTI slot>
+ROJI = {q2_1, ..., q2_k}
+kuno: q1_1 -> <ROJI slot>, ... (one entry per TOTI slot)
+busa: q2_1 -> <ROJI slot>, ..., q2_k -> <ROJI slot>
+KATI = {q3_1, ..., q3_k}
+roma: q2_1 -> <KATI slot>, ... (one entry per ROJI slot)
+dava: q3_1 -> <KATI slot>, ..., q3_k -> <KATI slot>
+bita: q3_1 -> <VAKA slot>, ... (one entry per KATI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

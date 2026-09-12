@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: MOKI, DAKO, KIKA, ZUGI. Books move MOKI -> DAKO -> KIKA -> ZUGI.
+There are 5 moving steps:
+- "luzu" carries each MOKI tray to a DAKO tray.
+- "muku" is an internal rearrangement of DAKO: it carries each DAKO tray to a DAKO tray.
+- "mado" carries each DAKO tray to a KIKA tray.
+- "vuva" is an internal rearrangement of KIKA: it carries each KIKA tray to a KIKA tray.
+- "nila" carries each KIKA tray to a ZUGI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "luzu" and then "muku" lands on the same tray as running "luzu" alone.
+     ("muku" leaves every tray that "luzu" produces unchanged.)
+R1.2 Running "muku" and then "mado" gives the same result as running "mado" alone.
+     ("mado" cannot tell whether "muku" was applied first.)
+R1.3 Running "muku" twice in a row leaves every DAKO tray exactly where it started.
+R2.1 Running "mado" and then "vuva" lands on the same tray as running "mado" alone.
+     ("vuva" leaves every tray that "mado" produces unchanged.)
+R2.2 Running "vuva" and then "nila" gives the same result as running "nila" alone.
+     ("nila" cannot tell whether "vuva" was applied first.)
+R2.3 Running "vuva" three times in a row leaves every KIKA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOKI has exactly one tray, called n1.
+- ZUGI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DAKO, KIKA):
+D1.1 DAKO must be a finite set with at most 1 tray.
+D1.2 List the "muku" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 KIKA must be a finite set with at most 1 tray.
+D2.2 List the "vuva" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DAKO = {q1_1, ..., q1_k}
+luzu: n1 -> <DAKO tray>
+muku: q1_1 -> <DAKO tray>, ..., q1_k -> <DAKO tray>
+KIKA = {q2_1, ..., q2_k}
+mado: q1_1 -> <KIKA tray>, ... (one entry per DAKO tray)
+vuva: q2_1 -> <KIKA tray>, ..., q2_k -> <KIKA tray>
+nila: q2_1 -> <ZUGI tray>, ... (one entry per KIKA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

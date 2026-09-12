@@ -3,3 +3,6 @@ __pycache__/
 .env
 .DS_Store
 verify_scratch/
+results_gpu/
+*.bak_*
+results_open/logprob_demo.jsonl

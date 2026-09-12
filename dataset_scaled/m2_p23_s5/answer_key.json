@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s5",
+          "stations": [
+            "SOTA",
+            "NITO",
+            "ZINI",
+            "MIZA"
+          ],
+          "chain_moves": [
+            "raki",
+            "gopo",
+            "fopu"
+          ],
+          "endo_moves": [
+            "lato",
+            "falo"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "NITO = {q1_1, q1_2, q1_3}\nraki: n1 -> q1_1\nlato: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nZINI = {q2_1, q2_2, q2_3, q2_4}\ngopo: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nfalo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\nfopu: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "NITO = {q1_1}\nraki: n1 -> q1_1\nlato: q1_1 -> q1_1\nZINI = {q2_1}\ngopo: q1_1 -> q2_1\nfalo: q2_1 -> q2_1\nfopu: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s5",
+          "stations": [
+            "MAKU",
+            "KIMA",
+            "PUPI",
+            "BUPI"
+          ],
+          "chain_moves": [
+            "sasi",
+            "fugi",
+            "jufa"
+          ],
+          "endo_moves": [
+            "fada",
+            "palo"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "KIMA = {q1_1, q1_2, q1_3}\nsasi: n1 -> q1_1\nfada: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nPUPI = {q2_1, q2_2, q2_3, q2_4}\nfugi: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\npalo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\njufa: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "KIMA = {q1_1}\nsasi: n1 -> q1_1\nfada: q1_1 -> q1_1\nPUPI = {q2_1}\nfugi: q1_1 -> q2_1\npalo: q2_1 -> q2_1\njufa: q2_1 -> s1"
+    }
+  }
+}

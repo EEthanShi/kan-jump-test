@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: NIJO, RAZA, ROFO, VODA. Books move NIJO -> RAZA -> ROFO -> VODA.
+There are 5 moving steps:
+- "govo" carries each NIJO tray to a RAZA tray.
+- "moka" is an internal rearrangement of RAZA: it carries each RAZA tray to a RAZA tray.
+- "rina" carries each RAZA tray to a ROFO tray.
+- "diki" is an internal rearrangement of ROFO: it carries each ROFO tray to a ROFO tray.
+- "dabu" carries each ROFO tray to a VODA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "govo" and then "moka" lands on the same tray as running "govo" alone.
+     ("moka" leaves every tray that "govo" produces unchanged.)
+R1.2 Running "moka" and then "rina" gives the same result as running "rina" alone.
+     ("rina" cannot tell whether "moka" was applied first.)
+R1.3 Running "moka" three times in a row leaves every RAZA tray exactly where it started.
+R2.1 Running "rina" and then "diki" lands on the same tray as running "rina" alone.
+     ("diki" leaves every tray that "rina" produces unchanged.)
+R2.2 Running "diki" and then "dabu" gives the same result as running "dabu" alone.
+     ("dabu" cannot tell whether "diki" was applied first.)
+R2.3 Running "diki" twice in a row leaves every ROFO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NIJO has exactly one tray, called n1.
+- VODA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RAZA, ROFO):
+D1.1 List the trays of RAZA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "moka" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of ROFO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "diki" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RAZA = {q1_1, ..., q1_k}
+govo: n1 -> <RAZA tray>
+moka: q1_1 -> <RAZA tray>, ..., q1_k -> <RAZA tray>
+ROFO = {q2_1, ..., q2_k}
+rina: q1_1 -> <ROFO tray>, ... (one entry per RAZA tray)
+diki: q2_1 -> <ROFO tray>, ..., q2_k -> <ROFO tray>
+dabu: q2_1 -> <VODA tray>, ... (one entry per ROFO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

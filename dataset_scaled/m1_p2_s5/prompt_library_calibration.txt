@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: VARI, GUTA, GASA. Books move VARI -> GUTA -> GASA.
+There are 3 moving steps:
+- "totu" carries each VARI tray to a GUTA tray.
+- "misa" is an internal rearrangement of GUTA: it carries each GUTA tray to a GUTA tray.
+- "roni" carries each GUTA tray to a GASA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "totu" and then "misa" lands on the same tray as running "totu" alone.
+     ("misa" leaves every tray that "totu" produces unchanged.)
+R1.2 Running "misa" and then "roni" gives the same result as running "roni" alone.
+     ("roni" cannot tell whether "misa" was applied first.)
+R1.3 Running "misa" twice in a row leaves every GUTA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VARI has exactly one tray, called n1.
+- GASA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (GUTA):
+D1.1 List the trays of GUTA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "misa" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GUTA = {q1_1, ..., q1_k}
+totu: n1 -> <GUTA tray>
+misa: q1_1 -> <GUTA tray>, ..., q1_k -> <GUTA tray>
+roni: q1_1 -> <GASA tray>, ... (one entry per GUTA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

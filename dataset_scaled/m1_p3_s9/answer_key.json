@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s9",
+          "stations": [
+            "NOJA",
+            "VUPA",
+            "MUKU"
+          ],
+          "chain_moves": [
+            "tipo",
+            "molu"
+          ],
+          "endo_moves": [
+            "toki"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "VUPA = {q1_1, q1_2, q1_3, q1_4}\ntipo: n1 -> q1_1\ntoki: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nmolu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+      "kan_answer": "VUPA = {q1_1}\ntipo: n1 -> q1_1\ntoki: q1_1 -> q1_1\nmolu: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s9",
+          "stations": [
+            "VASA",
+            "GIZO",
+            "POTO"
+          ],
+          "chain_moves": [
+            "kuno",
+            "magi"
+          ],
+          "endo_moves": [
+            "guko"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "GIZO = {q1_1, q1_2, q1_3, q1_4}\nkuno: n1 -> q1_1\nguko: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nmagi: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+      "kan_answer": "GIZO = {q1_1}\nkuno: n1 -> q1_1\nguko: q1_1 -> q1_1\nmagi: q1_1 -> s1"
+    }
+  }
+}

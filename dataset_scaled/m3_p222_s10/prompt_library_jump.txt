@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: PUSA, ROSO, VASO, DOVO, PURI. Books move PUSA -> ROSO -> VASO -> DOVO -> PURI.
+There are 7 moving steps:
+- "zavo" carries each PUSA tray to a ROSO tray.
+- "vaju" is an internal rearrangement of ROSO: it carries each ROSO tray to a ROSO tray.
+- "ziso" carries each ROSO tray to a VASO tray.
+- "mira" is an internal rearrangement of VASO: it carries each VASO tray to a VASO tray.
+- "zasa" carries each VASO tray to a DOVO tray.
+- "vogu" is an internal rearrangement of DOVO: it carries each DOVO tray to a DOVO tray.
+- "zuro" carries each DOVO tray to a PURI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zavo" and then "vaju" lands on the same tray as running "zavo" alone.
+     ("vaju" leaves every tray that "zavo" produces unchanged.)
+R1.2 Running "vaju" and then "ziso" gives the same result as running "ziso" alone.
+     ("ziso" cannot tell whether "vaju" was applied first.)
+R1.3 Running "vaju" twice in a row leaves every ROSO tray exactly where it started.
+R2.1 Running "ziso" and then "mira" lands on the same tray as running "ziso" alone.
+     ("mira" leaves every tray that "ziso" produces unchanged.)
+R2.2 Running "mira" and then "zasa" gives the same result as running "zasa" alone.
+     ("zasa" cannot tell whether "mira" was applied first.)
+R2.3 Running "mira" twice in a row leaves every VASO tray exactly where it started.
+R3.1 Running "zasa" and then "vogu" lands on the same tray as running "zasa" alone.
+     ("vogu" leaves every tray that "zasa" produces unchanged.)
+R3.2 Running "vogu" and then "zuro" gives the same result as running "zuro" alone.
+     ("zuro" cannot tell whether "vogu" was applied first.)
+R3.3 Running "vogu" twice in a row leaves every DOVO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUSA has exactly one tray, called n1.
+- PURI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ROSO, VASO, DOVO):
+D1.1 ROSO must be a finite set with at most 3 trays.
+D1.2 "vaju" must NOT be the do-nothing move (it must move at least one ROSO tray).
+D2.1 VASO must be a finite set with at most 3 trays.
+D2.2 "mira" must NOT be the do-nothing move (it must move at least one VASO tray).
+D3.1 DOVO must be a finite set with at most 3 trays.
+D3.2 "vogu" must NOT be the do-nothing move (it must move at least one DOVO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ROSO = {q1_1, ..., q1_k}
+zavo: n1 -> <ROSO tray>
+vaju: q1_1 -> <ROSO tray>, ..., q1_k -> <ROSO tray>
+VASO = {q2_1, ..., q2_k}
+ziso: q1_1 -> <VASO tray>, ... (one entry per ROSO tray)
+mira: q2_1 -> <VASO tray>, ..., q2_k -> <VASO tray>
+DOVO = {q3_1, ..., q3_k}
+zasa: q2_1 -> <DOVO tray>, ... (one entry per VASO tray)
+vogu: q3_1 -> <DOVO tray>, ..., q3_k -> <DOVO tray>
+zuro: q3_1 -> <PURI tray>, ... (one entry per DOVO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

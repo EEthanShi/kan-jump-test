@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: VOVI, BIMO, GOJO, ZONU, VOTI, FOLO. Books move VOVI -> BIMO -> GOJO -> ZONU -> VOTI -> FOLO.
+There are 9 moving steps:
+- "vazu" carries each VOVI tray to a BIMO tray.
+- "gosi" is an internal rearrangement of BIMO: it carries each BIMO tray to a BIMO tray.
+- "puda" carries each BIMO tray to a GOJO tray.
+- "gado" is an internal rearrangement of GOJO: it carries each GOJO tray to a GOJO tray.
+- "jifi" carries each GOJO tray to a ZONU tray.
+- "sidi" is an internal rearrangement of ZONU: it carries each ZONU tray to a ZONU tray.
+- "ruri" carries each ZONU tray to a VOTI tray.
+- "sifo" is an internal rearrangement of VOTI: it carries each VOTI tray to a VOTI tray.
+- "zudi" carries each VOTI tray to a FOLO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vazu" and then "gosi" lands on the same tray as running "vazu" alone.
+     ("gosi" leaves every tray that "vazu" produces unchanged.)
+R1.2 Running "gosi" and then "puda" gives the same result as running "puda" alone.
+     ("puda" cannot tell whether "gosi" was applied first.)
+R1.3 Running "gosi" three times in a row leaves every BIMO tray exactly where it started.
+R2.1 Running "puda" and then "gado" lands on the same tray as running "puda" alone.
+     ("gado" leaves every tray that "puda" produces unchanged.)
+R2.2 Running "gado" and then "jifi" gives the same result as running "jifi" alone.
+     ("jifi" cannot tell whether "gado" was applied first.)
+R2.3 Running "gado" twice in a row leaves every GOJO tray exactly where it started.
+R3.1 Running "jifi" and then "sidi" lands on the same tray as running "jifi" alone.
+     ("sidi" leaves every tray that "jifi" produces unchanged.)
+R3.2 Running "sidi" and then "ruri" gives the same result as running "ruri" alone.
+     ("ruri" cannot tell whether "sidi" was applied first.)
+R3.3 Running "sidi" three times in a row leaves every ZONU tray exactly where it started.
+R4.1 Running "ruri" and then "sifo" lands on the same tray as running "ruri" alone.
+     ("sifo" leaves every tray that "ruri" produces unchanged.)
+R4.2 Running "sifo" and then "zudi" gives the same result as running "zudi" alone.
+     ("zudi" cannot tell whether "sifo" was applied first.)
+R4.3 Running "sifo" twice in a row leaves every VOTI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VOVI has exactly one tray, called n1.
+- FOLO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BIMO, GOJO, ZONU, VOTI):
+D1.1 List the trays of BIMO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "gosi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of GOJO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "gado" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of ZONU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "sidi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of VOTI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "sifo" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BIMO = {q1_1, ..., q1_k}
+vazu: n1 -> <BIMO tray>
+gosi: q1_1 -> <BIMO tray>, ..., q1_k -> <BIMO tray>
+GOJO = {q2_1, ..., q2_k}
+puda: q1_1 -> <GOJO tray>, ... (one entry per BIMO tray)
+gado: q2_1 -> <GOJO tray>, ..., q2_k -> <GOJO tray>
+ZONU = {q3_1, ..., q3_k}
+jifi: q2_1 -> <ZONU tray>, ... (one entry per GOJO tray)
+sidi: q3_1 -> <ZONU tray>, ..., q3_k -> <ZONU tray>
+VOTI = {q4_1, ..., q4_k}
+ruri: q3_1 -> <VOTI tray>, ... (one entry per ZONU tray)
+sifo: q4_1 -> <VOTI tray>, ..., q4_k -> <VOTI tray>
+zudi: q4_1 -> <FOLO tray>, ... (one entry per VOTI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

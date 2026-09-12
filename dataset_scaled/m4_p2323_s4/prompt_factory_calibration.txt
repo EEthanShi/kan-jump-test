@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: TIPA, BOTI, FILI, JUBO, GATA, BUFU. Toys move TIPA -> BOTI -> FILI -> JUBO -> GATA -> BUFU.
+There are 9 moving steps:
+- "vugo" carries each TIPA slot to a BOTI slot.
+- "jigi" is an internal reshuffle of BOTI: it carries each BOTI slot to a BOTI slot.
+- "damu" carries each BOTI slot to a FILI slot.
+- "pibo" is an internal reshuffle of FILI: it carries each FILI slot to a FILI slot.
+- "tavo" carries each FILI slot to a JUBO slot.
+- "puji" is an internal reshuffle of JUBO: it carries each JUBO slot to a JUBO slot.
+- "jozu" carries each JUBO slot to a GATA slot.
+- "gogi" is an internal reshuffle of GATA: it carries each GATA slot to a GATA slot.
+- "fupu" carries each GATA slot to a BUFU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vugo" and then "jigi" lands on the same slot as running "vugo" alone.
+     ("jigi" leaves every slot that "vugo" produces unchanged.)
+R1.2 Running "jigi" and then "damu" gives the same result as running "damu" alone.
+     ("damu" cannot tell whether "jigi" was applied first.)
+R1.3 Running "jigi" twice in a row leaves every BOTI slot exactly where it started.
+R2.1 Running "damu" and then "pibo" lands on the same slot as running "damu" alone.
+     ("pibo" leaves every slot that "damu" produces unchanged.)
+R2.2 Running "pibo" and then "tavo" gives the same result as running "tavo" alone.
+     ("tavo" cannot tell whether "pibo" was applied first.)
+R2.3 Running "pibo" three times in a row leaves every FILI slot exactly where it started.
+R3.1 Running "tavo" and then "puji" lands on the same slot as running "tavo" alone.
+     ("puji" leaves every slot that "tavo" produces unchanged.)
+R3.2 Running "puji" and then "jozu" gives the same result as running "jozu" alone.
+     ("jozu" cannot tell whether "puji" was applied first.)
+R3.3 Running "puji" twice in a row leaves every JUBO slot exactly where it started.
+R4.1 Running "jozu" and then "gogi" lands on the same slot as running "jozu" alone.
+     ("gogi" leaves every slot that "jozu" produces unchanged.)
+R4.2 Running "gogi" and then "fupu" gives the same result as running "fupu" alone.
+     ("fupu" cannot tell whether "gogi" was applied first.)
+R4.3 Running "gogi" three times in a row leaves every GATA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TIPA has exactly one slot, called n1.
+- BUFU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BOTI, FILI, JUBO, GATA):
+D1.1 List the slots of BOTI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "jigi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of FILI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "pibo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of JUBO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "puji" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of GATA in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "gogi" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BOTI = {q1_1, ..., q1_k}
+vugo: n1 -> <BOTI slot>
+jigi: q1_1 -> <BOTI slot>, ..., q1_k -> <BOTI slot>
+FILI = {q2_1, ..., q2_k}
+damu: q1_1 -> <FILI slot>, ... (one entry per BOTI slot)
+pibo: q2_1 -> <FILI slot>, ..., q2_k -> <FILI slot>
+JUBO = {q3_1, ..., q3_k}
+tavo: q2_1 -> <JUBO slot>, ... (one entry per FILI slot)
+puji: q3_1 -> <JUBO slot>, ..., q3_k -> <JUBO slot>
+GATA = {q4_1, ..., q4_k}
+jozu: q3_1 -> <GATA slot>, ... (one entry per JUBO slot)
+gogi: q4_1 -> <GATA slot>, ..., q4_k -> <GATA slot>
+fupu: q4_1 -> <BUFU slot>, ... (one entry per GATA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,99 @@
+{
+ "family": "asym",
+ "k": 4,
+ "l": 1,
+ "N": 6,
+ "lan_size_b": 4,
+ "ran_size_b": 1,
+ "ext_count": 7759,
+ "adm_count": 360,
+ "chance": 0.046397731666451864,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 4,
+    "l": 1,
+    "N": 6,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym4x1_s7",
+     "stations": [
+      "VUZI",
+      "ZUJU",
+      "ZAMO"
+     ],
+     "chain_moves": [
+      "runa",
+      "buvo"
+     ],
+     "endo_moves": [
+      "fido"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 4,
+     "l": 1
+    }
+   },
+   "lan_answer": "ZUJU = {q1_1, q1_2, q1_3, q1_4}\nruna: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nfido: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4\nbuvo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+   "ran_answer": "ZUJU = {q1_1}\nruna: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1\nfido: q1_1 -> q1_1\nbuvo: q1_1 -> s1",
+   "example_admissible_answer": "ZUJU = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6}\nruna: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nfido: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_6, q1_6 -> q1_5\nbuvo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 4,
+    "l": 1,
+    "N": 6,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym4x1_s7",
+     "stations": [
+      "JALA",
+      "JUVI",
+      "LUTA"
+     ],
+     "chain_moves": [
+      "vozu",
+      "nama"
+     ],
+     "endo_moves": [
+      "sopi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 4,
+     "l": 1
+    }
+   },
+   "lan_answer": "JUVI = {q1_1, q1_2, q1_3, q1_4}\nvozu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nsopi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4\nnama: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+   "ran_answer": "JUVI = {q1_1}\nvozu: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1\nsopi: q1_1 -> q1_1\nnama: q1_1 -> s1",
+   "example_admissible_answer": "JUVI = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6}\nvozu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nsopi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_6, q1_6 -> q1_5\nnama: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1"
+  }
+ }
+}

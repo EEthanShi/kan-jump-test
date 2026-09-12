@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: MABA, BUSU, POTI, ZOVO, NUZI. Toys move MABA -> BUSU -> POTI -> ZOVO -> NUZI.
+There are 7 moving steps:
+- "ripi" carries each MABA slot to a BUSU slot.
+- "suto" is an internal reshuffle of BUSU: it carries each BUSU slot to a BUSU slot.
+- "rila" carries each BUSU slot to a POTI slot.
+- "sada" is an internal reshuffle of POTI: it carries each POTI slot to a POTI slot.
+- "muni" carries each POTI slot to a ZOVO slot.
+- "fano" is an internal reshuffle of ZOVO: it carries each ZOVO slot to a ZOVO slot.
+- "pati" carries each ZOVO slot to a NUZI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "ripi" and then "suto" lands on the same slot as running "ripi" alone.
+     ("suto" leaves every slot that "ripi" produces unchanged.)
+R1.2 Running "suto" and then "rila" gives the same result as running "rila" alone.
+     ("rila" cannot tell whether "suto" was applied first.)
+R1.3 Running "suto" three times in a row leaves every BUSU slot exactly where it started.
+R2.1 Running "rila" and then "sada" lands on the same slot as running "rila" alone.
+     ("sada" leaves every slot that "rila" produces unchanged.)
+R2.2 Running "sada" and then "muni" gives the same result as running "muni" alone.
+     ("muni" cannot tell whether "sada" was applied first.)
+R2.3 Running "sada" twice in a row leaves every POTI slot exactly where it started.
+R3.1 Running "muni" and then "fano" lands on the same slot as running "muni" alone.
+     ("fano" leaves every slot that "muni" produces unchanged.)
+R3.2 Running "fano" and then "pati" gives the same result as running "pati" alone.
+     ("pati" cannot tell whether "fano" was applied first.)
+R3.3 Running "fano" three times in a row leaves every ZOVO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MABA has exactly one slot, called n1.
+- NUZI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BUSU, POTI, ZOVO):
+D1.1 BUSU must be a finite set with at most 4 slots.
+D1.2 "suto" must NOT be the do-nothing move (it must move at least one BUSU slot).
+D2.1 POTI must be a finite set with at most 3 slots.
+D2.2 "sada" must NOT be the do-nothing move (it must move at least one POTI slot).
+D3.1 ZOVO must be a finite set with at most 4 slots.
+D3.2 "fano" must NOT be the do-nothing move (it must move at least one ZOVO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BUSU = {q1_1, ..., q1_k}
+ripi: n1 -> <BUSU slot>
+suto: q1_1 -> <BUSU slot>, ..., q1_k -> <BUSU slot>
+POTI = {q2_1, ..., q2_k}
+rila: q1_1 -> <POTI slot>, ... (one entry per BUSU slot)
+sada: q2_1 -> <POTI slot>, ..., q2_k -> <POTI slot>
+ZOVO = {q3_1, ..., q3_k}
+muni: q2_1 -> <ZOVO slot>, ... (one entry per POTI slot)
+fano: q3_1 -> <ZOVO slot>, ..., q3_k -> <ZOVO slot>
+pati: q3_1 -> <NUZI slot>, ... (one entry per ZOVO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

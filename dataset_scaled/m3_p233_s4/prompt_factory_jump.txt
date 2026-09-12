@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: JORO, LADI, MOZU, LOLI, GIZA. Toys move JORO -> LADI -> MOZU -> LOLI -> GIZA.
+There are 7 moving steps:
+- "fosu" carries each JORO slot to a LADI slot.
+- "kado" is an internal reshuffle of LADI: it carries each LADI slot to a LADI slot.
+- "vafa" carries each LADI slot to a MOZU slot.
+- "vadi" is an internal reshuffle of MOZU: it carries each MOZU slot to a MOZU slot.
+- "gojo" carries each MOZU slot to a LOLI slot.
+- "bodu" is an internal reshuffle of LOLI: it carries each LOLI slot to a LOLI slot.
+- "kona" carries each LOLI slot to a GIZA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "fosu" and then "kado" lands on the same slot as running "fosu" alone.
+     ("kado" leaves every slot that "fosu" produces unchanged.)
+R1.2 Running "kado" and then "vafa" gives the same result as running "vafa" alone.
+     ("vafa" cannot tell whether "kado" was applied first.)
+R1.3 Running "kado" twice in a row leaves every LADI slot exactly where it started.
+R2.1 Running "vafa" and then "vadi" lands on the same slot as running "vafa" alone.
+     ("vadi" leaves every slot that "vafa" produces unchanged.)
+R2.2 Running "vadi" and then "gojo" gives the same result as running "gojo" alone.
+     ("gojo" cannot tell whether "vadi" was applied first.)
+R2.3 Running "vadi" three times in a row leaves every MOZU slot exactly where it started.
+R3.1 Running "gojo" and then "bodu" lands on the same slot as running "gojo" alone.
+     ("bodu" leaves every slot that "gojo" produces unchanged.)
+R3.2 Running "bodu" and then "kona" gives the same result as running "kona" alone.
+     ("kona" cannot tell whether "bodu" was applied first.)
+R3.3 Running "bodu" three times in a row leaves every LOLI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JORO has exactly one slot, called n1.
+- GIZA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (LADI, MOZU, LOLI):
+D1.1 LADI must be a finite set with at most 3 slots.
+D1.2 "kado" must NOT be the do-nothing move (it must move at least one LADI slot).
+D2.1 MOZU must be a finite set with at most 4 slots.
+D2.2 "vadi" must NOT be the do-nothing move (it must move at least one MOZU slot).
+D3.1 LOLI must be a finite set with at most 4 slots.
+D3.2 "bodu" must NOT be the do-nothing move (it must move at least one LOLI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+LADI = {q1_1, ..., q1_k}
+fosu: n1 -> <LADI slot>
+kado: q1_1 -> <LADI slot>, ..., q1_k -> <LADI slot>
+MOZU = {q2_1, ..., q2_k}
+vafa: q1_1 -> <MOZU slot>, ... (one entry per LADI slot)
+vadi: q2_1 -> <MOZU slot>, ..., q2_k -> <MOZU slot>
+LOLI = {q3_1, ..., q3_k}
+gojo: q2_1 -> <LOLI slot>, ... (one entry per MOZU slot)
+bodu: q3_1 -> <LOLI slot>, ..., q3_k -> <LOLI slot>
+kona: q3_1 -> <GIZA slot>, ... (one entry per LOLI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

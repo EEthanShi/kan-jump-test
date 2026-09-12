@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: BUDI, BINU, TAKU. Books move BUDI -> BINU -> TAKU.
+There are 3 moving steps:
+- "lapu" carries each BUDI tray to a BINU tray.
+- "ropa" is an internal rearrangement of BINU: it carries each BINU tray to a BINU tray.
+- "bari" carries each BINU tray to a TAKU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "lapu" and then "ropa" lands on the same tray as running "lapu" alone.
+     ("ropa" leaves every tray that "lapu" produces unchanged.)
+R1.2 Running "ropa" and then "bari" gives the same result as running "bari" alone.
+     ("bari" cannot tell whether "ropa" was applied first.)
+R1.3 Running "ropa" twice in a row leaves every BINU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUDI has exactly 2 trays, called n1, n2.
+- TAKU has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (BINU):
+D1.1 BINU must be a finite set with at most 4 trays.
+D1.2 "ropa" must NOT be the do-nothing move (it must move at least one BINU tray).
+D1.3 "lapu" must carry different BUDI trays to different BINU trays.
+D1.4 Every TAKU tray must be reached by "bari" from at least one BINU tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+BINU = {q1_1, ..., q1_k}
+lapu: n1 -> <BINU tray>, n2 -> <BINU tray>
+ropa: q1_1 -> <BINU tray>, ..., q1_k -> <BINU tray>
+bari: q1_1 -> <TAKU tray>, ... (one entry per BINU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

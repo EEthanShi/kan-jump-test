@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: ZARA, KOSI, MUKO, NOBO, DAKU, NAPU. Toys move ZARA -> KOSI -> MUKO -> NOBO -> DAKU -> NAPU.
+There are 9 moving steps:
+- "tufa" carries each ZARA slot to a KOSI slot.
+- "mibo" is an internal reshuffle of KOSI: it carries each KOSI slot to a KOSI slot.
+- "taka" carries each KOSI slot to a MUKO slot.
+- "dato" is an internal reshuffle of MUKO: it carries each MUKO slot to a MUKO slot.
+- "zini" carries each MUKO slot to a NOBO slot.
+- "nibu" is an internal reshuffle of NOBO: it carries each NOBO slot to a NOBO slot.
+- "masi" carries each NOBO slot to a DAKU slot.
+- "fado" is an internal reshuffle of DAKU: it carries each DAKU slot to a DAKU slot.
+- "zabi" carries each DAKU slot to a NAPU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tufa" and then "mibo" lands on the same slot as running "tufa" alone.
+     ("mibo" leaves every slot that "tufa" produces unchanged.)
+R1.2 Running "mibo" and then "taka" gives the same result as running "taka" alone.
+     ("taka" cannot tell whether "mibo" was applied first.)
+R1.3 Running "mibo" three times in a row leaves every KOSI slot exactly where it started.
+R2.1 Running "taka" and then "dato" lands on the same slot as running "taka" alone.
+     ("dato" leaves every slot that "taka" produces unchanged.)
+R2.2 Running "dato" and then "zini" gives the same result as running "zini" alone.
+     ("zini" cannot tell whether "dato" was applied first.)
+R2.3 Running "dato" twice in a row leaves every MUKO slot exactly where it started.
+R3.1 Running "zini" and then "nibu" lands on the same slot as running "zini" alone.
+     ("nibu" leaves every slot that "zini" produces unchanged.)
+R3.2 Running "nibu" and then "masi" gives the same result as running "masi" alone.
+     ("masi" cannot tell whether "nibu" was applied first.)
+R3.3 Running "nibu" three times in a row leaves every NOBO slot exactly where it started.
+R4.1 Running "masi" and then "fado" lands on the same slot as running "masi" alone.
+     ("fado" leaves every slot that "masi" produces unchanged.)
+R4.2 Running "fado" and then "zabi" gives the same result as running "zabi" alone.
+     ("zabi" cannot tell whether "fado" was applied first.)
+R4.3 Running "fado" twice in a row leaves every DAKU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZARA has exactly one slot, called n1.
+- NAPU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KOSI, MUKO, NOBO, DAKU):
+D1.1 KOSI must be a finite set with at most 1 slot.
+D1.2 List the "mibo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 MUKO must be a finite set with at most 1 slot.
+D2.2 List the "dato" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 NOBO must be a finite set with at most 1 slot.
+D3.2 List the "nibu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 DAKU must be a finite set with at most 1 slot.
+D4.2 List the "fado" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KOSI = {q1_1, ..., q1_k}
+tufa: n1 -> <KOSI slot>
+mibo: q1_1 -> <KOSI slot>, ..., q1_k -> <KOSI slot>
+MUKO = {q2_1, ..., q2_k}
+taka: q1_1 -> <MUKO slot>, ... (one entry per KOSI slot)
+dato: q2_1 -> <MUKO slot>, ..., q2_k -> <MUKO slot>
+NOBO = {q3_1, ..., q3_k}
+zini: q2_1 -> <NOBO slot>, ... (one entry per MUKO slot)
+nibu: q3_1 -> <NOBO slot>, ..., q3_k -> <NOBO slot>
+DAKU = {q4_1, ..., q4_k}
+masi: q3_1 -> <DAKU slot>, ... (one entry per NOBO slot)
+fado: q4_1 -> <DAKU slot>, ..., q4_k -> <DAKU slot>
+zabi: q4_1 -> <NAPU slot>, ... (one entry per DAKU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

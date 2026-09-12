@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: VUGU, FUVI, NOTI, POTA, KUMI. Toys move VUGU -> FUVI -> NOTI -> POTA -> KUMI.
+There are 7 moving steps:
+- "zisi" carries each VUGU slot to a FUVI slot.
+- "zafi" is an internal reshuffle of FUVI: it carries each FUVI slot to a FUVI slot.
+- "zumu" carries each FUVI slot to a NOTI slot.
+- "moda" is an internal reshuffle of NOTI: it carries each NOTI slot to a NOTI slot.
+- "lisa" carries each NOTI slot to a POTA slot.
+- "sapu" is an internal reshuffle of POTA: it carries each POTA slot to a POTA slot.
+- "tijo" carries each POTA slot to a KUMI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zisi" and then "zafi" lands on the same slot as running "zisi" alone.
+     ("zafi" leaves every slot that "zisi" produces unchanged.)
+R1.2 Running "zafi" and then "zumu" gives the same result as running "zumu" alone.
+     ("zumu" cannot tell whether "zafi" was applied first.)
+R1.3 Running "zafi" twice in a row leaves every FUVI slot exactly where it started.
+R2.1 Running "zumu" and then "moda" lands on the same slot as running "zumu" alone.
+     ("moda" leaves every slot that "zumu" produces unchanged.)
+R2.2 Running "moda" and then "lisa" gives the same result as running "lisa" alone.
+     ("lisa" cannot tell whether "moda" was applied first.)
+R2.3 Running "moda" three times in a row leaves every NOTI slot exactly where it started.
+R3.1 Running "lisa" and then "sapu" lands on the same slot as running "lisa" alone.
+     ("sapu" leaves every slot that "lisa" produces unchanged.)
+R3.2 Running "sapu" and then "tijo" gives the same result as running "tijo" alone.
+     ("tijo" cannot tell whether "sapu" was applied first.)
+R3.3 Running "sapu" three times in a row leaves every POTA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUGU has exactly one slot, called n1.
+- KUMI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (FUVI, NOTI, POTA):
+D1.1 List the slots of FUVI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zafi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of NOTI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "moda" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of POTA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "sapu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+FUVI = {q1_1, ..., q1_k}
+zisi: n1 -> <FUVI slot>
+zafi: q1_1 -> <FUVI slot>, ..., q1_k -> <FUVI slot>
+NOTI = {q2_1, ..., q2_k}
+zumu: q1_1 -> <NOTI slot>, ... (one entry per FUVI slot)
+moda: q2_1 -> <NOTI slot>, ..., q2_k -> <NOTI slot>
+POTA = {q3_1, ..., q3_k}
+lisa: q2_1 -> <POTA slot>, ... (one entry per NOTI slot)
+sapu: q3_1 -> <POTA slot>, ..., q3_k -> <POTA slot>
+tijo: q3_1 -> <KUMI slot>, ... (one entry per POTA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

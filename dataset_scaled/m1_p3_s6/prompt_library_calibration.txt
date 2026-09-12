@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: JAZI, JOLU, LIDU. Books move JAZI -> JOLU -> LIDU.
+There are 3 moving steps:
+- "gosa" carries each JAZI tray to a JOLU tray.
+- "vajo" is an internal rearrangement of JOLU: it carries each JOLU tray to a JOLU tray.
+- "kuli" carries each JOLU tray to a LIDU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gosa" and then "vajo" lands on the same tray as running "gosa" alone.
+     ("vajo" leaves every tray that "gosa" produces unchanged.)
+R1.2 Running "vajo" and then "kuli" gives the same result as running "kuli" alone.
+     ("kuli" cannot tell whether "vajo" was applied first.)
+R1.3 Running "vajo" three times in a row leaves every JOLU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JAZI has exactly one tray, called n1.
+- LIDU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (JOLU):
+D1.1 List the trays of JOLU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vajo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JOLU = {q1_1, ..., q1_k}
+gosa: n1 -> <JOLU tray>
+vajo: q1_1 -> <JOLU tray>, ..., q1_k -> <JOLU tray>
+kuli: q1_1 -> <LIDU tray>, ... (one entry per JOLU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: RAFU, FOKO, JAPU, JISI, LUGU. Books move RAFU -> FOKO -> JAPU -> JISI -> LUGU.
+There are 7 moving steps:
+- "kazo" carries each RAFU tray to a FOKO tray.
+- "toji" is an internal rearrangement of FOKO: it carries each FOKO tray to a FOKO tray.
+- "miru" carries each FOKO tray to a JAPU tray.
+- "lozu" is an internal rearrangement of JAPU: it carries each JAPU tray to a JAPU tray.
+- "tari" carries each JAPU tray to a JISI tray.
+- "tana" is an internal rearrangement of JISI: it carries each JISI tray to a JISI tray.
+- "fatu" carries each JISI tray to a LUGU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kazo" and then "toji" lands on the same tray as running "kazo" alone.
+     ("toji" leaves every tray that "kazo" produces unchanged.)
+R1.2 Running "toji" and then "miru" gives the same result as running "miru" alone.
+     ("miru" cannot tell whether "toji" was applied first.)
+R1.3 Running "toji" twice in a row leaves every FOKO tray exactly where it started.
+R2.1 Running "miru" and then "lozu" lands on the same tray as running "miru" alone.
+     ("lozu" leaves every tray that "miru" produces unchanged.)
+R2.2 Running "lozu" and then "tari" gives the same result as running "tari" alone.
+     ("tari" cannot tell whether "lozu" was applied first.)
+R2.3 Running "lozu" twice in a row leaves every JAPU tray exactly where it started.
+R3.1 Running "tari" and then "tana" lands on the same tray as running "tari" alone.
+     ("tana" leaves every tray that "tari" produces unchanged.)
+R3.2 Running "tana" and then "fatu" gives the same result as running "fatu" alone.
+     ("fatu" cannot tell whether "tana" was applied first.)
+R3.3 Running "tana" twice in a row leaves every JISI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RAFU has exactly one tray, called n1.
+- LUGU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FOKO, JAPU, JISI):
+D1.1 List the trays of FOKO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "toji" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of JAPU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "lozu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of JISI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "tana" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FOKO = {q1_1, ..., q1_k}
+kazo: n1 -> <FOKO tray>
+toji: q1_1 -> <FOKO tray>, ..., q1_k -> <FOKO tray>
+JAPU = {q2_1, ..., q2_k}
+miru: q1_1 -> <JAPU tray>, ... (one entry per FOKO tray)
+lozu: q2_1 -> <JAPU tray>, ..., q2_k -> <JAPU tray>
+JISI = {q3_1, ..., q3_k}
+tari: q2_1 -> <JISI tray>, ... (one entry per JAPU tray)
+tana: q3_1 -> <JISI tray>, ..., q3_k -> <JISI tray>
+fatu: q3_1 -> <LUGU tray>, ... (one entry per JISI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

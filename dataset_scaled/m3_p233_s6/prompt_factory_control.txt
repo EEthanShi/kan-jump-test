@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: GULA, GAGO, ZITU, PAKA, NUNU. Toys move GULA -> GAGO -> ZITU -> PAKA -> NUNU.
+There are 7 moving steps:
+- "buzu" carries each GULA slot to a GAGO slot.
+- "niji" is an internal reshuffle of GAGO: it carries each GAGO slot to a GAGO slot.
+- "mota" carries each GAGO slot to a ZITU slot.
+- "ziru" is an internal reshuffle of ZITU: it carries each ZITU slot to a ZITU slot.
+- "bava" carries each ZITU slot to a PAKA slot.
+- "mufu" is an internal reshuffle of PAKA: it carries each PAKA slot to a PAKA slot.
+- "baro" carries each PAKA slot to a NUNU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "buzu" and then "niji" lands on the same slot as running "buzu" alone.
+     ("niji" leaves every slot that "buzu" produces unchanged.)
+R1.2 Running "niji" and then "mota" gives the same result as running "mota" alone.
+     ("mota" cannot tell whether "niji" was applied first.)
+R1.3 Running "niji" twice in a row leaves every GAGO slot exactly where it started.
+R2.1 Running "mota" and then "ziru" lands on the same slot as running "mota" alone.
+     ("ziru" leaves every slot that "mota" produces unchanged.)
+R2.2 Running "ziru" and then "bava" gives the same result as running "bava" alone.
+     ("bava" cannot tell whether "ziru" was applied first.)
+R2.3 Running "ziru" three times in a row leaves every ZITU slot exactly where it started.
+R3.1 Running "bava" and then "mufu" lands on the same slot as running "bava" alone.
+     ("mufu" leaves every slot that "bava" produces unchanged.)
+R3.2 Running "mufu" and then "baro" gives the same result as running "baro" alone.
+     ("baro" cannot tell whether "mufu" was applied first.)
+R3.3 Running "mufu" three times in a row leaves every PAKA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GULA has exactly one slot, called n1.
+- NUNU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (GAGO, ZITU, PAKA):
+D1.1 GAGO must be a finite set with at most 1 slot.
+D1.2 List the "niji" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 ZITU must be a finite set with at most 1 slot.
+D2.2 List the "ziru" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 PAKA must be a finite set with at most 1 slot.
+D3.2 List the "mufu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GAGO = {q1_1, ..., q1_k}
+buzu: n1 -> <GAGO slot>
+niji: q1_1 -> <GAGO slot>, ..., q1_k -> <GAGO slot>
+ZITU = {q2_1, ..., q2_k}
+mota: q1_1 -> <ZITU slot>, ... (one entry per GAGO slot)
+ziru: q2_1 -> <ZITU slot>, ..., q2_k -> <ZITU slot>
+PAKA = {q3_1, ..., q3_k}
+bava: q2_1 -> <PAKA slot>, ... (one entry per ZITU slot)
+mufu: q3_1 -> <PAKA slot>, ..., q3_k -> <PAKA slot>
+baro: q3_1 -> <NUNU slot>, ... (one entry per PAKA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

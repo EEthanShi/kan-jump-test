@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s1",
+          "stations": [
+            "RUZA",
+            "KODU",
+            "VOKA",
+            "FOSO"
+          ],
+          "chain_moves": [
+            "toti",
+            "vasu",
+            "pogo"
+          ],
+          "endo_moves": [
+            "bota",
+            "tusa"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "KODU = {q1_1, q1_2, q1_3}\ntoti: n1 -> q1_1\nbota: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nVOKA = {q2_1, q2_2, q2_3}\nvasu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\ntusa: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\npogo: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "KODU = {q1_1}\ntoti: n1 -> q1_1\nbota: q1_1 -> q1_1\nVOKA = {q2_1}\nvasu: q1_1 -> q2_1\ntusa: q2_1 -> q2_1\npogo: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s1",
+          "stations": [
+            "DIFA",
+            "BUMU",
+            "ZAZU",
+            "KUKO"
+          ],
+          "chain_moves": [
+            "vaka",
+            "saza",
+            "junu"
+          ],
+          "endo_moves": [
+            "jisi",
+            "vodi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "BUMU = {q1_1, q1_2, q1_3}\nvaka: n1 -> q1_1\njisi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nZAZU = {q2_1, q2_2, q2_3}\nsaza: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nvodi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\njunu: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "BUMU = {q1_1}\nvaka: n1 -> q1_1\njisi: q1_1 -> q1_1\nZAZU = {q2_1}\nsaza: q1_1 -> q2_1\nvodi: q2_1 -> q2_1\njunu: q2_1 -> s1"
+    }
+  }
+}

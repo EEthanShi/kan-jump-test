@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SAMU, NUZU, DUVU. Books move SAMU -> NUZU -> DUVU.
+There are 3 moving steps:
+- "zubi" carries each SAMU tray to a NUZU tray.
+- "gotu" is an internal rearrangement of NUZU: it carries each NUZU tray to a NUZU tray.
+- "jubu" carries each NUZU tray to a DUVU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zubi" and then "gotu" lands on the same tray as running "zubi" alone.
+     ("gotu" leaves every tray that "zubi" produces unchanged.)
+R1.2 Running "gotu" and then "jubu" gives the same result as running "jubu" alone.
+     ("jubu" cannot tell whether "gotu" was applied first.)
+R1.3 Running "gotu" three times in a row leaves every NUZU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SAMU has exactly one tray, called n1.
+- DUVU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (NUZU):
+D1.1 NUZU must be a finite set with at most 4 trays.
+D1.2 "gotu" must NOT be the do-nothing move (it must move at least one NUZU tray).
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NUZU = {q1_1, ..., q1_k}
+zubi: n1 -> <NUZU tray>
+gotu: q1_1 -> <NUZU tray>, ..., q1_k -> <NUZU tray>
+jubu: q1_1 -> <DUVU tray>, ... (one entry per NUZU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

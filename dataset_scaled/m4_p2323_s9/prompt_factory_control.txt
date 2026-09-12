@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: NIZO, GOPA, JUMA, PITU, GUVI, MISU. Toys move NIZO -> GOPA -> JUMA -> PITU -> GUVI -> MISU.
+There are 9 moving steps:
+- "toni" carries each NIZO slot to a GOPA slot.
+- "miji" is an internal reshuffle of GOPA: it carries each GOPA slot to a GOPA slot.
+- "labu" carries each GOPA slot to a JUMA slot.
+- "fivo" is an internal reshuffle of JUMA: it carries each JUMA slot to a JUMA slot.
+- "sora" carries each JUMA slot to a PITU slot.
+- "gafo" is an internal reshuffle of PITU: it carries each PITU slot to a PITU slot.
+- "maju" carries each PITU slot to a GUVI slot.
+- "bami" is an internal reshuffle of GUVI: it carries each GUVI slot to a GUVI slot.
+- "nafi" carries each GUVI slot to a MISU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "toni" and then "miji" lands on the same slot as running "toni" alone.
+     ("miji" leaves every slot that "toni" produces unchanged.)
+R1.2 Running "miji" and then "labu" gives the same result as running "labu" alone.
+     ("labu" cannot tell whether "miji" was applied first.)
+R1.3 Running "miji" twice in a row leaves every GOPA slot exactly where it started.
+R2.1 Running "labu" and then "fivo" lands on the same slot as running "labu" alone.
+     ("fivo" leaves every slot that "labu" produces unchanged.)
+R2.2 Running "fivo" and then "sora" gives the same result as running "sora" alone.
+     ("sora" cannot tell whether "fivo" was applied first.)
+R2.3 Running "fivo" three times in a row leaves every JUMA slot exactly where it started.
+R3.1 Running "sora" and then "gafo" lands on the same slot as running "sora" alone.
+     ("gafo" leaves every slot that "sora" produces unchanged.)
+R3.2 Running "gafo" and then "maju" gives the same result as running "maju" alone.
+     ("maju" cannot tell whether "gafo" was applied first.)
+R3.3 Running "gafo" twice in a row leaves every PITU slot exactly where it started.
+R4.1 Running "maju" and then "bami" lands on the same slot as running "maju" alone.
+     ("bami" leaves every slot that "maju" produces unchanged.)
+R4.2 Running "bami" and then "nafi" gives the same result as running "nafi" alone.
+     ("nafi" cannot tell whether "bami" was applied first.)
+R4.3 Running "bami" three times in a row leaves every GUVI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NIZO has exactly one slot, called n1.
+- MISU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (GOPA, JUMA, PITU, GUVI):
+D1.1 GOPA must be a finite set with at most 1 slot.
+D1.2 List the "miji" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 JUMA must be a finite set with at most 1 slot.
+D2.2 List the "fivo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 PITU must be a finite set with at most 1 slot.
+D3.2 List the "gafo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 GUVI must be a finite set with at most 1 slot.
+D4.2 List the "bami" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GOPA = {q1_1, ..., q1_k}
+toni: n1 -> <GOPA slot>
+miji: q1_1 -> <GOPA slot>, ..., q1_k -> <GOPA slot>
+JUMA = {q2_1, ..., q2_k}
+labu: q1_1 -> <JUMA slot>, ... (one entry per GOPA slot)
+fivo: q2_1 -> <JUMA slot>, ..., q2_k -> <JUMA slot>
+PITU = {q3_1, ..., q3_k}
+sora: q2_1 -> <PITU slot>, ... (one entry per JUMA slot)
+gafo: q3_1 -> <PITU slot>, ..., q3_k -> <PITU slot>
+GUVI = {q4_1, ..., q4_k}
+maju: q3_1 -> <GUVI slot>, ... (one entry per PITU slot)
+bami: q4_1 -> <GUVI slot>, ..., q4_k -> <GUVI slot>
+nafi: q4_1 -> <MISU slot>, ... (one entry per GUVI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: JORA, SUTO, TUZA, BOMO, ZATO, KIKO. Books move JORA -> SUTO -> TUZA -> BOMO -> ZATO -> KIKO.
+There are 9 moving steps:
+- "toja" carries each JORA tray to a SUTO tray.
+- "viro" is an internal rearrangement of SUTO: it carries each SUTO tray to a SUTO tray.
+- "tabo" carries each SUTO tray to a TUZA tray.
+- "kano" is an internal rearrangement of TUZA: it carries each TUZA tray to a TUZA tray.
+- "josu" carries each TUZA tray to a BOMO tray.
+- "boda" is an internal rearrangement of BOMO: it carries each BOMO tray to a BOMO tray.
+- "kija" carries each BOMO tray to a ZATO tray.
+- "luna" is an internal rearrangement of ZATO: it carries each ZATO tray to a ZATO tray.
+- "tiji" carries each ZATO tray to a KIKO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "toja" and then "viro" lands on the same tray as running "toja" alone.
+     ("viro" leaves every tray that "toja" produces unchanged.)
+R1.2 Running "viro" and then "tabo" gives the same result as running "tabo" alone.
+     ("tabo" cannot tell whether "viro" was applied first.)
+R1.3 Running "viro" twice in a row leaves every SUTO tray exactly where it started.
+R2.1 Running "tabo" and then "kano" lands on the same tray as running "tabo" alone.
+     ("kano" leaves every tray that "tabo" produces unchanged.)
+R2.2 Running "kano" and then "josu" gives the same result as running "josu" alone.
+     ("josu" cannot tell whether "kano" was applied first.)
+R2.3 Running "kano" twice in a row leaves every TUZA tray exactly where it started.
+R3.1 Running "josu" and then "boda" lands on the same tray as running "josu" alone.
+     ("boda" leaves every tray that "josu" produces unchanged.)
+R3.2 Running "boda" and then "kija" gives the same result as running "kija" alone.
+     ("kija" cannot tell whether "boda" was applied first.)
+R3.3 Running "boda" twice in a row leaves every BOMO tray exactly where it started.
+R4.1 Running "kija" and then "luna" lands on the same tray as running "kija" alone.
+     ("luna" leaves every tray that "kija" produces unchanged.)
+R4.2 Running "luna" and then "tiji" gives the same result as running "tiji" alone.
+     ("tiji" cannot tell whether "luna" was applied first.)
+R4.3 Running "luna" twice in a row leaves every ZATO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JORA has exactly one tray, called n1.
+- KIKO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SUTO, TUZA, BOMO, ZATO):
+D1.1 List the trays of SUTO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "viro" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of TUZA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "kano" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of BOMO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "boda" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of ZATO in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "luna" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SUTO = {q1_1, ..., q1_k}
+toja: n1 -> <SUTO tray>
+viro: q1_1 -> <SUTO tray>, ..., q1_k -> <SUTO tray>
+TUZA = {q2_1, ..., q2_k}
+tabo: q1_1 -> <TUZA tray>, ... (one entry per SUTO tray)
+kano: q2_1 -> <TUZA tray>, ..., q2_k -> <TUZA tray>
+BOMO = {q3_1, ..., q3_k}
+josu: q2_1 -> <BOMO tray>, ... (one entry per TUZA tray)
+boda: q3_1 -> <BOMO tray>, ..., q3_k -> <BOMO tray>
+ZATO = {q4_1, ..., q4_k}
+kija: q3_1 -> <ZATO tray>, ... (one entry per BOMO tray)
+luna: q4_1 -> <ZATO tray>, ..., q4_k -> <ZATO tray>
+tiji: q4_1 -> <KIKO tray>, ... (one entry per ZATO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

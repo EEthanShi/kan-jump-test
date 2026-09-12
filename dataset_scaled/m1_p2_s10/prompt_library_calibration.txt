@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: JOPU, ZUTU, GUSO. Books move JOPU -> ZUTU -> GUSO.
+There are 3 moving steps:
+- "vubu" carries each JOPU tray to a ZUTU tray.
+- "vuni" is an internal rearrangement of ZUTU: it carries each ZUTU tray to a ZUTU tray.
+- "bura" carries each ZUTU tray to a GUSO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vubu" and then "vuni" lands on the same tray as running "vubu" alone.
+     ("vuni" leaves every tray that "vubu" produces unchanged.)
+R1.2 Running "vuni" and then "bura" gives the same result as running "bura" alone.
+     ("bura" cannot tell whether "vuni" was applied first.)
+R1.3 Running "vuni" twice in a row leaves every ZUTU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOPU has exactly one tray, called n1.
+- GUSO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (ZUTU):
+D1.1 List the trays of ZUTU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vuni" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZUTU = {q1_1, ..., q1_k}
+vubu: n1 -> <ZUTU tray>
+vuni: q1_1 -> <ZUTU tray>, ..., q1_k -> <ZUTU tray>
+bura: q1_1 -> <GUSO tray>, ... (one entry per ZUTU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

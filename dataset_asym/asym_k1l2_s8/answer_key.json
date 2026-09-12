@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 1,
+ "l": 2,
+ "N": 3,
+ "lan_size_b": 1,
+ "ran_size_b": 2,
+ "ext_count": 23,
+ "adm_count": 3,
+ "chance": 0.13043478260869565,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym1x2_s8",
+     "stations": [
+      "FUZA",
+      "GIJA",
+      "DAMI"
+     ],
+     "chain_moves": [
+      "losa",
+      "taru"
+     ],
+     "endo_moves": [
+      "doji"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "GIJA = {q1_1}\nlosa: n1 -> q1_1\ndoji: q1_1 -> q1_1\ntaru: q1_1 -> s1",
+   "ran_answer": "GIJA = {q1_1, q1_2}\nlosa: n1 -> q1_1\ndoji: q1_1 -> q1_1, q1_2 -> q1_2\ntaru: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "GIJA = {q1_1, q1_2, q1_3}\nlosa: n1 -> q1_1\ndoji: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ntaru: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym1x2_s8",
+     "stations": [
+      "BIMO",
+      "ZINU",
+      "TOLI"
+     ],
+     "chain_moves": [
+      "zoda",
+      "giba"
+     ],
+     "endo_moves": [
+      "sudo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "ZINU = {q1_1}\nzoda: n1 -> q1_1\nsudo: q1_1 -> q1_1\ngiba: q1_1 -> s1",
+   "ran_answer": "ZINU = {q1_1, q1_2}\nzoda: n1 -> q1_1\nsudo: q1_1 -> q1_1, q1_2 -> q1_2\ngiba: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "ZINU = {q1_1, q1_2, q1_3}\nzoda: n1 -> q1_1\nsudo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ngiba: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  }
+ }
+}

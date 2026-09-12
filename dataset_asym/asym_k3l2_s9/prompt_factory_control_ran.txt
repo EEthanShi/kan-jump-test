@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: PIKO, DORU, KAVU. Toys move PIKO -> DORU -> KAVU.
+There are 3 moving steps:
+- "kozi" carries each PIKO slot to a DORU slot.
+- "pozu" is an internal reshuffle of DORU: it carries each DORU slot to a DORU slot.
+- "vona" carries each DORU slot to a KAVU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kozi" and then "pozu" lands on the same slot as running "kozi" alone.
+     ("pozu" leaves every slot that "kozi" produces unchanged.)
+R1.2 Running "pozu" and then "vona" gives the same result as running "vona" alone.
+     ("vona" cannot tell whether "pozu" was applied first.)
+R1.3 Running "pozu" twice in a row leaves every DORU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PIKO has exactly 3 slots, called n1, n2, n3.
+- KAVU has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle station (DORU):
+D1.1 DORU must be a finite set with at most 2 slots.
+D1.2 List the "pozu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "kozi" table entries in PIKO slot order n1, n2, n3.
+D1.4 Every KAVU slot must be reached by "vona" from at least one DORU slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+DORU = {q1_1, ..., q1_k}
+kozi: n1 -> <DORU slot>, n2 -> <DORU slot>, n3 -> <DORU slot>
+pozu: q1_1 -> <DORU slot>, ..., q1_k -> <DORU slot>
+vona: q1_1 -> <KAVU slot>, ... (one entry per DORU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

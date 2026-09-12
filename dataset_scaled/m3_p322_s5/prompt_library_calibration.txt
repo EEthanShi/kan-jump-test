@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: VANI, PORA, FILO, MADI, NUSU. Books move VANI -> PORA -> FILO -> MADI -> NUSU.
+There are 7 moving steps:
+- "zifi" carries each VANI tray to a PORA tray.
+- "mofu" is an internal rearrangement of PORA: it carries each PORA tray to a PORA tray.
+- "pagi" carries each PORA tray to a FILO tray.
+- "vini" is an internal rearrangement of FILO: it carries each FILO tray to a FILO tray.
+- "momo" carries each FILO tray to a MADI tray.
+- "poku" is an internal rearrangement of MADI: it carries each MADI tray to a MADI tray.
+- "gosu" carries each MADI tray to a NUSU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zifi" and then "mofu" lands on the same tray as running "zifi" alone.
+     ("mofu" leaves every tray that "zifi" produces unchanged.)
+R1.2 Running "mofu" and then "pagi" gives the same result as running "pagi" alone.
+     ("pagi" cannot tell whether "mofu" was applied first.)
+R1.3 Running "mofu" three times in a row leaves every PORA tray exactly where it started.
+R2.1 Running "pagi" and then "vini" lands on the same tray as running "pagi" alone.
+     ("vini" leaves every tray that "pagi" produces unchanged.)
+R2.2 Running "vini" and then "momo" gives the same result as running "momo" alone.
+     ("momo" cannot tell whether "vini" was applied first.)
+R2.3 Running "vini" twice in a row leaves every FILO tray exactly where it started.
+R3.1 Running "momo" and then "poku" lands on the same tray as running "momo" alone.
+     ("poku" leaves every tray that "momo" produces unchanged.)
+R3.2 Running "poku" and then "gosu" gives the same result as running "gosu" alone.
+     ("gosu" cannot tell whether "poku" was applied first.)
+R3.3 Running "poku" twice in a row leaves every MADI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VANI has exactly one tray, called n1.
+- NUSU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PORA, FILO, MADI):
+D1.1 List the trays of PORA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "mofu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of FILO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "vini" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of MADI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "poku" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PORA = {q1_1, ..., q1_k}
+zifi: n1 -> <PORA tray>
+mofu: q1_1 -> <PORA tray>, ..., q1_k -> <PORA tray>
+FILO = {q2_1, ..., q2_k}
+pagi: q1_1 -> <FILO tray>, ... (one entry per PORA tray)
+vini: q2_1 -> <FILO tray>, ..., q2_k -> <FILO tray>
+MADI = {q3_1, ..., q3_k}
+momo: q2_1 -> <MADI tray>, ... (one entry per FILO tray)
+poku: q3_1 -> <MADI tray>, ..., q3_k -> <MADI tray>
+gosu: q3_1 -> <NUSU tray>, ... (one entry per MADI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

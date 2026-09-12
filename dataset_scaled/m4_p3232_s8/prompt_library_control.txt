@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: ZILU, PANA, FUKU, FOZU, NITU, NUZO. Books move ZILU -> PANA -> FUKU -> FOZU -> NITU -> NUZO.
+There are 9 moving steps:
+- "fifa" carries each ZILU tray to a PANA tray.
+- "giza" is an internal rearrangement of PANA: it carries each PANA tray to a PANA tray.
+- "dita" carries each PANA tray to a FUKU tray.
+- "zolu" is an internal rearrangement of FUKU: it carries each FUKU tray to a FUKU tray.
+- "dato" carries each FUKU tray to a FOZU tray.
+- "kuku" is an internal rearrangement of FOZU: it carries each FOZU tray to a FOZU tray.
+- "rubu" carries each FOZU tray to a NITU tray.
+- "varo" is an internal rearrangement of NITU: it carries each NITU tray to a NITU tray.
+- "rigo" carries each NITU tray to a NUZO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "fifa" and then "giza" lands on the same tray as running "fifa" alone.
+     ("giza" leaves every tray that "fifa" produces unchanged.)
+R1.2 Running "giza" and then "dita" gives the same result as running "dita" alone.
+     ("dita" cannot tell whether "giza" was applied first.)
+R1.3 Running "giza" three times in a row leaves every PANA tray exactly where it started.
+R2.1 Running "dita" and then "zolu" lands on the same tray as running "dita" alone.
+     ("zolu" leaves every tray that "dita" produces unchanged.)
+R2.2 Running "zolu" and then "dato" gives the same result as running "dato" alone.
+     ("dato" cannot tell whether "zolu" was applied first.)
+R2.3 Running "zolu" twice in a row leaves every FUKU tray exactly where it started.
+R3.1 Running "dato" and then "kuku" lands on the same tray as running "dato" alone.
+     ("kuku" leaves every tray that "dato" produces unchanged.)
+R3.2 Running "kuku" and then "rubu" gives the same result as running "rubu" alone.
+     ("rubu" cannot tell whether "kuku" was applied first.)
+R3.3 Running "kuku" three times in a row leaves every FOZU tray exactly where it started.
+R4.1 Running "rubu" and then "varo" lands on the same tray as running "rubu" alone.
+     ("varo" leaves every tray that "rubu" produces unchanged.)
+R4.2 Running "varo" and then "rigo" gives the same result as running "rigo" alone.
+     ("rigo" cannot tell whether "varo" was applied first.)
+R4.3 Running "varo" twice in a row leaves every NITU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZILU has exactly one tray, called n1.
+- NUZO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PANA, FUKU, FOZU, NITU):
+D1.1 PANA must be a finite set with at most 1 tray.
+D1.2 List the "giza" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 FUKU must be a finite set with at most 1 tray.
+D2.2 List the "zolu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 FOZU must be a finite set with at most 1 tray.
+D3.2 List the "kuku" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 NITU must be a finite set with at most 1 tray.
+D4.2 List the "varo" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PANA = {q1_1, ..., q1_k}
+fifa: n1 -> <PANA tray>
+giza: q1_1 -> <PANA tray>, ..., q1_k -> <PANA tray>
+FUKU = {q2_1, ..., q2_k}
+dita: q1_1 -> <FUKU tray>, ... (one entry per PANA tray)
+zolu: q2_1 -> <FUKU tray>, ..., q2_k -> <FUKU tray>
+FOZU = {q3_1, ..., q3_k}
+dato: q2_1 -> <FOZU tray>, ... (one entry per FUKU tray)
+kuku: q3_1 -> <FOZU tray>, ..., q3_k -> <FOZU tray>
+NITU = {q4_1, ..., q4_k}
+rubu: q3_1 -> <NITU tray>, ... (one entry per FOZU tray)
+varo: q4_1 -> <NITU tray>, ..., q4_k -> <NITU tray>
+rigo: q4_1 -> <NUZO tray>, ... (one entry per NITU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

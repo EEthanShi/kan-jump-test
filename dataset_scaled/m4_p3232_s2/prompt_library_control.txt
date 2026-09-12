@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: PAVA, GUNU, RAPA, KIDA, NODU, TOBO. Books move PAVA -> GUNU -> RAPA -> KIDA -> NODU -> TOBO.
+There are 9 moving steps:
+- "tira" carries each PAVA tray to a GUNU tray.
+- "fizi" is an internal rearrangement of GUNU: it carries each GUNU tray to a GUNU tray.
+- "zuzo" carries each GUNU tray to a RAPA tray.
+- "jiti" is an internal rearrangement of RAPA: it carries each RAPA tray to a RAPA tray.
+- "vafi" carries each RAPA tray to a KIDA tray.
+- "dama" is an internal rearrangement of KIDA: it carries each KIDA tray to a KIDA tray.
+- "nusa" carries each KIDA tray to a NODU tray.
+- "bima" is an internal rearrangement of NODU: it carries each NODU tray to a NODU tray.
+- "miza" carries each NODU tray to a TOBO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tira" and then "fizi" lands on the same tray as running "tira" alone.
+     ("fizi" leaves every tray that "tira" produces unchanged.)
+R1.2 Running "fizi" and then "zuzo" gives the same result as running "zuzo" alone.
+     ("zuzo" cannot tell whether "fizi" was applied first.)
+R1.3 Running "fizi" three times in a row leaves every GUNU tray exactly where it started.
+R2.1 Running "zuzo" and then "jiti" lands on the same tray as running "zuzo" alone.
+     ("jiti" leaves every tray that "zuzo" produces unchanged.)
+R2.2 Running "jiti" and then "vafi" gives the same result as running "vafi" alone.
+     ("vafi" cannot tell whether "jiti" was applied first.)
+R2.3 Running "jiti" twice in a row leaves every RAPA tray exactly where it started.
+R3.1 Running "vafi" and then "dama" lands on the same tray as running "vafi" alone.
+     ("dama" leaves every tray that "vafi" produces unchanged.)
+R3.2 Running "dama" and then "nusa" gives the same result as running "nusa" alone.
+     ("nusa" cannot tell whether "dama" was applied first.)
+R3.3 Running "dama" three times in a row leaves every KIDA tray exactly where it started.
+R4.1 Running "nusa" and then "bima" lands on the same tray as running "nusa" alone.
+     ("bima" leaves every tray that "nusa" produces unchanged.)
+R4.2 Running "bima" and then "miza" gives the same result as running "miza" alone.
+     ("miza" cannot tell whether "bima" was applied first.)
+R4.3 Running "bima" twice in a row leaves every NODU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PAVA has exactly one tray, called n1.
+- TOBO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (GUNU, RAPA, KIDA, NODU):
+D1.1 GUNU must be a finite set with at most 1 tray.
+D1.2 List the "fizi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 RAPA must be a finite set with at most 1 tray.
+D2.2 List the "jiti" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 KIDA must be a finite set with at most 1 tray.
+D3.2 List the "dama" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 NODU must be a finite set with at most 1 tray.
+D4.2 List the "bima" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GUNU = {q1_1, ..., q1_k}
+tira: n1 -> <GUNU tray>
+fizi: q1_1 -> <GUNU tray>, ..., q1_k -> <GUNU tray>
+RAPA = {q2_1, ..., q2_k}
+zuzo: q1_1 -> <RAPA tray>, ... (one entry per GUNU tray)
+jiti: q2_1 -> <RAPA tray>, ..., q2_k -> <RAPA tray>
+KIDA = {q3_1, ..., q3_k}
+vafi: q2_1 -> <KIDA tray>, ... (one entry per RAPA tray)
+dama: q3_1 -> <KIDA tray>, ..., q3_k -> <KIDA tray>
+NODU = {q4_1, ..., q4_k}
+nusa: q3_1 -> <NODU tray>, ... (one entry per KIDA tray)
+bima: q4_1 -> <NODU tray>, ..., q4_k -> <NODU tray>
+miza: q4_1 -> <TOBO tray>, ... (one entry per NODU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

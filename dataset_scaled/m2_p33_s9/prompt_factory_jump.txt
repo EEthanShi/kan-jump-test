@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: MOSO, BARU, FIDU, LOTO. Toys move MOSO -> BARU -> FIDU -> LOTO.
+There are 5 moving steps:
+- "zoki" carries each MOSO slot to a BARU slot.
+- "kiru" is an internal reshuffle of BARU: it carries each BARU slot to a BARU slot.
+- "kifu" carries each BARU slot to a FIDU slot.
+- "bozu" is an internal reshuffle of FIDU: it carries each FIDU slot to a FIDU slot.
+- "tamo" carries each FIDU slot to a LOTO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zoki" and then "kiru" lands on the same slot as running "zoki" alone.
+     ("kiru" leaves every slot that "zoki" produces unchanged.)
+R1.2 Running "kiru" and then "kifu" gives the same result as running "kifu" alone.
+     ("kifu" cannot tell whether "kiru" was applied first.)
+R1.3 Running "kiru" three times in a row leaves every BARU slot exactly where it started.
+R2.1 Running "kifu" and then "bozu" lands on the same slot as running "kifu" alone.
+     ("bozu" leaves every slot that "kifu" produces unchanged.)
+R2.2 Running "bozu" and then "tamo" gives the same result as running "tamo" alone.
+     ("tamo" cannot tell whether "bozu" was applied first.)
+R2.3 Running "bozu" three times in a row leaves every FIDU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOSO has exactly one slot, called n1.
+- LOTO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BARU, FIDU):
+D1.1 BARU must be a finite set with at most 4 slots.
+D1.2 "kiru" must NOT be the do-nothing move (it must move at least one BARU slot).
+D2.1 FIDU must be a finite set with at most 4 slots.
+D2.2 "bozu" must NOT be the do-nothing move (it must move at least one FIDU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BARU = {q1_1, ..., q1_k}
+zoki: n1 -> <BARU slot>
+kiru: q1_1 -> <BARU slot>, ..., q1_k -> <BARU slot>
+FIDU = {q2_1, ..., q2_k}
+kifu: q1_1 -> <FIDU slot>, ... (one entry per BARU slot)
+bozu: q2_1 -> <FIDU slot>, ..., q2_k -> <FIDU slot>
+tamo: q2_1 -> <LOTO slot>, ... (one entry per FIDU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

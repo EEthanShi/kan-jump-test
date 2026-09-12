@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: PAKO, PULI, DADI, SIDU, PINA, KADI. Toys move PAKO -> PULI -> DADI -> SIDU -> PINA -> KADI.
+There are 9 moving steps:
+- "tofa" carries each PAKO slot to a PULI slot.
+- "povi" is an internal reshuffle of PULI: it carries each PULI slot to a PULI slot.
+- "tisi" carries each PULI slot to a DADI slot.
+- "sija" is an internal reshuffle of DADI: it carries each DADI slot to a DADI slot.
+- "jolu" carries each DADI slot to a SIDU slot.
+- "miri" is an internal reshuffle of SIDU: it carries each SIDU slot to a SIDU slot.
+- "pamu" carries each SIDU slot to a PINA slot.
+- "boda" is an internal reshuffle of PINA: it carries each PINA slot to a PINA slot.
+- "movu" carries each PINA slot to a KADI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tofa" and then "povi" lands on the same slot as running "tofa" alone.
+     ("povi" leaves every slot that "tofa" produces unchanged.)
+R1.2 Running "povi" and then "tisi" gives the same result as running "tisi" alone.
+     ("tisi" cannot tell whether "povi" was applied first.)
+R1.3 Running "povi" three times in a row leaves every PULI slot exactly where it started.
+R2.1 Running "tisi" and then "sija" lands on the same slot as running "tisi" alone.
+     ("sija" leaves every slot that "tisi" produces unchanged.)
+R2.2 Running "sija" and then "jolu" gives the same result as running "jolu" alone.
+     ("jolu" cannot tell whether "sija" was applied first.)
+R2.3 Running "sija" twice in a row leaves every DADI slot exactly where it started.
+R3.1 Running "jolu" and then "miri" lands on the same slot as running "jolu" alone.
+     ("miri" leaves every slot that "jolu" produces unchanged.)
+R3.2 Running "miri" and then "pamu" gives the same result as running "pamu" alone.
+     ("pamu" cannot tell whether "miri" was applied first.)
+R3.3 Running "miri" three times in a row leaves every SIDU slot exactly where it started.
+R4.1 Running "pamu" and then "boda" lands on the same slot as running "pamu" alone.
+     ("boda" leaves every slot that "pamu" produces unchanged.)
+R4.2 Running "boda" and then "movu" gives the same result as running "movu" alone.
+     ("movu" cannot tell whether "boda" was applied first.)
+R4.3 Running "boda" twice in a row leaves every PINA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PAKO has exactly one slot, called n1.
+- KADI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PULI, DADI, SIDU, PINA):
+D1.1 List the slots of PULI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "povi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of DADI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "sija" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of SIDU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "miri" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of PINA in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "boda" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PULI = {q1_1, ..., q1_k}
+tofa: n1 -> <PULI slot>
+povi: q1_1 -> <PULI slot>, ..., q1_k -> <PULI slot>
+DADI = {q2_1, ..., q2_k}
+tisi: q1_1 -> <DADI slot>, ... (one entry per PULI slot)
+sija: q2_1 -> <DADI slot>, ..., q2_k -> <DADI slot>
+SIDU = {q3_1, ..., q3_k}
+jolu: q2_1 -> <SIDU slot>, ... (one entry per DADI slot)
+miri: q3_1 -> <SIDU slot>, ..., q3_k -> <SIDU slot>
+PINA = {q4_1, ..., q4_k}
+pamu: q3_1 -> <PINA slot>, ... (one entry per SIDU slot)
+boda: q4_1 -> <PINA slot>, ..., q4_k -> <PINA slot>
+movu: q4_1 -> <KADI slot>, ... (one entry per PINA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

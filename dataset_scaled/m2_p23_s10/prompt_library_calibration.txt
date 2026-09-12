@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: JOMA, MINO, NUNU, JIZA. Books move JOMA -> MINO -> NUNU -> JIZA.
+There are 5 moving steps:
+- "vivi" carries each JOMA tray to a MINO tray.
+- "gili" is an internal rearrangement of MINO: it carries each MINO tray to a MINO tray.
+- "dugu" carries each MINO tray to a NUNU tray.
+- "milo" is an internal rearrangement of NUNU: it carries each NUNU tray to a NUNU tray.
+- "lobi" carries each NUNU tray to a JIZA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vivi" and then "gili" lands on the same tray as running "vivi" alone.
+     ("gili" leaves every tray that "vivi" produces unchanged.)
+R1.2 Running "gili" and then "dugu" gives the same result as running "dugu" alone.
+     ("dugu" cannot tell whether "gili" was applied first.)
+R1.3 Running "gili" twice in a row leaves every MINO tray exactly where it started.
+R2.1 Running "dugu" and then "milo" lands on the same tray as running "dugu" alone.
+     ("milo" leaves every tray that "dugu" produces unchanged.)
+R2.2 Running "milo" and then "lobi" gives the same result as running "lobi" alone.
+     ("lobi" cannot tell whether "milo" was applied first.)
+R2.3 Running "milo" three times in a row leaves every NUNU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOMA has exactly one tray, called n1.
+- JIZA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MINO, NUNU):
+D1.1 List the trays of MINO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "gili" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of NUNU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "milo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MINO = {q1_1, ..., q1_k}
+vivi: n1 -> <MINO tray>
+gili: q1_1 -> <MINO tray>, ..., q1_k -> <MINO tray>
+NUNU = {q2_1, ..., q2_k}
+dugu: q1_1 -> <NUNU tray>, ... (one entry per MINO tray)
+milo: q2_1 -> <NUNU tray>, ..., q2_k -> <NUNU tray>
+lobi: q2_1 -> <JIZA tray>, ... (one entry per NUNU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

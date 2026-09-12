@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: JOSU, GAZI, NOVU, FAKO, GINA. Books move JOSU -> GAZI -> NOVU -> FAKO -> GINA.
+There are 7 moving steps:
+- "sozu" carries each JOSU tray to a GAZI tray.
+- "faru" is an internal rearrangement of GAZI: it carries each GAZI tray to a GAZI tray.
+- "roju" carries each GAZI tray to a NOVU tray.
+- "jola" is an internal rearrangement of NOVU: it carries each NOVU tray to a NOVU tray.
+- "voda" carries each NOVU tray to a FAKO tray.
+- "munu" is an internal rearrangement of FAKO: it carries each FAKO tray to a FAKO tray.
+- "lolo" carries each FAKO tray to a GINA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sozu" and then "faru" lands on the same tray as running "sozu" alone.
+     ("faru" leaves every tray that "sozu" produces unchanged.)
+R1.2 Running "faru" and then "roju" gives the same result as running "roju" alone.
+     ("roju" cannot tell whether "faru" was applied first.)
+R1.3 Running "faru" twice in a row leaves every GAZI tray exactly where it started.
+R2.1 Running "roju" and then "jola" lands on the same tray as running "roju" alone.
+     ("jola" leaves every tray that "roju" produces unchanged.)
+R2.2 Running "jola" and then "voda" gives the same result as running "voda" alone.
+     ("voda" cannot tell whether "jola" was applied first.)
+R2.3 Running "jola" three times in a row leaves every NOVU tray exactly where it started.
+R3.1 Running "voda" and then "munu" lands on the same tray as running "voda" alone.
+     ("munu" leaves every tray that "voda" produces unchanged.)
+R3.2 Running "munu" and then "lolo" gives the same result as running "lolo" alone.
+     ("lolo" cannot tell whether "munu" was applied first.)
+R3.3 Running "munu" twice in a row leaves every FAKO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOSU has exactly one tray, called n1.
+- GINA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (GAZI, NOVU, FAKO):
+D1.1 GAZI must be a finite set with at most 3 trays.
+D1.2 "faru" must NOT be the do-nothing move (it must move at least one GAZI tray).
+D2.1 NOVU must be a finite set with at most 4 trays.
+D2.2 "jola" must NOT be the do-nothing move (it must move at least one NOVU tray).
+D3.1 FAKO must be a finite set with at most 3 trays.
+D3.2 "munu" must NOT be the do-nothing move (it must move at least one FAKO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GAZI = {q1_1, ..., q1_k}
+sozu: n1 -> <GAZI tray>
+faru: q1_1 -> <GAZI tray>, ..., q1_k -> <GAZI tray>
+NOVU = {q2_1, ..., q2_k}
+roju: q1_1 -> <NOVU tray>, ... (one entry per GAZI tray)
+jola: q2_1 -> <NOVU tray>, ..., q2_k -> <NOVU tray>
+FAKO = {q3_1, ..., q3_k}
+voda: q2_1 -> <FAKO tray>, ... (one entry per NOVU tray)
+munu: q3_1 -> <FAKO tray>, ..., q3_k -> <FAKO tray>
+lolo: q3_1 -> <GINA tray>, ... (one entry per FAKO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

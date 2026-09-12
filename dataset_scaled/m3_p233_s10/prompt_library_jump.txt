@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: VARI, BIGI, NOPO, DAGU, PAPU. Books move VARI -> BIGI -> NOPO -> DAGU -> PAPU.
+There are 7 moving steps:
+- "naki" carries each VARI tray to a BIGI tray.
+- "dara" is an internal rearrangement of BIGI: it carries each BIGI tray to a BIGI tray.
+- "fizu" carries each BIGI tray to a NOPO tray.
+- "jori" is an internal rearrangement of NOPO: it carries each NOPO tray to a NOPO tray.
+- "sabi" carries each NOPO tray to a DAGU tray.
+- "duku" is an internal rearrangement of DAGU: it carries each DAGU tray to a DAGU tray.
+- "fuvu" carries each DAGU tray to a PAPU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "naki" and then "dara" lands on the same tray as running "naki" alone.
+     ("dara" leaves every tray that "naki" produces unchanged.)
+R1.2 Running "dara" and then "fizu" gives the same result as running "fizu" alone.
+     ("fizu" cannot tell whether "dara" was applied first.)
+R1.3 Running "dara" twice in a row leaves every BIGI tray exactly where it started.
+R2.1 Running "fizu" and then "jori" lands on the same tray as running "fizu" alone.
+     ("jori" leaves every tray that "fizu" produces unchanged.)
+R2.2 Running "jori" and then "sabi" gives the same result as running "sabi" alone.
+     ("sabi" cannot tell whether "jori" was applied first.)
+R2.3 Running "jori" three times in a row leaves every NOPO tray exactly where it started.
+R3.1 Running "sabi" and then "duku" lands on the same tray as running "sabi" alone.
+     ("duku" leaves every tray that "sabi" produces unchanged.)
+R3.2 Running "duku" and then "fuvu" gives the same result as running "fuvu" alone.
+     ("fuvu" cannot tell whether "duku" was applied first.)
+R3.3 Running "duku" three times in a row leaves every DAGU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VARI has exactly one tray, called n1.
+- PAPU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BIGI, NOPO, DAGU):
+D1.1 BIGI must be a finite set with at most 3 trays.
+D1.2 "dara" must NOT be the do-nothing move (it must move at least one BIGI tray).
+D2.1 NOPO must be a finite set with at most 4 trays.
+D2.2 "jori" must NOT be the do-nothing move (it must move at least one NOPO tray).
+D3.1 DAGU must be a finite set with at most 4 trays.
+D3.2 "duku" must NOT be the do-nothing move (it must move at least one DAGU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BIGI = {q1_1, ..., q1_k}
+naki: n1 -> <BIGI tray>
+dara: q1_1 -> <BIGI tray>, ..., q1_k -> <BIGI tray>
+NOPO = {q2_1, ..., q2_k}
+fizu: q1_1 -> <NOPO tray>, ... (one entry per BIGI tray)
+jori: q2_1 -> <NOPO tray>, ..., q2_k -> <NOPO tray>
+DAGU = {q3_1, ..., q3_k}
+sabi: q2_1 -> <DAGU tray>, ... (one entry per NOPO tray)
+duku: q3_1 -> <DAGU tray>, ..., q3_k -> <DAGU tray>
+fuvu: q3_1 -> <PAPU tray>, ... (one entry per DAGU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

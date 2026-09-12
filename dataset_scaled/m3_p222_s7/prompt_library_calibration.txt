@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MAJU, VURI, GIVA, MINA, GAKA. Books move MAJU -> VURI -> GIVA -> MINA -> GAKA.
+There are 7 moving steps:
+- "lura" carries each MAJU tray to a VURI tray.
+- "tafo" is an internal rearrangement of VURI: it carries each VURI tray to a VURI tray.
+- "dumu" carries each VURI tray to a GIVA tray.
+- "lati" is an internal rearrangement of GIVA: it carries each GIVA tray to a GIVA tray.
+- "turo" carries each GIVA tray to a MINA tray.
+- "fusa" is an internal rearrangement of MINA: it carries each MINA tray to a MINA tray.
+- "juvu" carries each MINA tray to a GAKA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "lura" and then "tafo" lands on the same tray as running "lura" alone.
+     ("tafo" leaves every tray that "lura" produces unchanged.)
+R1.2 Running "tafo" and then "dumu" gives the same result as running "dumu" alone.
+     ("dumu" cannot tell whether "tafo" was applied first.)
+R1.3 Running "tafo" twice in a row leaves every VURI tray exactly where it started.
+R2.1 Running "dumu" and then "lati" lands on the same tray as running "dumu" alone.
+     ("lati" leaves every tray that "dumu" produces unchanged.)
+R2.2 Running "lati" and then "turo" gives the same result as running "turo" alone.
+     ("turo" cannot tell whether "lati" was applied first.)
+R2.3 Running "lati" twice in a row leaves every GIVA tray exactly where it started.
+R3.1 Running "turo" and then "fusa" lands on the same tray as running "turo" alone.
+     ("fusa" leaves every tray that "turo" produces unchanged.)
+R3.2 Running "fusa" and then "juvu" gives the same result as running "juvu" alone.
+     ("juvu" cannot tell whether "fusa" was applied first.)
+R3.3 Running "fusa" twice in a row leaves every MINA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MAJU has exactly one tray, called n1.
+- GAKA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VURI, GIVA, MINA):
+D1.1 List the trays of VURI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "tafo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of GIVA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "lati" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of MINA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "fusa" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VURI = {q1_1, ..., q1_k}
+lura: n1 -> <VURI tray>
+tafo: q1_1 -> <VURI tray>, ..., q1_k -> <VURI tray>
+GIVA = {q2_1, ..., q2_k}
+dumu: q1_1 -> <GIVA tray>, ... (one entry per VURI tray)
+lati: q2_1 -> <GIVA tray>, ..., q2_k -> <GIVA tray>
+MINA = {q3_1, ..., q3_k}
+turo: q2_1 -> <MINA tray>, ... (one entry per GIVA tray)
+fusa: q3_1 -> <MINA tray>, ..., q3_k -> <MINA tray>
+juvu: q3_1 -> <GAKA tray>, ... (one entry per MINA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

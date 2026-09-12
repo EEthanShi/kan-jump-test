@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: NOJO, POBI, GILO, RADA, KISU. Books move NOJO -> POBI -> GILO -> RADA -> KISU.
+There are 7 moving steps:
+- "kafu" carries each NOJO tray to a POBI tray.
+- "gulo" is an internal rearrangement of POBI: it carries each POBI tray to a POBI tray.
+- "vati" carries each POBI tray to a GILO tray.
+- "zomu" is an internal rearrangement of GILO: it carries each GILO tray to a GILO tray.
+- "vaka" carries each GILO tray to a RADA tray.
+- "zufu" is an internal rearrangement of RADA: it carries each RADA tray to a RADA tray.
+- "dilu" carries each RADA tray to a KISU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kafu" and then "gulo" lands on the same tray as running "kafu" alone.
+     ("gulo" leaves every tray that "kafu" produces unchanged.)
+R1.2 Running "gulo" and then "vati" gives the same result as running "vati" alone.
+     ("vati" cannot tell whether "gulo" was applied first.)
+R1.3 Running "gulo" twice in a row leaves every POBI tray exactly where it started.
+R2.1 Running "vati" and then "zomu" lands on the same tray as running "vati" alone.
+     ("zomu" leaves every tray that "vati" produces unchanged.)
+R2.2 Running "zomu" and then "vaka" gives the same result as running "vaka" alone.
+     ("vaka" cannot tell whether "zomu" was applied first.)
+R2.3 Running "zomu" three times in a row leaves every GILO tray exactly where it started.
+R3.1 Running "vaka" and then "zufu" lands on the same tray as running "vaka" alone.
+     ("zufu" leaves every tray that "vaka" produces unchanged.)
+R3.2 Running "zufu" and then "dilu" gives the same result as running "dilu" alone.
+     ("dilu" cannot tell whether "zufu" was applied first.)
+R3.3 Running "zufu" twice in a row leaves every RADA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NOJO has exactly one tray, called n1.
+- KISU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (POBI, GILO, RADA):
+D1.1 POBI must be a finite set with at most 1 tray.
+D1.2 List the "gulo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 GILO must be a finite set with at most 1 tray.
+D2.2 List the "zomu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 RADA must be a finite set with at most 1 tray.
+D3.2 List the "zufu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+POBI = {q1_1, ..., q1_k}
+kafu: n1 -> <POBI tray>
+gulo: q1_1 -> <POBI tray>, ..., q1_k -> <POBI tray>
+GILO = {q2_1, ..., q2_k}
+vati: q1_1 -> <GILO tray>, ... (one entry per POBI tray)
+zomu: q2_1 -> <GILO tray>, ..., q2_k -> <GILO tray>
+RADA = {q3_1, ..., q3_k}
+vaka: q2_1 -> <RADA tray>, ... (one entry per GILO tray)
+zufu: q3_1 -> <RADA tray>, ..., q3_k -> <RADA tray>
+dilu: q3_1 -> <KISU tray>, ... (one entry per RADA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

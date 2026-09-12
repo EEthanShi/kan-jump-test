@@ -1,0 +1,39 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: NOJA, VUPA, MUKU. Toys move NOJA -> VUPA -> MUKU.
+There are 3 moving steps:
+- "tipo" carries each NOJA slot to a VUPA slot.
+- "toki" is an internal reshuffle of VUPA: it carries each VUPA slot to a VUPA slot.
+- "molu" carries each VUPA slot to a MUKU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tipo" and then "toki" lands on the same slot as running "tipo" alone.
+     ("toki" leaves every slot that "tipo" produces unchanged.)
+R1.2 Running "toki" and then "molu" gives the same result as running "molu" alone.
+     ("molu" cannot tell whether "toki" was applied first.)
+R1.3 Running "toki" three times in a row leaves every VUPA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NOJA has exactly one slot, called n1.
+- MUKU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (VUPA):
+D1.1 VUPA must be a finite set with at most 1 slot.
+D1.2 List the "toki" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+VUPA = {q1_1, ..., q1_k}
+tipo: n1 -> <VUPA slot>
+toki: q1_1 -> <VUPA slot>, ..., q1_k -> <VUPA slot>
+molu: q1_1 -> <MUKU slot>, ... (one entry per VUPA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: POKO, PUVU, FURA, VAZI, GUNA, MOGO. Toys move POKO -> PUVU -> FURA -> VAZI -> GUNA -> MOGO.
+There are 9 moving steps:
+- "bopi" carries each POKO slot to a PUVU slot.
+- "sumi" is an internal reshuffle of PUVU: it carries each PUVU slot to a PUVU slot.
+- "puga" carries each PUVU slot to a FURA slot.
+- "jupi" is an internal reshuffle of FURA: it carries each FURA slot to a FURA slot.
+- "naga" carries each FURA slot to a VAZI slot.
+- "daba" is an internal reshuffle of VAZI: it carries each VAZI slot to a VAZI slot.
+- "tupi" carries each VAZI slot to a GUNA slot.
+- "vaku" is an internal reshuffle of GUNA: it carries each GUNA slot to a GUNA slot.
+- "puju" carries each GUNA slot to a MOGO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "bopi" and then "sumi" lands on the same slot as running "bopi" alone.
+     ("sumi" leaves every slot that "bopi" produces unchanged.)
+R1.2 Running "sumi" and then "puga" gives the same result as running "puga" alone.
+     ("puga" cannot tell whether "sumi" was applied first.)
+R1.3 Running "sumi" three times in a row leaves every PUVU slot exactly where it started.
+R2.1 Running "puga" and then "jupi" lands on the same slot as running "puga" alone.
+     ("jupi" leaves every slot that "puga" produces unchanged.)
+R2.2 Running "jupi" and then "naga" gives the same result as running "naga" alone.
+     ("naga" cannot tell whether "jupi" was applied first.)
+R2.3 Running "jupi" three times in a row leaves every FURA slot exactly where it started.
+R3.1 Running "naga" and then "daba" lands on the same slot as running "naga" alone.
+     ("daba" leaves every slot that "naga" produces unchanged.)
+R3.2 Running "daba" and then "tupi" gives the same result as running "tupi" alone.
+     ("tupi" cannot tell whether "daba" was applied first.)
+R3.3 Running "daba" three times in a row leaves every VAZI slot exactly where it started.
+R4.1 Running "tupi" and then "vaku" lands on the same slot as running "tupi" alone.
+     ("vaku" leaves every slot that "tupi" produces unchanged.)
+R4.2 Running "vaku" and then "puju" gives the same result as running "puju" alone.
+     ("puju" cannot tell whether "vaku" was applied first.)
+R4.3 Running "vaku" three times in a row leaves every GUNA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- POKO has exactly one slot, called n1.
+- MOGO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PUVU, FURA, VAZI, GUNA):
+D1.1 PUVU must be a finite set with at most 1 slot.
+D1.2 List the "sumi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 FURA must be a finite set with at most 1 slot.
+D2.2 List the "jupi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 VAZI must be a finite set with at most 1 slot.
+D3.2 List the "daba" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 GUNA must be a finite set with at most 1 slot.
+D4.2 List the "vaku" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PUVU = {q1_1, ..., q1_k}
+bopi: n1 -> <PUVU slot>
+sumi: q1_1 -> <PUVU slot>, ..., q1_k -> <PUVU slot>
+FURA = {q2_1, ..., q2_k}
+puga: q1_1 -> <FURA slot>, ... (one entry per PUVU slot)
+jupi: q2_1 -> <FURA slot>, ..., q2_k -> <FURA slot>
+VAZI = {q3_1, ..., q3_k}
+naga: q2_1 -> <VAZI slot>, ... (one entry per FURA slot)
+daba: q3_1 -> <VAZI slot>, ..., q3_k -> <VAZI slot>
+GUNA = {q4_1, ..., q4_k}
+tupi: q3_1 -> <GUNA slot>, ... (one entry per VAZI slot)
+vaku: q4_1 -> <GUNA slot>, ..., q4_k -> <GUNA slot>
+puju: q4_1 -> <MOGO slot>, ... (one entry per GUNA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

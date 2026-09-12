@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: VONU, LIVA, JAKO, NIPA, TIVO. Toys move VONU -> LIVA -> JAKO -> NIPA -> TIVO.
+There are 7 moving steps:
+- "vofo" carries each VONU slot to a LIVA slot.
+- "lala" is an internal reshuffle of LIVA: it carries each LIVA slot to a LIVA slot.
+- "tifa" carries each LIVA slot to a JAKO slot.
+- "guzu" is an internal reshuffle of JAKO: it carries each JAKO slot to a JAKO slot.
+- "votu" carries each JAKO slot to a NIPA slot.
+- "soji" is an internal reshuffle of NIPA: it carries each NIPA slot to a NIPA slot.
+- "dasa" carries each NIPA slot to a TIVO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vofo" and then "lala" lands on the same slot as running "vofo" alone.
+     ("lala" leaves every slot that "vofo" produces unchanged.)
+R1.2 Running "lala" and then "tifa" gives the same result as running "tifa" alone.
+     ("tifa" cannot tell whether "lala" was applied first.)
+R1.3 Running "lala" three times in a row leaves every LIVA slot exactly where it started.
+R2.1 Running "tifa" and then "guzu" lands on the same slot as running "tifa" alone.
+     ("guzu" leaves every slot that "tifa" produces unchanged.)
+R2.2 Running "guzu" and then "votu" gives the same result as running "votu" alone.
+     ("votu" cannot tell whether "guzu" was applied first.)
+R2.3 Running "guzu" three times in a row leaves every JAKO slot exactly where it started.
+R3.1 Running "votu" and then "soji" lands on the same slot as running "votu" alone.
+     ("soji" leaves every slot that "votu" produces unchanged.)
+R3.2 Running "soji" and then "dasa" gives the same result as running "dasa" alone.
+     ("dasa" cannot tell whether "soji" was applied first.)
+R3.3 Running "soji" twice in a row leaves every NIPA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VONU has exactly one slot, called n1.
+- TIVO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (LIVA, JAKO, NIPA):
+D1.1 LIVA must be a finite set with at most 4 slots.
+D1.2 "lala" must NOT be the do-nothing move (it must move at least one LIVA slot).
+D2.1 JAKO must be a finite set with at most 4 slots.
+D2.2 "guzu" must NOT be the do-nothing move (it must move at least one JAKO slot).
+D3.1 NIPA must be a finite set with at most 3 slots.
+D3.2 "soji" must NOT be the do-nothing move (it must move at least one NIPA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+LIVA = {q1_1, ..., q1_k}
+vofo: n1 -> <LIVA slot>
+lala: q1_1 -> <LIVA slot>, ..., q1_k -> <LIVA slot>
+JAKO = {q2_1, ..., q2_k}
+tifa: q1_1 -> <JAKO slot>, ... (one entry per LIVA slot)
+guzu: q2_1 -> <JAKO slot>, ..., q2_k -> <JAKO slot>
+NIPA = {q3_1, ..., q3_k}
+votu: q2_1 -> <NIPA slot>, ... (one entry per JAKO slot)
+soji: q3_1 -> <NIPA slot>, ..., q3_k -> <NIPA slot>
+dasa: q3_1 -> <TIVO slot>, ... (one entry per NIPA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

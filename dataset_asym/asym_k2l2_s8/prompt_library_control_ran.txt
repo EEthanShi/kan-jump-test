@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: BIPU, TAPI, POVU. Books move BIPU -> TAPI -> POVU.
+There are 3 moving steps:
+- "noku" carries each BIPU tray to a TAPI tray.
+- "zamo" is an internal rearrangement of TAPI: it carries each TAPI tray to a TAPI tray.
+- "fofo" carries each TAPI tray to a POVU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "noku" and then "zamo" lands on the same tray as running "noku" alone.
+     ("zamo" leaves every tray that "noku" produces unchanged.)
+R1.2 Running "zamo" and then "fofo" gives the same result as running "fofo" alone.
+     ("fofo" cannot tell whether "zamo" was applied first.)
+R1.3 Running "zamo" twice in a row leaves every TAPI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BIPU has exactly 2 trays, called n1, n2.
+- POVU has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (TAPI):
+D1.1 TAPI must be a finite set with at most 2 trays.
+D1.2 List the "zamo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "noku" table entries in BIPU tray order n1, n2.
+D1.4 Every POVU tray must be reached by "fofo" from at least one TAPI tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+TAPI = {q1_1, ..., q1_k}
+noku: n1 -> <TAPI tray>, n2 -> <TAPI tray>
+zamo: q1_1 -> <TAPI tray>, ..., q1_k -> <TAPI tray>
+fofo: q1_1 -> <POVU tray>, ... (one entry per TAPI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

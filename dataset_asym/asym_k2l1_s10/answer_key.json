@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 2,
+ "l": 1,
+ "N": 4,
+ "lan_size_b": 2,
+ "ran_size_b": 1,
+ "ext_count": 57,
+ "adm_count": 12,
+ "chance": 0.21052631578947367,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 1,
+    "N": 4,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym2x1_s10",
+     "stations": [
+      "BOJA",
+      "RALO",
+      "VIBI"
+     ],
+     "chain_moves": [
+      "limi",
+      "joda"
+     ],
+     "endo_moves": [
+      "vuzo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 2,
+     "l": 1
+    }
+   },
+   "lan_answer": "RALO = {q1_1, q1_2}\nlimi: n1 -> q1_1, n2 -> q1_2\nvuzo: q1_1 -> q1_1, q1_2 -> q1_2\njoda: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "RALO = {q1_1}\nlimi: n1 -> q1_1, n2 -> q1_1\nvuzo: q1_1 -> q1_1\njoda: q1_1 -> s1",
+   "example_admissible_answer": "RALO = {q1_1, q1_2, q1_3, q1_4}\nlimi: n1 -> q1_1, n2 -> q1_2\nvuzo: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\njoda: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 1,
+    "N": 4,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym2x1_s10",
+     "stations": [
+      "NIGI",
+      "ROBA",
+      "VOKA"
+     ],
+     "chain_moves": [
+      "giga",
+      "maza"
+     ],
+     "endo_moves": [
+      "rasi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 2,
+     "l": 1
+    }
+   },
+   "lan_answer": "ROBA = {q1_1, q1_2}\ngiga: n1 -> q1_1, n2 -> q1_2\nrasi: q1_1 -> q1_1, q1_2 -> q1_2\nmaza: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "ROBA = {q1_1}\ngiga: n1 -> q1_1, n2 -> q1_1\nrasi: q1_1 -> q1_1\nmaza: q1_1 -> s1",
+   "example_admissible_answer": "ROBA = {q1_1, q1_2, q1_3, q1_4}\ngiga: n1 -> q1_1, n2 -> q1_2\nrasi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\nmaza: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1"
+  }
+ }
+}

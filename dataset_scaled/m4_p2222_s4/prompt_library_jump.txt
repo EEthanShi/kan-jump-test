@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: TAKI, VAMI, FUGO, MAGO, SUGO, TOBU. Books move TAKI -> VAMI -> FUGO -> MAGO -> SUGO -> TOBU.
+There are 9 moving steps:
+- "fufa" carries each TAKI tray to a VAMI tray.
+- "rati" is an internal rearrangement of VAMI: it carries each VAMI tray to a VAMI tray.
+- "sosu" carries each VAMI tray to a FUGO tray.
+- "kidi" is an internal rearrangement of FUGO: it carries each FUGO tray to a FUGO tray.
+- "loki" carries each FUGO tray to a MAGO tray.
+- "gafi" is an internal rearrangement of MAGO: it carries each MAGO tray to a MAGO tray.
+- "tuka" carries each MAGO tray to a SUGO tray.
+- "nusi" is an internal rearrangement of SUGO: it carries each SUGO tray to a SUGO tray.
+- "biba" carries each SUGO tray to a TOBU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "fufa" and then "rati" lands on the same tray as running "fufa" alone.
+     ("rati" leaves every tray that "fufa" produces unchanged.)
+R1.2 Running "rati" and then "sosu" gives the same result as running "sosu" alone.
+     ("sosu" cannot tell whether "rati" was applied first.)
+R1.3 Running "rati" twice in a row leaves every VAMI tray exactly where it started.
+R2.1 Running "sosu" and then "kidi" lands on the same tray as running "sosu" alone.
+     ("kidi" leaves every tray that "sosu" produces unchanged.)
+R2.2 Running "kidi" and then "loki" gives the same result as running "loki" alone.
+     ("loki" cannot tell whether "kidi" was applied first.)
+R2.3 Running "kidi" twice in a row leaves every FUGO tray exactly where it started.
+R3.1 Running "loki" and then "gafi" lands on the same tray as running "loki" alone.
+     ("gafi" leaves every tray that "loki" produces unchanged.)
+R3.2 Running "gafi" and then "tuka" gives the same result as running "tuka" alone.
+     ("tuka" cannot tell whether "gafi" was applied first.)
+R3.3 Running "gafi" twice in a row leaves every MAGO tray exactly where it started.
+R4.1 Running "tuka" and then "nusi" lands on the same tray as running "tuka" alone.
+     ("nusi" leaves every tray that "tuka" produces unchanged.)
+R4.2 Running "nusi" and then "biba" gives the same result as running "biba" alone.
+     ("biba" cannot tell whether "nusi" was applied first.)
+R4.3 Running "nusi" twice in a row leaves every SUGO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TAKI has exactly one tray, called n1.
+- TOBU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VAMI, FUGO, MAGO, SUGO):
+D1.1 VAMI must be a finite set with at most 3 trays.
+D1.2 "rati" must NOT be the do-nothing move (it must move at least one VAMI tray).
+D2.1 FUGO must be a finite set with at most 3 trays.
+D2.2 "kidi" must NOT be the do-nothing move (it must move at least one FUGO tray).
+D3.1 MAGO must be a finite set with at most 3 trays.
+D3.2 "gafi" must NOT be the do-nothing move (it must move at least one MAGO tray).
+D4.1 SUGO must be a finite set with at most 3 trays.
+D4.2 "nusi" must NOT be the do-nothing move (it must move at least one SUGO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VAMI = {q1_1, ..., q1_k}
+fufa: n1 -> <VAMI tray>
+rati: q1_1 -> <VAMI tray>, ..., q1_k -> <VAMI tray>
+FUGO = {q2_1, ..., q2_k}
+sosu: q1_1 -> <FUGO tray>, ... (one entry per VAMI tray)
+kidi: q2_1 -> <FUGO tray>, ..., q2_k -> <FUGO tray>
+MAGO = {q3_1, ..., q3_k}
+loki: q2_1 -> <MAGO tray>, ... (one entry per FUGO tray)
+gafi: q3_1 -> <MAGO tray>, ..., q3_k -> <MAGO tray>
+SUGO = {q4_1, ..., q4_k}
+tuka: q3_1 -> <SUGO tray>, ... (one entry per MAGO tray)
+nusi: q4_1 -> <SUGO tray>, ..., q4_k -> <SUGO tray>
+biba: q4_1 -> <TOBU tray>, ... (one entry per SUGO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

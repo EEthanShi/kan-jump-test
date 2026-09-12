@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: BATI, VUSI, PASU, BUMU, RONA, BUTI. Toys move BATI -> VUSI -> PASU -> BUMU -> RONA -> BUTI.
+There are 9 moving steps:
+- "dupo" carries each BATI slot to a VUSI slot.
+- "tana" is an internal reshuffle of VUSI: it carries each VUSI slot to a VUSI slot.
+- "sapo" carries each VUSI slot to a PASU slot.
+- "ludi" is an internal reshuffle of PASU: it carries each PASU slot to a PASU slot.
+- "guda" carries each PASU slot to a BUMU slot.
+- "doju" is an internal reshuffle of BUMU: it carries each BUMU slot to a BUMU slot.
+- "duba" carries each BUMU slot to a RONA slot.
+- "tomu" is an internal reshuffle of RONA: it carries each RONA slot to a RONA slot.
+- "disu" carries each RONA slot to a BUTI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "dupo" and then "tana" lands on the same slot as running "dupo" alone.
+     ("tana" leaves every slot that "dupo" produces unchanged.)
+R1.2 Running "tana" and then "sapo" gives the same result as running "sapo" alone.
+     ("sapo" cannot tell whether "tana" was applied first.)
+R1.3 Running "tana" three times in a row leaves every VUSI slot exactly where it started.
+R2.1 Running "sapo" and then "ludi" lands on the same slot as running "sapo" alone.
+     ("ludi" leaves every slot that "sapo" produces unchanged.)
+R2.2 Running "ludi" and then "guda" gives the same result as running "guda" alone.
+     ("guda" cannot tell whether "ludi" was applied first.)
+R2.3 Running "ludi" twice in a row leaves every PASU slot exactly where it started.
+R3.1 Running "guda" and then "doju" lands on the same slot as running "guda" alone.
+     ("doju" leaves every slot that "guda" produces unchanged.)
+R3.2 Running "doju" and then "duba" gives the same result as running "duba" alone.
+     ("duba" cannot tell whether "doju" was applied first.)
+R3.3 Running "doju" three times in a row leaves every BUMU slot exactly where it started.
+R4.1 Running "duba" and then "tomu" lands on the same slot as running "duba" alone.
+     ("tomu" leaves every slot that "duba" produces unchanged.)
+R4.2 Running "tomu" and then "disu" gives the same result as running "disu" alone.
+     ("disu" cannot tell whether "tomu" was applied first.)
+R4.3 Running "tomu" twice in a row leaves every RONA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BATI has exactly one slot, called n1.
+- BUTI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (VUSI, PASU, BUMU, RONA):
+D1.1 List the slots of VUSI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "tana" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of PASU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "ludi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of BUMU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "doju" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of RONA in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "tomu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+VUSI = {q1_1, ..., q1_k}
+dupo: n1 -> <VUSI slot>
+tana: q1_1 -> <VUSI slot>, ..., q1_k -> <VUSI slot>
+PASU = {q2_1, ..., q2_k}
+sapo: q1_1 -> <PASU slot>, ... (one entry per VUSI slot)
+ludi: q2_1 -> <PASU slot>, ..., q2_k -> <PASU slot>
+BUMU = {q3_1, ..., q3_k}
+guda: q2_1 -> <BUMU slot>, ... (one entry per PASU slot)
+doju: q3_1 -> <BUMU slot>, ..., q3_k -> <BUMU slot>
+RONA = {q4_1, ..., q4_k}
+duba: q3_1 -> <RONA slot>, ... (one entry per BUMU slot)
+tomu: q4_1 -> <RONA slot>, ..., q4_k -> <RONA slot>
+disu: q4_1 -> <BUTI slot>, ... (one entry per RONA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

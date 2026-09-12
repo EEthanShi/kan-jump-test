@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 2,
+ "l": 1,
+ "N": 4,
+ "lan_size_b": 2,
+ "ran_size_b": 1,
+ "ext_count": 57,
+ "adm_count": 12,
+ "chance": 0.21052631578947367,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 1,
+    "N": 4,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym2x1_s2",
+     "stations": [
+      "DIBO",
+      "ZIJI",
+      "NASO"
+     ],
+     "chain_moves": [
+      "bijo",
+      "joma"
+     ],
+     "endo_moves": [
+      "kufa"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 2,
+     "l": 1
+    }
+   },
+   "lan_answer": "ZIJI = {q1_1, q1_2}\nbijo: n1 -> q1_1, n2 -> q1_2\nkufa: q1_1 -> q1_1, q1_2 -> q1_2\njoma: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "ZIJI = {q1_1}\nbijo: n1 -> q1_1, n2 -> q1_1\nkufa: q1_1 -> q1_1\njoma: q1_1 -> s1",
+   "example_admissible_answer": "ZIJI = {q1_1, q1_2, q1_3, q1_4}\nbijo: n1 -> q1_1, n2 -> q1_2\nkufa: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\njoma: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 1,
+    "N": 4,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym2x1_s2",
+     "stations": [
+      "FINI",
+      "BAZO",
+      "ROZI"
+     ],
+     "chain_moves": [
+      "supa",
+      "gini"
+     ],
+     "endo_moves": [
+      "lapa"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 2,
+     "l": 1
+    }
+   },
+   "lan_answer": "BAZO = {q1_1, q1_2}\nsupa: n1 -> q1_1, n2 -> q1_2\nlapa: q1_1 -> q1_1, q1_2 -> q1_2\ngini: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "BAZO = {q1_1}\nsupa: n1 -> q1_1, n2 -> q1_1\nlapa: q1_1 -> q1_1\ngini: q1_1 -> s1",
+   "example_admissible_answer": "BAZO = {q1_1, q1_2, q1_3, q1_4}\nsupa: n1 -> q1_1, n2 -> q1_2\nlapa: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\ngini: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1"
+  }
+ }
+}

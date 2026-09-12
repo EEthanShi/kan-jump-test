@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: JALA, SAFA, DAPO, BODU. Books move JALA -> SAFA -> DAPO -> BODU.
+There are 5 moving steps:
+- "dara" carries each JALA tray to a SAFA tray.
+- "napa" is an internal rearrangement of SAFA: it carries each SAFA tray to a SAFA tray.
+- "nafu" carries each SAFA tray to a DAPO tray.
+- "favu" is an internal rearrangement of DAPO: it carries each DAPO tray to a DAPO tray.
+- "joto" carries each DAPO tray to a BODU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "dara" and then "napa" lands on the same tray as running "dara" alone.
+     ("napa" leaves every tray that "dara" produces unchanged.)
+R1.2 Running "napa" and then "nafu" gives the same result as running "nafu" alone.
+     ("nafu" cannot tell whether "napa" was applied first.)
+R1.3 Running "napa" twice in a row leaves every SAFA tray exactly where it started.
+R2.1 Running "nafu" and then "favu" lands on the same tray as running "nafu" alone.
+     ("favu" leaves every tray that "nafu" produces unchanged.)
+R2.2 Running "favu" and then "joto" gives the same result as running "joto" alone.
+     ("joto" cannot tell whether "favu" was applied first.)
+R2.3 Running "favu" twice in a row leaves every DAPO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JALA has exactly one tray, called n1.
+- BODU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SAFA, DAPO):
+D1.1 List the trays of SAFA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "napa" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of DAPO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "favu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SAFA = {q1_1, ..., q1_k}
+dara: n1 -> <SAFA tray>
+napa: q1_1 -> <SAFA tray>, ..., q1_k -> <SAFA tray>
+DAPO = {q2_1, ..., q2_k}
+nafu: q1_1 -> <DAPO tray>, ... (one entry per SAFA tray)
+favu: q2_1 -> <DAPO tray>, ..., q2_k -> <DAPO tray>
+joto: q2_1 -> <BODU tray>, ... (one entry per DAPO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

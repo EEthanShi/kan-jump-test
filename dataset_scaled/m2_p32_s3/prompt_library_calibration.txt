@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: GIKI, FUJI, RISO, FUDA. Books move GIKI -> FUJI -> RISO -> FUDA.
+There are 5 moving steps:
+- "bizu" carries each GIKI tray to a FUJI tray.
+- "guma" is an internal rearrangement of FUJI: it carries each FUJI tray to a FUJI tray.
+- "guga" carries each FUJI tray to a RISO tray.
+- "fino" is an internal rearrangement of RISO: it carries each RISO tray to a RISO tray.
+- "nika" carries each RISO tray to a FUDA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bizu" and then "guma" lands on the same tray as running "bizu" alone.
+     ("guma" leaves every tray that "bizu" produces unchanged.)
+R1.2 Running "guma" and then "guga" gives the same result as running "guga" alone.
+     ("guga" cannot tell whether "guma" was applied first.)
+R1.3 Running "guma" three times in a row leaves every FUJI tray exactly where it started.
+R2.1 Running "guga" and then "fino" lands on the same tray as running "guga" alone.
+     ("fino" leaves every tray that "guga" produces unchanged.)
+R2.2 Running "fino" and then "nika" gives the same result as running "nika" alone.
+     ("nika" cannot tell whether "fino" was applied first.)
+R2.3 Running "fino" twice in a row leaves every RISO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GIKI has exactly one tray, called n1.
+- FUDA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FUJI, RISO):
+D1.1 List the trays of FUJI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "guma" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of RISO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fino" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FUJI = {q1_1, ..., q1_k}
+bizu: n1 -> <FUJI tray>
+guma: q1_1 -> <FUJI tray>, ..., q1_k -> <FUJI tray>
+RISO = {q2_1, ..., q2_k}
+guga: q1_1 -> <RISO tray>, ... (one entry per FUJI tray)
+fino: q2_1 -> <RISO tray>, ..., q2_k -> <RISO tray>
+nika: q2_1 -> <FUDA tray>, ... (one entry per RISO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

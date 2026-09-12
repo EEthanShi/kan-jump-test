@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: ZANA, KOJI, MOGO, NOFU, DOGO. Toys move ZANA -> KOJI -> MOGO -> NOFU -> DOGO.
+There are 7 moving steps:
+- "kana" carries each ZANA slot to a KOJI slot.
+- "nata" is an internal reshuffle of KOJI: it carries each KOJI slot to a KOJI slot.
+- "ritu" carries each KOJI slot to a MOGO slot.
+- "simi" is an internal reshuffle of MOGO: it carries each MOGO slot to a MOGO slot.
+- "sabu" carries each MOGO slot to a NOFU slot.
+- "nuvo" is an internal reshuffle of NOFU: it carries each NOFU slot to a NOFU slot.
+- "rovo" carries each NOFU slot to a DOGO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kana" and then "nata" lands on the same slot as running "kana" alone.
+     ("nata" leaves every slot that "kana" produces unchanged.)
+R1.2 Running "nata" and then "ritu" gives the same result as running "ritu" alone.
+     ("ritu" cannot tell whether "nata" was applied first.)
+R1.3 Running "nata" three times in a row leaves every KOJI slot exactly where it started.
+R2.1 Running "ritu" and then "simi" lands on the same slot as running "ritu" alone.
+     ("simi" leaves every slot that "ritu" produces unchanged.)
+R2.2 Running "simi" and then "sabu" gives the same result as running "sabu" alone.
+     ("sabu" cannot tell whether "simi" was applied first.)
+R2.3 Running "simi" twice in a row leaves every MOGO slot exactly where it started.
+R3.1 Running "sabu" and then "nuvo" lands on the same slot as running "sabu" alone.
+     ("nuvo" leaves every slot that "sabu" produces unchanged.)
+R3.2 Running "nuvo" and then "rovo" gives the same result as running "rovo" alone.
+     ("rovo" cannot tell whether "nuvo" was applied first.)
+R3.3 Running "nuvo" three times in a row leaves every NOFU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZANA has exactly one slot, called n1.
+- DOGO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KOJI, MOGO, NOFU):
+D1.1 KOJI must be a finite set with at most 1 slot.
+D1.2 List the "nata" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 MOGO must be a finite set with at most 1 slot.
+D2.2 List the "simi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 NOFU must be a finite set with at most 1 slot.
+D3.2 List the "nuvo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KOJI = {q1_1, ..., q1_k}
+kana: n1 -> <KOJI slot>
+nata: q1_1 -> <KOJI slot>, ..., q1_k -> <KOJI slot>
+MOGO = {q2_1, ..., q2_k}
+ritu: q1_1 -> <MOGO slot>, ... (one entry per KOJI slot)
+simi: q2_1 -> <MOGO slot>, ..., q2_k -> <MOGO slot>
+NOFU = {q3_1, ..., q3_k}
+sabu: q2_1 -> <NOFU slot>, ... (one entry per MOGO slot)
+nuvo: q3_1 -> <NOFU slot>, ..., q3_k -> <NOFU slot>
+rovo: q3_1 -> <DOGO slot>, ... (one entry per NOFU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: NIFO, VIVU, GUTO, SIFO, NUVI, VOFI. Books move NIFO -> VIVU -> GUTO -> SIFO -> NUVI -> VOFI.
+There are 9 moving steps:
+- "tavu" carries each NIFO tray to a VIVU tray.
+- "pava" is an internal rearrangement of VIVU: it carries each VIVU tray to a VIVU tray.
+- "suju" carries each VIVU tray to a GUTO tray.
+- "foji" is an internal rearrangement of GUTO: it carries each GUTO tray to a GUTO tray.
+- "gamu" carries each GUTO tray to a SIFO tray.
+- "kala" is an internal rearrangement of SIFO: it carries each SIFO tray to a SIFO tray.
+- "sibo" carries each SIFO tray to a NUVI tray.
+- "luji" is an internal rearrangement of NUVI: it carries each NUVI tray to a NUVI tray.
+- "guko" carries each NUVI tray to a VOFI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tavu" and then "pava" lands on the same tray as running "tavu" alone.
+     ("pava" leaves every tray that "tavu" produces unchanged.)
+R1.2 Running "pava" and then "suju" gives the same result as running "suju" alone.
+     ("suju" cannot tell whether "pava" was applied first.)
+R1.3 Running "pava" three times in a row leaves every VIVU tray exactly where it started.
+R2.1 Running "suju" and then "foji" lands on the same tray as running "suju" alone.
+     ("foji" leaves every tray that "suju" produces unchanged.)
+R2.2 Running "foji" and then "gamu" gives the same result as running "gamu" alone.
+     ("gamu" cannot tell whether "foji" was applied first.)
+R2.3 Running "foji" three times in a row leaves every GUTO tray exactly where it started.
+R3.1 Running "gamu" and then "kala" lands on the same tray as running "gamu" alone.
+     ("kala" leaves every tray that "gamu" produces unchanged.)
+R3.2 Running "kala" and then "sibo" gives the same result as running "sibo" alone.
+     ("sibo" cannot tell whether "kala" was applied first.)
+R3.3 Running "kala" three times in a row leaves every SIFO tray exactly where it started.
+R4.1 Running "sibo" and then "luji" lands on the same tray as running "sibo" alone.
+     ("luji" leaves every tray that "sibo" produces unchanged.)
+R4.2 Running "luji" and then "guko" gives the same result as running "guko" alone.
+     ("guko" cannot tell whether "luji" was applied first.)
+R4.3 Running "luji" three times in a row leaves every NUVI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NIFO has exactly one tray, called n1.
+- VOFI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VIVU, GUTO, SIFO, NUVI):
+D1.1 VIVU must be a finite set with at most 1 tray.
+D1.2 List the "pava" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 GUTO must be a finite set with at most 1 tray.
+D2.2 List the "foji" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 SIFO must be a finite set with at most 1 tray.
+D3.2 List the "kala" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 NUVI must be a finite set with at most 1 tray.
+D4.2 List the "luji" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VIVU = {q1_1, ..., q1_k}
+tavu: n1 -> <VIVU tray>
+pava: q1_1 -> <VIVU tray>, ..., q1_k -> <VIVU tray>
+GUTO = {q2_1, ..., q2_k}
+suju: q1_1 -> <GUTO tray>, ... (one entry per VIVU tray)
+foji: q2_1 -> <GUTO tray>, ..., q2_k -> <GUTO tray>
+SIFO = {q3_1, ..., q3_k}
+gamu: q2_1 -> <SIFO tray>, ... (one entry per GUTO tray)
+kala: q3_1 -> <SIFO tray>, ..., q3_k -> <SIFO tray>
+NUVI = {q4_1, ..., q4_k}
+sibo: q3_1 -> <NUVI tray>, ... (one entry per SIFO tray)
+luji: q4_1 -> <NUVI tray>, ..., q4_k -> <NUVI tray>
+guko: q4_1 -> <VOFI tray>, ... (one entry per NUVI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

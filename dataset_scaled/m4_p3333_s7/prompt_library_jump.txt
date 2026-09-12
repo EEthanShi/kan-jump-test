@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: MIGU, NOFA, GUKU, JUMI, GURO, FINO. Books move MIGU -> NOFA -> GUKU -> JUMI -> GURO -> FINO.
+There are 9 moving steps:
+- "mivu" carries each MIGU tray to a NOFA tray.
+- "faba" is an internal rearrangement of NOFA: it carries each NOFA tray to a NOFA tray.
+- "jimi" carries each NOFA tray to a GUKU tray.
+- "vuza" is an internal rearrangement of GUKU: it carries each GUKU tray to a GUKU tray.
+- "guti" carries each GUKU tray to a JUMI tray.
+- "jubo" is an internal rearrangement of JUMI: it carries each JUMI tray to a JUMI tray.
+- "lipu" carries each JUMI tray to a GURO tray.
+- "tazi" is an internal rearrangement of GURO: it carries each GURO tray to a GURO tray.
+- "nugu" carries each GURO tray to a FINO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mivu" and then "faba" lands on the same tray as running "mivu" alone.
+     ("faba" leaves every tray that "mivu" produces unchanged.)
+R1.2 Running "faba" and then "jimi" gives the same result as running "jimi" alone.
+     ("jimi" cannot tell whether "faba" was applied first.)
+R1.3 Running "faba" three times in a row leaves every NOFA tray exactly where it started.
+R2.1 Running "jimi" and then "vuza" lands on the same tray as running "jimi" alone.
+     ("vuza" leaves every tray that "jimi" produces unchanged.)
+R2.2 Running "vuza" and then "guti" gives the same result as running "guti" alone.
+     ("guti" cannot tell whether "vuza" was applied first.)
+R2.3 Running "vuza" three times in a row leaves every GUKU tray exactly where it started.
+R3.1 Running "guti" and then "jubo" lands on the same tray as running "guti" alone.
+     ("jubo" leaves every tray that "guti" produces unchanged.)
+R3.2 Running "jubo" and then "lipu" gives the same result as running "lipu" alone.
+     ("lipu" cannot tell whether "jubo" was applied first.)
+R3.3 Running "jubo" three times in a row leaves every JUMI tray exactly where it started.
+R4.1 Running "lipu" and then "tazi" lands on the same tray as running "lipu" alone.
+     ("tazi" leaves every tray that "lipu" produces unchanged.)
+R4.2 Running "tazi" and then "nugu" gives the same result as running "nugu" alone.
+     ("nugu" cannot tell whether "tazi" was applied first.)
+R4.3 Running "tazi" three times in a row leaves every GURO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MIGU has exactly one tray, called n1.
+- FINO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NOFA, GUKU, JUMI, GURO):
+D1.1 NOFA must be a finite set with at most 4 trays.
+D1.2 "faba" must NOT be the do-nothing move (it must move at least one NOFA tray).
+D2.1 GUKU must be a finite set with at most 4 trays.
+D2.2 "vuza" must NOT be the do-nothing move (it must move at least one GUKU tray).
+D3.1 JUMI must be a finite set with at most 4 trays.
+D3.2 "jubo" must NOT be the do-nothing move (it must move at least one JUMI tray).
+D4.1 GURO must be a finite set with at most 4 trays.
+D4.2 "tazi" must NOT be the do-nothing move (it must move at least one GURO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NOFA = {q1_1, ..., q1_k}
+mivu: n1 -> <NOFA tray>
+faba: q1_1 -> <NOFA tray>, ..., q1_k -> <NOFA tray>
+GUKU = {q2_1, ..., q2_k}
+jimi: q1_1 -> <GUKU tray>, ... (one entry per NOFA tray)
+vuza: q2_1 -> <GUKU tray>, ..., q2_k -> <GUKU tray>
+JUMI = {q3_1, ..., q3_k}
+guti: q2_1 -> <JUMI tray>, ... (one entry per GUKU tray)
+jubo: q3_1 -> <JUMI tray>, ..., q3_k -> <JUMI tray>
+GURO = {q4_1, ..., q4_k}
+lipu: q3_1 -> <GURO tray>, ... (one entry per JUMI tray)
+tazi: q4_1 -> <GURO tray>, ..., q4_k -> <GURO tray>
+nugu: q4_1 -> <FINO tray>, ... (one entry per GURO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: GITI, TAMU, BOKO, KUZA, LODI. Toys move GITI -> TAMU -> BOKO -> KUZA -> LODI.
+There are 7 moving steps:
+- "gano" carries each GITI slot to a TAMU slot.
+- "lada" is an internal reshuffle of TAMU: it carries each TAMU slot to a TAMU slot.
+- "siro" carries each TAMU slot to a BOKO slot.
+- "zako" is an internal reshuffle of BOKO: it carries each BOKO slot to a BOKO slot.
+- "lova" carries each BOKO slot to a KUZA slot.
+- "lotu" is an internal reshuffle of KUZA: it carries each KUZA slot to a KUZA slot.
+- "tabu" carries each KUZA slot to a LODI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "gano" and then "lada" lands on the same slot as running "gano" alone.
+     ("lada" leaves every slot that "gano" produces unchanged.)
+R1.2 Running "lada" and then "siro" gives the same result as running "siro" alone.
+     ("siro" cannot tell whether "lada" was applied first.)
+R1.3 Running "lada" three times in a row leaves every TAMU slot exactly where it started.
+R2.1 Running "siro" and then "zako" lands on the same slot as running "siro" alone.
+     ("zako" leaves every slot that "siro" produces unchanged.)
+R2.2 Running "zako" and then "lova" gives the same result as running "lova" alone.
+     ("lova" cannot tell whether "zako" was applied first.)
+R2.3 Running "zako" three times in a row leaves every BOKO slot exactly where it started.
+R3.1 Running "lova" and then "lotu" lands on the same slot as running "lova" alone.
+     ("lotu" leaves every slot that "lova" produces unchanged.)
+R3.2 Running "lotu" and then "tabu" gives the same result as running "tabu" alone.
+     ("tabu" cannot tell whether "lotu" was applied first.)
+R3.3 Running "lotu" twice in a row leaves every KUZA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GITI has exactly one slot, called n1.
+- LODI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TAMU, BOKO, KUZA):
+D1.1 TAMU must be a finite set with at most 4 slots.
+D1.2 "lada" must NOT be the do-nothing move (it must move at least one TAMU slot).
+D2.1 BOKO must be a finite set with at most 4 slots.
+D2.2 "zako" must NOT be the do-nothing move (it must move at least one BOKO slot).
+D3.1 KUZA must be a finite set with at most 3 slots.
+D3.2 "lotu" must NOT be the do-nothing move (it must move at least one KUZA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TAMU = {q1_1, ..., q1_k}
+gano: n1 -> <TAMU slot>
+lada: q1_1 -> <TAMU slot>, ..., q1_k -> <TAMU slot>
+BOKO = {q2_1, ..., q2_k}
+siro: q1_1 -> <BOKO slot>, ... (one entry per TAMU slot)
+zako: q2_1 -> <BOKO slot>, ..., q2_k -> <BOKO slot>
+KUZA = {q3_1, ..., q3_k}
+lova: q2_1 -> <KUZA slot>, ... (one entry per BOKO slot)
+lotu: q3_1 -> <KUZA slot>, ..., q3_k -> <KUZA slot>
+tabu: q3_1 -> <LODI slot>, ... (one entry per KUZA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

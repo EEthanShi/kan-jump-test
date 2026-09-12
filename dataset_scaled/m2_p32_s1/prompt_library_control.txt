@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: RABU, RUMU, LUKU, ZINA. Books move RABU -> RUMU -> LUKU -> ZINA.
+There are 5 moving steps:
+- "mulu" carries each RABU tray to a RUMU tray.
+- "gifa" is an internal rearrangement of RUMU: it carries each RUMU tray to a RUMU tray.
+- "koza" carries each RUMU tray to a LUKU tray.
+- "jara" is an internal rearrangement of LUKU: it carries each LUKU tray to a LUKU tray.
+- "laki" carries each LUKU tray to a ZINA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mulu" and then "gifa" lands on the same tray as running "mulu" alone.
+     ("gifa" leaves every tray that "mulu" produces unchanged.)
+R1.2 Running "gifa" and then "koza" gives the same result as running "koza" alone.
+     ("koza" cannot tell whether "gifa" was applied first.)
+R1.3 Running "gifa" three times in a row leaves every RUMU tray exactly where it started.
+R2.1 Running "koza" and then "jara" lands on the same tray as running "koza" alone.
+     ("jara" leaves every tray that "koza" produces unchanged.)
+R2.2 Running "jara" and then "laki" gives the same result as running "laki" alone.
+     ("laki" cannot tell whether "jara" was applied first.)
+R2.3 Running "jara" twice in a row leaves every LUKU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RABU has exactly one tray, called n1.
+- ZINA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RUMU, LUKU):
+D1.1 RUMU must be a finite set with at most 1 tray.
+D1.2 List the "gifa" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 LUKU must be a finite set with at most 1 tray.
+D2.2 List the "jara" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RUMU = {q1_1, ..., q1_k}
+mulu: n1 -> <RUMU tray>
+gifa: q1_1 -> <RUMU tray>, ..., q1_k -> <RUMU tray>
+LUKU = {q2_1, ..., q2_k}
+koza: q1_1 -> <LUKU tray>, ... (one entry per RUMU tray)
+jara: q2_1 -> <LUKU tray>, ..., q2_k -> <LUKU tray>
+laki: q2_1 -> <ZINA tray>, ... (one entry per LUKU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

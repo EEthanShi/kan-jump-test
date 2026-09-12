@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: TADO, DAJU, JOJI. Books move TADO -> DAJU -> JOJI.
+There are 3 moving steps:
+- "komo" carries each TADO tray to a DAJU tray.
+- "noni" is an internal rearrangement of DAJU: it carries each DAJU tray to a DAJU tray.
+- "zolu" carries each DAJU tray to a JOJI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "komo" and then "noni" lands on the same tray as running "komo" alone.
+     ("noni" leaves every tray that "komo" produces unchanged.)
+R1.2 Running "noni" and then "zolu" gives the same result as running "zolu" alone.
+     ("zolu" cannot tell whether "noni" was applied first.)
+R1.3 Running "noni" three times in a row leaves every DAJU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TADO has exactly one tray, called n1.
+- JOJI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (DAJU):
+D1.1 List the trays of DAJU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "noni" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DAJU = {q1_1, ..., q1_k}
+komo: n1 -> <DAJU tray>
+noni: q1_1 -> <DAJU tray>, ..., q1_k -> <DAJU tray>
+zolu: q1_1 -> <JOJI tray>, ... (one entry per DAJU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

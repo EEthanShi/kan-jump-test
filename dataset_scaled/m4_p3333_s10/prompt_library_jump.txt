@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: SUPO, POTO, NORO, JOBA, FADI, LIKO. Books move SUPO -> POTO -> NORO -> JOBA -> FADI -> LIKO.
+There are 9 moving steps:
+- "fafa" carries each SUPO tray to a POTO tray.
+- "nani" is an internal rearrangement of POTO: it carries each POTO tray to a POTO tray.
+- "dapa" carries each POTO tray to a NORO tray.
+- "mavu" is an internal rearrangement of NORO: it carries each NORO tray to a NORO tray.
+- "badu" carries each NORO tray to a JOBA tray.
+- "guta" is an internal rearrangement of JOBA: it carries each JOBA tray to a JOBA tray.
+- "podu" carries each JOBA tray to a FADI tray.
+- "solu" is an internal rearrangement of FADI: it carries each FADI tray to a FADI tray.
+- "buro" carries each FADI tray to a LIKO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "fafa" and then "nani" lands on the same tray as running "fafa" alone.
+     ("nani" leaves every tray that "fafa" produces unchanged.)
+R1.2 Running "nani" and then "dapa" gives the same result as running "dapa" alone.
+     ("dapa" cannot tell whether "nani" was applied first.)
+R1.3 Running "nani" three times in a row leaves every POTO tray exactly where it started.
+R2.1 Running "dapa" and then "mavu" lands on the same tray as running "dapa" alone.
+     ("mavu" leaves every tray that "dapa" produces unchanged.)
+R2.2 Running "mavu" and then "badu" gives the same result as running "badu" alone.
+     ("badu" cannot tell whether "mavu" was applied first.)
+R2.3 Running "mavu" three times in a row leaves every NORO tray exactly where it started.
+R3.1 Running "badu" and then "guta" lands on the same tray as running "badu" alone.
+     ("guta" leaves every tray that "badu" produces unchanged.)
+R3.2 Running "guta" and then "podu" gives the same result as running "podu" alone.
+     ("podu" cannot tell whether "guta" was applied first.)
+R3.3 Running "guta" three times in a row leaves every JOBA tray exactly where it started.
+R4.1 Running "podu" and then "solu" lands on the same tray as running "podu" alone.
+     ("solu" leaves every tray that "podu" produces unchanged.)
+R4.2 Running "solu" and then "buro" gives the same result as running "buro" alone.
+     ("buro" cannot tell whether "solu" was applied first.)
+R4.3 Running "solu" three times in a row leaves every FADI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUPO has exactly one tray, called n1.
+- LIKO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (POTO, NORO, JOBA, FADI):
+D1.1 POTO must be a finite set with at most 4 trays.
+D1.2 "nani" must NOT be the do-nothing move (it must move at least one POTO tray).
+D2.1 NORO must be a finite set with at most 4 trays.
+D2.2 "mavu" must NOT be the do-nothing move (it must move at least one NORO tray).
+D3.1 JOBA must be a finite set with at most 4 trays.
+D3.2 "guta" must NOT be the do-nothing move (it must move at least one JOBA tray).
+D4.1 FADI must be a finite set with at most 4 trays.
+D4.2 "solu" must NOT be the do-nothing move (it must move at least one FADI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+POTO = {q1_1, ..., q1_k}
+fafa: n1 -> <POTO tray>
+nani: q1_1 -> <POTO tray>, ..., q1_k -> <POTO tray>
+NORO = {q2_1, ..., q2_k}
+dapa: q1_1 -> <NORO tray>, ... (one entry per POTO tray)
+mavu: q2_1 -> <NORO tray>, ..., q2_k -> <NORO tray>
+JOBA = {q3_1, ..., q3_k}
+badu: q2_1 -> <JOBA tray>, ... (one entry per NORO tray)
+guta: q3_1 -> <JOBA tray>, ..., q3_k -> <JOBA tray>
+FADI = {q4_1, ..., q4_k}
+podu: q3_1 -> <FADI tray>, ... (one entry per JOBA tray)
+solu: q4_1 -> <FADI tray>, ..., q4_k -> <FADI tray>
+buro: q4_1 -> <LIKO tray>, ... (one entry per FADI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,39 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: GUNO, GOKI, POMU. Toys move GUNO -> GOKI -> POMU.
+There are 3 moving steps:
+- "guko" carries each GUNO slot to a GOKI slot.
+- "daga" is an internal reshuffle of GOKI: it carries each GOKI slot to a GOKI slot.
+- "dugi" carries each GOKI slot to a POMU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "guko" and then "daga" lands on the same slot as running "guko" alone.
+     ("daga" leaves every slot that "guko" produces unchanged.)
+R1.2 Running "daga" and then "dugi" gives the same result as running "dugi" alone.
+     ("dugi" cannot tell whether "daga" was applied first.)
+R1.3 Running "daga" twice in a row leaves every GOKI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GUNO has exactly one slot, called n1.
+- POMU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (GOKI):
+D1.1 GOKI must be a finite set with at most 1 slot.
+D1.2 List the "daga" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GOKI = {q1_1, ..., q1_k}
+guko: n1 -> <GOKI slot>
+daga: q1_1 -> <GOKI slot>, ..., q1_k -> <GOKI slot>
+dugi: q1_1 -> <POMU slot>, ... (one entry per GOKI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

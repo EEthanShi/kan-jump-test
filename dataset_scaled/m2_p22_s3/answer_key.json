@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s3",
+          "stations": [
+            "TOLU",
+            "SIZO",
+            "SUGA",
+            "PUPO"
+          ],
+          "chain_moves": [
+            "solu",
+            "futi",
+            "lati"
+          ],
+          "endo_moves": [
+            "gotu",
+            "zini"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SIZO = {q1_1, q1_2, q1_3}\nsolu: n1 -> q1_1\ngotu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nSUGA = {q2_1, q2_2, q2_3}\nfuti: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nzini: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nlati: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "SIZO = {q1_1}\nsolu: n1 -> q1_1\ngotu: q1_1 -> q1_1\nSUGA = {q2_1}\nfuti: q1_1 -> q2_1\nzini: q2_1 -> q2_1\nlati: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s3",
+          "stations": [
+            "JADI",
+            "FIJU",
+            "POJI",
+            "VAJO"
+          ],
+          "chain_moves": [
+            "vodu",
+            "zigi",
+            "piko"
+          ],
+          "endo_moves": [
+            "tazo",
+            "sogi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "FIJU = {q1_1, q1_2, q1_3}\nvodu: n1 -> q1_1\ntazo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nPOJI = {q2_1, q2_2, q2_3}\nzigi: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nsogi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\npiko: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "FIJU = {q1_1}\nvodu: n1 -> q1_1\ntazo: q1_1 -> q1_1\nPOJI = {q2_1}\nzigi: q1_1 -> q2_1\nsogi: q2_1 -> q2_1\npiko: q2_1 -> s1"
+    }
+  }
+}

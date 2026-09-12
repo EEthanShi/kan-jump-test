@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 1,
+ "l": 2,
+ "N": 3,
+ "lan_size_b": 1,
+ "ran_size_b": 2,
+ "ext_count": 23,
+ "adm_count": 3,
+ "chance": 0.13043478260869565,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym1x2_s2",
+     "stations": [
+      "SUVU",
+      "JUDU",
+      "BUNU"
+     ],
+     "chain_moves": [
+      "koro",
+      "sura"
+     ],
+     "endo_moves": [
+      "nimi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "JUDU = {q1_1}\nkoro: n1 -> q1_1\nnimi: q1_1 -> q1_1\nsura: q1_1 -> s1",
+   "ran_answer": "JUDU = {q1_1, q1_2}\nkoro: n1 -> q1_1\nnimi: q1_1 -> q1_1, q1_2 -> q1_2\nsura: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "JUDU = {q1_1, q1_2, q1_3}\nkoro: n1 -> q1_1\nnimi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nsura: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym1x2_s2",
+     "stations": [
+      "ROPA",
+      "BOMI",
+      "TALU"
+     ],
+     "chain_moves": [
+      "fino",
+      "loli"
+     ],
+     "endo_moves": [
+      "kiti"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "BOMI = {q1_1}\nfino: n1 -> q1_1\nkiti: q1_1 -> q1_1\nloli: q1_1 -> s1",
+   "ran_answer": "BOMI = {q1_1, q1_2}\nfino: n1 -> q1_1\nkiti: q1_1 -> q1_1, q1_2 -> q1_2\nloli: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "BOMI = {q1_1, q1_2, q1_3}\nfino: n1 -> q1_1\nkiti: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nloli: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  }
+ }
+}

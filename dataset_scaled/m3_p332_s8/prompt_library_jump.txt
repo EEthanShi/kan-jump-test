@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MOSU, VODI, NOVI, RADU, TIVA. Books move MOSU -> VODI -> NOVI -> RADU -> TIVA.
+There are 7 moving steps:
+- "mapa" carries each MOSU tray to a VODI tray.
+- "diso" is an internal rearrangement of VODI: it carries each VODI tray to a VODI tray.
+- "mavi" carries each VODI tray to a NOVI tray.
+- "duzu" is an internal rearrangement of NOVI: it carries each NOVI tray to a NOVI tray.
+- "lavu" carries each NOVI tray to a RADU tray.
+- "mala" is an internal rearrangement of RADU: it carries each RADU tray to a RADU tray.
+- "vati" carries each RADU tray to a TIVA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mapa" and then "diso" lands on the same tray as running "mapa" alone.
+     ("diso" leaves every tray that "mapa" produces unchanged.)
+R1.2 Running "diso" and then "mavi" gives the same result as running "mavi" alone.
+     ("mavi" cannot tell whether "diso" was applied first.)
+R1.3 Running "diso" three times in a row leaves every VODI tray exactly where it started.
+R2.1 Running "mavi" and then "duzu" lands on the same tray as running "mavi" alone.
+     ("duzu" leaves every tray that "mavi" produces unchanged.)
+R2.2 Running "duzu" and then "lavu" gives the same result as running "lavu" alone.
+     ("lavu" cannot tell whether "duzu" was applied first.)
+R2.3 Running "duzu" three times in a row leaves every NOVI tray exactly where it started.
+R3.1 Running "lavu" and then "mala" lands on the same tray as running "lavu" alone.
+     ("mala" leaves every tray that "lavu" produces unchanged.)
+R3.2 Running "mala" and then "vati" gives the same result as running "vati" alone.
+     ("vati" cannot tell whether "mala" was applied first.)
+R3.3 Running "mala" twice in a row leaves every RADU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOSU has exactly one tray, called n1.
+- TIVA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VODI, NOVI, RADU):
+D1.1 VODI must be a finite set with at most 4 trays.
+D1.2 "diso" must NOT be the do-nothing move (it must move at least one VODI tray).
+D2.1 NOVI must be a finite set with at most 4 trays.
+D2.2 "duzu" must NOT be the do-nothing move (it must move at least one NOVI tray).
+D3.1 RADU must be a finite set with at most 3 trays.
+D3.2 "mala" must NOT be the do-nothing move (it must move at least one RADU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VODI = {q1_1, ..., q1_k}
+mapa: n1 -> <VODI tray>
+diso: q1_1 -> <VODI tray>, ..., q1_k -> <VODI tray>
+NOVI = {q2_1, ..., q2_k}
+mavi: q1_1 -> <NOVI tray>, ... (one entry per VODI tray)
+duzu: q2_1 -> <NOVI tray>, ..., q2_k -> <NOVI tray>
+RADU = {q3_1, ..., q3_k}
+lavu: q2_1 -> <RADU tray>, ... (one entry per NOVI tray)
+mala: q3_1 -> <RADU tray>, ..., q3_k -> <RADU tray>
+vati: q3_1 -> <TIVA tray>, ... (one entry per RADU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

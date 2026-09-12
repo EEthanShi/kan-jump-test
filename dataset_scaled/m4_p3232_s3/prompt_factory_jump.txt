@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: PABI, SUZA, ZILO, FAJA, KABO, LAGU. Toys move PABI -> SUZA -> ZILO -> FAJA -> KABO -> LAGU.
+There are 9 moving steps:
+- "zoma" carries each PABI slot to a SUZA slot.
+- "koki" is an internal reshuffle of SUZA: it carries each SUZA slot to a SUZA slot.
+- "tusu" carries each SUZA slot to a ZILO slot.
+- "nalo" is an internal reshuffle of ZILO: it carries each ZILO slot to a ZILO slot.
+- "doku" carries each ZILO slot to a FAJA slot.
+- "pufo" is an internal reshuffle of FAJA: it carries each FAJA slot to a FAJA slot.
+- "bazi" carries each FAJA slot to a KABO slot.
+- "favi" is an internal reshuffle of KABO: it carries each KABO slot to a KABO slot.
+- "roso" carries each KABO slot to a LAGU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zoma" and then "koki" lands on the same slot as running "zoma" alone.
+     ("koki" leaves every slot that "zoma" produces unchanged.)
+R1.2 Running "koki" and then "tusu" gives the same result as running "tusu" alone.
+     ("tusu" cannot tell whether "koki" was applied first.)
+R1.3 Running "koki" three times in a row leaves every SUZA slot exactly where it started.
+R2.1 Running "tusu" and then "nalo" lands on the same slot as running "tusu" alone.
+     ("nalo" leaves every slot that "tusu" produces unchanged.)
+R2.2 Running "nalo" and then "doku" gives the same result as running "doku" alone.
+     ("doku" cannot tell whether "nalo" was applied first.)
+R2.3 Running "nalo" twice in a row leaves every ZILO slot exactly where it started.
+R3.1 Running "doku" and then "pufo" lands on the same slot as running "doku" alone.
+     ("pufo" leaves every slot that "doku" produces unchanged.)
+R3.2 Running "pufo" and then "bazi" gives the same result as running "bazi" alone.
+     ("bazi" cannot tell whether "pufo" was applied first.)
+R3.3 Running "pufo" three times in a row leaves every FAJA slot exactly where it started.
+R4.1 Running "bazi" and then "favi" lands on the same slot as running "bazi" alone.
+     ("favi" leaves every slot that "bazi" produces unchanged.)
+R4.2 Running "favi" and then "roso" gives the same result as running "roso" alone.
+     ("roso" cannot tell whether "favi" was applied first.)
+R4.3 Running "favi" twice in a row leaves every KABO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PABI has exactly one slot, called n1.
+- LAGU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SUZA, ZILO, FAJA, KABO):
+D1.1 SUZA must be a finite set with at most 4 slots.
+D1.2 "koki" must NOT be the do-nothing move (it must move at least one SUZA slot).
+D2.1 ZILO must be a finite set with at most 3 slots.
+D2.2 "nalo" must NOT be the do-nothing move (it must move at least one ZILO slot).
+D3.1 FAJA must be a finite set with at most 4 slots.
+D3.2 "pufo" must NOT be the do-nothing move (it must move at least one FAJA slot).
+D4.1 KABO must be a finite set with at most 3 slots.
+D4.2 "favi" must NOT be the do-nothing move (it must move at least one KABO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SUZA = {q1_1, ..., q1_k}
+zoma: n1 -> <SUZA slot>
+koki: q1_1 -> <SUZA slot>, ..., q1_k -> <SUZA slot>
+ZILO = {q2_1, ..., q2_k}
+tusu: q1_1 -> <ZILO slot>, ... (one entry per SUZA slot)
+nalo: q2_1 -> <ZILO slot>, ..., q2_k -> <ZILO slot>
+FAJA = {q3_1, ..., q3_k}
+doku: q2_1 -> <FAJA slot>, ... (one entry per ZILO slot)
+pufo: q3_1 -> <FAJA slot>, ..., q3_k -> <FAJA slot>
+KABO = {q4_1, ..., q4_k}
+bazi: q3_1 -> <KABO slot>, ... (one entry per FAJA slot)
+favi: q4_1 -> <KABO slot>, ..., q4_k -> <KABO slot>
+roso: q4_1 -> <LAGU slot>, ... (one entry per KABO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

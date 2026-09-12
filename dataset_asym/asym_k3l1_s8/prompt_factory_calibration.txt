@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: PUSU, VONA, KUBA. Toys move PUSU -> VONA -> KUBA.
+There are 3 moving steps:
+- "tamu" carries each PUSU slot to a VONA slot.
+- "liga" is an internal reshuffle of VONA: it carries each VONA slot to a VONA slot.
+- "kumu" carries each VONA slot to a KUBA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tamu" and then "liga" lands on the same slot as running "tamu" alone.
+     ("liga" leaves every slot that "tamu" produces unchanged.)
+R1.2 Running "liga" and then "kumu" gives the same result as running "kumu" alone.
+     ("kumu" cannot tell whether "liga" was applied first.)
+R1.3 Running "liga" twice in a row leaves every VONA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUSU has exactly 3 slots, called n1, n2, n3.
+- KUBA has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle station (VONA):
+D1.1 List the slots of VONA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "liga" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "tamu" table entries in PUSU slot order n1, n2, n3.
+D1.4 List the "kumu" table entries in VONA slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+VONA = {q1_1, ..., q1_k}
+tamu: n1 -> <VONA slot>, n2 -> <VONA slot>, n3 -> <VONA slot>
+liga: q1_1 -> <VONA slot>, ..., q1_k -> <VONA slot>
+kumu: q1_1 -> <KUBA slot>, ... (one entry per VONA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

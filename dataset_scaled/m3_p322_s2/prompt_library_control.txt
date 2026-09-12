@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: BUNO, FABA, GUFA, FUSO, POZI. Books move BUNO -> FABA -> GUFA -> FUSO -> POZI.
+There are 7 moving steps:
+- "jivi" carries each BUNO tray to a FABA tray.
+- "domi" is an internal rearrangement of FABA: it carries each FABA tray to a FABA tray.
+- "mali" carries each FABA tray to a GUFA tray.
+- "vidi" is an internal rearrangement of GUFA: it carries each GUFA tray to a GUFA tray.
+- "mipo" carries each GUFA tray to a FUSO tray.
+- "kolu" is an internal rearrangement of FUSO: it carries each FUSO tray to a FUSO tray.
+- "kojo" carries each FUSO tray to a POZI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "jivi" and then "domi" lands on the same tray as running "jivi" alone.
+     ("domi" leaves every tray that "jivi" produces unchanged.)
+R1.2 Running "domi" and then "mali" gives the same result as running "mali" alone.
+     ("mali" cannot tell whether "domi" was applied first.)
+R1.3 Running "domi" three times in a row leaves every FABA tray exactly where it started.
+R2.1 Running "mali" and then "vidi" lands on the same tray as running "mali" alone.
+     ("vidi" leaves every tray that "mali" produces unchanged.)
+R2.2 Running "vidi" and then "mipo" gives the same result as running "mipo" alone.
+     ("mipo" cannot tell whether "vidi" was applied first.)
+R2.3 Running "vidi" twice in a row leaves every GUFA tray exactly where it started.
+R3.1 Running "mipo" and then "kolu" lands on the same tray as running "mipo" alone.
+     ("kolu" leaves every tray that "mipo" produces unchanged.)
+R3.2 Running "kolu" and then "kojo" gives the same result as running "kojo" alone.
+     ("kojo" cannot tell whether "kolu" was applied first.)
+R3.3 Running "kolu" twice in a row leaves every FUSO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUNO has exactly one tray, called n1.
+- POZI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FABA, GUFA, FUSO):
+D1.1 FABA must be a finite set with at most 1 tray.
+D1.2 List the "domi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 GUFA must be a finite set with at most 1 tray.
+D2.2 List the "vidi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 FUSO must be a finite set with at most 1 tray.
+D3.2 List the "kolu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FABA = {q1_1, ..., q1_k}
+jivi: n1 -> <FABA tray>
+domi: q1_1 -> <FABA tray>, ..., q1_k -> <FABA tray>
+GUFA = {q2_1, ..., q2_k}
+mali: q1_1 -> <GUFA tray>, ... (one entry per FABA tray)
+vidi: q2_1 -> <GUFA tray>, ..., q2_k -> <GUFA tray>
+FUSO = {q3_1, ..., q3_k}
+mipo: q2_1 -> <FUSO tray>, ... (one entry per GUFA tray)
+kolu: q3_1 -> <FUSO tray>, ..., q3_k -> <FUSO tray>
+kojo: q3_1 -> <POZI tray>, ... (one entry per FUSO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

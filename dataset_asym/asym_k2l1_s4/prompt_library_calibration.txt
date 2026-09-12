@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: TINO, TIDU, BIKU. Books move TINO -> TIDU -> BIKU.
+There are 3 moving steps:
+- "nunu" carries each TINO tray to a TIDU tray.
+- "domi" is an internal rearrangement of TIDU: it carries each TIDU tray to a TIDU tray.
+- "zalo" carries each TIDU tray to a BIKU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nunu" and then "domi" lands on the same tray as running "nunu" alone.
+     ("domi" leaves every tray that "nunu" produces unchanged.)
+R1.2 Running "domi" and then "zalo" gives the same result as running "zalo" alone.
+     ("zalo" cannot tell whether "domi" was applied first.)
+R1.3 Running "domi" twice in a row leaves every TIDU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TINO has exactly 2 trays, called n1, n2.
+- BIKU has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (TIDU):
+D1.1 List the trays of TIDU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "domi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "nunu" table entries in TINO tray order n1, n2.
+D1.4 List the "zalo" table entries in TIDU tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+TIDU = {q1_1, ..., q1_k}
+nunu: n1 -> <TIDU tray>, n2 -> <TIDU tray>
+domi: q1_1 -> <TIDU tray>, ..., q1_k -> <TIDU tray>
+zalo: q1_1 -> <BIKU tray>, ... (one entry per TIDU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

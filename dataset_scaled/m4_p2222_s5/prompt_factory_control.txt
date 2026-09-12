@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: ZUFI, SOSI, FUSO, SONO, FULI, SUJU. Toys move ZUFI -> SOSI -> FUSO -> SONO -> FULI -> SUJU.
+There are 9 moving steps:
+- "vunu" carries each ZUFI slot to a SOSI slot.
+- "rara" is an internal reshuffle of SOSI: it carries each SOSI slot to a SOSI slot.
+- "kugi" carries each SOSI slot to a FUSO slot.
+- "fani" is an internal reshuffle of FUSO: it carries each FUSO slot to a FUSO slot.
+- "guma" carries each FUSO slot to a SONO slot.
+- "sifu" is an internal reshuffle of SONO: it carries each SONO slot to a SONO slot.
+- "kadu" carries each SONO slot to a FULI slot.
+- "pata" is an internal reshuffle of FULI: it carries each FULI slot to a FULI slot.
+- "govi" carries each FULI slot to a SUJU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vunu" and then "rara" lands on the same slot as running "vunu" alone.
+     ("rara" leaves every slot that "vunu" produces unchanged.)
+R1.2 Running "rara" and then "kugi" gives the same result as running "kugi" alone.
+     ("kugi" cannot tell whether "rara" was applied first.)
+R1.3 Running "rara" twice in a row leaves every SOSI slot exactly where it started.
+R2.1 Running "kugi" and then "fani" lands on the same slot as running "kugi" alone.
+     ("fani" leaves every slot that "kugi" produces unchanged.)
+R2.2 Running "fani" and then "guma" gives the same result as running "guma" alone.
+     ("guma" cannot tell whether "fani" was applied first.)
+R2.3 Running "fani" twice in a row leaves every FUSO slot exactly where it started.
+R3.1 Running "guma" and then "sifu" lands on the same slot as running "guma" alone.
+     ("sifu" leaves every slot that "guma" produces unchanged.)
+R3.2 Running "sifu" and then "kadu" gives the same result as running "kadu" alone.
+     ("kadu" cannot tell whether "sifu" was applied first.)
+R3.3 Running "sifu" twice in a row leaves every SONO slot exactly where it started.
+R4.1 Running "kadu" and then "pata" lands on the same slot as running "kadu" alone.
+     ("pata" leaves every slot that "kadu" produces unchanged.)
+R4.2 Running "pata" and then "govi" gives the same result as running "govi" alone.
+     ("govi" cannot tell whether "pata" was applied first.)
+R4.3 Running "pata" twice in a row leaves every FULI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZUFI has exactly one slot, called n1.
+- SUJU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SOSI, FUSO, SONO, FULI):
+D1.1 SOSI must be a finite set with at most 1 slot.
+D1.2 List the "rara" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 FUSO must be a finite set with at most 1 slot.
+D2.2 List the "fani" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 SONO must be a finite set with at most 1 slot.
+D3.2 List the "sifu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 FULI must be a finite set with at most 1 slot.
+D4.2 List the "pata" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SOSI = {q1_1, ..., q1_k}
+vunu: n1 -> <SOSI slot>
+rara: q1_1 -> <SOSI slot>, ..., q1_k -> <SOSI slot>
+FUSO = {q2_1, ..., q2_k}
+kugi: q1_1 -> <FUSO slot>, ... (one entry per SOSI slot)
+fani: q2_1 -> <FUSO slot>, ..., q2_k -> <FUSO slot>
+SONO = {q3_1, ..., q3_k}
+guma: q2_1 -> <SONO slot>, ... (one entry per FUSO slot)
+sifu: q3_1 -> <SONO slot>, ..., q3_k -> <SONO slot>
+FULI = {q4_1, ..., q4_k}
+kadu: q3_1 -> <FULI slot>, ... (one entry per SONO slot)
+pata: q4_1 -> <FULI slot>, ..., q4_k -> <FULI slot>
+govi: q4_1 -> <SUJU slot>, ... (one entry per FULI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

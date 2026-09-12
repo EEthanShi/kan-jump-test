@@ -1,0 +1,108 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 3,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          2,
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s7",
+          "stations": [
+            "RUDA",
+            "NISA",
+            "GOMO",
+            "TUMI",
+            "KOTI"
+          ],
+          "chain_moves": [
+            "rura",
+            "jiza",
+            "pabu",
+            "kuti"
+          ],
+          "endo_moves": [
+            "pino",
+            "fopo",
+            "jani"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "NISA = {q1_1, q1_2, q1_3}\nrura: n1 -> q1_1\npino: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nGOMO = {q2_1, q2_2, q2_3}\njiza: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nfopo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nTUMI = {q3_1, q3_2, q3_3, q3_4}\npabu: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\njani: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_4, q3_4 -> q3_2\nkuti: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1, q3_4 -> s1",
+      "kan_answer": "NISA = {q1_1}\nrura: n1 -> q1_1\npino: q1_1 -> q1_1\nGOMO = {q2_1}\njiza: q1_1 -> q2_1\nfopo: q2_1 -> q2_1\nTUMI = {q3_1}\npabu: q2_1 -> q3_1\njani: q3_1 -> q3_1\nkuti: q3_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          2,
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s7",
+          "stations": [
+            "PIZU",
+            "TOJU",
+            "VUPI",
+            "NOVI",
+            "TAGI"
+          ],
+          "chain_moves": [
+            "zulo",
+            "rigi",
+            "tibu",
+            "sujo"
+          ],
+          "endo_moves": [
+            "jalu",
+            "matu",
+            "kuno"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "TOJU = {q1_1, q1_2, q1_3}\nzulo: n1 -> q1_1\njalu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nVUPI = {q2_1, q2_2, q2_3}\nrigi: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nmatu: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nNOVI = {q3_1, q3_2, q3_3, q3_4}\ntibu: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\nkuno: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_4, q3_4 -> q3_2\nsujo: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1, q3_4 -> s1",
+      "kan_answer": "TOJU = {q1_1}\nzulo: n1 -> q1_1\njalu: q1_1 -> q1_1\nVUPI = {q2_1}\nrigi: q1_1 -> q2_1\nmatu: q2_1 -> q2_1\nNOVI = {q3_1}\ntibu: q2_1 -> q3_1\nkuno: q3_1 -> q3_1\nsujo: q3_1 -> s1"
+    }
+  }
+}

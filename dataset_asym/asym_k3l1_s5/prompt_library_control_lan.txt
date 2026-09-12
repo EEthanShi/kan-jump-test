@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: MIFO, BOTO, JIMA. Books move MIFO -> BOTO -> JIMA.
+There are 3 moving steps:
+- "gasi" carries each MIFO tray to a BOTO tray.
+- "pofo" is an internal rearrangement of BOTO: it carries each BOTO tray to a BOTO tray.
+- "dipu" carries each BOTO tray to a JIMA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gasi" and then "pofo" lands on the same tray as running "gasi" alone.
+     ("pofo" leaves every tray that "gasi" produces unchanged.)
+R1.2 Running "pofo" and then "dipu" gives the same result as running "dipu" alone.
+     ("dipu" cannot tell whether "pofo" was applied first.)
+R1.3 Running "pofo" twice in a row leaves every BOTO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MIFO has exactly 3 trays, called n1, n2, n3.
+- JIMA has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (BOTO):
+D1.1 BOTO must be a finite set with at most 3 trays.
+D1.2 List the "pofo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 "gasi" must carry different MIFO trays to different BOTO trays.
+D1.4 List the "dipu" table entries in BOTO tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+BOTO = {q1_1, ..., q1_k}
+gasi: n1 -> <BOTO tray>, n2 -> <BOTO tray>, n3 -> <BOTO tray>
+pofo: q1_1 -> <BOTO tray>, ..., q1_k -> <BOTO tray>
+dipu: q1_1 -> <JIMA tray>, ... (one entry per BOTO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

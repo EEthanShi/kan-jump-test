@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: VUSA, PILO, TIBU, TUKI, GOMU, KOSA. Books move VUSA -> PILO -> TIBU -> TUKI -> GOMU -> KOSA.
+There are 9 moving steps:
+- "mago" carries each VUSA tray to a PILO tray.
+- "doku" is an internal rearrangement of PILO: it carries each PILO tray to a PILO tray.
+- "rifi" carries each PILO tray to a TIBU tray.
+- "gamu" is an internal rearrangement of TIBU: it carries each TIBU tray to a TIBU tray.
+- "jonu" carries each TIBU tray to a TUKI tray.
+- "mimu" is an internal rearrangement of TUKI: it carries each TUKI tray to a TUKI tray.
+- "pusi" carries each TUKI tray to a GOMU tray.
+- "juto" is an internal rearrangement of GOMU: it carries each GOMU tray to a GOMU tray.
+- "govu" carries each GOMU tray to a KOSA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mago" and then "doku" lands on the same tray as running "mago" alone.
+     ("doku" leaves every tray that "mago" produces unchanged.)
+R1.2 Running "doku" and then "rifi" gives the same result as running "rifi" alone.
+     ("rifi" cannot tell whether "doku" was applied first.)
+R1.3 Running "doku" twice in a row leaves every PILO tray exactly where it started.
+R2.1 Running "rifi" and then "gamu" lands on the same tray as running "rifi" alone.
+     ("gamu" leaves every tray that "rifi" produces unchanged.)
+R2.2 Running "gamu" and then "jonu" gives the same result as running "jonu" alone.
+     ("jonu" cannot tell whether "gamu" was applied first.)
+R2.3 Running "gamu" twice in a row leaves every TIBU tray exactly where it started.
+R3.1 Running "jonu" and then "mimu" lands on the same tray as running "jonu" alone.
+     ("mimu" leaves every tray that "jonu" produces unchanged.)
+R3.2 Running "mimu" and then "pusi" gives the same result as running "pusi" alone.
+     ("pusi" cannot tell whether "mimu" was applied first.)
+R3.3 Running "mimu" twice in a row leaves every TUKI tray exactly where it started.
+R4.1 Running "pusi" and then "juto" lands on the same tray as running "pusi" alone.
+     ("juto" leaves every tray that "pusi" produces unchanged.)
+R4.2 Running "juto" and then "govu" gives the same result as running "govu" alone.
+     ("govu" cannot tell whether "juto" was applied first.)
+R4.3 Running "juto" twice in a row leaves every GOMU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUSA has exactly one tray, called n1.
+- KOSA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PILO, TIBU, TUKI, GOMU):
+D1.1 PILO must be a finite set with at most 3 trays.
+D1.2 "doku" must NOT be the do-nothing move (it must move at least one PILO tray).
+D2.1 TIBU must be a finite set with at most 3 trays.
+D2.2 "gamu" must NOT be the do-nothing move (it must move at least one TIBU tray).
+D3.1 TUKI must be a finite set with at most 3 trays.
+D3.2 "mimu" must NOT be the do-nothing move (it must move at least one TUKI tray).
+D4.1 GOMU must be a finite set with at most 3 trays.
+D4.2 "juto" must NOT be the do-nothing move (it must move at least one GOMU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PILO = {q1_1, ..., q1_k}
+mago: n1 -> <PILO tray>
+doku: q1_1 -> <PILO tray>, ..., q1_k -> <PILO tray>
+TIBU = {q2_1, ..., q2_k}
+rifi: q1_1 -> <TIBU tray>, ... (one entry per PILO tray)
+gamu: q2_1 -> <TIBU tray>, ..., q2_k -> <TIBU tray>
+TUKI = {q3_1, ..., q3_k}
+jonu: q2_1 -> <TUKI tray>, ... (one entry per TIBU tray)
+mimu: q3_1 -> <TUKI tray>, ..., q3_k -> <TUKI tray>
+GOMU = {q4_1, ..., q4_k}
+pusi: q3_1 -> <GOMU tray>, ... (one entry per TUKI tray)
+juto: q4_1 -> <GOMU tray>, ..., q4_k -> <GOMU tray>
+govu: q4_1 -> <KOSA tray>, ... (one entry per GOMU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

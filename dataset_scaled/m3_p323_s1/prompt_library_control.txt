@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: TOVU, LUMU, DILU, KUJI, JAGU. Books move TOVU -> LUMU -> DILU -> KUJI -> JAGU.
+There are 7 moving steps:
+- "zovu" carries each TOVU tray to a LUMU tray.
+- "sada" is an internal rearrangement of LUMU: it carries each LUMU tray to a LUMU tray.
+- "fivu" carries each LUMU tray to a DILU tray.
+- "gosa" is an internal rearrangement of DILU: it carries each DILU tray to a DILU tray.
+- "tonu" carries each DILU tray to a KUJI tray.
+- "zafa" is an internal rearrangement of KUJI: it carries each KUJI tray to a KUJI tray.
+- "libo" carries each KUJI tray to a JAGU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zovu" and then "sada" lands on the same tray as running "zovu" alone.
+     ("sada" leaves every tray that "zovu" produces unchanged.)
+R1.2 Running "sada" and then "fivu" gives the same result as running "fivu" alone.
+     ("fivu" cannot tell whether "sada" was applied first.)
+R1.3 Running "sada" three times in a row leaves every LUMU tray exactly where it started.
+R2.1 Running "fivu" and then "gosa" lands on the same tray as running "fivu" alone.
+     ("gosa" leaves every tray that "fivu" produces unchanged.)
+R2.2 Running "gosa" and then "tonu" gives the same result as running "tonu" alone.
+     ("tonu" cannot tell whether "gosa" was applied first.)
+R2.3 Running "gosa" twice in a row leaves every DILU tray exactly where it started.
+R3.1 Running "tonu" and then "zafa" lands on the same tray as running "tonu" alone.
+     ("zafa" leaves every tray that "tonu" produces unchanged.)
+R3.2 Running "zafa" and then "libo" gives the same result as running "libo" alone.
+     ("libo" cannot tell whether "zafa" was applied first.)
+R3.3 Running "zafa" three times in a row leaves every KUJI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TOVU has exactly one tray, called n1.
+- JAGU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LUMU, DILU, KUJI):
+D1.1 LUMU must be a finite set with at most 1 tray.
+D1.2 List the "sada" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 DILU must be a finite set with at most 1 tray.
+D2.2 List the "gosa" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 KUJI must be a finite set with at most 1 tray.
+D3.2 List the "zafa" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LUMU = {q1_1, ..., q1_k}
+zovu: n1 -> <LUMU tray>
+sada: q1_1 -> <LUMU tray>, ..., q1_k -> <LUMU tray>
+DILU = {q2_1, ..., q2_k}
+fivu: q1_1 -> <DILU tray>, ... (one entry per LUMU tray)
+gosa: q2_1 -> <DILU tray>, ..., q2_k -> <DILU tray>
+KUJI = {q3_1, ..., q3_k}
+tonu: q2_1 -> <KUJI tray>, ... (one entry per DILU tray)
+zafa: q3_1 -> <KUJI tray>, ..., q3_k -> <KUJI tray>
+libo: q3_1 -> <JAGU tray>, ... (one entry per KUJI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

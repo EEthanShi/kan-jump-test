@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SALU, RUDU, GIRO. Books move SALU -> RUDU -> GIRO.
+There are 3 moving steps:
+- "moku" carries each SALU tray to a RUDU tray.
+- "mila" is an internal rearrangement of RUDU: it carries each RUDU tray to a RUDU tray.
+- "mosi" carries each RUDU tray to a GIRO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "moku" and then "mila" lands on the same tray as running "moku" alone.
+     ("mila" leaves every tray that "moku" produces unchanged.)
+R1.2 Running "mila" and then "mosi" gives the same result as running "mosi" alone.
+     ("mosi" cannot tell whether "mila" was applied first.)
+R1.3 Running "mila" twice in a row leaves every RUDU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SALU has exactly one tray, called n1.
+- GIRO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (RUDU):
+D1.1 RUDU must be a finite set with at most 3 trays.
+D1.2 "mila" must NOT be the do-nothing move (it must move at least one RUDU tray).
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RUDU = {q1_1, ..., q1_k}
+moku: n1 -> <RUDU tray>
+mila: q1_1 -> <RUDU tray>, ..., q1_k -> <RUDU tray>
+mosi: q1_1 -> <GIRO tray>, ... (one entry per RUDU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

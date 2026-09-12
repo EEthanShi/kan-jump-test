@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZOBO, RIFU, GUPO, MISU, NAFO. Books move ZOBO -> RIFU -> GUPO -> MISU -> NAFO.
+There are 7 moving steps:
+- "kupu" carries each ZOBO tray to a RIFU tray.
+- "gibi" is an internal rearrangement of RIFU: it carries each RIFU tray to a RIFU tray.
+- "baja" carries each RIFU tray to a GUPO tray.
+- "doto" is an internal rearrangement of GUPO: it carries each GUPO tray to a GUPO tray.
+- "baso" carries each GUPO tray to a MISU tray.
+- "daga" is an internal rearrangement of MISU: it carries each MISU tray to a MISU tray.
+- "bijo" carries each MISU tray to a NAFO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kupu" and then "gibi" lands on the same tray as running "kupu" alone.
+     ("gibi" leaves every tray that "kupu" produces unchanged.)
+R1.2 Running "gibi" and then "baja" gives the same result as running "baja" alone.
+     ("baja" cannot tell whether "gibi" was applied first.)
+R1.3 Running "gibi" twice in a row leaves every RIFU tray exactly where it started.
+R2.1 Running "baja" and then "doto" lands on the same tray as running "baja" alone.
+     ("doto" leaves every tray that "baja" produces unchanged.)
+R2.2 Running "doto" and then "baso" gives the same result as running "baso" alone.
+     ("baso" cannot tell whether "doto" was applied first.)
+R2.3 Running "doto" three times in a row leaves every GUPO tray exactly where it started.
+R3.1 Running "baso" and then "daga" lands on the same tray as running "baso" alone.
+     ("daga" leaves every tray that "baso" produces unchanged.)
+R3.2 Running "daga" and then "bijo" gives the same result as running "bijo" alone.
+     ("bijo" cannot tell whether "daga" was applied first.)
+R3.3 Running "daga" twice in a row leaves every MISU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZOBO has exactly one tray, called n1.
+- NAFO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RIFU, GUPO, MISU):
+D1.1 RIFU must be a finite set with at most 1 tray.
+D1.2 List the "gibi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 GUPO must be a finite set with at most 1 tray.
+D2.2 List the "doto" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 MISU must be a finite set with at most 1 tray.
+D3.2 List the "daga" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RIFU = {q1_1, ..., q1_k}
+kupu: n1 -> <RIFU tray>
+gibi: q1_1 -> <RIFU tray>, ..., q1_k -> <RIFU tray>
+GUPO = {q2_1, ..., q2_k}
+baja: q1_1 -> <GUPO tray>, ... (one entry per RIFU tray)
+doto: q2_1 -> <GUPO tray>, ..., q2_k -> <GUPO tray>
+MISU = {q3_1, ..., q3_k}
+baso: q2_1 -> <MISU tray>, ... (one entry per GUPO tray)
+daga: q3_1 -> <MISU tray>, ..., q3_k -> <MISU tray>
+bijo: q3_1 -> <NAFO tray>, ... (one entry per MISU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

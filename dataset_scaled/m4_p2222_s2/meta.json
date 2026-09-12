@@ -1,0 +1,112 @@
+{
+  "m": 4,
+  "ps": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "N": 4,
+  "certification_mode": "theorem",
+  "category_ok": true,
+  "c0_full_ok": true,
+  "f0_ok": true,
+  "ext_count": 383520931,
+  "lan_sizes": {
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1
+  },
+  "ran_sizes": {
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1
+  },
+  "lan_eq_ran": true,
+  "kan_trivial": true,
+  "lan_in_ext": true,
+  "ran_in_ext": true,
+  "adm_count": 81,
+  "chance": 2.1120098918408186e-07,
+  "adm_count_formula": 81,
+  "adm_count_matches_formula": true,
+  "J1": true,
+  "kan_violations": {
+    "Lan*": [
+      "K1_1",
+      "K1_2",
+      "K1_3",
+      "K1_4"
+    ],
+    "Ran*": [
+      "K1_1",
+      "K1_2",
+      "K1_3",
+      "K1_4"
+    ]
+  },
+  "J2_each_kan_violates": true,
+  "J2": true,
+  "J3": true,
+  "J4": true,
+  "J4_strong": true,
+  "adm_structure_ok": true,
+  "bound_entailed": true,
+  "non_pinning": {
+    "K1_1": {
+      "alive": 160273299,
+      "fraction": 0.41789974430365573
+    },
+    "K2_1": {
+      "alive": 57245371,
+      "fraction": 0.14926270347419449
+    },
+    "K1_2": {
+      "alive": 51586809,
+      "fraction": 0.13450845789691723
+    },
+    "K2_2": {
+      "alive": 35498643,
+      "fraction": 0.09255985822583436
+    },
+    "K1_3": {
+      "alive": 46381773,
+      "fraction": 0.120936744910019
+    },
+    "K2_3": {
+      "alive": 37624627,
+      "fraction": 0.0981031906182977
+    },
+    "K1_4": {
+      "alive": 94261407,
+      "fraction": 0.24577904197880662
+    },
+    "K2_4": {
+      "alive": 88605579,
+      "fraction": 0.23103192508676926
+    }
+  },
+  "non_pinning_floor": 0.1,
+  "non_pinning_ok": false,
+  "certified": true,
+  "control": {
+    "m": 4,
+    "ps": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "N": 4,
+    "certification_mode": "theorem",
+    "adm_count": 1,
+    "J1": true,
+    "adm_equals_lan_component": true,
+    "lan_eq_ran": true,
+    "J3": true,
+    "J4_strong": true,
+    "certified": true
+  }
+}

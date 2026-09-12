@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: FIPA, BIBO, BIJU, LORA, KABO. Toys move FIPA -> BIBO -> BIJU -> LORA -> KABO.
+There are 7 moving steps:
+- "vuji" carries each FIPA slot to a BIBO slot.
+- "zali" is an internal reshuffle of BIBO: it carries each BIBO slot to a BIBO slot.
+- "zava" carries each BIBO slot to a BIJU slot.
+- "ribu" is an internal reshuffle of BIJU: it carries each BIJU slot to a BIJU slot.
+- "zogi" carries each BIJU slot to a LORA slot.
+- "fozu" is an internal reshuffle of LORA: it carries each LORA slot to a LORA slot.
+- "lifi" carries each LORA slot to a KABO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vuji" and then "zali" lands on the same slot as running "vuji" alone.
+     ("zali" leaves every slot that "vuji" produces unchanged.)
+R1.2 Running "zali" and then "zava" gives the same result as running "zava" alone.
+     ("zava" cannot tell whether "zali" was applied first.)
+R1.3 Running "zali" three times in a row leaves every BIBO slot exactly where it started.
+R2.1 Running "zava" and then "ribu" lands on the same slot as running "zava" alone.
+     ("ribu" leaves every slot that "zava" produces unchanged.)
+R2.2 Running "ribu" and then "zogi" gives the same result as running "zogi" alone.
+     ("zogi" cannot tell whether "ribu" was applied first.)
+R2.3 Running "ribu" twice in a row leaves every BIJU slot exactly where it started.
+R3.1 Running "zogi" and then "fozu" lands on the same slot as running "zogi" alone.
+     ("fozu" leaves every slot that "zogi" produces unchanged.)
+R3.2 Running "fozu" and then "lifi" gives the same result as running "lifi" alone.
+     ("lifi" cannot tell whether "fozu" was applied first.)
+R3.3 Running "fozu" twice in a row leaves every LORA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FIPA has exactly one slot, called n1.
+- KABO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BIBO, BIJU, LORA):
+D1.1 BIBO must be a finite set with at most 4 slots.
+D1.2 "zali" must NOT be the do-nothing move (it must move at least one BIBO slot).
+D2.1 BIJU must be a finite set with at most 3 slots.
+D2.2 "ribu" must NOT be the do-nothing move (it must move at least one BIJU slot).
+D3.1 LORA must be a finite set with at most 3 slots.
+D3.2 "fozu" must NOT be the do-nothing move (it must move at least one LORA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BIBO = {q1_1, ..., q1_k}
+vuji: n1 -> <BIBO slot>
+zali: q1_1 -> <BIBO slot>, ..., q1_k -> <BIBO slot>
+BIJU = {q2_1, ..., q2_k}
+zava: q1_1 -> <BIJU slot>, ... (one entry per BIBO slot)
+ribu: q2_1 -> <BIJU slot>, ..., q2_k -> <BIJU slot>
+LORA = {q3_1, ..., q3_k}
+zogi: q2_1 -> <LORA slot>, ... (one entry per BIJU slot)
+fozu: q3_1 -> <LORA slot>, ..., q3_k -> <LORA slot>
+lifi: q3_1 -> <KABO slot>, ... (one entry per LORA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

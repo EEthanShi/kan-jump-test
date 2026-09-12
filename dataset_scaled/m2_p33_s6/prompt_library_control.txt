@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: SUPA, ZOJI, SIZA, BOKI. Books move SUPA -> ZOJI -> SIZA -> BOKI.
+There are 5 moving steps:
+- "puni" carries each SUPA tray to a ZOJI tray.
+- "rilu" is an internal rearrangement of ZOJI: it carries each ZOJI tray to a ZOJI tray.
+- "suli" carries each ZOJI tray to a SIZA tray.
+- "tiro" is an internal rearrangement of SIZA: it carries each SIZA tray to a SIZA tray.
+- "pana" carries each SIZA tray to a BOKI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "puni" and then "rilu" lands on the same tray as running "puni" alone.
+     ("rilu" leaves every tray that "puni" produces unchanged.)
+R1.2 Running "rilu" and then "suli" gives the same result as running "suli" alone.
+     ("suli" cannot tell whether "rilu" was applied first.)
+R1.3 Running "rilu" three times in a row leaves every ZOJI tray exactly where it started.
+R2.1 Running "suli" and then "tiro" lands on the same tray as running "suli" alone.
+     ("tiro" leaves every tray that "suli" produces unchanged.)
+R2.2 Running "tiro" and then "pana" gives the same result as running "pana" alone.
+     ("pana" cannot tell whether "tiro" was applied first.)
+R2.3 Running "tiro" three times in a row leaves every SIZA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUPA has exactly one tray, called n1.
+- BOKI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZOJI, SIZA):
+D1.1 ZOJI must be a finite set with at most 1 tray.
+D1.2 List the "rilu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 SIZA must be a finite set with at most 1 tray.
+D2.2 List the "tiro" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZOJI = {q1_1, ..., q1_k}
+puni: n1 -> <ZOJI tray>
+rilu: q1_1 -> <ZOJI tray>, ..., q1_k -> <ZOJI tray>
+SIZA = {q2_1, ..., q2_k}
+suli: q1_1 -> <SIZA tray>, ... (one entry per ZOJI tray)
+tiro: q2_1 -> <SIZA tray>, ..., q2_k -> <SIZA tray>
+pana: q2_1 -> <BOKI tray>, ... (one entry per SIZA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

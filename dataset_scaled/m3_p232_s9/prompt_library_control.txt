@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KULU, DALI, NUDI, JALI, GATU. Books move KULU -> DALI -> NUDI -> JALI -> GATU.
+There are 7 moving steps:
+- "miba" carries each KULU tray to a DALI tray.
+- "tiso" is an internal rearrangement of DALI: it carries each DALI tray to a DALI tray.
+- "nija" carries each DALI tray to a NUDI tray.
+- "pono" is an internal rearrangement of NUDI: it carries each NUDI tray to a NUDI tray.
+- "filu" carries each NUDI tray to a JALI tray.
+- "lifo" is an internal rearrangement of JALI: it carries each JALI tray to a JALI tray.
+- "kazi" carries each JALI tray to a GATU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "miba" and then "tiso" lands on the same tray as running "miba" alone.
+     ("tiso" leaves every tray that "miba" produces unchanged.)
+R1.2 Running "tiso" and then "nija" gives the same result as running "nija" alone.
+     ("nija" cannot tell whether "tiso" was applied first.)
+R1.3 Running "tiso" twice in a row leaves every DALI tray exactly where it started.
+R2.1 Running "nija" and then "pono" lands on the same tray as running "nija" alone.
+     ("pono" leaves every tray that "nija" produces unchanged.)
+R2.2 Running "pono" and then "filu" gives the same result as running "filu" alone.
+     ("filu" cannot tell whether "pono" was applied first.)
+R2.3 Running "pono" three times in a row leaves every NUDI tray exactly where it started.
+R3.1 Running "filu" and then "lifo" lands on the same tray as running "filu" alone.
+     ("lifo" leaves every tray that "filu" produces unchanged.)
+R3.2 Running "lifo" and then "kazi" gives the same result as running "kazi" alone.
+     ("kazi" cannot tell whether "lifo" was applied first.)
+R3.3 Running "lifo" twice in a row leaves every JALI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KULU has exactly one tray, called n1.
+- GATU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DALI, NUDI, JALI):
+D1.1 DALI must be a finite set with at most 1 tray.
+D1.2 List the "tiso" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 NUDI must be a finite set with at most 1 tray.
+D2.2 List the "pono" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 JALI must be a finite set with at most 1 tray.
+D3.2 List the "lifo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DALI = {q1_1, ..., q1_k}
+miba: n1 -> <DALI tray>
+tiso: q1_1 -> <DALI tray>, ..., q1_k -> <DALI tray>
+NUDI = {q2_1, ..., q2_k}
+nija: q1_1 -> <NUDI tray>, ... (one entry per DALI tray)
+pono: q2_1 -> <NUDI tray>, ..., q2_k -> <NUDI tray>
+JALI = {q3_1, ..., q3_k}
+filu: q2_1 -> <JALI tray>, ... (one entry per NUDI tray)
+lifo: q3_1 -> <JALI tray>, ..., q3_k -> <JALI tray>
+kazi: q3_1 -> <GATU tray>, ... (one entry per JALI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: BUNI, GODA, RIDU. Books move BUNI -> GODA -> RIDU.
+There are 3 moving steps:
+- "jazu" carries each BUNI tray to a GODA tray.
+- "kibi" is an internal rearrangement of GODA: it carries each GODA tray to a GODA tray.
+- "gimo" carries each GODA tray to a RIDU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "jazu" and then "kibi" lands on the same tray as running "jazu" alone.
+     ("kibi" leaves every tray that "jazu" produces unchanged.)
+R1.2 Running "kibi" and then "gimo" gives the same result as running "gimo" alone.
+     ("gimo" cannot tell whether "kibi" was applied first.)
+R1.3 Running "kibi" twice in a row leaves every GODA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUNI has exactly 3 trays, called n1, n2, n3.
+- RIDU has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (GODA):
+D1.1 GODA must be a finite set with at most 3 trays.
+D1.2 List the "kibi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 "jazu" must carry different BUNI trays to different GODA trays.
+D1.4 List the "gimo" table entries in GODA tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+GODA = {q1_1, ..., q1_k}
+jazu: n1 -> <GODA tray>, n2 -> <GODA tray>, n3 -> <GODA tray>
+kibi: q1_1 -> <GODA tray>, ..., q1_k -> <GODA tray>
+gimo: q1_1 -> <RIDU tray>, ... (one entry per GODA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

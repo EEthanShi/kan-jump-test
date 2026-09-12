@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: RUSU, FUTI, SIFU, DAVA. Books move RUSU -> FUTI -> SIFU -> DAVA.
+There are 5 moving steps:
+- "foda" carries each RUSU tray to a FUTI tray.
+- "vamu" is an internal rearrangement of FUTI: it carries each FUTI tray to a FUTI tray.
+- "fila" carries each FUTI tray to a SIFU tray.
+- "nama" is an internal rearrangement of SIFU: it carries each SIFU tray to a SIFU tray.
+- "daja" carries each SIFU tray to a DAVA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "foda" and then "vamu" lands on the same tray as running "foda" alone.
+     ("vamu" leaves every tray that "foda" produces unchanged.)
+R1.2 Running "vamu" and then "fila" gives the same result as running "fila" alone.
+     ("fila" cannot tell whether "vamu" was applied first.)
+R1.3 Running "vamu" three times in a row leaves every FUTI tray exactly where it started.
+R2.1 Running "fila" and then "nama" lands on the same tray as running "fila" alone.
+     ("nama" leaves every tray that "fila" produces unchanged.)
+R2.2 Running "nama" and then "daja" gives the same result as running "daja" alone.
+     ("daja" cannot tell whether "nama" was applied first.)
+R2.3 Running "nama" three times in a row leaves every SIFU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RUSU has exactly one tray, called n1.
+- DAVA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FUTI, SIFU):
+D1.1 FUTI must be a finite set with at most 1 tray.
+D1.2 List the "vamu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 SIFU must be a finite set with at most 1 tray.
+D2.2 List the "nama" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FUTI = {q1_1, ..., q1_k}
+foda: n1 -> <FUTI tray>
+vamu: q1_1 -> <FUTI tray>, ..., q1_k -> <FUTI tray>
+SIFU = {q2_1, ..., q2_k}
+fila: q1_1 -> <SIFU tray>, ... (one entry per FUTI tray)
+nama: q2_1 -> <SIFU tray>, ..., q2_k -> <SIFU tray>
+daja: q2_1 -> <DAVA tray>, ... (one entry per SIFU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

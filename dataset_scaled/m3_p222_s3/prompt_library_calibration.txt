@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: TOBI, TOSI, JOPU, VUNI, RUVI. Books move TOBI -> TOSI -> JOPU -> VUNI -> RUVI.
+There are 7 moving steps:
+- "jutu" carries each TOBI tray to a TOSI tray.
+- "zopo" is an internal rearrangement of TOSI: it carries each TOSI tray to a TOSI tray.
+- "noba" carries each TOSI tray to a JOPU tray.
+- "zufu" is an internal rearrangement of JOPU: it carries each JOPU tray to a JOPU tray.
+- "puva" carries each JOPU tray to a VUNI tray.
+- "jidu" is an internal rearrangement of VUNI: it carries each VUNI tray to a VUNI tray.
+- "rora" carries each VUNI tray to a RUVI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "jutu" and then "zopo" lands on the same tray as running "jutu" alone.
+     ("zopo" leaves every tray that "jutu" produces unchanged.)
+R1.2 Running "zopo" and then "noba" gives the same result as running "noba" alone.
+     ("noba" cannot tell whether "zopo" was applied first.)
+R1.3 Running "zopo" twice in a row leaves every TOSI tray exactly where it started.
+R2.1 Running "noba" and then "zufu" lands on the same tray as running "noba" alone.
+     ("zufu" leaves every tray that "noba" produces unchanged.)
+R2.2 Running "zufu" and then "puva" gives the same result as running "puva" alone.
+     ("puva" cannot tell whether "zufu" was applied first.)
+R2.3 Running "zufu" twice in a row leaves every JOPU tray exactly where it started.
+R3.1 Running "puva" and then "jidu" lands on the same tray as running "puva" alone.
+     ("jidu" leaves every tray that "puva" produces unchanged.)
+R3.2 Running "jidu" and then "rora" gives the same result as running "rora" alone.
+     ("rora" cannot tell whether "jidu" was applied first.)
+R3.3 Running "jidu" twice in a row leaves every VUNI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TOBI has exactly one tray, called n1.
+- RUVI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TOSI, JOPU, VUNI):
+D1.1 List the trays of TOSI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zopo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of JOPU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zufu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of VUNI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "jidu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TOSI = {q1_1, ..., q1_k}
+jutu: n1 -> <TOSI tray>
+zopo: q1_1 -> <TOSI tray>, ..., q1_k -> <TOSI tray>
+JOPU = {q2_1, ..., q2_k}
+noba: q1_1 -> <JOPU tray>, ... (one entry per TOSI tray)
+zufu: q2_1 -> <JOPU tray>, ..., q2_k -> <JOPU tray>
+VUNI = {q3_1, ..., q3_k}
+puva: q2_1 -> <VUNI tray>, ... (one entry per JOPU tray)
+jidu: q3_1 -> <VUNI tray>, ..., q3_k -> <VUNI tray>
+rora: q3_1 -> <RUVI tray>, ... (one entry per VUNI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

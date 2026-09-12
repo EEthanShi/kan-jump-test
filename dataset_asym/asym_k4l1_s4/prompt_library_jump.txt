@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: BUVI, LIDA, GIMI. Books move BUVI -> LIDA -> GIMI.
+There are 3 moving steps:
+- "minu" carries each BUVI tray to a LIDA tray.
+- "vosi" is an internal rearrangement of LIDA: it carries each LIDA tray to a LIDA tray.
+- "vuko" carries each LIDA tray to a GIMI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "minu" and then "vosi" lands on the same tray as running "minu" alone.
+     ("vosi" leaves every tray that "minu" produces unchanged.)
+R1.2 Running "vosi" and then "vuko" gives the same result as running "vuko" alone.
+     ("vuko" cannot tell whether "vosi" was applied first.)
+R1.3 Running "vosi" twice in a row leaves every LIDA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUVI has exactly 4 trays, called n1, n2, n3, n4.
+- GIMI has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1, n4 to s1.
+
+Requirements for the middle cart (LIDA):
+D1.1 LIDA must be a finite set with at most 6 trays.
+D1.2 "vosi" must NOT be the do-nothing move (it must move at least one LIDA tray).
+D1.3 "minu" must carry different BUVI trays to different LIDA trays.
+D1.4 Every GIMI tray must be reached by "vuko" from at least one LIDA tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 6 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+LIDA = {q1_1, ..., q1_k}
+minu: n1 -> <LIDA tray>, n2 -> <LIDA tray>, n3 -> <LIDA tray>, n4 -> <LIDA tray>
+vosi: q1_1 -> <LIDA tray>, ..., q1_k -> <LIDA tray>
+vuko: q1_1 -> <GIMI tray>, ... (one entry per LIDA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

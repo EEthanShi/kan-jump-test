@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: GARA, LAGI, GIVO, BISA. Books move GARA -> LAGI -> GIVO -> BISA.
+There are 5 moving steps:
+- "vufi" carries each GARA tray to a LAGI tray.
+- "zuro" is an internal rearrangement of LAGI: it carries each LAGI tray to a LAGI tray.
+- "dasi" carries each LAGI tray to a GIVO tray.
+- "fota" is an internal rearrangement of GIVO: it carries each GIVO tray to a GIVO tray.
+- "biko" carries each GIVO tray to a BISA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vufi" and then "zuro" lands on the same tray as running "vufi" alone.
+     ("zuro" leaves every tray that "vufi" produces unchanged.)
+R1.2 Running "zuro" and then "dasi" gives the same result as running "dasi" alone.
+     ("dasi" cannot tell whether "zuro" was applied first.)
+R1.3 Running "zuro" three times in a row leaves every LAGI tray exactly where it started.
+R2.1 Running "dasi" and then "fota" lands on the same tray as running "dasi" alone.
+     ("fota" leaves every tray that "dasi" produces unchanged.)
+R2.2 Running "fota" and then "biko" gives the same result as running "biko" alone.
+     ("biko" cannot tell whether "fota" was applied first.)
+R2.3 Running "fota" twice in a row leaves every GIVO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GARA has exactly one tray, called n1.
+- BISA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LAGI, GIVO):
+D1.1 LAGI must be a finite set with at most 1 tray.
+D1.2 List the "zuro" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 GIVO must be a finite set with at most 1 tray.
+D2.2 List the "fota" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LAGI = {q1_1, ..., q1_k}
+vufi: n1 -> <LAGI tray>
+zuro: q1_1 -> <LAGI tray>, ..., q1_k -> <LAGI tray>
+GIVO = {q2_1, ..., q2_k}
+dasi: q1_1 -> <GIVO tray>, ... (one entry per LAGI tray)
+fota: q2_1 -> <GIVO tray>, ..., q2_k -> <GIVO tray>
+biko: q2_1 -> <BISA tray>, ... (one entry per GIVO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

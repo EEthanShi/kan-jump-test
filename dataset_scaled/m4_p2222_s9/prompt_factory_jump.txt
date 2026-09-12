@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: VUTU, KUPO, GAPA, VUGU, BODI, FUDO. Toys move VUTU -> KUPO -> GAPA -> VUGU -> BODI -> FUDO.
+There are 9 moving steps:
+- "vola" carries each VUTU slot to a KUPO slot.
+- "doba" is an internal reshuffle of KUPO: it carries each KUPO slot to a KUPO slot.
+- "vata" carries each KUPO slot to a GAPA slot.
+- "nuvo" is an internal reshuffle of GAPA: it carries each GAPA slot to a GAPA slot.
+- "kafo" carries each GAPA slot to a VUGU slot.
+- "sosa" is an internal reshuffle of VUGU: it carries each VUGU slot to a VUGU slot.
+- "noza" carries each VUGU slot to a BODI slot.
+- "pura" is an internal reshuffle of BODI: it carries each BODI slot to a BODI slot.
+- "tugo" carries each BODI slot to a FUDO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vola" and then "doba" lands on the same slot as running "vola" alone.
+     ("doba" leaves every slot that "vola" produces unchanged.)
+R1.2 Running "doba" and then "vata" gives the same result as running "vata" alone.
+     ("vata" cannot tell whether "doba" was applied first.)
+R1.3 Running "doba" twice in a row leaves every KUPO slot exactly where it started.
+R2.1 Running "vata" and then "nuvo" lands on the same slot as running "vata" alone.
+     ("nuvo" leaves every slot that "vata" produces unchanged.)
+R2.2 Running "nuvo" and then "kafo" gives the same result as running "kafo" alone.
+     ("kafo" cannot tell whether "nuvo" was applied first.)
+R2.3 Running "nuvo" twice in a row leaves every GAPA slot exactly where it started.
+R3.1 Running "kafo" and then "sosa" lands on the same slot as running "kafo" alone.
+     ("sosa" leaves every slot that "kafo" produces unchanged.)
+R3.2 Running "sosa" and then "noza" gives the same result as running "noza" alone.
+     ("noza" cannot tell whether "sosa" was applied first.)
+R3.3 Running "sosa" twice in a row leaves every VUGU slot exactly where it started.
+R4.1 Running "noza" and then "pura" lands on the same slot as running "noza" alone.
+     ("pura" leaves every slot that "noza" produces unchanged.)
+R4.2 Running "pura" and then "tugo" gives the same result as running "tugo" alone.
+     ("tugo" cannot tell whether "pura" was applied first.)
+R4.3 Running "pura" twice in a row leaves every BODI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUTU has exactly one slot, called n1.
+- FUDO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KUPO, GAPA, VUGU, BODI):
+D1.1 KUPO must be a finite set with at most 3 slots.
+D1.2 "doba" must NOT be the do-nothing move (it must move at least one KUPO slot).
+D2.1 GAPA must be a finite set with at most 3 slots.
+D2.2 "nuvo" must NOT be the do-nothing move (it must move at least one GAPA slot).
+D3.1 VUGU must be a finite set with at most 3 slots.
+D3.2 "sosa" must NOT be the do-nothing move (it must move at least one VUGU slot).
+D4.1 BODI must be a finite set with at most 3 slots.
+D4.2 "pura" must NOT be the do-nothing move (it must move at least one BODI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KUPO = {q1_1, ..., q1_k}
+vola: n1 -> <KUPO slot>
+doba: q1_1 -> <KUPO slot>, ..., q1_k -> <KUPO slot>
+GAPA = {q2_1, ..., q2_k}
+vata: q1_1 -> <GAPA slot>, ... (one entry per KUPO slot)
+nuvo: q2_1 -> <GAPA slot>, ..., q2_k -> <GAPA slot>
+VUGU = {q3_1, ..., q3_k}
+kafo: q2_1 -> <VUGU slot>, ... (one entry per GAPA slot)
+sosa: q3_1 -> <VUGU slot>, ..., q3_k -> <VUGU slot>
+BODI = {q4_1, ..., q4_k}
+noza: q3_1 -> <BODI slot>, ... (one entry per VUGU slot)
+pura: q4_1 -> <BODI slot>, ..., q4_k -> <BODI slot>
+tugo: q4_1 -> <FUDO slot>, ... (one entry per BODI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

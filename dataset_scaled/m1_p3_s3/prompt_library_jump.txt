@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SUVI, NALA, JISU. Books move SUVI -> NALA -> JISU.
+There are 3 moving steps:
+- "mumu" carries each SUVI tray to a NALA tray.
+- "gugo" is an internal rearrangement of NALA: it carries each NALA tray to a NALA tray.
+- "bumi" carries each NALA tray to a JISU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mumu" and then "gugo" lands on the same tray as running "mumu" alone.
+     ("gugo" leaves every tray that "mumu" produces unchanged.)
+R1.2 Running "gugo" and then "bumi" gives the same result as running "bumi" alone.
+     ("bumi" cannot tell whether "gugo" was applied first.)
+R1.3 Running "gugo" three times in a row leaves every NALA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUVI has exactly one tray, called n1.
+- JISU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (NALA):
+D1.1 NALA must be a finite set with at most 4 trays.
+D1.2 "gugo" must NOT be the do-nothing move (it must move at least one NALA tray).
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NALA = {q1_1, ..., q1_k}
+mumu: n1 -> <NALA tray>
+gugo: q1_1 -> <NALA tray>, ..., q1_k -> <NALA tray>
+bumi: q1_1 -> <JISU tray>, ... (one entry per NALA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

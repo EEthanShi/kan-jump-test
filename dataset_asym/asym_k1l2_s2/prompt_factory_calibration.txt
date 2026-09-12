@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: SUVU, JUDU, BUNU. Toys move SUVU -> JUDU -> BUNU.
+There are 3 moving steps:
+- "koro" carries each SUVU slot to a JUDU slot.
+- "nimi" is an internal reshuffle of JUDU: it carries each JUDU slot to a JUDU slot.
+- "sura" carries each JUDU slot to a BUNU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "koro" and then "nimi" lands on the same slot as running "koro" alone.
+     ("nimi" leaves every slot that "koro" produces unchanged.)
+R1.2 Running "nimi" and then "sura" gives the same result as running "sura" alone.
+     ("sura" cannot tell whether "nimi" was applied first.)
+R1.3 Running "nimi" twice in a row leaves every JUDU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUVU has exactly 1 slot, called n1.
+- BUNU has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (JUDU):
+D1.1 List the slots of JUDU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "nimi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "koro" table entries in SUVU slot order n1.
+D1.4 List the "sura" table entries in JUDU slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 3 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+JUDU = {q1_1, ..., q1_k}
+koro: n1 -> <JUDU slot>
+nimi: q1_1 -> <JUDU slot>, ..., q1_k -> <JUDU slot>
+sura: q1_1 -> <BUNU slot>, ... (one entry per JUDU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

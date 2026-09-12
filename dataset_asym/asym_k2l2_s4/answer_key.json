@@ -1,0 +1,97 @@
+{
+ "family": "asym",
+ "k": 2,
+ "l": 2,
+ "N": 4,
+ "lan_size_b": 2,
+ "ran_size_b": 2,
+ "ext_count": 189,
+ "adm_count": 12,
+ "chance": 0.06349206349206349,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 2,
+    "N": 4,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym2x2_s4",
+     "stations": [
+      "GUGA",
+      "VASI",
+      "JINO"
+     ],
+     "chain_moves": [
+      "bufa",
+      "muju"
+     ],
+     "endo_moves": [
+      "tibo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 2,
+     "l": 2
+    }
+   },
+   "lan_answer": "VASI = {q1_1, q1_2}\nbufa: n1 -> q1_1, n2 -> q1_2\ntibo: q1_1 -> q1_1, q1_2 -> q1_2\nmuju: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "VASI = {q1_1, q1_2}\nbufa: n1 -> q1_1, n2 -> q1_1\ntibo: q1_1 -> q1_1, q1_2 -> q1_2\nmuju: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "VASI = {q1_1, q1_2, q1_3, q1_4}\nbufa: n1 -> q1_1, n2 -> q1_2\ntibo: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\nmuju: q1_1 -> s1, q1_2 -> s1, q1_3 -> s2, q1_4 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 2,
+    "N": 4,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym2x2_s4",
+     "stations": [
+      "FOBI",
+      "PUBA",
+      "PORU"
+     ],
+     "chain_moves": [
+      "zari",
+      "gubo"
+     ],
+     "endo_moves": [
+      "rofo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 2,
+     "l": 2
+    }
+   },
+   "lan_answer": "PUBA = {q1_1, q1_2}\nzari: n1 -> q1_1, n2 -> q1_2\nrofo: q1_1 -> q1_1, q1_2 -> q1_2\ngubo: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "PUBA = {q1_1, q1_2}\nzari: n1 -> q1_1, n2 -> q1_1\nrofo: q1_1 -> q1_1, q1_2 -> q1_2\ngubo: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "PUBA = {q1_1, q1_2, q1_3, q1_4}\nzari: n1 -> q1_1, n2 -> q1_2\nrofo: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\ngubo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s2, q1_4 -> s2"
+  }
+ }
+}

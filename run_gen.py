@@ -12,6 +12,7 @@ Reads the key from the OPENROUTER_API_KEY environment variable (or ./.env). Resu
 
 import argparse
 import json
+import re
 import os
 import pathlib
 import time
@@ -26,7 +27,16 @@ SMOKE_MODELS = ["deepseek/deepseek-v4-pro-0813", "google/gemini-3.1-pro-preview"
 SMOKE_INSTANCES = ["m1_p3", "m2_p22"]
 
 
+API_BASE = os.environ.get("KJ_API_BASE", "https://openrouter.ai/api/v1")
+LOCAL = "localhost" in API_BASE or "127.0.0.1" in API_BASE
+CALL_SLEEP = float(os.environ.get("KJ_CALL_SLEEP", "0" if LOCAL else "1.0"))
+WANT_LOGPROBS = os.environ.get("KJ_LOGPROBS", "0") == "1"
+MAX_TOKENS = int(os.environ.get("KJ_MAX_TOKENS", "12000"))
+
+
 def load_key():
+    if LOCAL:
+        return os.environ.get("KJ_API_KEY", "EMPTY")
     key = os.environ.get("OPENROUTER_API_KEY")
     if key:
         return key
@@ -38,23 +48,49 @@ def load_key():
     raise SystemExit("set OPENROUTER_API_KEY (env var or .env file)")
 
 
+def extract_final(answer):
+    """Take the design block that goes with the FINAL DESIGN line. Models write the block after
+    the words, and some write it before them, so read the last segment holding a table and fall
+    back to the whole answer. The grader reads the last table of each move, so leading prose or
+    an abandoned draft inside the segment is harmless."""
+    if "FINAL DESIGN" not in answer:
+        return answer
+    parts = [p.lstrip(":* \n").rstrip() for p in answer.split("FINAL DESIGN")]
+    tabled = [p for p in parts if "->" in p and "{" in p]
+    return tabled[-1] if tabled else answer
+
+
+NO_EXPLAIN = ("Every rule and requirement above must hold exactly for your tables. Do not\n"
+              "explain; output only the lines in the format above.")
+COT_CLOSE = ("Every rule and requirement above must hold exactly for your tables. You may\n"
+             "reason first and check each rule against your tables. Then write a line that\n"
+             "says exactly FINAL DESIGN and, after it, only the lines in the format above.")
+
+
 def ask(key, model, prompt, temperature):
     payload = {"model": model,
                "messages": [{"role": "user", "content": prompt}],
-               "temperature": temperature, "max_tokens": 12000}
+               "temperature": temperature, "max_tokens": MAX_TOKENS}
+    if WANT_LOGPROBS:
+        payload["logprobs"] = True
+        payload["top_logprobs"] = 5
     data = json.dumps(payload).encode()
     req = urllib.request.Request(
-        "https://openrouter.ai/api/v1/chat/completions", data=data,
+        API_BASE.rstrip("/") + "/chat/completions", data=data,
         headers={"Authorization": f"Bearer {key}",
                  "Content-Type": "application/json"})
     last = None
     for attempt in range(4):
         try:
-            with urllib.request.urlopen(req, timeout=180) as r:
+            with urllib.request.urlopen(req, timeout=1800 if LOCAL else 180) as r:
                 out = json.loads(r.read())
             ch = out["choices"][0]
+            lp = None
+            if WANT_LOGPROBS and ch.get("logprobs") and ch["logprobs"].get("content"):
+                toks = ch["logprobs"]["content"]
+                lp = {"sum_logprob": sum(x["logprob"] for x in toks), "n_tokens": len(toks)}
             return (ch["message"].get("content") or "",
-                    ch.get("finish_reason"), ch.get("native_finish_reason"))
+                    ch.get("finish_reason"), ch.get("native_finish_reason"), lp)
         except urllib.error.HTTPError as e:
             last = e
             if e.code in (429, 500, 502, 503):
@@ -74,6 +110,10 @@ def main():
     ap.add_argument("--n-cal", type=int, default=2)
     ap.add_argument("--n-ctrl", type=int, default=1)
     ap.add_argument("--results", default="results_gen.jsonl")
+    ap.add_argument("--dataset-dir", default="dataset")
+    ap.add_argument("--family", default="chain", choices=["chain", "asym"])
+    ap.add_argument("--cot", action="store_true",
+                    help="permit reasoning before the answer block; the block follows a FINAL DESIGN line")
     ap.add_argument("--report", action="store_true")
     args = ap.parse_args()
 
@@ -97,12 +137,19 @@ def main():
             done.add((r["instance"], r["rendering"], r["model"],
                       r["variant"], r["sample"]))
 
+    if args.family == "asym":
+        import grade_asym
+        grader = grade_asym.classify
+        arms = (("jump", args.n_jump), ("calibration", args.n_cal),
+                ("control_ran", args.n_ctrl), ("control_lan", args.n_ctrl))
+    else:
+        grader = grade_gen.classify
+        arms = (("jump", args.n_jump), ("calibration", args.n_cal),
+                ("control", args.n_ctrl))
     plan = []
     for iid in instances:
         for model in models:
-            for variant, n in (("jump", args.n_jump),
-                               ("calibration", args.n_cal),
-                               ("control", args.n_ctrl)):
+            for variant, n in arms:
                 for i in range(n):
                     t = 0.0 if i == 0 else 0.7
                     plan.append((iid, model, variant, i, t))
@@ -112,26 +159,40 @@ def main():
         for iid, model, variant, i, t in plan:
             if (iid, args.rendering, model, variant, i) in done:
                 continue
-            idir = HERE / "dataset" / iid
+            idir = HERE / args.dataset_dir / iid
             prompt = (idir / f"prompt_{args.rendering}_{variant}.txt").read_text()
+            if args.cot:
+                assert NO_EXPLAIN in prompt, f"closing instruction not found in {iid} {variant}"
+                prompt = prompt.replace(NO_EXPLAIN, COT_CLOSE)
             gm = json.loads((idir / "answer_key.json").read_text())[
                 "renderings"][args.rendering]["grade_meta"]
             try:
-                answer, fin, nfin = ask(key, model, prompt, t)
+                answer, fin, nfin, lp = ask(key, model, prompt, t)
             except Exception as e:
                 print(f"[error] {iid}/{model}/{variant}#{i}: {e}")
                 time.sleep(5)
                 continue
-            cls = grade_gen.classify(gm, answer)
-            rec = {"instance": iid, "rendering": args.rendering,
+            answer_raw = answer
+            if "</think>" in answer:      # local reasoning models return the
+                answer = answer.split("</think>")[-1].strip()   # thinking inline
+            if args.cot:
+                answer = extract_final(answer)
+            cls = grader(gm, answer)
+            if fin not in (None, "stop"):
+                cls = "INVALID"          # truncated: never a jump and never a default
+            rec = {"instance": iid, "rendering": args.rendering, "cot": bool(args.cot), "max_tokens": MAX_TOKENS,
                    "model": model, "variant": variant, "sample": i,
                    "temperature": t, "finish": fin, "native_finish": nfin,
                    "answer": answer, "class": cls}
+            if answer_raw != answer:
+                rec["answer_raw"] = answer_raw
+            if lp is not None:
+                rec["logprobs"] = lp
             f.write(json.dumps(rec) + "\n")
             f.flush()
             print(f"{iid:8s} {model.split('/')[1][:22]:22s} "
                   f"{variant:11s} #{i} -> {cls}")
-            time.sleep(1.0)
+            time.sleep(CALL_SLEEP)
 
 
 def report(results_path):

@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: MIPA, SUPA, GAVI, TAMA. Toys move MIPA -> SUPA -> GAVI -> TAMA.
+There are 5 moving steps:
+- "bodo" carries each MIPA slot to a SUPA slot.
+- "sopi" is an internal reshuffle of SUPA: it carries each SUPA slot to a SUPA slot.
+- "tonu" carries each SUPA slot to a GAVI slot.
+- "vula" is an internal reshuffle of GAVI: it carries each GAVI slot to a GAVI slot.
+- "guvi" carries each GAVI slot to a TAMA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "bodo" and then "sopi" lands on the same slot as running "bodo" alone.
+     ("sopi" leaves every slot that "bodo" produces unchanged.)
+R1.2 Running "sopi" and then "tonu" gives the same result as running "tonu" alone.
+     ("tonu" cannot tell whether "sopi" was applied first.)
+R1.3 Running "sopi" three times in a row leaves every SUPA slot exactly where it started.
+R2.1 Running "tonu" and then "vula" lands on the same slot as running "tonu" alone.
+     ("vula" leaves every slot that "tonu" produces unchanged.)
+R2.2 Running "vula" and then "guvi" gives the same result as running "guvi" alone.
+     ("guvi" cannot tell whether "vula" was applied first.)
+R2.3 Running "vula" twice in a row leaves every GAVI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MIPA has exactly one slot, called n1.
+- TAMA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SUPA, GAVI):
+D1.1 List the slots of SUPA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "sopi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of GAVI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "vula" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SUPA = {q1_1, ..., q1_k}
+bodo: n1 -> <SUPA slot>
+sopi: q1_1 -> <SUPA slot>, ..., q1_k -> <SUPA slot>
+GAVI = {q2_1, ..., q2_k}
+tonu: q1_1 -> <GAVI slot>, ... (one entry per SUPA slot)
+vula: q2_1 -> <GAVI slot>, ..., q2_k -> <GAVI slot>
+guvi: q2_1 -> <TAMA slot>, ... (one entry per GAVI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

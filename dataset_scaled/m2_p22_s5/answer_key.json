@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s5",
+          "stations": [
+            "DULO",
+            "POFO",
+            "LAFU",
+            "FIBU"
+          ],
+          "chain_moves": [
+            "loma",
+            "zivu",
+            "jona"
+          ],
+          "endo_moves": [
+            "bagu",
+            "fuvi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "POFO = {q1_1, q1_2, q1_3}\nloma: n1 -> q1_1\nbagu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nLAFU = {q2_1, q2_2, q2_3}\nzivu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nfuvi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\njona: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "POFO = {q1_1}\nloma: n1 -> q1_1\nbagu: q1_1 -> q1_1\nLAFU = {q2_1}\nzivu: q1_1 -> q2_1\nfuvi: q2_1 -> q2_1\njona: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s5",
+          "stations": [
+            "GIPU",
+            "SURI",
+            "NIDI",
+            "KILU"
+          ],
+          "chain_moves": [
+            "sasu",
+            "novo",
+            "vubi"
+          ],
+          "endo_moves": [
+            "lora",
+            "pimu"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SURI = {q1_1, q1_2, q1_3}\nsasu: n1 -> q1_1\nlora: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nNIDI = {q2_1, q2_2, q2_3}\nnovo: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\npimu: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nvubi: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "SURI = {q1_1}\nsasu: n1 -> q1_1\nlora: q1_1 -> q1_1\nNIDI = {q2_1}\nnovo: q1_1 -> q2_1\npimu: q2_1 -> q2_1\nvubi: q2_1 -> s1"
+    }
+  }
+}

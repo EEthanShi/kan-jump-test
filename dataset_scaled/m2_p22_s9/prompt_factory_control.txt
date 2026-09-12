@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: KUBA, RANI, MIVA, DAFU. Toys move KUBA -> RANI -> MIVA -> DAFU.
+There are 5 moving steps:
+- "dizi" carries each KUBA slot to a RANI slot.
+- "zaka" is an internal reshuffle of RANI: it carries each RANI slot to a RANI slot.
+- "lulo" carries each RANI slot to a MIVA slot.
+- "jigo" is an internal reshuffle of MIVA: it carries each MIVA slot to a MIVA slot.
+- "juji" carries each MIVA slot to a DAFU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "dizi" and then "zaka" lands on the same slot as running "dizi" alone.
+     ("zaka" leaves every slot that "dizi" produces unchanged.)
+R1.2 Running "zaka" and then "lulo" gives the same result as running "lulo" alone.
+     ("lulo" cannot tell whether "zaka" was applied first.)
+R1.3 Running "zaka" twice in a row leaves every RANI slot exactly where it started.
+R2.1 Running "lulo" and then "jigo" lands on the same slot as running "lulo" alone.
+     ("jigo" leaves every slot that "lulo" produces unchanged.)
+R2.2 Running "jigo" and then "juji" gives the same result as running "juji" alone.
+     ("juji" cannot tell whether "jigo" was applied first.)
+R2.3 Running "jigo" twice in a row leaves every MIVA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KUBA has exactly one slot, called n1.
+- DAFU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (RANI, MIVA):
+D1.1 RANI must be a finite set with at most 1 slot.
+D1.2 List the "zaka" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 MIVA must be a finite set with at most 1 slot.
+D2.2 List the "jigo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+RANI = {q1_1, ..., q1_k}
+dizi: n1 -> <RANI slot>
+zaka: q1_1 -> <RANI slot>, ..., q1_k -> <RANI slot>
+MIVA = {q2_1, ..., q2_k}
+lulo: q1_1 -> <MIVA slot>, ... (one entry per RANI slot)
+jigo: q2_1 -> <MIVA slot>, ..., q2_k -> <MIVA slot>
+juji: q2_1 -> <DAFU slot>, ... (one entry per MIVA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

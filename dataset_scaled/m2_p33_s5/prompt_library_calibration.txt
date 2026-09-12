@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: ZALU, FUFA, JIDU, GUPA. Books move ZALU -> FUFA -> JIDU -> GUPA.
+There are 5 moving steps:
+- "loto" carries each ZALU tray to a FUFA tray.
+- "mumu" is an internal rearrangement of FUFA: it carries each FUFA tray to a FUFA tray.
+- "muda" carries each FUFA tray to a JIDU tray.
+- "boli" is an internal rearrangement of JIDU: it carries each JIDU tray to a JIDU tray.
+- "duku" carries each JIDU tray to a GUPA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "loto" and then "mumu" lands on the same tray as running "loto" alone.
+     ("mumu" leaves every tray that "loto" produces unchanged.)
+R1.2 Running "mumu" and then "muda" gives the same result as running "muda" alone.
+     ("muda" cannot tell whether "mumu" was applied first.)
+R1.3 Running "mumu" three times in a row leaves every FUFA tray exactly where it started.
+R2.1 Running "muda" and then "boli" lands on the same tray as running "muda" alone.
+     ("boli" leaves every tray that "muda" produces unchanged.)
+R2.2 Running "boli" and then "duku" gives the same result as running "duku" alone.
+     ("duku" cannot tell whether "boli" was applied first.)
+R2.3 Running "boli" three times in a row leaves every JIDU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZALU has exactly one tray, called n1.
+- GUPA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FUFA, JIDU):
+D1.1 List the trays of FUFA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "mumu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of JIDU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "boli" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FUFA = {q1_1, ..., q1_k}
+loto: n1 -> <FUFA tray>
+mumu: q1_1 -> <FUFA tray>, ..., q1_k -> <FUFA tray>
+JIDU = {q2_1, ..., q2_k}
+muda: q1_1 -> <JIDU tray>, ... (one entry per FUFA tray)
+boli: q2_1 -> <JIDU tray>, ..., q2_k -> <JIDU tray>
+duku: q2_1 -> <GUPA tray>, ... (one entry per JIDU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

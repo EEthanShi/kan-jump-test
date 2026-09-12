@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: GUTA, TALI, BIVA. Books move GUTA -> TALI -> BIVA.
+There are 3 moving steps:
+- "rasi" carries each GUTA tray to a TALI tray.
+- "ziju" is an internal rearrangement of TALI: it carries each TALI tray to a TALI tray.
+- "gosu" carries each TALI tray to a BIVA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "rasi" and then "ziju" lands on the same tray as running "rasi" alone.
+     ("ziju" leaves every tray that "rasi" produces unchanged.)
+R1.2 Running "ziju" and then "gosu" gives the same result as running "gosu" alone.
+     ("gosu" cannot tell whether "ziju" was applied first.)
+R1.3 Running "ziju" three times in a row leaves every TALI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GUTA has exactly one tray, called n1.
+- BIVA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (TALI):
+D1.1 List the trays of TALI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "ziju" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TALI = {q1_1, ..., q1_k}
+rasi: n1 -> <TALI tray>
+ziju: q1_1 -> <TALI tray>, ..., q1_k -> <TALI tray>
+gosu: q1_1 -> <BIVA tray>, ... (one entry per TALI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 1,
+ "l": 2,
+ "N": 3,
+ "lan_size_b": 1,
+ "ran_size_b": 2,
+ "ext_count": 23,
+ "adm_count": 3,
+ "chance": 0.13043478260869565,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym1x2_s5",
+     "stations": [
+      "RORO",
+      "TUZO",
+      "JOVU"
+     ],
+     "chain_moves": [
+      "gobi",
+      "buli"
+     ],
+     "endo_moves": [
+      "rato"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "TUZO = {q1_1}\ngobi: n1 -> q1_1\nrato: q1_1 -> q1_1\nbuli: q1_1 -> s1",
+   "ran_answer": "TUZO = {q1_1, q1_2}\ngobi: n1 -> q1_1\nrato: q1_1 -> q1_1, q1_2 -> q1_2\nbuli: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "TUZO = {q1_1, q1_2, q1_3}\ngobi: n1 -> q1_1\nrato: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nbuli: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym1x2_s5",
+     "stations": [
+      "RAPO",
+      "LUBU",
+      "ZUVA"
+     ],
+     "chain_moves": [
+      "latu",
+      "faga"
+     ],
+     "endo_moves": [
+      "lumi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "LUBU = {q1_1}\nlatu: n1 -> q1_1\nlumi: q1_1 -> q1_1\nfaga: q1_1 -> s1",
+   "ran_answer": "LUBU = {q1_1, q1_2}\nlatu: n1 -> q1_1\nlumi: q1_1 -> q1_1, q1_2 -> q1_2\nfaga: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "LUBU = {q1_1, q1_2, q1_3}\nlatu: n1 -> q1_1\nlumi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nfaga: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  }
+ }
+}

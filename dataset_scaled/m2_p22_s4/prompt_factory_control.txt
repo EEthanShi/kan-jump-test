@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: GATU, GONU, FAVA, LOGI. Toys move GATU -> GONU -> FAVA -> LOGI.
+There are 5 moving steps:
+- "sazu" carries each GATU slot to a GONU slot.
+- "fupo" is an internal reshuffle of GONU: it carries each GONU slot to a GONU slot.
+- "boki" carries each GONU slot to a FAVA slot.
+- "duga" is an internal reshuffle of FAVA: it carries each FAVA slot to a FAVA slot.
+- "dilu" carries each FAVA slot to a LOGI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "sazu" and then "fupo" lands on the same slot as running "sazu" alone.
+     ("fupo" leaves every slot that "sazu" produces unchanged.)
+R1.2 Running "fupo" and then "boki" gives the same result as running "boki" alone.
+     ("boki" cannot tell whether "fupo" was applied first.)
+R1.3 Running "fupo" twice in a row leaves every GONU slot exactly where it started.
+R2.1 Running "boki" and then "duga" lands on the same slot as running "boki" alone.
+     ("duga" leaves every slot that "boki" produces unchanged.)
+R2.2 Running "duga" and then "dilu" gives the same result as running "dilu" alone.
+     ("dilu" cannot tell whether "duga" was applied first.)
+R2.3 Running "duga" twice in a row leaves every FAVA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GATU has exactly one slot, called n1.
+- LOGI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (GONU, FAVA):
+D1.1 GONU must be a finite set with at most 1 slot.
+D1.2 List the "fupo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 FAVA must be a finite set with at most 1 slot.
+D2.2 List the "duga" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GONU = {q1_1, ..., q1_k}
+sazu: n1 -> <GONU slot>
+fupo: q1_1 -> <GONU slot>, ..., q1_k -> <GONU slot>
+FAVA = {q2_1, ..., q2_k}
+boki: q1_1 -> <FAVA slot>, ... (one entry per GONU slot)
+duga: q2_1 -> <FAVA slot>, ..., q2_k -> <FAVA slot>
+dilu: q2_1 -> <LOGI slot>, ... (one entry per FAVA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

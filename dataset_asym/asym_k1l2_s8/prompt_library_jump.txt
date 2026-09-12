@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: BIMO, ZINU, TOLI. Books move BIMO -> ZINU -> TOLI.
+There are 3 moving steps:
+- "zoda" carries each BIMO tray to a ZINU tray.
+- "sudo" is an internal rearrangement of ZINU: it carries each ZINU tray to a ZINU tray.
+- "giba" carries each ZINU tray to a TOLI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zoda" and then "sudo" lands on the same tray as running "zoda" alone.
+     ("sudo" leaves every tray that "zoda" produces unchanged.)
+R1.2 Running "sudo" and then "giba" gives the same result as running "giba" alone.
+     ("giba" cannot tell whether "sudo" was applied first.)
+R1.3 Running "sudo" twice in a row leaves every ZINU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BIMO has exactly 1 tray, called n1.
+- TOLI has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (ZINU):
+D1.1 ZINU must be a finite set with at most 3 trays.
+D1.2 "sudo" must NOT be the do-nothing move (it must move at least one ZINU tray).
+D1.3 "zoda" must carry different BIMO trays to different ZINU trays.
+D1.4 Every TOLI tray must be reached by "giba" from at least one ZINU tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 3 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+ZINU = {q1_1, ..., q1_k}
+zoda: n1 -> <ZINU tray>
+sudo: q1_1 -> <ZINU tray>, ..., q1_k -> <ZINU tray>
+giba: q1_1 -> <TOLI tray>, ... (one entry per ZINU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

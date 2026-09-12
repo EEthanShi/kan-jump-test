@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: FALU, VUNI, ZIRU, VOMI, FOVO. Books move FALU -> VUNI -> ZIRU -> VOMI -> FOVO.
+There are 7 moving steps:
+- "gozu" carries each FALU tray to a VUNI tray.
+- "savi" is an internal rearrangement of VUNI: it carries each VUNI tray to a VUNI tray.
+- "muda" carries each VUNI tray to a ZIRU tray.
+- "mimu" is an internal rearrangement of ZIRU: it carries each ZIRU tray to a ZIRU tray.
+- "rigi" carries each ZIRU tray to a VOMI tray.
+- "ruvo" is an internal rearrangement of VOMI: it carries each VOMI tray to a VOMI tray.
+- "daka" carries each VOMI tray to a FOVO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gozu" and then "savi" lands on the same tray as running "gozu" alone.
+     ("savi" leaves every tray that "gozu" produces unchanged.)
+R1.2 Running "savi" and then "muda" gives the same result as running "muda" alone.
+     ("muda" cannot tell whether "savi" was applied first.)
+R1.3 Running "savi" twice in a row leaves every VUNI tray exactly where it started.
+R2.1 Running "muda" and then "mimu" lands on the same tray as running "muda" alone.
+     ("mimu" leaves every tray that "muda" produces unchanged.)
+R2.2 Running "mimu" and then "rigi" gives the same result as running "rigi" alone.
+     ("rigi" cannot tell whether "mimu" was applied first.)
+R2.3 Running "mimu" three times in a row leaves every ZIRU tray exactly where it started.
+R3.1 Running "rigi" and then "ruvo" lands on the same tray as running "rigi" alone.
+     ("ruvo" leaves every tray that "rigi" produces unchanged.)
+R3.2 Running "ruvo" and then "daka" gives the same result as running "daka" alone.
+     ("daka" cannot tell whether "ruvo" was applied first.)
+R3.3 Running "ruvo" twice in a row leaves every VOMI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FALU has exactly one tray, called n1.
+- FOVO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VUNI, ZIRU, VOMI):
+D1.1 VUNI must be a finite set with at most 1 tray.
+D1.2 List the "savi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 ZIRU must be a finite set with at most 1 tray.
+D2.2 List the "mimu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 VOMI must be a finite set with at most 1 tray.
+D3.2 List the "ruvo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VUNI = {q1_1, ..., q1_k}
+gozu: n1 -> <VUNI tray>
+savi: q1_1 -> <VUNI tray>, ..., q1_k -> <VUNI tray>
+ZIRU = {q2_1, ..., q2_k}
+muda: q1_1 -> <ZIRU tray>, ... (one entry per VUNI tray)
+mimu: q2_1 -> <ZIRU tray>, ..., q2_k -> <ZIRU tray>
+VOMI = {q3_1, ..., q3_k}
+rigi: q2_1 -> <VOMI tray>, ... (one entry per ZIRU tray)
+ruvo: q3_1 -> <VOMI tray>, ..., q3_k -> <VOMI tray>
+daka: q3_1 -> <FOVO tray>, ... (one entry per VOMI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

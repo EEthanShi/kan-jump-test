@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s7",
+          "stations": [
+            "SUNU",
+            "SUDA",
+            "PAMI"
+          ],
+          "chain_moves": [
+            "maso",
+            "dofu"
+          ],
+          "endo_moves": [
+            "sivi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SUDA = {q1_1, q1_2, q1_3}\nmaso: n1 -> q1_1\nsivi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ndofu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "SUDA = {q1_1}\nmaso: n1 -> q1_1\nsivi: q1_1 -> q1_1\ndofu: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s7",
+          "stations": [
+            "NALI",
+            "SANU",
+            "RUGU"
+          ],
+          "chain_moves": [
+            "zudi",
+            "bali"
+          ],
+          "endo_moves": [
+            "zini"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SANU = {q1_1, q1_2, q1_3}\nzudi: n1 -> q1_1\nzini: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nbali: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "SANU = {q1_1}\nzudi: n1 -> q1_1\nzini: q1_1 -> q1_1\nbali: q1_1 -> s1"
+    }
+  }
+}

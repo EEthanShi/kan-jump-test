@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: SOLU, LOGI, DUPO, FALO, NOKO. Books move SOLU -> LOGI -> DUPO -> FALO -> NOKO.
+There are 7 moving steps:
+- "sibi" carries each SOLU tray to a LOGI tray.
+- "topi" is an internal rearrangement of LOGI: it carries each LOGI tray to a LOGI tray.
+- "mumu" carries each LOGI tray to a DUPO tray.
+- "fizi" is an internal rearrangement of DUPO: it carries each DUPO tray to a DUPO tray.
+- "jima" carries each DUPO tray to a FALO tray.
+- "nusi" is an internal rearrangement of FALO: it carries each FALO tray to a FALO tray.
+- "soji" carries each FALO tray to a NOKO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sibi" and then "topi" lands on the same tray as running "sibi" alone.
+     ("topi" leaves every tray that "sibi" produces unchanged.)
+R1.2 Running "topi" and then "mumu" gives the same result as running "mumu" alone.
+     ("mumu" cannot tell whether "topi" was applied first.)
+R1.3 Running "topi" three times in a row leaves every LOGI tray exactly where it started.
+R2.1 Running "mumu" and then "fizi" lands on the same tray as running "mumu" alone.
+     ("fizi" leaves every tray that "mumu" produces unchanged.)
+R2.2 Running "fizi" and then "jima" gives the same result as running "jima" alone.
+     ("jima" cannot tell whether "fizi" was applied first.)
+R2.3 Running "fizi" twice in a row leaves every DUPO tray exactly where it started.
+R3.1 Running "jima" and then "nusi" lands on the same tray as running "jima" alone.
+     ("nusi" leaves every tray that "jima" produces unchanged.)
+R3.2 Running "nusi" and then "soji" gives the same result as running "soji" alone.
+     ("soji" cannot tell whether "nusi" was applied first.)
+R3.3 Running "nusi" three times in a row leaves every FALO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOLU has exactly one tray, called n1.
+- NOKO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LOGI, DUPO, FALO):
+D1.1 LOGI must be a finite set with at most 1 tray.
+D1.2 List the "topi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 DUPO must be a finite set with at most 1 tray.
+D2.2 List the "fizi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 FALO must be a finite set with at most 1 tray.
+D3.2 List the "nusi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LOGI = {q1_1, ..., q1_k}
+sibi: n1 -> <LOGI tray>
+topi: q1_1 -> <LOGI tray>, ..., q1_k -> <LOGI tray>
+DUPO = {q2_1, ..., q2_k}
+mumu: q1_1 -> <DUPO tray>, ... (one entry per LOGI tray)
+fizi: q2_1 -> <DUPO tray>, ..., q2_k -> <DUPO tray>
+FALO = {q3_1, ..., q3_k}
+jima: q2_1 -> <FALO tray>, ... (one entry per DUPO tray)
+nusi: q3_1 -> <FALO tray>, ..., q3_k -> <FALO tray>
+soji: q3_1 -> <NOKO tray>, ... (one entry per FALO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

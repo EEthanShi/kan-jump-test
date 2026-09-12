@@ -1,0 +1,108 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 3,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          3,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s5",
+          "stations": [
+            "FONI",
+            "TOTI",
+            "ROJI",
+            "KATI",
+            "VAKA"
+          ],
+          "chain_moves": [
+            "mumi",
+            "kuno",
+            "roma",
+            "bita"
+          ],
+          "endo_moves": [
+            "jopo",
+            "busa",
+            "dava"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "TOTI = {q1_1, q1_2, q1_3, q1_4}\nmumi: n1 -> q1_1\njopo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nROJI = {q2_1, q2_2, q2_3}\nkuno: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1, q1_4 -> q2_1\nbusa: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nKATI = {q3_1, q3_2, q3_3}\nroma: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\ndava: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\nbita: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1",
+      "kan_answer": "TOTI = {q1_1}\nmumi: n1 -> q1_1\njopo: q1_1 -> q1_1\nROJI = {q2_1}\nkuno: q1_1 -> q2_1\nbusa: q2_1 -> q2_1\nKATI = {q3_1}\nroma: q2_1 -> q3_1\ndava: q3_1 -> q3_1\nbita: q3_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          3,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s5",
+          "stations": [
+            "VANI",
+            "PORA",
+            "FILO",
+            "MADI",
+            "NUSU"
+          ],
+          "chain_moves": [
+            "zifi",
+            "pagi",
+            "momo",
+            "gosu"
+          ],
+          "endo_moves": [
+            "mofu",
+            "vini",
+            "poku"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "PORA = {q1_1, q1_2, q1_3, q1_4}\nzifi: n1 -> q1_1\nmofu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nFILO = {q2_1, q2_2, q2_3}\npagi: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1, q1_4 -> q2_1\nvini: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nMADI = {q3_1, q3_2, q3_3}\nmomo: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\npoku: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\ngosu: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1",
+      "kan_answer": "PORA = {q1_1}\nzifi: n1 -> q1_1\nmofu: q1_1 -> q1_1\nFILO = {q2_1}\npagi: q1_1 -> q2_1\nvini: q2_1 -> q2_1\nMADI = {q3_1}\nmomo: q2_1 -> q3_1\npoku: q3_1 -> q3_1\ngosu: q3_1 -> s1"
+    }
+  }
+}

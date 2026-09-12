@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: KIKA, FITA, FODU, PORI, GIMI, DOLU. Books move KIKA -> FITA -> FODU -> PORI -> GIMI -> DOLU.
+There are 9 moving steps:
+- "zujo" carries each KIKA tray to a FITA tray.
+- "sapa" is an internal rearrangement of FITA: it carries each FITA tray to a FITA tray.
+- "lipo" carries each FITA tray to a FODU tray.
+- "vasu" is an internal rearrangement of FODU: it carries each FODU tray to a FODU tray.
+- "sojo" carries each FODU tray to a PORI tray.
+- "pamo" is an internal rearrangement of PORI: it carries each PORI tray to a PORI tray.
+- "josi" carries each PORI tray to a GIMI tray.
+- "kaga" is an internal rearrangement of GIMI: it carries each GIMI tray to a GIMI tray.
+- "moji" carries each GIMI tray to a DOLU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zujo" and then "sapa" lands on the same tray as running "zujo" alone.
+     ("sapa" leaves every tray that "zujo" produces unchanged.)
+R1.2 Running "sapa" and then "lipo" gives the same result as running "lipo" alone.
+     ("lipo" cannot tell whether "sapa" was applied first.)
+R1.3 Running "sapa" twice in a row leaves every FITA tray exactly where it started.
+R2.1 Running "lipo" and then "vasu" lands on the same tray as running "lipo" alone.
+     ("vasu" leaves every tray that "lipo" produces unchanged.)
+R2.2 Running "vasu" and then "sojo" gives the same result as running "sojo" alone.
+     ("sojo" cannot tell whether "vasu" was applied first.)
+R2.3 Running "vasu" three times in a row leaves every FODU tray exactly where it started.
+R3.1 Running "sojo" and then "pamo" lands on the same tray as running "sojo" alone.
+     ("pamo" leaves every tray that "sojo" produces unchanged.)
+R3.2 Running "pamo" and then "josi" gives the same result as running "josi" alone.
+     ("josi" cannot tell whether "pamo" was applied first.)
+R3.3 Running "pamo" twice in a row leaves every PORI tray exactly where it started.
+R4.1 Running "josi" and then "kaga" lands on the same tray as running "josi" alone.
+     ("kaga" leaves every tray that "josi" produces unchanged.)
+R4.2 Running "kaga" and then "moji" gives the same result as running "moji" alone.
+     ("moji" cannot tell whether "kaga" was applied first.)
+R4.3 Running "kaga" three times in a row leaves every GIMI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KIKA has exactly one tray, called n1.
+- DOLU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FITA, FODU, PORI, GIMI):
+D1.1 List the trays of FITA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "sapa" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of FODU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "vasu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of PORI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "pamo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of GIMI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "kaga" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FITA = {q1_1, ..., q1_k}
+zujo: n1 -> <FITA tray>
+sapa: q1_1 -> <FITA tray>, ..., q1_k -> <FITA tray>
+FODU = {q2_1, ..., q2_k}
+lipo: q1_1 -> <FODU tray>, ... (one entry per FITA tray)
+vasu: q2_1 -> <FODU tray>, ..., q2_k -> <FODU tray>
+PORI = {q3_1, ..., q3_k}
+sojo: q2_1 -> <PORI tray>, ... (one entry per FODU tray)
+pamo: q3_1 -> <PORI tray>, ..., q3_k -> <PORI tray>
+GIMI = {q4_1, ..., q4_k}
+josi: q3_1 -> <GIMI tray>, ... (one entry per PORI tray)
+kaga: q4_1 -> <GIMI tray>, ..., q4_k -> <GIMI tray>
+moji: q4_1 -> <DOLU tray>, ... (one entry per GIMI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

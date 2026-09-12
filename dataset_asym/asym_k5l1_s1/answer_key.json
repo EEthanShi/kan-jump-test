@@ -1,0 +1,101 @@
+{
+ "family": "asym",
+ "k": 5,
+ "l": 1,
+ "N": 7,
+ "lan_size_b": 5,
+ "ran_size_b": 1,
+ "ext_count": 139693,
+ "adm_count": 2520,
+ "chance": 0.018039558173995832,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 5,
+    "l": 1,
+    "N": 7,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym5x1_s1",
+     "stations": [
+      "JIRA",
+      "NIKI",
+      "TONA"
+     ],
+     "chain_moves": [
+      "para",
+      "moba"
+     ],
+     "endo_moves": [
+      "tasa"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4",
+      "n5"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 5,
+     "l": 1
+    }
+   },
+   "lan_answer": "NIKI = {q1_1, q1_2, q1_3, q1_4, q1_5}\npara: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\ntasa: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5\nmoba: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1",
+   "ran_answer": "NIKI = {q1_1}\npara: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1, n5 -> q1_1\ntasa: q1_1 -> q1_1\nmoba: q1_1 -> s1",
+   "example_admissible_answer": "NIKI = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6, q1_7}\npara: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\ntasa: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5, q1_6 -> q1_7, q1_7 -> q1_6\nmoba: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1, q1_7 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 5,
+    "l": 1,
+    "N": 7,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym5x1_s1",
+     "stations": [
+      "FIMI",
+      "MATO",
+      "DATA"
+     ],
+     "chain_moves": [
+      "jamo",
+      "zajo"
+     ],
+     "endo_moves": [
+      "gogu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4",
+      "n5"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 5,
+     "l": 1
+    }
+   },
+   "lan_answer": "MATO = {q1_1, q1_2, q1_3, q1_4, q1_5}\njamo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\ngogu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5\nzajo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1",
+   "ran_answer": "MATO = {q1_1}\njamo: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1, n5 -> q1_1\ngogu: q1_1 -> q1_1\nzajo: q1_1 -> s1",
+   "example_admissible_answer": "MATO = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6, q1_7}\njamo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\ngogu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5, q1_6 -> q1_7, q1_7 -> q1_6\nzajo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1, q1_7 -> s1"
+  }
+ }
+}

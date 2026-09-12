@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: MAKU, KIMA, PUPI, BUPI. Books move MAKU -> KIMA -> PUPI -> BUPI.
+There are 5 moving steps:
+- "sasi" carries each MAKU tray to a KIMA tray.
+- "fada" is an internal rearrangement of KIMA: it carries each KIMA tray to a KIMA tray.
+- "fugi" carries each KIMA tray to a PUPI tray.
+- "palo" is an internal rearrangement of PUPI: it carries each PUPI tray to a PUPI tray.
+- "jufa" carries each PUPI tray to a BUPI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sasi" and then "fada" lands on the same tray as running "sasi" alone.
+     ("fada" leaves every tray that "sasi" produces unchanged.)
+R1.2 Running "fada" and then "fugi" gives the same result as running "fugi" alone.
+     ("fugi" cannot tell whether "fada" was applied first.)
+R1.3 Running "fada" twice in a row leaves every KIMA tray exactly where it started.
+R2.1 Running "fugi" and then "palo" lands on the same tray as running "fugi" alone.
+     ("palo" leaves every tray that "fugi" produces unchanged.)
+R2.2 Running "palo" and then "jufa" gives the same result as running "jufa" alone.
+     ("jufa" cannot tell whether "palo" was applied first.)
+R2.3 Running "palo" three times in a row leaves every PUPI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MAKU has exactly one tray, called n1.
+- BUPI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KIMA, PUPI):
+D1.1 KIMA must be a finite set with at most 3 trays.
+D1.2 "fada" must NOT be the do-nothing move (it must move at least one KIMA tray).
+D2.1 PUPI must be a finite set with at most 4 trays.
+D2.2 "palo" must NOT be the do-nothing move (it must move at least one PUPI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KIMA = {q1_1, ..., q1_k}
+sasi: n1 -> <KIMA tray>
+fada: q1_1 -> <KIMA tray>, ..., q1_k -> <KIMA tray>
+PUPI = {q2_1, ..., q2_k}
+fugi: q1_1 -> <PUPI tray>, ... (one entry per KIMA tray)
+palo: q2_1 -> <PUPI tray>, ..., q2_k -> <PUPI tray>
+jufa: q2_1 -> <BUPI tray>, ... (one entry per PUPI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

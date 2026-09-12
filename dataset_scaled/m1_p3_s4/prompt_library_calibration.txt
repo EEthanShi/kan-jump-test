@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: PILI, LURI, RUDA. Books move PILI -> LURI -> RUDA.
+There are 3 moving steps:
+- "gifi" carries each PILI tray to a LURI tray.
+- "nuva" is an internal rearrangement of LURI: it carries each LURI tray to a LURI tray.
+- "muli" carries each LURI tray to a RUDA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gifi" and then "nuva" lands on the same tray as running "gifi" alone.
+     ("nuva" leaves every tray that "gifi" produces unchanged.)
+R1.2 Running "nuva" and then "muli" gives the same result as running "muli" alone.
+     ("muli" cannot tell whether "nuva" was applied first.)
+R1.3 Running "nuva" three times in a row leaves every LURI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PILI has exactly one tray, called n1.
+- RUDA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (LURI):
+D1.1 List the trays of LURI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "nuva" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LURI = {q1_1, ..., q1_k}
+gifi: n1 -> <LURI tray>
+nuva: q1_1 -> <LURI tray>, ..., q1_k -> <LURI tray>
+muli: q1_1 -> <RUDA tray>, ... (one entry per LURI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

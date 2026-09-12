@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 2,
+ "l": 1,
+ "N": 4,
+ "lan_size_b": 2,
+ "ran_size_b": 1,
+ "ext_count": 57,
+ "adm_count": 12,
+ "chance": 0.21052631578947367,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 1,
+    "N": 4,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym2x1_s5",
+     "stations": [
+      "PUTO",
+      "BUKU",
+      "FOVI"
+     ],
+     "chain_moves": [
+      "malo",
+      "voka"
+     ],
+     "endo_moves": [
+      "ruru"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 2,
+     "l": 1
+    }
+   },
+   "lan_answer": "BUKU = {q1_1, q1_2}\nmalo: n1 -> q1_1, n2 -> q1_2\nruru: q1_1 -> q1_1, q1_2 -> q1_2\nvoka: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "BUKU = {q1_1}\nmalo: n1 -> q1_1, n2 -> q1_1\nruru: q1_1 -> q1_1\nvoka: q1_1 -> s1",
+   "example_admissible_answer": "BUKU = {q1_1, q1_2, q1_3, q1_4}\nmalo: n1 -> q1_1, n2 -> q1_2\nruru: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\nvoka: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 1,
+    "N": 4,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym2x1_s5",
+     "stations": [
+      "NORU",
+      "RARI",
+      "MIGA"
+     ],
+     "chain_moves": [
+      "guki",
+      "dido"
+     ],
+     "endo_moves": [
+      "luzu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 2,
+     "l": 1
+    }
+   },
+   "lan_answer": "RARI = {q1_1, q1_2}\nguki: n1 -> q1_1, n2 -> q1_2\nluzu: q1_1 -> q1_1, q1_2 -> q1_2\ndido: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "RARI = {q1_1}\nguki: n1 -> q1_1, n2 -> q1_1\nluzu: q1_1 -> q1_1\ndido: q1_1 -> s1",
+   "example_admissible_answer": "RARI = {q1_1, q1_2, q1_3, q1_4}\nguki: n1 -> q1_1, n2 -> q1_2\nluzu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\ndido: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1"
+  }
+ }
+}

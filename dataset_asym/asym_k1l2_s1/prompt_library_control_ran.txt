@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: VUSO, ZOJU, PIKU. Books move VUSO -> ZOJU -> PIKU.
+There are 3 moving steps:
+- "fatu" carries each VUSO tray to a ZOJU tray.
+- "dima" is an internal rearrangement of ZOJU: it carries each ZOJU tray to a ZOJU tray.
+- "zoto" carries each ZOJU tray to a PIKU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "fatu" and then "dima" lands on the same tray as running "fatu" alone.
+     ("dima" leaves every tray that "fatu" produces unchanged.)
+R1.2 Running "dima" and then "zoto" gives the same result as running "zoto" alone.
+     ("zoto" cannot tell whether "dima" was applied first.)
+R1.3 Running "dima" twice in a row leaves every ZOJU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUSO has exactly 1 tray, called n1.
+- PIKU has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (ZOJU):
+D1.1 ZOJU must be a finite set with at most 2 trays.
+D1.2 List the "dima" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "fatu" table entries in VUSO tray order n1.
+D1.4 Every PIKU tray must be reached by "zoto" from at least one ZOJU tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 3 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+ZOJU = {q1_1, ..., q1_k}
+fatu: n1 -> <ZOJU tray>
+dima: q1_1 -> <ZOJU tray>, ..., q1_k -> <ZOJU tray>
+zoto: q1_1 -> <PIKU tray>, ... (one entry per ZOJU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: ZUDI, NAGA, NURO. Toys move ZUDI -> NAGA -> NURO.
+There are 3 moving steps:
+- "kimo" carries each ZUDI slot to a NAGA slot.
+- "famo" is an internal reshuffle of NAGA: it carries each NAGA slot to a NAGA slot.
+- "jiki" carries each NAGA slot to a NURO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kimo" and then "famo" lands on the same slot as running "kimo" alone.
+     ("famo" leaves every slot that "kimo" produces unchanged.)
+R1.2 Running "famo" and then "jiki" gives the same result as running "jiki" alone.
+     ("jiki" cannot tell whether "famo" was applied first.)
+R1.3 Running "famo" twice in a row leaves every NAGA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZUDI has exactly 1 slot, called n1.
+- NURO has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (NAGA):
+D1.1 NAGA must be a finite set with at most 1 slot.
+D1.2 List the "famo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 "kimo" must carry different ZUDI slots to different NAGA slots.
+D1.4 List the "jiki" table entries in NAGA slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 3 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+NAGA = {q1_1, ..., q1_k}
+kimo: n1 -> <NAGA slot>
+famo: q1_1 -> <NAGA slot>, ..., q1_k -> <NAGA slot>
+jiki: q1_1 -> <NURO slot>, ... (one entry per NAGA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

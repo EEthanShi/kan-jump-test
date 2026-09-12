@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: BOGI, MIZA, RIZI, DUVO, GOLI, ROBO. Books move BOGI -> MIZA -> RIZI -> DUVO -> GOLI -> ROBO.
+There are 9 moving steps:
+- "jabu" carries each BOGI tray to a MIZA tray.
+- "vaso" is an internal rearrangement of MIZA: it carries each MIZA tray to a MIZA tray.
+- "zoru" carries each MIZA tray to a RIZI tray.
+- "lani" is an internal rearrangement of RIZI: it carries each RIZI tray to a RIZI tray.
+- "tafi" carries each RIZI tray to a DUVO tray.
+- "munu" is an internal rearrangement of DUVO: it carries each DUVO tray to a DUVO tray.
+- "vaju" carries each DUVO tray to a GOLI tray.
+- "kojo" is an internal rearrangement of GOLI: it carries each GOLI tray to a GOLI tray.
+- "paga" carries each GOLI tray to a ROBO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "jabu" and then "vaso" lands on the same tray as running "jabu" alone.
+     ("vaso" leaves every tray that "jabu" produces unchanged.)
+R1.2 Running "vaso" and then "zoru" gives the same result as running "zoru" alone.
+     ("zoru" cannot tell whether "vaso" was applied first.)
+R1.3 Running "vaso" three times in a row leaves every MIZA tray exactly where it started.
+R2.1 Running "zoru" and then "lani" lands on the same tray as running "zoru" alone.
+     ("lani" leaves every tray that "zoru" produces unchanged.)
+R2.2 Running "lani" and then "tafi" gives the same result as running "tafi" alone.
+     ("tafi" cannot tell whether "lani" was applied first.)
+R2.3 Running "lani" three times in a row leaves every RIZI tray exactly where it started.
+R3.1 Running "tafi" and then "munu" lands on the same tray as running "tafi" alone.
+     ("munu" leaves every tray that "tafi" produces unchanged.)
+R3.2 Running "munu" and then "vaju" gives the same result as running "vaju" alone.
+     ("vaju" cannot tell whether "munu" was applied first.)
+R3.3 Running "munu" three times in a row leaves every DUVO tray exactly where it started.
+R4.1 Running "vaju" and then "kojo" lands on the same tray as running "vaju" alone.
+     ("kojo" leaves every tray that "vaju" produces unchanged.)
+R4.2 Running "kojo" and then "paga" gives the same result as running "paga" alone.
+     ("paga" cannot tell whether "kojo" was applied first.)
+R4.3 Running "kojo" three times in a row leaves every GOLI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BOGI has exactly one tray, called n1.
+- ROBO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MIZA, RIZI, DUVO, GOLI):
+D1.1 MIZA must be a finite set with at most 4 trays.
+D1.2 "vaso" must NOT be the do-nothing move (it must move at least one MIZA tray).
+D2.1 RIZI must be a finite set with at most 4 trays.
+D2.2 "lani" must NOT be the do-nothing move (it must move at least one RIZI tray).
+D3.1 DUVO must be a finite set with at most 4 trays.
+D3.2 "munu" must NOT be the do-nothing move (it must move at least one DUVO tray).
+D4.1 GOLI must be a finite set with at most 4 trays.
+D4.2 "kojo" must NOT be the do-nothing move (it must move at least one GOLI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MIZA = {q1_1, ..., q1_k}
+jabu: n1 -> <MIZA tray>
+vaso: q1_1 -> <MIZA tray>, ..., q1_k -> <MIZA tray>
+RIZI = {q2_1, ..., q2_k}
+zoru: q1_1 -> <RIZI tray>, ... (one entry per MIZA tray)
+lani: q2_1 -> <RIZI tray>, ..., q2_k -> <RIZI tray>
+DUVO = {q3_1, ..., q3_k}
+tafi: q2_1 -> <DUVO tray>, ... (one entry per RIZI tray)
+munu: q3_1 -> <DUVO tray>, ..., q3_k -> <DUVO tray>
+GOLI = {q4_1, ..., q4_k}
+vaju: q3_1 -> <GOLI tray>, ... (one entry per DUVO tray)
+kojo: q4_1 -> <GOLI tray>, ..., q4_k -> <GOLI tray>
+paga: q4_1 -> <ROBO tray>, ... (one entry per GOLI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

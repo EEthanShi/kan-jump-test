@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: FODO, GAFA, MINO. Books move FODO -> GAFA -> MINO.
+There are 3 moving steps:
+- "sido" carries each FODO tray to a GAFA tray.
+- "vito" is an internal rearrangement of GAFA: it carries each GAFA tray to a GAFA tray.
+- "guji" carries each GAFA tray to a MINO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sido" and then "vito" lands on the same tray as running "sido" alone.
+     ("vito" leaves every tray that "sido" produces unchanged.)
+R1.2 Running "vito" and then "guji" gives the same result as running "guji" alone.
+     ("guji" cannot tell whether "vito" was applied first.)
+R1.3 Running "vito" twice in a row leaves every GAFA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FODO has exactly 1 tray, called n1.
+- MINO has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (GAFA):
+D1.1 List the trays of GAFA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vito" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "sido" table entries in FODO tray order n1.
+D1.4 List the "guji" table entries in GAFA tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 3 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+GAFA = {q1_1, ..., q1_k}
+sido: n1 -> <GAFA tray>
+vito: q1_1 -> <GAFA tray>, ..., q1_k -> <GAFA tray>
+guji: q1_1 -> <MINO tray>, ... (one entry per GAFA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

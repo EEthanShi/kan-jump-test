@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: GORU, VOJI, ZIPA, LADU, GOBI, JOPO. Books move GORU -> VOJI -> ZIPA -> LADU -> GOBI -> JOPO.
+There are 9 moving steps:
+- "rano" carries each GORU tray to a VOJI tray.
+- "giko" is an internal rearrangement of VOJI: it carries each VOJI tray to a VOJI tray.
+- "povo" carries each VOJI tray to a ZIPA tray.
+- "zoko" is an internal rearrangement of ZIPA: it carries each ZIPA tray to a ZIPA tray.
+- "dofa" carries each ZIPA tray to a LADU tray.
+- "volo" is an internal rearrangement of LADU: it carries each LADU tray to a LADU tray.
+- "dovu" carries each LADU tray to a GOBI tray.
+- "kosa" is an internal rearrangement of GOBI: it carries each GOBI tray to a GOBI tray.
+- "rilo" carries each GOBI tray to a JOPO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "rano" and then "giko" lands on the same tray as running "rano" alone.
+     ("giko" leaves every tray that "rano" produces unchanged.)
+R1.2 Running "giko" and then "povo" gives the same result as running "povo" alone.
+     ("povo" cannot tell whether "giko" was applied first.)
+R1.3 Running "giko" three times in a row leaves every VOJI tray exactly where it started.
+R2.1 Running "povo" and then "zoko" lands on the same tray as running "povo" alone.
+     ("zoko" leaves every tray that "povo" produces unchanged.)
+R2.2 Running "zoko" and then "dofa" gives the same result as running "dofa" alone.
+     ("dofa" cannot tell whether "zoko" was applied first.)
+R2.3 Running "zoko" three times in a row leaves every ZIPA tray exactly where it started.
+R3.1 Running "dofa" and then "volo" lands on the same tray as running "dofa" alone.
+     ("volo" leaves every tray that "dofa" produces unchanged.)
+R3.2 Running "volo" and then "dovu" gives the same result as running "dovu" alone.
+     ("dovu" cannot tell whether "volo" was applied first.)
+R3.3 Running "volo" three times in a row leaves every LADU tray exactly where it started.
+R4.1 Running "dovu" and then "kosa" lands on the same tray as running "dovu" alone.
+     ("kosa" leaves every tray that "dovu" produces unchanged.)
+R4.2 Running "kosa" and then "rilo" gives the same result as running "rilo" alone.
+     ("rilo" cannot tell whether "kosa" was applied first.)
+R4.3 Running "kosa" three times in a row leaves every GOBI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GORU has exactly one tray, called n1.
+- JOPO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VOJI, ZIPA, LADU, GOBI):
+D1.1 VOJI must be a finite set with at most 4 trays.
+D1.2 "giko" must NOT be the do-nothing move (it must move at least one VOJI tray).
+D2.1 ZIPA must be a finite set with at most 4 trays.
+D2.2 "zoko" must NOT be the do-nothing move (it must move at least one ZIPA tray).
+D3.1 LADU must be a finite set with at most 4 trays.
+D3.2 "volo" must NOT be the do-nothing move (it must move at least one LADU tray).
+D4.1 GOBI must be a finite set with at most 4 trays.
+D4.2 "kosa" must NOT be the do-nothing move (it must move at least one GOBI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VOJI = {q1_1, ..., q1_k}
+rano: n1 -> <VOJI tray>
+giko: q1_1 -> <VOJI tray>, ..., q1_k -> <VOJI tray>
+ZIPA = {q2_1, ..., q2_k}
+povo: q1_1 -> <ZIPA tray>, ... (one entry per VOJI tray)
+zoko: q2_1 -> <ZIPA tray>, ..., q2_k -> <ZIPA tray>
+LADU = {q3_1, ..., q3_k}
+dofa: q2_1 -> <LADU tray>, ... (one entry per ZIPA tray)
+volo: q3_1 -> <LADU tray>, ..., q3_k -> <LADU tray>
+GOBI = {q4_1, ..., q4_k}
+dovu: q3_1 -> <GOBI tray>, ... (one entry per LADU tray)
+kosa: q4_1 -> <GOBI tray>, ..., q4_k -> <GOBI tray>
+rilo: q4_1 -> <JOPO tray>, ... (one entry per GOBI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

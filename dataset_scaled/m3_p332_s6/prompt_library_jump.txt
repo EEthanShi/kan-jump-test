@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: FIKU, KADU, GUVO, GUTU, NINI. Books move FIKU -> KADU -> GUVO -> GUTU -> NINI.
+There are 7 moving steps:
+- "difi" carries each FIKU tray to a KADU tray.
+- "gigu" is an internal rearrangement of KADU: it carries each KADU tray to a KADU tray.
+- "bipi" carries each KADU tray to a GUVO tray.
+- "zoru" is an internal rearrangement of GUVO: it carries each GUVO tray to a GUVO tray.
+- "jari" carries each GUVO tray to a GUTU tray.
+- "nuzu" is an internal rearrangement of GUTU: it carries each GUTU tray to a GUTU tray.
+- "tuji" carries each GUTU tray to a NINI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "difi" and then "gigu" lands on the same tray as running "difi" alone.
+     ("gigu" leaves every tray that "difi" produces unchanged.)
+R1.2 Running "gigu" and then "bipi" gives the same result as running "bipi" alone.
+     ("bipi" cannot tell whether "gigu" was applied first.)
+R1.3 Running "gigu" three times in a row leaves every KADU tray exactly where it started.
+R2.1 Running "bipi" and then "zoru" lands on the same tray as running "bipi" alone.
+     ("zoru" leaves every tray that "bipi" produces unchanged.)
+R2.2 Running "zoru" and then "jari" gives the same result as running "jari" alone.
+     ("jari" cannot tell whether "zoru" was applied first.)
+R2.3 Running "zoru" three times in a row leaves every GUVO tray exactly where it started.
+R3.1 Running "jari" and then "nuzu" lands on the same tray as running "jari" alone.
+     ("nuzu" leaves every tray that "jari" produces unchanged.)
+R3.2 Running "nuzu" and then "tuji" gives the same result as running "tuji" alone.
+     ("tuji" cannot tell whether "nuzu" was applied first.)
+R3.3 Running "nuzu" twice in a row leaves every GUTU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FIKU has exactly one tray, called n1.
+- NINI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KADU, GUVO, GUTU):
+D1.1 KADU must be a finite set with at most 4 trays.
+D1.2 "gigu" must NOT be the do-nothing move (it must move at least one KADU tray).
+D2.1 GUVO must be a finite set with at most 4 trays.
+D2.2 "zoru" must NOT be the do-nothing move (it must move at least one GUVO tray).
+D3.1 GUTU must be a finite set with at most 3 trays.
+D3.2 "nuzu" must NOT be the do-nothing move (it must move at least one GUTU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KADU = {q1_1, ..., q1_k}
+difi: n1 -> <KADU tray>
+gigu: q1_1 -> <KADU tray>, ..., q1_k -> <KADU tray>
+GUVO = {q2_1, ..., q2_k}
+bipi: q1_1 -> <GUVO tray>, ... (one entry per KADU tray)
+zoru: q2_1 -> <GUVO tray>, ..., q2_k -> <GUVO tray>
+GUTU = {q3_1, ..., q3_k}
+jari: q2_1 -> <GUTU tray>, ... (one entry per GUVO tray)
+nuzu: q3_1 -> <GUTU tray>, ..., q3_k -> <GUTU tray>
+tuji: q3_1 -> <NINI tray>, ... (one entry per GUTU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

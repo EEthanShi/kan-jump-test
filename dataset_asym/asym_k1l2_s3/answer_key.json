@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 1,
+ "l": 2,
+ "N": 3,
+ "lan_size_b": 1,
+ "ran_size_b": 2,
+ "ext_count": 23,
+ "adm_count": 3,
+ "chance": 0.13043478260869565,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym1x2_s3",
+     "stations": [
+      "NUNU",
+      "DOSA",
+      "NATA"
+     ],
+     "chain_moves": [
+      "roto",
+      "sabi"
+     ],
+     "endo_moves": [
+      "poso"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "DOSA = {q1_1}\nroto: n1 -> q1_1\nposo: q1_1 -> q1_1\nsabi: q1_1 -> s1",
+   "ran_answer": "DOSA = {q1_1, q1_2}\nroto: n1 -> q1_1\nposo: q1_1 -> q1_1, q1_2 -> q1_2\nsabi: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "DOSA = {q1_1, q1_2, q1_3}\nroto: n1 -> q1_1\nposo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nsabi: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym1x2_s3",
+     "stations": [
+      "PAJO",
+      "NORI",
+      "SIZA"
+     ],
+     "chain_moves": [
+      "laju",
+      "dini"
+     ],
+     "endo_moves": [
+      "zifo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "NORI = {q1_1}\nlaju: n1 -> q1_1\nzifo: q1_1 -> q1_1\ndini: q1_1 -> s1",
+   "ran_answer": "NORI = {q1_1, q1_2}\nlaju: n1 -> q1_1\nzifo: q1_1 -> q1_1, q1_2 -> q1_2\ndini: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "NORI = {q1_1, q1_2, q1_3}\nlaju: n1 -> q1_1\nzifo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ndini: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  }
+ }
+}

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: KODA, JOSA, VALO, RILU, NILI, GUPI. Books move KODA -> JOSA -> VALO -> RILU -> NILI -> GUPI.
+There are 9 moving steps:
+- "tano" carries each KODA tray to a JOSA tray.
+- "mara" is an internal rearrangement of JOSA: it carries each JOSA tray to a JOSA tray.
+- "jufa" carries each JOSA tray to a VALO tray.
+- "jazu" is an internal rearrangement of VALO: it carries each VALO tray to a VALO tray.
+- "zopa" carries each VALO tray to a RILU tray.
+- "lavu" is an internal rearrangement of RILU: it carries each RILU tray to a RILU tray.
+- "fodi" carries each RILU tray to a NILI tray.
+- "bapa" is an internal rearrangement of NILI: it carries each NILI tray to a NILI tray.
+- "lasa" carries each NILI tray to a GUPI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tano" and then "mara" lands on the same tray as running "tano" alone.
+     ("mara" leaves every tray that "tano" produces unchanged.)
+R1.2 Running "mara" and then "jufa" gives the same result as running "jufa" alone.
+     ("jufa" cannot tell whether "mara" was applied first.)
+R1.3 Running "mara" twice in a row leaves every JOSA tray exactly where it started.
+R2.1 Running "jufa" and then "jazu" lands on the same tray as running "jufa" alone.
+     ("jazu" leaves every tray that "jufa" produces unchanged.)
+R2.2 Running "jazu" and then "zopa" gives the same result as running "zopa" alone.
+     ("zopa" cannot tell whether "jazu" was applied first.)
+R2.3 Running "jazu" twice in a row leaves every VALO tray exactly where it started.
+R3.1 Running "zopa" and then "lavu" lands on the same tray as running "zopa" alone.
+     ("lavu" leaves every tray that "zopa" produces unchanged.)
+R3.2 Running "lavu" and then "fodi" gives the same result as running "fodi" alone.
+     ("fodi" cannot tell whether "lavu" was applied first.)
+R3.3 Running "lavu" twice in a row leaves every RILU tray exactly where it started.
+R4.1 Running "fodi" and then "bapa" lands on the same tray as running "fodi" alone.
+     ("bapa" leaves every tray that "fodi" produces unchanged.)
+R4.2 Running "bapa" and then "lasa" gives the same result as running "lasa" alone.
+     ("lasa" cannot tell whether "bapa" was applied first.)
+R4.3 Running "bapa" twice in a row leaves every NILI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KODA has exactly one tray, called n1.
+- GUPI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JOSA, VALO, RILU, NILI):
+D1.1 List the trays of JOSA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "mara" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of VALO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "jazu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of RILU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "lavu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of NILI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "bapa" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JOSA = {q1_1, ..., q1_k}
+tano: n1 -> <JOSA tray>
+mara: q1_1 -> <JOSA tray>, ..., q1_k -> <JOSA tray>
+VALO = {q2_1, ..., q2_k}
+jufa: q1_1 -> <VALO tray>, ... (one entry per JOSA tray)
+jazu: q2_1 -> <VALO tray>, ..., q2_k -> <VALO tray>
+RILU = {q3_1, ..., q3_k}
+zopa: q2_1 -> <RILU tray>, ... (one entry per VALO tray)
+lavu: q3_1 -> <RILU tray>, ..., q3_k -> <RILU tray>
+NILI = {q4_1, ..., q4_k}
+fodi: q3_1 -> <NILI tray>, ... (one entry per RILU tray)
+bapa: q4_1 -> <NILI tray>, ..., q4_k -> <NILI tray>
+lasa: q4_1 -> <GUPI tray>, ... (one entry per NILI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

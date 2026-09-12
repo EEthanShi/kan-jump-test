@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZAPU, GAVI, JIPO, DIDA, FAPA. Books move ZAPU -> GAVI -> JIPO -> DIDA -> FAPA.
+There are 7 moving steps:
+- "muno" carries each ZAPU tray to a GAVI tray.
+- "sazo" is an internal rearrangement of GAVI: it carries each GAVI tray to a GAVI tray.
+- "bupa" carries each GAVI tray to a JIPO tray.
+- "tudi" is an internal rearrangement of JIPO: it carries each JIPO tray to a JIPO tray.
+- "kusu" carries each JIPO tray to a DIDA tray.
+- "pizi" is an internal rearrangement of DIDA: it carries each DIDA tray to a DIDA tray.
+- "goki" carries each DIDA tray to a FAPA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "muno" and then "sazo" lands on the same tray as running "muno" alone.
+     ("sazo" leaves every tray that "muno" produces unchanged.)
+R1.2 Running "sazo" and then "bupa" gives the same result as running "bupa" alone.
+     ("bupa" cannot tell whether "sazo" was applied first.)
+R1.3 Running "sazo" twice in a row leaves every GAVI tray exactly where it started.
+R2.1 Running "bupa" and then "tudi" lands on the same tray as running "bupa" alone.
+     ("tudi" leaves every tray that "bupa" produces unchanged.)
+R2.2 Running "tudi" and then "kusu" gives the same result as running "kusu" alone.
+     ("kusu" cannot tell whether "tudi" was applied first.)
+R2.3 Running "tudi" three times in a row leaves every JIPO tray exactly where it started.
+R3.1 Running "kusu" and then "pizi" lands on the same tray as running "kusu" alone.
+     ("pizi" leaves every tray that "kusu" produces unchanged.)
+R3.2 Running "pizi" and then "goki" gives the same result as running "goki" alone.
+     ("goki" cannot tell whether "pizi" was applied first.)
+R3.3 Running "pizi" three times in a row leaves every DIDA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZAPU has exactly one tray, called n1.
+- FAPA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (GAVI, JIPO, DIDA):
+D1.1 GAVI must be a finite set with at most 1 tray.
+D1.2 List the "sazo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 JIPO must be a finite set with at most 1 tray.
+D2.2 List the "tudi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 DIDA must be a finite set with at most 1 tray.
+D3.2 List the "pizi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GAVI = {q1_1, ..., q1_k}
+muno: n1 -> <GAVI tray>
+sazo: q1_1 -> <GAVI tray>, ..., q1_k -> <GAVI tray>
+JIPO = {q2_1, ..., q2_k}
+bupa: q1_1 -> <JIPO tray>, ... (one entry per GAVI tray)
+tudi: q2_1 -> <JIPO tray>, ..., q2_k -> <JIPO tray>
+DIDA = {q3_1, ..., q3_k}
+kusu: q2_1 -> <DIDA tray>, ... (one entry per JIPO tray)
+pizi: q3_1 -> <DIDA tray>, ..., q3_k -> <DIDA tray>
+goki: q3_1 -> <FAPA tray>, ... (one entry per DIDA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

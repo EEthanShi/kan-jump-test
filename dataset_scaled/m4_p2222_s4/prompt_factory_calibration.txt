@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: LIJO, KAKI, PISI, MOSI, JUFU, PAGO. Toys move LIJO -> KAKI -> PISI -> MOSI -> JUFU -> PAGO.
+There are 9 moving steps:
+- "losa" carries each LIJO slot to a KAKI slot.
+- "koza" is an internal reshuffle of KAKI: it carries each KAKI slot to a KAKI slot.
+- "koso" carries each KAKI slot to a PISI slot.
+- "banu" is an internal reshuffle of PISI: it carries each PISI slot to a PISI slot.
+- "sudu" carries each PISI slot to a MOSI slot.
+- "zona" is an internal reshuffle of MOSI: it carries each MOSI slot to a MOSI slot.
+- "sutu" carries each MOSI slot to a JUFU slot.
+- "jibu" is an internal reshuffle of JUFU: it carries each JUFU slot to a JUFU slot.
+- "kato" carries each JUFU slot to a PAGO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "losa" and then "koza" lands on the same slot as running "losa" alone.
+     ("koza" leaves every slot that "losa" produces unchanged.)
+R1.2 Running "koza" and then "koso" gives the same result as running "koso" alone.
+     ("koso" cannot tell whether "koza" was applied first.)
+R1.3 Running "koza" twice in a row leaves every KAKI slot exactly where it started.
+R2.1 Running "koso" and then "banu" lands on the same slot as running "koso" alone.
+     ("banu" leaves every slot that "koso" produces unchanged.)
+R2.2 Running "banu" and then "sudu" gives the same result as running "sudu" alone.
+     ("sudu" cannot tell whether "banu" was applied first.)
+R2.3 Running "banu" twice in a row leaves every PISI slot exactly where it started.
+R3.1 Running "sudu" and then "zona" lands on the same slot as running "sudu" alone.
+     ("zona" leaves every slot that "sudu" produces unchanged.)
+R3.2 Running "zona" and then "sutu" gives the same result as running "sutu" alone.
+     ("sutu" cannot tell whether "zona" was applied first.)
+R3.3 Running "zona" twice in a row leaves every MOSI slot exactly where it started.
+R4.1 Running "sutu" and then "jibu" lands on the same slot as running "sutu" alone.
+     ("jibu" leaves every slot that "sutu" produces unchanged.)
+R4.2 Running "jibu" and then "kato" gives the same result as running "kato" alone.
+     ("kato" cannot tell whether "jibu" was applied first.)
+R4.3 Running "jibu" twice in a row leaves every JUFU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LIJO has exactly one slot, called n1.
+- PAGO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KAKI, PISI, MOSI, JUFU):
+D1.1 List the slots of KAKI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "koza" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of PISI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "banu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of MOSI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "zona" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of JUFU in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "jibu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KAKI = {q1_1, ..., q1_k}
+losa: n1 -> <KAKI slot>
+koza: q1_1 -> <KAKI slot>, ..., q1_k -> <KAKI slot>
+PISI = {q2_1, ..., q2_k}
+koso: q1_1 -> <PISI slot>, ... (one entry per KAKI slot)
+banu: q2_1 -> <PISI slot>, ..., q2_k -> <PISI slot>
+MOSI = {q3_1, ..., q3_k}
+sudu: q2_1 -> <MOSI slot>, ... (one entry per PISI slot)
+zona: q3_1 -> <MOSI slot>, ..., q3_k -> <MOSI slot>
+JUFU = {q4_1, ..., q4_k}
+sutu: q3_1 -> <JUFU slot>, ... (one entry per MOSI slot)
+jibu: q4_1 -> <JUFU slot>, ..., q4_k -> <JUFU slot>
+kato: q4_1 -> <PAGO slot>, ... (one entry per JUFU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

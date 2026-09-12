@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KAMA, DOLO, JIRO, ROBU, TOJU. Books move KAMA -> DOLO -> JIRO -> ROBU -> TOJU.
+There are 7 moving steps:
+- "nufa" carries each KAMA tray to a DOLO tray.
+- "gulo" is an internal rearrangement of DOLO: it carries each DOLO tray to a DOLO tray.
+- "fomo" carries each DOLO tray to a JIRO tray.
+- "tipi" is an internal rearrangement of JIRO: it carries each JIRO tray to a JIRO tray.
+- "lubi" carries each JIRO tray to a ROBU tray.
+- "jija" is an internal rearrangement of ROBU: it carries each ROBU tray to a ROBU tray.
+- "batu" carries each ROBU tray to a TOJU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nufa" and then "gulo" lands on the same tray as running "nufa" alone.
+     ("gulo" leaves every tray that "nufa" produces unchanged.)
+R1.2 Running "gulo" and then "fomo" gives the same result as running "fomo" alone.
+     ("fomo" cannot tell whether "gulo" was applied first.)
+R1.3 Running "gulo" twice in a row leaves every DOLO tray exactly where it started.
+R2.1 Running "fomo" and then "tipi" lands on the same tray as running "fomo" alone.
+     ("tipi" leaves every tray that "fomo" produces unchanged.)
+R2.2 Running "tipi" and then "lubi" gives the same result as running "lubi" alone.
+     ("lubi" cannot tell whether "tipi" was applied first.)
+R2.3 Running "tipi" twice in a row leaves every JIRO tray exactly where it started.
+R3.1 Running "lubi" and then "jija" lands on the same tray as running "lubi" alone.
+     ("jija" leaves every tray that "lubi" produces unchanged.)
+R3.2 Running "jija" and then "batu" gives the same result as running "batu" alone.
+     ("batu" cannot tell whether "jija" was applied first.)
+R3.3 Running "jija" twice in a row leaves every ROBU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KAMA has exactly one tray, called n1.
+- TOJU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DOLO, JIRO, ROBU):
+D1.1 DOLO must be a finite set with at most 3 trays.
+D1.2 "gulo" must NOT be the do-nothing move (it must move at least one DOLO tray).
+D2.1 JIRO must be a finite set with at most 3 trays.
+D2.2 "tipi" must NOT be the do-nothing move (it must move at least one JIRO tray).
+D3.1 ROBU must be a finite set with at most 3 trays.
+D3.2 "jija" must NOT be the do-nothing move (it must move at least one ROBU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DOLO = {q1_1, ..., q1_k}
+nufa: n1 -> <DOLO tray>
+gulo: q1_1 -> <DOLO tray>, ..., q1_k -> <DOLO tray>
+JIRO = {q2_1, ..., q2_k}
+fomo: q1_1 -> <JIRO tray>, ... (one entry per DOLO tray)
+tipi: q2_1 -> <JIRO tray>, ..., q2_k -> <JIRO tray>
+ROBU = {q3_1, ..., q3_k}
+lubi: q2_1 -> <ROBU tray>, ... (one entry per JIRO tray)
+jija: q3_1 -> <ROBU tray>, ..., q3_k -> <ROBU tray>
+batu: q3_1 -> <TOJU tray>, ... (one entry per ROBU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

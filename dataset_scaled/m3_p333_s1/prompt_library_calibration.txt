@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: TOMI, TOZO, VAKI, GITI, BUJI. Books move TOMI -> TOZO -> VAKI -> GITI -> BUJI.
+There are 7 moving steps:
+- "soka" carries each TOMI tray to a TOZO tray.
+- "vojo" is an internal rearrangement of TOZO: it carries each TOZO tray to a TOZO tray.
+- "sazo" carries each TOZO tray to a VAKI tray.
+- "todu" is an internal rearrangement of VAKI: it carries each VAKI tray to a VAKI tray.
+- "vajo" carries each VAKI tray to a GITI tray.
+- "mibi" is an internal rearrangement of GITI: it carries each GITI tray to a GITI tray.
+- "puba" carries each GITI tray to a BUJI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "soka" and then "vojo" lands on the same tray as running "soka" alone.
+     ("vojo" leaves every tray that "soka" produces unchanged.)
+R1.2 Running "vojo" and then "sazo" gives the same result as running "sazo" alone.
+     ("sazo" cannot tell whether "vojo" was applied first.)
+R1.3 Running "vojo" three times in a row leaves every TOZO tray exactly where it started.
+R2.1 Running "sazo" and then "todu" lands on the same tray as running "sazo" alone.
+     ("todu" leaves every tray that "sazo" produces unchanged.)
+R2.2 Running "todu" and then "vajo" gives the same result as running "vajo" alone.
+     ("vajo" cannot tell whether "todu" was applied first.)
+R2.3 Running "todu" three times in a row leaves every VAKI tray exactly where it started.
+R3.1 Running "vajo" and then "mibi" lands on the same tray as running "vajo" alone.
+     ("mibi" leaves every tray that "vajo" produces unchanged.)
+R3.2 Running "mibi" and then "puba" gives the same result as running "puba" alone.
+     ("puba" cannot tell whether "mibi" was applied first.)
+R3.3 Running "mibi" three times in a row leaves every GITI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TOMI has exactly one tray, called n1.
+- BUJI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TOZO, VAKI, GITI):
+D1.1 List the trays of TOZO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vojo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of VAKI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "todu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of GITI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "mibi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TOZO = {q1_1, ..., q1_k}
+soka: n1 -> <TOZO tray>
+vojo: q1_1 -> <TOZO tray>, ..., q1_k -> <TOZO tray>
+VAKI = {q2_1, ..., q2_k}
+sazo: q1_1 -> <VAKI tray>, ... (one entry per TOZO tray)
+todu: q2_1 -> <VAKI tray>, ..., q2_k -> <VAKI tray>
+GITI = {q3_1, ..., q3_k}
+vajo: q2_1 -> <GITI tray>, ... (one entry per VAKI tray)
+mibi: q3_1 -> <GITI tray>, ..., q3_k -> <GITI tray>
+puba: q3_1 -> <BUJI tray>, ... (one entry per GITI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

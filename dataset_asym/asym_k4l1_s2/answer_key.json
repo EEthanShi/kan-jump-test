@@ -1,0 +1,99 @@
+{
+ "family": "asym",
+ "k": 4,
+ "l": 1,
+ "N": 6,
+ "lan_size_b": 4,
+ "ran_size_b": 1,
+ "ext_count": 7759,
+ "adm_count": 360,
+ "chance": 0.046397731666451864,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 4,
+    "l": 1,
+    "N": 6,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym4x1_s2",
+     "stations": [
+      "NALA",
+      "ZARU",
+      "GAJO"
+     ],
+     "chain_moves": [
+      "fadu",
+      "diru"
+     ],
+     "endo_moves": [
+      "dola"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 4,
+     "l": 1
+    }
+   },
+   "lan_answer": "ZARU = {q1_1, q1_2, q1_3, q1_4}\nfadu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\ndola: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4\ndiru: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+   "ran_answer": "ZARU = {q1_1}\nfadu: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1\ndola: q1_1 -> q1_1\ndiru: q1_1 -> s1",
+   "example_admissible_answer": "ZARU = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6}\nfadu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\ndola: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_6, q1_6 -> q1_5\ndiru: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 4,
+    "l": 1,
+    "N": 6,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym4x1_s2",
+     "stations": [
+      "VUDO",
+      "ZARO",
+      "BUSU"
+     ],
+     "chain_moves": [
+      "jifu",
+      "lito"
+     ],
+     "endo_moves": [
+      "liki"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 4,
+     "l": 1
+    }
+   },
+   "lan_answer": "ZARO = {q1_1, q1_2, q1_3, q1_4}\njifu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nliki: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4\nlito: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+   "ran_answer": "ZARO = {q1_1}\njifu: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1\nliki: q1_1 -> q1_1\nlito: q1_1 -> s1",
+   "example_admissible_answer": "ZARO = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6}\njifu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nliki: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_6, q1_6 -> q1_5\nlito: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1"
+  }
+ }
+}

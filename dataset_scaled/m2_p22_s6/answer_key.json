@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s6",
+          "stations": [
+            "JOVI",
+            "VASU",
+            "PAMU",
+            "KUGU"
+          ],
+          "chain_moves": [
+            "sinu",
+            "sasu",
+            "zogu"
+          ],
+          "endo_moves": [
+            "juna",
+            "rini"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "VASU = {q1_1, q1_2, q1_3}\nsinu: n1 -> q1_1\njuna: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nPAMU = {q2_1, q2_2, q2_3}\nsasu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nrini: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nzogu: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "VASU = {q1_1}\nsinu: n1 -> q1_1\njuna: q1_1 -> q1_1\nPAMU = {q2_1}\nsasu: q1_1 -> q2_1\nrini: q2_1 -> q2_1\nzogu: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s6",
+          "stations": [
+            "JALA",
+            "SAFA",
+            "DAPO",
+            "BODU"
+          ],
+          "chain_moves": [
+            "dara",
+            "nafu",
+            "joto"
+          ],
+          "endo_moves": [
+            "napa",
+            "favu"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SAFA = {q1_1, q1_2, q1_3}\ndara: n1 -> q1_1\nnapa: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nDAPO = {q2_1, q2_2, q2_3}\nnafu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nfavu: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\njoto: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "SAFA = {q1_1}\ndara: n1 -> q1_1\nnapa: q1_1 -> q1_1\nDAPO = {q2_1}\nnafu: q1_1 -> q2_1\nfavu: q2_1 -> q2_1\njoto: q2_1 -> s1"
+    }
+  }
+}

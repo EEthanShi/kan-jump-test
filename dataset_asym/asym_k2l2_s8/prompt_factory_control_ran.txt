@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: MAMI, GINA, MARU. Toys move MAMI -> GINA -> MARU.
+There are 3 moving steps:
+- "logi" carries each MAMI slot to a GINA slot.
+- "poda" is an internal reshuffle of GINA: it carries each GINA slot to a GINA slot.
+- "vabu" carries each GINA slot to a MARU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "logi" and then "poda" lands on the same slot as running "logi" alone.
+     ("poda" leaves every slot that "logi" produces unchanged.)
+R1.2 Running "poda" and then "vabu" gives the same result as running "vabu" alone.
+     ("vabu" cannot tell whether "poda" was applied first.)
+R1.3 Running "poda" twice in a row leaves every GINA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MAMI has exactly 2 slots, called n1, n2.
+- MARU has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1.
+
+Requirements for the middle station (GINA):
+D1.1 GINA must be a finite set with at most 2 slots.
+D1.2 List the "poda" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "logi" table entries in MAMI slot order n1, n2.
+D1.4 Every MARU slot must be reached by "vabu" from at least one GINA slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+GINA = {q1_1, ..., q1_k}
+logi: n1 -> <GINA slot>, n2 -> <GINA slot>
+poda: q1_1 -> <GINA slot>, ..., q1_k -> <GINA slot>
+vabu: q1_1 -> <MARU slot>, ... (one entry per GINA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

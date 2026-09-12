@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SULI, KIBI, FUPU, SUGO, POVI. Toys move SULI -> KIBI -> FUPU -> SUGO -> POVI.
+There are 7 moving steps:
+- "lusi" carries each SULI slot to a KIBI slot.
+- "dupi" is an internal reshuffle of KIBI: it carries each KIBI slot to a KIBI slot.
+- "luvo" carries each KIBI slot to a FUPU slot.
+- "jaga" is an internal reshuffle of FUPU: it carries each FUPU slot to a FUPU slot.
+- "koti" carries each FUPU slot to a SUGO slot.
+- "juma" is an internal reshuffle of SUGO: it carries each SUGO slot to a SUGO slot.
+- "ziga" carries each SUGO slot to a POVI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "lusi" and then "dupi" lands on the same slot as running "lusi" alone.
+     ("dupi" leaves every slot that "lusi" produces unchanged.)
+R1.2 Running "dupi" and then "luvo" gives the same result as running "luvo" alone.
+     ("luvo" cannot tell whether "dupi" was applied first.)
+R1.3 Running "dupi" three times in a row leaves every KIBI slot exactly where it started.
+R2.1 Running "luvo" and then "jaga" lands on the same slot as running "luvo" alone.
+     ("jaga" leaves every slot that "luvo" produces unchanged.)
+R2.2 Running "jaga" and then "koti" gives the same result as running "koti" alone.
+     ("koti" cannot tell whether "jaga" was applied first.)
+R2.3 Running "jaga" twice in a row leaves every FUPU slot exactly where it started.
+R3.1 Running "koti" and then "juma" lands on the same slot as running "koti" alone.
+     ("juma" leaves every slot that "koti" produces unchanged.)
+R3.2 Running "juma" and then "ziga" gives the same result as running "ziga" alone.
+     ("ziga" cannot tell whether "juma" was applied first.)
+R3.3 Running "juma" three times in a row leaves every SUGO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SULI has exactly one slot, called n1.
+- POVI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KIBI, FUPU, SUGO):
+D1.1 KIBI must be a finite set with at most 4 slots.
+D1.2 "dupi" must NOT be the do-nothing move (it must move at least one KIBI slot).
+D2.1 FUPU must be a finite set with at most 3 slots.
+D2.2 "jaga" must NOT be the do-nothing move (it must move at least one FUPU slot).
+D3.1 SUGO must be a finite set with at most 4 slots.
+D3.2 "juma" must NOT be the do-nothing move (it must move at least one SUGO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KIBI = {q1_1, ..., q1_k}
+lusi: n1 -> <KIBI slot>
+dupi: q1_1 -> <KIBI slot>, ..., q1_k -> <KIBI slot>
+FUPU = {q2_1, ..., q2_k}
+luvo: q1_1 -> <FUPU slot>, ... (one entry per KIBI slot)
+jaga: q2_1 -> <FUPU slot>, ..., q2_k -> <FUPU slot>
+SUGO = {q3_1, ..., q3_k}
+koti: q2_1 -> <SUGO slot>, ... (one entry per FUPU slot)
+juma: q3_1 -> <SUGO slot>, ..., q3_k -> <SUGO slot>
+ziga: q3_1 -> <POVI slot>, ... (one entry per SUGO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

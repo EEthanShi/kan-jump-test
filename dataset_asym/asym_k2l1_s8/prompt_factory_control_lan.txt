@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: MADU, GUVA, PUPA. Toys move MADU -> GUVA -> PUPA.
+There are 3 moving steps:
+- "vogu" carries each MADU slot to a GUVA slot.
+- "golo" is an internal reshuffle of GUVA: it carries each GUVA slot to a GUVA slot.
+- "zoli" carries each GUVA slot to a PUPA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vogu" and then "golo" lands on the same slot as running "vogu" alone.
+     ("golo" leaves every slot that "vogu" produces unchanged.)
+R1.2 Running "golo" and then "zoli" gives the same result as running "zoli" alone.
+     ("zoli" cannot tell whether "golo" was applied first.)
+R1.3 Running "golo" twice in a row leaves every GUVA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MADU has exactly 2 slots, called n1, n2.
+- PUPA has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1.
+
+Requirements for the middle station (GUVA):
+D1.1 GUVA must be a finite set with at most 2 slots.
+D1.2 List the "golo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 "vogu" must carry different MADU slots to different GUVA slots.
+D1.4 List the "zoli" table entries in GUVA slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+GUVA = {q1_1, ..., q1_k}
+vogu: n1 -> <GUVA slot>, n2 -> <GUVA slot>
+golo: q1_1 -> <GUVA slot>, ..., q1_k -> <GUVA slot>
+zoli: q1_1 -> <PUPA slot>, ... (one entry per GUVA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

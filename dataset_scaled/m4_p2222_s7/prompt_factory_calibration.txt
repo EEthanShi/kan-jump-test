@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: ZITU, BILO, RAFU, ZAKI, RULO, ZODI. Toys move ZITU -> BILO -> RAFU -> ZAKI -> RULO -> ZODI.
+There are 9 moving steps:
+- "ropu" carries each ZITU slot to a BILO slot.
+- "kozo" is an internal reshuffle of BILO: it carries each BILO slot to a BILO slot.
+- "mopo" carries each BILO slot to a RAFU slot.
+- "bapi" is an internal reshuffle of RAFU: it carries each RAFU slot to a RAFU slot.
+- "zuva" carries each RAFU slot to a ZAKI slot.
+- "gavu" is an internal reshuffle of ZAKI: it carries each ZAKI slot to a ZAKI slot.
+- "gitu" carries each ZAKI slot to a RULO slot.
+- "zapu" is an internal reshuffle of RULO: it carries each RULO slot to a RULO slot.
+- "nogi" carries each RULO slot to a ZODI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "ropu" and then "kozo" lands on the same slot as running "ropu" alone.
+     ("kozo" leaves every slot that "ropu" produces unchanged.)
+R1.2 Running "kozo" and then "mopo" gives the same result as running "mopo" alone.
+     ("mopo" cannot tell whether "kozo" was applied first.)
+R1.3 Running "kozo" twice in a row leaves every BILO slot exactly where it started.
+R2.1 Running "mopo" and then "bapi" lands on the same slot as running "mopo" alone.
+     ("bapi" leaves every slot that "mopo" produces unchanged.)
+R2.2 Running "bapi" and then "zuva" gives the same result as running "zuva" alone.
+     ("zuva" cannot tell whether "bapi" was applied first.)
+R2.3 Running "bapi" twice in a row leaves every RAFU slot exactly where it started.
+R3.1 Running "zuva" and then "gavu" lands on the same slot as running "zuva" alone.
+     ("gavu" leaves every slot that "zuva" produces unchanged.)
+R3.2 Running "gavu" and then "gitu" gives the same result as running "gitu" alone.
+     ("gitu" cannot tell whether "gavu" was applied first.)
+R3.3 Running "gavu" twice in a row leaves every ZAKI slot exactly where it started.
+R4.1 Running "gitu" and then "zapu" lands on the same slot as running "gitu" alone.
+     ("zapu" leaves every slot that "gitu" produces unchanged.)
+R4.2 Running "zapu" and then "nogi" gives the same result as running "nogi" alone.
+     ("nogi" cannot tell whether "zapu" was applied first.)
+R4.3 Running "zapu" twice in a row leaves every RULO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZITU has exactly one slot, called n1.
+- ZODI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BILO, RAFU, ZAKI, RULO):
+D1.1 List the slots of BILO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kozo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of RAFU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "bapi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of ZAKI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "gavu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of RULO in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "zapu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BILO = {q1_1, ..., q1_k}
+ropu: n1 -> <BILO slot>
+kozo: q1_1 -> <BILO slot>, ..., q1_k -> <BILO slot>
+RAFU = {q2_1, ..., q2_k}
+mopo: q1_1 -> <RAFU slot>, ... (one entry per BILO slot)
+bapi: q2_1 -> <RAFU slot>, ..., q2_k -> <RAFU slot>
+ZAKI = {q3_1, ..., q3_k}
+zuva: q2_1 -> <ZAKI slot>, ... (one entry per RAFU slot)
+gavu: q3_1 -> <ZAKI slot>, ..., q3_k -> <ZAKI slot>
+RULO = {q4_1, ..., q4_k}
+gitu: q3_1 -> <RULO slot>, ... (one entry per ZAKI slot)
+zapu: q4_1 -> <RULO slot>, ..., q4_k -> <RULO slot>
+nogi: q4_1 -> <ZODI slot>, ... (one entry per RULO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

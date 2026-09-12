@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s2",
+          "stations": [
+            "NUZO",
+            "BIVO",
+            "PASU"
+          ],
+          "chain_moves": [
+            "kovi",
+            "doto"
+          ],
+          "endo_moves": [
+            "zuji"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "BIVO = {q1_1, q1_2, q1_3}\nkovi: n1 -> q1_1\nzuji: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ndoto: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "BIVO = {q1_1}\nkovi: n1 -> q1_1\nzuji: q1_1 -> q1_1\ndoto: q1_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 1,
+        "ps": [
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s2",
+          "stations": [
+            "TAFA",
+            "PIJU",
+            "GANO"
+          ],
+          "chain_moves": [
+            "suso",
+            "poda"
+          ],
+          "endo_moves": [
+            "kala"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_"
+          ]
+        }
+      },
+      "example_admissible_answer": "PIJU = {q1_1, q1_2, q1_3}\nsuso: n1 -> q1_1\nkala: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\npoda: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+      "kan_answer": "PIJU = {q1_1}\nsuso: n1 -> q1_1\nkala: q1_1 -> q1_1\npoda: q1_1 -> s1"
+    }
+  }
+}

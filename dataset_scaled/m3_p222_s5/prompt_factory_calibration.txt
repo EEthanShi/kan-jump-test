@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: BOBI, BADO, SAPA, SORU, MIGO. Toys move BOBI -> BADO -> SAPA -> SORU -> MIGO.
+There are 7 moving steps:
+- "saba" carries each BOBI slot to a BADO slot.
+- "doso" is an internal reshuffle of BADO: it carries each BADO slot to a BADO slot.
+- "pofu" carries each BADO slot to a SAPA slot.
+- "ruzu" is an internal reshuffle of SAPA: it carries each SAPA slot to a SAPA slot.
+- "gadu" carries each SAPA slot to a SORU slot.
+- "pufu" is an internal reshuffle of SORU: it carries each SORU slot to a SORU slot.
+- "zoki" carries each SORU slot to a MIGO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "saba" and then "doso" lands on the same slot as running "saba" alone.
+     ("doso" leaves every slot that "saba" produces unchanged.)
+R1.2 Running "doso" and then "pofu" gives the same result as running "pofu" alone.
+     ("pofu" cannot tell whether "doso" was applied first.)
+R1.3 Running "doso" twice in a row leaves every BADO slot exactly where it started.
+R2.1 Running "pofu" and then "ruzu" lands on the same slot as running "pofu" alone.
+     ("ruzu" leaves every slot that "pofu" produces unchanged.)
+R2.2 Running "ruzu" and then "gadu" gives the same result as running "gadu" alone.
+     ("gadu" cannot tell whether "ruzu" was applied first.)
+R2.3 Running "ruzu" twice in a row leaves every SAPA slot exactly where it started.
+R3.1 Running "gadu" and then "pufu" lands on the same slot as running "gadu" alone.
+     ("pufu" leaves every slot that "gadu" produces unchanged.)
+R3.2 Running "pufu" and then "zoki" gives the same result as running "zoki" alone.
+     ("zoki" cannot tell whether "pufu" was applied first.)
+R3.3 Running "pufu" twice in a row leaves every SORU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BOBI has exactly one slot, called n1.
+- MIGO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BADO, SAPA, SORU):
+D1.1 List the slots of BADO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "doso" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of SAPA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "ruzu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of SORU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "pufu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BADO = {q1_1, ..., q1_k}
+saba: n1 -> <BADO slot>
+doso: q1_1 -> <BADO slot>, ..., q1_k -> <BADO slot>
+SAPA = {q2_1, ..., q2_k}
+pofu: q1_1 -> <SAPA slot>, ... (one entry per BADO slot)
+ruzu: q2_1 -> <SAPA slot>, ..., q2_k -> <SAPA slot>
+SORU = {q3_1, ..., q3_k}
+gadu: q2_1 -> <SORU slot>, ... (one entry per SAPA slot)
+pufu: q3_1 -> <SORU slot>, ..., q3_k -> <SORU slot>
+zoki: q3_1 -> <MIGO slot>, ... (one entry per SORU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

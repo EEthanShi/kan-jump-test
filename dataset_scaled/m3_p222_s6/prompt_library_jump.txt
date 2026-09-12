@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: PIVI, DUSA, LAFU, TIMA, ZIDI. Books move PIVI -> DUSA -> LAFU -> TIMA -> ZIDI.
+There are 7 moving steps:
+- "ziga" carries each PIVI tray to a DUSA tray.
+- "japi" is an internal rearrangement of DUSA: it carries each DUSA tray to a DUSA tray.
+- "gapa" carries each DUSA tray to a LAFU tray.
+- "nodu" is an internal rearrangement of LAFU: it carries each LAFU tray to a LAFU tray.
+- "migo" carries each LAFU tray to a TIMA tray.
+- "kiti" is an internal rearrangement of TIMA: it carries each TIMA tray to a TIMA tray.
+- "mopi" carries each TIMA tray to a ZIDI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "ziga" and then "japi" lands on the same tray as running "ziga" alone.
+     ("japi" leaves every tray that "ziga" produces unchanged.)
+R1.2 Running "japi" and then "gapa" gives the same result as running "gapa" alone.
+     ("gapa" cannot tell whether "japi" was applied first.)
+R1.3 Running "japi" twice in a row leaves every DUSA tray exactly where it started.
+R2.1 Running "gapa" and then "nodu" lands on the same tray as running "gapa" alone.
+     ("nodu" leaves every tray that "gapa" produces unchanged.)
+R2.2 Running "nodu" and then "migo" gives the same result as running "migo" alone.
+     ("migo" cannot tell whether "nodu" was applied first.)
+R2.3 Running "nodu" twice in a row leaves every LAFU tray exactly where it started.
+R3.1 Running "migo" and then "kiti" lands on the same tray as running "migo" alone.
+     ("kiti" leaves every tray that "migo" produces unchanged.)
+R3.2 Running "kiti" and then "mopi" gives the same result as running "mopi" alone.
+     ("mopi" cannot tell whether "kiti" was applied first.)
+R3.3 Running "kiti" twice in a row leaves every TIMA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PIVI has exactly one tray, called n1.
+- ZIDI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DUSA, LAFU, TIMA):
+D1.1 DUSA must be a finite set with at most 3 trays.
+D1.2 "japi" must NOT be the do-nothing move (it must move at least one DUSA tray).
+D2.1 LAFU must be a finite set with at most 3 trays.
+D2.2 "nodu" must NOT be the do-nothing move (it must move at least one LAFU tray).
+D3.1 TIMA must be a finite set with at most 3 trays.
+D3.2 "kiti" must NOT be the do-nothing move (it must move at least one TIMA tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DUSA = {q1_1, ..., q1_k}
+ziga: n1 -> <DUSA tray>
+japi: q1_1 -> <DUSA tray>, ..., q1_k -> <DUSA tray>
+LAFU = {q2_1, ..., q2_k}
+gapa: q1_1 -> <LAFU tray>, ... (one entry per DUSA tray)
+nodu: q2_1 -> <LAFU tray>, ..., q2_k -> <LAFU tray>
+TIMA = {q3_1, ..., q3_k}
+migo: q2_1 -> <TIMA tray>, ... (one entry per LAFU tray)
+kiti: q3_1 -> <TIMA tray>, ..., q3_k -> <TIMA tray>
+mopi: q3_1 -> <ZIDI tray>, ... (one entry per TIMA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

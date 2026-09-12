@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: VIZU, FOZO, PADI, KOFU, TIDU, LUVA. Books move VIZU -> FOZO -> PADI -> KOFU -> TIDU -> LUVA.
+There are 9 moving steps:
+- "fiko" carries each VIZU tray to a FOZO tray.
+- "bilo" is an internal rearrangement of FOZO: it carries each FOZO tray to a FOZO tray.
+- "naso" carries each FOZO tray to a PADI tray.
+- "puli" is an internal rearrangement of PADI: it carries each PADI tray to a PADI tray.
+- "guji" carries each PADI tray to a KOFU tray.
+- "soro" is an internal rearrangement of KOFU: it carries each KOFU tray to a KOFU tray.
+- "fazo" carries each KOFU tray to a TIDU tray.
+- "joso" is an internal rearrangement of TIDU: it carries each TIDU tray to a TIDU tray.
+- "zibo" carries each TIDU tray to a LUVA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "fiko" and then "bilo" lands on the same tray as running "fiko" alone.
+     ("bilo" leaves every tray that "fiko" produces unchanged.)
+R1.2 Running "bilo" and then "naso" gives the same result as running "naso" alone.
+     ("naso" cannot tell whether "bilo" was applied first.)
+R1.3 Running "bilo" twice in a row leaves every FOZO tray exactly where it started.
+R2.1 Running "naso" and then "puli" lands on the same tray as running "naso" alone.
+     ("puli" leaves every tray that "naso" produces unchanged.)
+R2.2 Running "puli" and then "guji" gives the same result as running "guji" alone.
+     ("guji" cannot tell whether "puli" was applied first.)
+R2.3 Running "puli" three times in a row leaves every PADI tray exactly where it started.
+R3.1 Running "guji" and then "soro" lands on the same tray as running "guji" alone.
+     ("soro" leaves every tray that "guji" produces unchanged.)
+R3.2 Running "soro" and then "fazo" gives the same result as running "fazo" alone.
+     ("fazo" cannot tell whether "soro" was applied first.)
+R3.3 Running "soro" twice in a row leaves every KOFU tray exactly where it started.
+R4.1 Running "fazo" and then "joso" lands on the same tray as running "fazo" alone.
+     ("joso" leaves every tray that "fazo" produces unchanged.)
+R4.2 Running "joso" and then "zibo" gives the same result as running "zibo" alone.
+     ("zibo" cannot tell whether "joso" was applied first.)
+R4.3 Running "joso" three times in a row leaves every TIDU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VIZU has exactly one tray, called n1.
+- LUVA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FOZO, PADI, KOFU, TIDU):
+D1.1 FOZO must be a finite set with at most 3 trays.
+D1.2 "bilo" must NOT be the do-nothing move (it must move at least one FOZO tray).
+D2.1 PADI must be a finite set with at most 4 trays.
+D2.2 "puli" must NOT be the do-nothing move (it must move at least one PADI tray).
+D3.1 KOFU must be a finite set with at most 3 trays.
+D3.2 "soro" must NOT be the do-nothing move (it must move at least one KOFU tray).
+D4.1 TIDU must be a finite set with at most 4 trays.
+D4.2 "joso" must NOT be the do-nothing move (it must move at least one TIDU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FOZO = {q1_1, ..., q1_k}
+fiko: n1 -> <FOZO tray>
+bilo: q1_1 -> <FOZO tray>, ..., q1_k -> <FOZO tray>
+PADI = {q2_1, ..., q2_k}
+naso: q1_1 -> <PADI tray>, ... (one entry per FOZO tray)
+puli: q2_1 -> <PADI tray>, ..., q2_k -> <PADI tray>
+KOFU = {q3_1, ..., q3_k}
+guji: q2_1 -> <KOFU tray>, ... (one entry per PADI tray)
+soro: q3_1 -> <KOFU tray>, ..., q3_k -> <KOFU tray>
+TIDU = {q4_1, ..., q4_k}
+fazo: q3_1 -> <TIDU tray>, ... (one entry per KOFU tray)
+joso: q4_1 -> <TIDU tray>, ..., q4_k -> <TIDU tray>
+zibo: q4_1 -> <LUVA tray>, ... (one entry per TIDU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

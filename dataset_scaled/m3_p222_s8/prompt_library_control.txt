@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: POBO, PODO, SITU, PULI, PARO. Books move POBO -> PODO -> SITU -> PULI -> PARO.
+There are 7 moving steps:
+- "kuvi" carries each POBO tray to a PODO tray.
+- "gusa" is an internal rearrangement of PODO: it carries each PODO tray to a PODO tray.
+- "poro" carries each PODO tray to a SITU tray.
+- "raja" is an internal rearrangement of SITU: it carries each SITU tray to a SITU tray.
+- "zujo" carries each SITU tray to a PULI tray.
+- "jofi" is an internal rearrangement of PULI: it carries each PULI tray to a PULI tray.
+- "miva" carries each PULI tray to a PARO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kuvi" and then "gusa" lands on the same tray as running "kuvi" alone.
+     ("gusa" leaves every tray that "kuvi" produces unchanged.)
+R1.2 Running "gusa" and then "poro" gives the same result as running "poro" alone.
+     ("poro" cannot tell whether "gusa" was applied first.)
+R1.3 Running "gusa" twice in a row leaves every PODO tray exactly where it started.
+R2.1 Running "poro" and then "raja" lands on the same tray as running "poro" alone.
+     ("raja" leaves every tray that "poro" produces unchanged.)
+R2.2 Running "raja" and then "zujo" gives the same result as running "zujo" alone.
+     ("zujo" cannot tell whether "raja" was applied first.)
+R2.3 Running "raja" twice in a row leaves every SITU tray exactly where it started.
+R3.1 Running "zujo" and then "jofi" lands on the same tray as running "zujo" alone.
+     ("jofi" leaves every tray that "zujo" produces unchanged.)
+R3.2 Running "jofi" and then "miva" gives the same result as running "miva" alone.
+     ("miva" cannot tell whether "jofi" was applied first.)
+R3.3 Running "jofi" twice in a row leaves every PULI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- POBO has exactly one tray, called n1.
+- PARO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PODO, SITU, PULI):
+D1.1 PODO must be a finite set with at most 1 tray.
+D1.2 List the "gusa" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 SITU must be a finite set with at most 1 tray.
+D2.2 List the "raja" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 PULI must be a finite set with at most 1 tray.
+D3.2 List the "jofi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PODO = {q1_1, ..., q1_k}
+kuvi: n1 -> <PODO tray>
+gusa: q1_1 -> <PODO tray>, ..., q1_k -> <PODO tray>
+SITU = {q2_1, ..., q2_k}
+poro: q1_1 -> <SITU tray>, ... (one entry per PODO tray)
+raja: q2_1 -> <SITU tray>, ..., q2_k -> <SITU tray>
+PULI = {q3_1, ..., q3_k}
+zujo: q2_1 -> <PULI tray>, ... (one entry per SITU tray)
+jofi: q3_1 -> <PULI tray>, ..., q3_k -> <PULI tray>
+miva: q3_1 -> <PARO tray>, ... (one entry per PULI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

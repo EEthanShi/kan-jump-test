@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: LAKA, LIKU, FAFI, DAFA, NALA. Books move LAKA -> LIKU -> FAFI -> DAFA -> NALA.
+There are 7 moving steps:
+- "puso" carries each LAKA tray to a LIKU tray.
+- "gaka" is an internal rearrangement of LIKU: it carries each LIKU tray to a LIKU tray.
+- "vasa" carries each LIKU tray to a FAFI tray.
+- "piju" is an internal rearrangement of FAFI: it carries each FAFI tray to a FAFI tray.
+- "sora" carries each FAFI tray to a DAFA tray.
+- "muki" is an internal rearrangement of DAFA: it carries each DAFA tray to a DAFA tray.
+- "mato" carries each DAFA tray to a NALA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "puso" and then "gaka" lands on the same tray as running "puso" alone.
+     ("gaka" leaves every tray that "puso" produces unchanged.)
+R1.2 Running "gaka" and then "vasa" gives the same result as running "vasa" alone.
+     ("vasa" cannot tell whether "gaka" was applied first.)
+R1.3 Running "gaka" three times in a row leaves every LIKU tray exactly where it started.
+R2.1 Running "vasa" and then "piju" lands on the same tray as running "vasa" alone.
+     ("piju" leaves every tray that "vasa" produces unchanged.)
+R2.2 Running "piju" and then "sora" gives the same result as running "sora" alone.
+     ("sora" cannot tell whether "piju" was applied first.)
+R2.3 Running "piju" twice in a row leaves every FAFI tray exactly where it started.
+R3.1 Running "sora" and then "muki" lands on the same tray as running "sora" alone.
+     ("muki" leaves every tray that "sora" produces unchanged.)
+R3.2 Running "muki" and then "mato" gives the same result as running "mato" alone.
+     ("mato" cannot tell whether "muki" was applied first.)
+R3.3 Running "muki" three times in a row leaves every DAFA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LAKA has exactly one tray, called n1.
+- NALA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LIKU, FAFI, DAFA):
+D1.1 List the trays of LIKU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "gaka" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of FAFI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "piju" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of DAFA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "muki" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LIKU = {q1_1, ..., q1_k}
+puso: n1 -> <LIKU tray>
+gaka: q1_1 -> <LIKU tray>, ..., q1_k -> <LIKU tray>
+FAFI = {q2_1, ..., q2_k}
+vasa: q1_1 -> <FAFI tray>, ... (one entry per LIKU tray)
+piju: q2_1 -> <FAFI tray>, ..., q2_k -> <FAFI tray>
+DAFA = {q3_1, ..., q3_k}
+sora: q2_1 -> <DAFA tray>, ... (one entry per FAFI tray)
+muki: q3_1 -> <DAFA tray>, ..., q3_k -> <DAFA tray>
+mato: q3_1 -> <NALA tray>, ... (one entry per DAFA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,108 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 3,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          2,
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s8",
+          "stations": [
+            "DIFA",
+            "NIRI",
+            "ZOJI",
+            "DAFU",
+            "ROBO"
+          ],
+          "chain_moves": [
+            "bifi",
+            "gabi",
+            "fobo",
+            "sota"
+          ],
+          "endo_moves": [
+            "kosi",
+            "gusi",
+            "lizo"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "NIRI = {q1_1, q1_2, q1_3}\nbifi: n1 -> q1_1\nkosi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nZOJI = {q2_1, q2_2, q2_3}\ngabi: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\ngusi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nDAFU = {q3_1, q3_2, q3_3, q3_4}\nfobo: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\nlizo: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_4, q3_4 -> q3_2\nsota: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1, q3_4 -> s1",
+      "kan_answer": "NIRI = {q1_1}\nbifi: n1 -> q1_1\nkosi: q1_1 -> q1_1\nZOJI = {q2_1}\ngabi: q1_1 -> q2_1\ngusi: q2_1 -> q2_1\nDAFU = {q3_1}\nfobo: q2_1 -> q3_1\nlizo: q3_1 -> q3_1\nsota: q3_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          2,
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s8",
+          "stations": [
+            "ZOBI",
+            "LOPI",
+            "BOTA",
+            "TAMO",
+            "FOVU"
+          ],
+          "chain_moves": [
+            "bara",
+            "katu",
+            "kafi",
+            "baji"
+          ],
+          "endo_moves": [
+            "dara",
+            "vaka",
+            "viso"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "LOPI = {q1_1, q1_2, q1_3}\nbara: n1 -> q1_1\ndara: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nBOTA = {q2_1, q2_2, q2_3}\nkatu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nvaka: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nTAMO = {q3_1, q3_2, q3_3, q3_4}\nkafi: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\nviso: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_4, q3_4 -> q3_2\nbaji: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1, q3_4 -> s1",
+      "kan_answer": "LOPI = {q1_1}\nbara: n1 -> q1_1\ndara: q1_1 -> q1_1\nBOTA = {q2_1}\nkatu: q1_1 -> q2_1\nvaka: q2_1 -> q2_1\nTAMO = {q3_1}\nkafi: q2_1 -> q3_1\nviso: q3_1 -> q3_1\nbaji: q3_1 -> s1"
+    }
+  }
+}

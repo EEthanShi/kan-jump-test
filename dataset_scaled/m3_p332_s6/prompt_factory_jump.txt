@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DOJU, NOFA, NIZO, RIVI, LUTO. Toys move DOJU -> NOFA -> NIZO -> RIVI -> LUTO.
+There are 7 moving steps:
+- "puso" carries each DOJU slot to a NOFA slot.
+- "papo" is an internal reshuffle of NOFA: it carries each NOFA slot to a NOFA slot.
+- "nogi" carries each NOFA slot to a NIZO slot.
+- "voko" is an internal reshuffle of NIZO: it carries each NIZO slot to a NIZO slot.
+- "diro" carries each NIZO slot to a RIVI slot.
+- "favo" is an internal reshuffle of RIVI: it carries each RIVI slot to a RIVI slot.
+- "kavu" carries each RIVI slot to a LUTO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "puso" and then "papo" lands on the same slot as running "puso" alone.
+     ("papo" leaves every slot that "puso" produces unchanged.)
+R1.2 Running "papo" and then "nogi" gives the same result as running "nogi" alone.
+     ("nogi" cannot tell whether "papo" was applied first.)
+R1.3 Running "papo" three times in a row leaves every NOFA slot exactly where it started.
+R2.1 Running "nogi" and then "voko" lands on the same slot as running "nogi" alone.
+     ("voko" leaves every slot that "nogi" produces unchanged.)
+R2.2 Running "voko" and then "diro" gives the same result as running "diro" alone.
+     ("diro" cannot tell whether "voko" was applied first.)
+R2.3 Running "voko" three times in a row leaves every NIZO slot exactly where it started.
+R3.1 Running "diro" and then "favo" lands on the same slot as running "diro" alone.
+     ("favo" leaves every slot that "diro" produces unchanged.)
+R3.2 Running "favo" and then "kavu" gives the same result as running "kavu" alone.
+     ("kavu" cannot tell whether "favo" was applied first.)
+R3.3 Running "favo" twice in a row leaves every RIVI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DOJU has exactly one slot, called n1.
+- LUTO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NOFA, NIZO, RIVI):
+D1.1 NOFA must be a finite set with at most 4 slots.
+D1.2 "papo" must NOT be the do-nothing move (it must move at least one NOFA slot).
+D2.1 NIZO must be a finite set with at most 4 slots.
+D2.2 "voko" must NOT be the do-nothing move (it must move at least one NIZO slot).
+D3.1 RIVI must be a finite set with at most 3 slots.
+D3.2 "favo" must NOT be the do-nothing move (it must move at least one RIVI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NOFA = {q1_1, ..., q1_k}
+puso: n1 -> <NOFA slot>
+papo: q1_1 -> <NOFA slot>, ..., q1_k -> <NOFA slot>
+NIZO = {q2_1, ..., q2_k}
+nogi: q1_1 -> <NIZO slot>, ... (one entry per NOFA slot)
+voko: q2_1 -> <NIZO slot>, ..., q2_k -> <NIZO slot>
+RIVI = {q3_1, ..., q3_k}
+diro: q2_1 -> <RIVI slot>, ... (one entry per NIZO slot)
+favo: q3_1 -> <RIVI slot>, ..., q3_k -> <RIVI slot>
+kavu: q3_1 -> <LUTO slot>, ... (one entry per RIVI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

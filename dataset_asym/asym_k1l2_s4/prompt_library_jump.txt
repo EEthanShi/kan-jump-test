@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: JOTO, MOBI, BIDO. Books move JOTO -> MOBI -> BIDO.
+There are 3 moving steps:
+- "gasi" carries each JOTO tray to a MOBI tray.
+- "moza" is an internal rearrangement of MOBI: it carries each MOBI tray to a MOBI tray.
+- "vamo" carries each MOBI tray to a BIDO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gasi" and then "moza" lands on the same tray as running "gasi" alone.
+     ("moza" leaves every tray that "gasi" produces unchanged.)
+R1.2 Running "moza" and then "vamo" gives the same result as running "vamo" alone.
+     ("vamo" cannot tell whether "moza" was applied first.)
+R1.3 Running "moza" twice in a row leaves every MOBI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOTO has exactly 1 tray, called n1.
+- BIDO has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (MOBI):
+D1.1 MOBI must be a finite set with at most 3 trays.
+D1.2 "moza" must NOT be the do-nothing move (it must move at least one MOBI tray).
+D1.3 "gasi" must carry different JOTO trays to different MOBI trays.
+D1.4 Every BIDO tray must be reached by "vamo" from at least one MOBI tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 3 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+MOBI = {q1_1, ..., q1_k}
+gasi: n1 -> <MOBI tray>
+moza: q1_1 -> <MOBI tray>, ..., q1_k -> <MOBI tray>
+vamo: q1_1 -> <BIDO tray>, ... (one entry per MOBI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KARO, ZIJA, LUBA, SIVO, DIVU. Books move KARO -> ZIJA -> LUBA -> SIVO -> DIVU.
+There are 7 moving steps:
+- "muva" carries each KARO tray to a ZIJA tray.
+- "miso" is an internal rearrangement of ZIJA: it carries each ZIJA tray to a ZIJA tray.
+- "vopu" carries each ZIJA tray to a LUBA tray.
+- "rumo" is an internal rearrangement of LUBA: it carries each LUBA tray to a LUBA tray.
+- "ropu" carries each LUBA tray to a SIVO tray.
+- "soto" is an internal rearrangement of SIVO: it carries each SIVO tray to a SIVO tray.
+- "viro" carries each SIVO tray to a DIVU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "muva" and then "miso" lands on the same tray as running "muva" alone.
+     ("miso" leaves every tray that "muva" produces unchanged.)
+R1.2 Running "miso" and then "vopu" gives the same result as running "vopu" alone.
+     ("vopu" cannot tell whether "miso" was applied first.)
+R1.3 Running "miso" twice in a row leaves every ZIJA tray exactly where it started.
+R2.1 Running "vopu" and then "rumo" lands on the same tray as running "vopu" alone.
+     ("rumo" leaves every tray that "vopu" produces unchanged.)
+R2.2 Running "rumo" and then "ropu" gives the same result as running "ropu" alone.
+     ("ropu" cannot tell whether "rumo" was applied first.)
+R2.3 Running "rumo" three times in a row leaves every LUBA tray exactly where it started.
+R3.1 Running "ropu" and then "soto" lands on the same tray as running "ropu" alone.
+     ("soto" leaves every tray that "ropu" produces unchanged.)
+R3.2 Running "soto" and then "viro" gives the same result as running "viro" alone.
+     ("viro" cannot tell whether "soto" was applied first.)
+R3.3 Running "soto" twice in a row leaves every SIVO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KARO has exactly one tray, called n1.
+- DIVU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZIJA, LUBA, SIVO):
+D1.1 List the trays of ZIJA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "miso" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of LUBA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "rumo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of SIVO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "soto" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZIJA = {q1_1, ..., q1_k}
+muva: n1 -> <ZIJA tray>
+miso: q1_1 -> <ZIJA tray>, ..., q1_k -> <ZIJA tray>
+LUBA = {q2_1, ..., q2_k}
+vopu: q1_1 -> <LUBA tray>, ... (one entry per ZIJA tray)
+rumo: q2_1 -> <LUBA tray>, ..., q2_k -> <LUBA tray>
+SIVO = {q3_1, ..., q3_k}
+ropu: q2_1 -> <SIVO tray>, ... (one entry per LUBA tray)
+soto: q3_1 -> <SIVO tray>, ..., q3_k -> <SIVO tray>
+viro: q3_1 -> <DIVU tray>, ... (one entry per SIVO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

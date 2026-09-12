@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SUGU, SINI, RUTA. Books move SUGU -> SINI -> RUTA.
+There are 3 moving steps:
+- "kalu" carries each SUGU tray to a SINI tray.
+- "jizi" is an internal rearrangement of SINI: it carries each SINI tray to a SINI tray.
+- "futo" carries each SINI tray to a RUTA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kalu" and then "jizi" lands on the same tray as running "kalu" alone.
+     ("jizi" leaves every tray that "kalu" produces unchanged.)
+R1.2 Running "jizi" and then "futo" gives the same result as running "futo" alone.
+     ("futo" cannot tell whether "jizi" was applied first.)
+R1.3 Running "jizi" twice in a row leaves every SINI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUGU has exactly 5 trays, called n1, n2, n3, n4, n5.
+- RUTA has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1, n4 to s1, n5 to s1.
+
+Requirements for the middle cart (SINI):
+D1.1 List the trays of SINI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "jizi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "kalu" table entries in SUGU tray order n1, n2, n3, n4, n5.
+D1.4 List the "futo" table entries in SINI tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 7 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+SINI = {q1_1, ..., q1_k}
+kalu: n1 -> <SINI tray>, n2 -> <SINI tray>, n3 -> <SINI tray>, n4 -> <SINI tray>, n5 -> <SINI tray>
+jizi: q1_1 -> <SINI tray>, ..., q1_k -> <SINI tray>
+futo: q1_1 -> <RUTA tray>, ... (one entry per SINI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

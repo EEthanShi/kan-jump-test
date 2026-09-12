@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: RILU, ROTO, JOMO. Toys move RILU -> ROTO -> JOMO.
+There are 3 moving steps:
+- "puja" carries each RILU slot to a ROTO slot.
+- "ropa" is an internal reshuffle of ROTO: it carries each ROTO slot to a ROTO slot.
+- "noti" carries each ROTO slot to a JOMO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "puja" and then "ropa" lands on the same slot as running "puja" alone.
+     ("ropa" leaves every slot that "puja" produces unchanged.)
+R1.2 Running "ropa" and then "noti" gives the same result as running "noti" alone.
+     ("noti" cannot tell whether "ropa" was applied first.)
+R1.3 Running "ropa" twice in a row leaves every ROTO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RILU has exactly 3 slots, called n1, n2, n3.
+- JOMO has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle station (ROTO):
+D1.1 ROTO must be a finite set with at most 5 slots.
+D1.2 "ropa" must NOT be the do-nothing move (it must move at least one ROTO slot).
+D1.3 "puja" must carry different RILU slots to different ROTO slots.
+D1.4 Every JOMO slot must be reached by "noti" from at least one ROTO slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+ROTO = {q1_1, ..., q1_k}
+puja: n1 -> <ROTO slot>, n2 -> <ROTO slot>, n3 -> <ROTO slot>
+ropa: q1_1 -> <ROTO slot>, ..., q1_k -> <ROTO slot>
+noti: q1_1 -> <JOMO slot>, ... (one entry per ROTO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

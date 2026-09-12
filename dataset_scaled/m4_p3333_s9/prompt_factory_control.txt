@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: VOFA, FUPO, NAKA, TUSO, ZUFO, PASA. Toys move VOFA -> FUPO -> NAKA -> TUSO -> ZUFO -> PASA.
+There are 9 moving steps:
+- "zoma" carries each VOFA slot to a FUPO slot.
+- "kuva" is an internal reshuffle of FUPO: it carries each FUPO slot to a FUPO slot.
+- "fisu" carries each FUPO slot to a NAKA slot.
+- "fuka" is an internal reshuffle of NAKA: it carries each NAKA slot to a NAKA slot.
+- "kuta" carries each NAKA slot to a TUSO slot.
+- "maga" is an internal reshuffle of TUSO: it carries each TUSO slot to a TUSO slot.
+- "nasi" carries each TUSO slot to a ZUFO slot.
+- "pibi" is an internal reshuffle of ZUFO: it carries each ZUFO slot to a ZUFO slot.
+- "lujo" carries each ZUFO slot to a PASA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zoma" and then "kuva" lands on the same slot as running "zoma" alone.
+     ("kuva" leaves every slot that "zoma" produces unchanged.)
+R1.2 Running "kuva" and then "fisu" gives the same result as running "fisu" alone.
+     ("fisu" cannot tell whether "kuva" was applied first.)
+R1.3 Running "kuva" three times in a row leaves every FUPO slot exactly where it started.
+R2.1 Running "fisu" and then "fuka" lands on the same slot as running "fisu" alone.
+     ("fuka" leaves every slot that "fisu" produces unchanged.)
+R2.2 Running "fuka" and then "kuta" gives the same result as running "kuta" alone.
+     ("kuta" cannot tell whether "fuka" was applied first.)
+R2.3 Running "fuka" three times in a row leaves every NAKA slot exactly where it started.
+R3.1 Running "kuta" and then "maga" lands on the same slot as running "kuta" alone.
+     ("maga" leaves every slot that "kuta" produces unchanged.)
+R3.2 Running "maga" and then "nasi" gives the same result as running "nasi" alone.
+     ("nasi" cannot tell whether "maga" was applied first.)
+R3.3 Running "maga" three times in a row leaves every TUSO slot exactly where it started.
+R4.1 Running "nasi" and then "pibi" lands on the same slot as running "nasi" alone.
+     ("pibi" leaves every slot that "nasi" produces unchanged.)
+R4.2 Running "pibi" and then "lujo" gives the same result as running "lujo" alone.
+     ("lujo" cannot tell whether "pibi" was applied first.)
+R4.3 Running "pibi" three times in a row leaves every ZUFO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VOFA has exactly one slot, called n1.
+- PASA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (FUPO, NAKA, TUSO, ZUFO):
+D1.1 FUPO must be a finite set with at most 1 slot.
+D1.2 List the "kuva" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 NAKA must be a finite set with at most 1 slot.
+D2.2 List the "fuka" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 TUSO must be a finite set with at most 1 slot.
+D3.2 List the "maga" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 ZUFO must be a finite set with at most 1 slot.
+D4.2 List the "pibi" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+FUPO = {q1_1, ..., q1_k}
+zoma: n1 -> <FUPO slot>
+kuva: q1_1 -> <FUPO slot>, ..., q1_k -> <FUPO slot>
+NAKA = {q2_1, ..., q2_k}
+fisu: q1_1 -> <NAKA slot>, ... (one entry per FUPO slot)
+fuka: q2_1 -> <NAKA slot>, ..., q2_k -> <NAKA slot>
+TUSO = {q3_1, ..., q3_k}
+kuta: q2_1 -> <TUSO slot>, ... (one entry per NAKA slot)
+maga: q3_1 -> <TUSO slot>, ..., q3_k -> <TUSO slot>
+ZUFO = {q4_1, ..., q4_k}
+nasi: q3_1 -> <ZUFO slot>, ... (one entry per TUSO slot)
+pibi: q4_1 -> <ZUFO slot>, ..., q4_k -> <ZUFO slot>
+lujo: q4_1 -> <PASA slot>, ... (one entry per ZUFO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

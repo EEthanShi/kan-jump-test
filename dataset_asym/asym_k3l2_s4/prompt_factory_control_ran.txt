@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: ZIVU, SOFO, MAJA. Toys move ZIVU -> SOFO -> MAJA.
+There are 3 moving steps:
+- "nija" carries each ZIVU slot to a SOFO slot.
+- "siro" is an internal reshuffle of SOFO: it carries each SOFO slot to a SOFO slot.
+- "safu" carries each SOFO slot to a MAJA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nija" and then "siro" lands on the same slot as running "nija" alone.
+     ("siro" leaves every slot that "nija" produces unchanged.)
+R1.2 Running "siro" and then "safu" gives the same result as running "safu" alone.
+     ("safu" cannot tell whether "siro" was applied first.)
+R1.3 Running "siro" twice in a row leaves every SOFO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZIVU has exactly 3 slots, called n1, n2, n3.
+- MAJA has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle station (SOFO):
+D1.1 SOFO must be a finite set with at most 2 slots.
+D1.2 List the "siro" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "nija" table entries in ZIVU slot order n1, n2, n3.
+D1.4 Every MAJA slot must be reached by "safu" from at least one SOFO slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+SOFO = {q1_1, ..., q1_k}
+nija: n1 -> <SOFO slot>, n2 -> <SOFO slot>, n3 -> <SOFO slot>
+siro: q1_1 -> <SOFO slot>, ..., q1_k -> <SOFO slot>
+safu: q1_1 -> <MAJA slot>, ... (one entry per SOFO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

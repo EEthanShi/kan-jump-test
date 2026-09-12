@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: MARA, DIDU, POGU, RUTI, JOVA, KIZO. Toys move MARA -> DIDU -> POGU -> RUTI -> JOVA -> KIZO.
+There are 9 moving steps:
+- "vuza" carries each MARA slot to a DIDU slot.
+- "puzi" is an internal reshuffle of DIDU: it carries each DIDU slot to a DIDU slot.
+- "vija" carries each DIDU slot to a POGU slot.
+- "riki" is an internal reshuffle of POGU: it carries each POGU slot to a POGU slot.
+- "ribi" carries each POGU slot to a RUTI slot.
+- "nigo" is an internal reshuffle of RUTI: it carries each RUTI slot to a RUTI slot.
+- "vitu" carries each RUTI slot to a JOVA slot.
+- "nupu" is an internal reshuffle of JOVA: it carries each JOVA slot to a JOVA slot.
+- "tiru" carries each JOVA slot to a KIZO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vuza" and then "puzi" lands on the same slot as running "vuza" alone.
+     ("puzi" leaves every slot that "vuza" produces unchanged.)
+R1.2 Running "puzi" and then "vija" gives the same result as running "vija" alone.
+     ("vija" cannot tell whether "puzi" was applied first.)
+R1.3 Running "puzi" three times in a row leaves every DIDU slot exactly where it started.
+R2.1 Running "vija" and then "riki" lands on the same slot as running "vija" alone.
+     ("riki" leaves every slot that "vija" produces unchanged.)
+R2.2 Running "riki" and then "ribi" gives the same result as running "ribi" alone.
+     ("ribi" cannot tell whether "riki" was applied first.)
+R2.3 Running "riki" three times in a row leaves every POGU slot exactly where it started.
+R3.1 Running "ribi" and then "nigo" lands on the same slot as running "ribi" alone.
+     ("nigo" leaves every slot that "ribi" produces unchanged.)
+R3.2 Running "nigo" and then "vitu" gives the same result as running "vitu" alone.
+     ("vitu" cannot tell whether "nigo" was applied first.)
+R3.3 Running "nigo" three times in a row leaves every RUTI slot exactly where it started.
+R4.1 Running "vitu" and then "nupu" lands on the same slot as running "vitu" alone.
+     ("nupu" leaves every slot that "vitu" produces unchanged.)
+R4.2 Running "nupu" and then "tiru" gives the same result as running "tiru" alone.
+     ("tiru" cannot tell whether "nupu" was applied first.)
+R4.3 Running "nupu" three times in a row leaves every JOVA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MARA has exactly one slot, called n1.
+- KIZO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DIDU, POGU, RUTI, JOVA):
+D1.1 DIDU must be a finite set with at most 4 slots.
+D1.2 "puzi" must NOT be the do-nothing move (it must move at least one DIDU slot).
+D2.1 POGU must be a finite set with at most 4 slots.
+D2.2 "riki" must NOT be the do-nothing move (it must move at least one POGU slot).
+D3.1 RUTI must be a finite set with at most 4 slots.
+D3.2 "nigo" must NOT be the do-nothing move (it must move at least one RUTI slot).
+D4.1 JOVA must be a finite set with at most 4 slots.
+D4.2 "nupu" must NOT be the do-nothing move (it must move at least one JOVA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DIDU = {q1_1, ..., q1_k}
+vuza: n1 -> <DIDU slot>
+puzi: q1_1 -> <DIDU slot>, ..., q1_k -> <DIDU slot>
+POGU = {q2_1, ..., q2_k}
+vija: q1_1 -> <POGU slot>, ... (one entry per DIDU slot)
+riki: q2_1 -> <POGU slot>, ..., q2_k -> <POGU slot>
+RUTI = {q3_1, ..., q3_k}
+ribi: q2_1 -> <RUTI slot>, ... (one entry per POGU slot)
+nigo: q3_1 -> <RUTI slot>, ..., q3_k -> <RUTI slot>
+JOVA = {q4_1, ..., q4_k}
+vitu: q3_1 -> <JOVA slot>, ... (one entry per RUTI slot)
+nupu: q4_1 -> <JOVA slot>, ..., q4_k -> <JOVA slot>
+tiru: q4_1 -> <KIZO slot>, ... (one entry per JOVA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

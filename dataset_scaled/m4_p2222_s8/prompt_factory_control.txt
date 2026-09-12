@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: DIBI, ZORA, FAFO, NAFU, ZUZI, KIMO. Toys move DIBI -> ZORA -> FAFO -> NAFU -> ZUZI -> KIMO.
+There are 9 moving steps:
+- "sara" carries each DIBI slot to a ZORA slot.
+- "vabo" is an internal reshuffle of ZORA: it carries each ZORA slot to a ZORA slot.
+- "dufi" carries each ZORA slot to a FAFO slot.
+- "damo" is an internal reshuffle of FAFO: it carries each FAFO slot to a FAFO slot.
+- "kupi" carries each FAFO slot to a NAFU slot.
+- "loto" is an internal reshuffle of NAFU: it carries each NAFU slot to a NAFU slot.
+- "nonu" carries each NAFU slot to a ZUZI slot.
+- "fado" is an internal reshuffle of ZUZI: it carries each ZUZI slot to a ZUZI slot.
+- "raru" carries each ZUZI slot to a KIMO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "sara" and then "vabo" lands on the same slot as running "sara" alone.
+     ("vabo" leaves every slot that "sara" produces unchanged.)
+R1.2 Running "vabo" and then "dufi" gives the same result as running "dufi" alone.
+     ("dufi" cannot tell whether "vabo" was applied first.)
+R1.3 Running "vabo" twice in a row leaves every ZORA slot exactly where it started.
+R2.1 Running "dufi" and then "damo" lands on the same slot as running "dufi" alone.
+     ("damo" leaves every slot that "dufi" produces unchanged.)
+R2.2 Running "damo" and then "kupi" gives the same result as running "kupi" alone.
+     ("kupi" cannot tell whether "damo" was applied first.)
+R2.3 Running "damo" twice in a row leaves every FAFO slot exactly where it started.
+R3.1 Running "kupi" and then "loto" lands on the same slot as running "kupi" alone.
+     ("loto" leaves every slot that "kupi" produces unchanged.)
+R3.2 Running "loto" and then "nonu" gives the same result as running "nonu" alone.
+     ("nonu" cannot tell whether "loto" was applied first.)
+R3.3 Running "loto" twice in a row leaves every NAFU slot exactly where it started.
+R4.1 Running "nonu" and then "fado" lands on the same slot as running "nonu" alone.
+     ("fado" leaves every slot that "nonu" produces unchanged.)
+R4.2 Running "fado" and then "raru" gives the same result as running "raru" alone.
+     ("raru" cannot tell whether "fado" was applied first.)
+R4.3 Running "fado" twice in a row leaves every ZUZI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DIBI has exactly one slot, called n1.
+- KIMO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (ZORA, FAFO, NAFU, ZUZI):
+D1.1 ZORA must be a finite set with at most 1 slot.
+D1.2 List the "vabo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 FAFO must be a finite set with at most 1 slot.
+D2.2 List the "damo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 NAFU must be a finite set with at most 1 slot.
+D3.2 List the "loto" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 ZUZI must be a finite set with at most 1 slot.
+D4.2 List the "fado" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+ZORA = {q1_1, ..., q1_k}
+sara: n1 -> <ZORA slot>
+vabo: q1_1 -> <ZORA slot>, ..., q1_k -> <ZORA slot>
+FAFO = {q2_1, ..., q2_k}
+dufi: q1_1 -> <FAFO slot>, ... (one entry per ZORA slot)
+damo: q2_1 -> <FAFO slot>, ..., q2_k -> <FAFO slot>
+NAFU = {q3_1, ..., q3_k}
+kupi: q2_1 -> <NAFU slot>, ... (one entry per FAFO slot)
+loto: q3_1 -> <NAFU slot>, ..., q3_k -> <NAFU slot>
+ZUZI = {q4_1, ..., q4_k}
+nonu: q3_1 -> <ZUZI slot>, ... (one entry per NAFU slot)
+fado: q4_1 -> <ZUZI slot>, ..., q4_k -> <ZUZI slot>
+raru: q4_1 -> <KIMO slot>, ... (one entry per ZUZI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

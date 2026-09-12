@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: PAVO, PIGI, SIJO, SOFO, VUKA. Toys move PAVO -> PIGI -> SIJO -> SOFO -> VUKA.
+There are 7 moving steps:
+- "guso" carries each PAVO slot to a PIGI slot.
+- "biza" is an internal reshuffle of PIGI: it carries each PIGI slot to a PIGI slot.
+- "nasi" carries each PIGI slot to a SIJO slot.
+- "radi" is an internal reshuffle of SIJO: it carries each SIJO slot to a SIJO slot.
+- "kari" carries each SIJO slot to a SOFO slot.
+- "zijo" is an internal reshuffle of SOFO: it carries each SOFO slot to a SOFO slot.
+- "baki" carries each SOFO slot to a VUKA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "guso" and then "biza" lands on the same slot as running "guso" alone.
+     ("biza" leaves every slot that "guso" produces unchanged.)
+R1.2 Running "biza" and then "nasi" gives the same result as running "nasi" alone.
+     ("nasi" cannot tell whether "biza" was applied first.)
+R1.3 Running "biza" three times in a row leaves every PIGI slot exactly where it started.
+R2.1 Running "nasi" and then "radi" lands on the same slot as running "nasi" alone.
+     ("radi" leaves every slot that "nasi" produces unchanged.)
+R2.2 Running "radi" and then "kari" gives the same result as running "kari" alone.
+     ("kari" cannot tell whether "radi" was applied first.)
+R2.3 Running "radi" twice in a row leaves every SIJO slot exactly where it started.
+R3.1 Running "kari" and then "zijo" lands on the same slot as running "kari" alone.
+     ("zijo" leaves every slot that "kari" produces unchanged.)
+R3.2 Running "zijo" and then "baki" gives the same result as running "baki" alone.
+     ("baki" cannot tell whether "zijo" was applied first.)
+R3.3 Running "zijo" three times in a row leaves every SOFO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PAVO has exactly one slot, called n1.
+- VUKA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PIGI, SIJO, SOFO):
+D1.1 PIGI must be a finite set with at most 4 slots.
+D1.2 "biza" must NOT be the do-nothing move (it must move at least one PIGI slot).
+D2.1 SIJO must be a finite set with at most 3 slots.
+D2.2 "radi" must NOT be the do-nothing move (it must move at least one SIJO slot).
+D3.1 SOFO must be a finite set with at most 4 slots.
+D3.2 "zijo" must NOT be the do-nothing move (it must move at least one SOFO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PIGI = {q1_1, ..., q1_k}
+guso: n1 -> <PIGI slot>
+biza: q1_1 -> <PIGI slot>, ..., q1_k -> <PIGI slot>
+SIJO = {q2_1, ..., q2_k}
+nasi: q1_1 -> <SIJO slot>, ... (one entry per PIGI slot)
+radi: q2_1 -> <SIJO slot>, ..., q2_k -> <SIJO slot>
+SOFO = {q3_1, ..., q3_k}
+kari: q2_1 -> <SOFO slot>, ... (one entry per SIJO slot)
+zijo: q3_1 -> <SOFO slot>, ..., q3_k -> <SOFO slot>
+baki: q3_1 -> <VUKA slot>, ... (one entry per SOFO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: ZIGA, DUKA, GULA, LOKI. Toys move ZIGA -> DUKA -> GULA -> LOKI.
+There are 5 moving steps:
+- "mizo" carries each ZIGA slot to a DUKA slot.
+- "vuza" is an internal reshuffle of DUKA: it carries each DUKA slot to a DUKA slot.
+- "pumu" carries each DUKA slot to a GULA slot.
+- "kisi" is an internal reshuffle of GULA: it carries each GULA slot to a GULA slot.
+- "moli" carries each GULA slot to a LOKI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "mizo" and then "vuza" lands on the same slot as running "mizo" alone.
+     ("vuza" leaves every slot that "mizo" produces unchanged.)
+R1.2 Running "vuza" and then "pumu" gives the same result as running "pumu" alone.
+     ("pumu" cannot tell whether "vuza" was applied first.)
+R1.3 Running "vuza" twice in a row leaves every DUKA slot exactly where it started.
+R2.1 Running "pumu" and then "kisi" lands on the same slot as running "pumu" alone.
+     ("kisi" leaves every slot that "pumu" produces unchanged.)
+R2.2 Running "kisi" and then "moli" gives the same result as running "moli" alone.
+     ("moli" cannot tell whether "kisi" was applied first.)
+R2.3 Running "kisi" twice in a row leaves every GULA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZIGA has exactly one slot, called n1.
+- LOKI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DUKA, GULA):
+D1.1 DUKA must be a finite set with at most 3 slots.
+D1.2 "vuza" must NOT be the do-nothing move (it must move at least one DUKA slot).
+D2.1 GULA must be a finite set with at most 3 slots.
+D2.2 "kisi" must NOT be the do-nothing move (it must move at least one GULA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DUKA = {q1_1, ..., q1_k}
+mizo: n1 -> <DUKA slot>
+vuza: q1_1 -> <DUKA slot>, ..., q1_k -> <DUKA slot>
+GULA = {q2_1, ..., q2_k}
+pumu: q1_1 -> <GULA slot>, ... (one entry per DUKA slot)
+kisi: q2_1 -> <GULA slot>, ..., q2_k -> <GULA slot>
+moli: q2_1 -> <LOKI slot>, ... (one entry per GULA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

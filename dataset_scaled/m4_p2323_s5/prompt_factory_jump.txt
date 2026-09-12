@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: TANO, JOGI, ZUTI, BUKO, RIKI, NITI. Toys move TANO -> JOGI -> ZUTI -> BUKO -> RIKI -> NITI.
+There are 9 moving steps:
+- "dopi" carries each TANO slot to a JOGI slot.
+- "mubu" is an internal reshuffle of JOGI: it carries each JOGI slot to a JOGI slot.
+- "bavi" carries each JOGI slot to a ZUTI slot.
+- "robu" is an internal reshuffle of ZUTI: it carries each ZUTI slot to a ZUTI slot.
+- "bari" carries each ZUTI slot to a BUKO slot.
+- "luru" is an internal reshuffle of BUKO: it carries each BUKO slot to a BUKO slot.
+- "gifi" carries each BUKO slot to a RIKI slot.
+- "vomi" is an internal reshuffle of RIKI: it carries each RIKI slot to a RIKI slot.
+- "pigi" carries each RIKI slot to a NITI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "dopi" and then "mubu" lands on the same slot as running "dopi" alone.
+     ("mubu" leaves every slot that "dopi" produces unchanged.)
+R1.2 Running "mubu" and then "bavi" gives the same result as running "bavi" alone.
+     ("bavi" cannot tell whether "mubu" was applied first.)
+R1.3 Running "mubu" twice in a row leaves every JOGI slot exactly where it started.
+R2.1 Running "bavi" and then "robu" lands on the same slot as running "bavi" alone.
+     ("robu" leaves every slot that "bavi" produces unchanged.)
+R2.2 Running "robu" and then "bari" gives the same result as running "bari" alone.
+     ("bari" cannot tell whether "robu" was applied first.)
+R2.3 Running "robu" three times in a row leaves every ZUTI slot exactly where it started.
+R3.1 Running "bari" and then "luru" lands on the same slot as running "bari" alone.
+     ("luru" leaves every slot that "bari" produces unchanged.)
+R3.2 Running "luru" and then "gifi" gives the same result as running "gifi" alone.
+     ("gifi" cannot tell whether "luru" was applied first.)
+R3.3 Running "luru" twice in a row leaves every BUKO slot exactly where it started.
+R4.1 Running "gifi" and then "vomi" lands on the same slot as running "gifi" alone.
+     ("vomi" leaves every slot that "gifi" produces unchanged.)
+R4.2 Running "vomi" and then "pigi" gives the same result as running "pigi" alone.
+     ("pigi" cannot tell whether "vomi" was applied first.)
+R4.3 Running "vomi" three times in a row leaves every RIKI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TANO has exactly one slot, called n1.
+- NITI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (JOGI, ZUTI, BUKO, RIKI):
+D1.1 JOGI must be a finite set with at most 3 slots.
+D1.2 "mubu" must NOT be the do-nothing move (it must move at least one JOGI slot).
+D2.1 ZUTI must be a finite set with at most 4 slots.
+D2.2 "robu" must NOT be the do-nothing move (it must move at least one ZUTI slot).
+D3.1 BUKO must be a finite set with at most 3 slots.
+D3.2 "luru" must NOT be the do-nothing move (it must move at least one BUKO slot).
+D4.1 RIKI must be a finite set with at most 4 slots.
+D4.2 "vomi" must NOT be the do-nothing move (it must move at least one RIKI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+JOGI = {q1_1, ..., q1_k}
+dopi: n1 -> <JOGI slot>
+mubu: q1_1 -> <JOGI slot>, ..., q1_k -> <JOGI slot>
+ZUTI = {q2_1, ..., q2_k}
+bavi: q1_1 -> <ZUTI slot>, ... (one entry per JOGI slot)
+robu: q2_1 -> <ZUTI slot>, ..., q2_k -> <ZUTI slot>
+BUKO = {q3_1, ..., q3_k}
+bari: q2_1 -> <BUKO slot>, ... (one entry per ZUTI slot)
+luru: q3_1 -> <BUKO slot>, ..., q3_k -> <BUKO slot>
+RIKI = {q4_1, ..., q4_k}
+gifi: q3_1 -> <RIKI slot>, ... (one entry per BUKO slot)
+vomi: q4_1 -> <RIKI slot>, ..., q4_k -> <RIKI slot>
+pigi: q4_1 -> <NITI slot>, ... (one entry per RIKI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

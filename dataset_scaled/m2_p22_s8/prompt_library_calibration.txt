@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: LIMI, FOLU, MIJU, NOPA. Books move LIMI -> FOLU -> MIJU -> NOPA.
+There are 5 moving steps:
+- "rodu" carries each LIMI tray to a FOLU tray.
+- "kati" is an internal rearrangement of FOLU: it carries each FOLU tray to a FOLU tray.
+- "subo" carries each FOLU tray to a MIJU tray.
+- "bala" is an internal rearrangement of MIJU: it carries each MIJU tray to a MIJU tray.
+- "zufu" carries each MIJU tray to a NOPA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "rodu" and then "kati" lands on the same tray as running "rodu" alone.
+     ("kati" leaves every tray that "rodu" produces unchanged.)
+R1.2 Running "kati" and then "subo" gives the same result as running "subo" alone.
+     ("subo" cannot tell whether "kati" was applied first.)
+R1.3 Running "kati" twice in a row leaves every FOLU tray exactly where it started.
+R2.1 Running "subo" and then "bala" lands on the same tray as running "subo" alone.
+     ("bala" leaves every tray that "subo" produces unchanged.)
+R2.2 Running "bala" and then "zufu" gives the same result as running "zufu" alone.
+     ("zufu" cannot tell whether "bala" was applied first.)
+R2.3 Running "bala" twice in a row leaves every MIJU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LIMI has exactly one tray, called n1.
+- NOPA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FOLU, MIJU):
+D1.1 List the trays of FOLU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kati" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of MIJU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "bala" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FOLU = {q1_1, ..., q1_k}
+rodu: n1 -> <FOLU tray>
+kati: q1_1 -> <FOLU tray>, ..., q1_k -> <FOLU tray>
+MIJU = {q2_1, ..., q2_k}
+subo: q1_1 -> <MIJU tray>, ... (one entry per FOLU tray)
+bala: q2_1 -> <MIJU tray>, ..., q2_k -> <MIJU tray>
+zufu: q2_1 -> <NOPA tray>, ... (one entry per MIJU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZAGI, PALA, VODU, RAPI, NAJI. Books move ZAGI -> PALA -> VODU -> RAPI -> NAJI.
+There are 7 moving steps:
+- "tobi" carries each ZAGI tray to a PALA tray.
+- "rilu" is an internal rearrangement of PALA: it carries each PALA tray to a PALA tray.
+- "ropa" carries each PALA tray to a VODU tray.
+- "rofo" is an internal rearrangement of VODU: it carries each VODU tray to a VODU tray.
+- "soki" carries each VODU tray to a RAPI tray.
+- "zoni" is an internal rearrangement of RAPI: it carries each RAPI tray to a RAPI tray.
+- "baso" carries each RAPI tray to a NAJI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tobi" and then "rilu" lands on the same tray as running "tobi" alone.
+     ("rilu" leaves every tray that "tobi" produces unchanged.)
+R1.2 Running "rilu" and then "ropa" gives the same result as running "ropa" alone.
+     ("ropa" cannot tell whether "rilu" was applied first.)
+R1.3 Running "rilu" three times in a row leaves every PALA tray exactly where it started.
+R2.1 Running "ropa" and then "rofo" lands on the same tray as running "ropa" alone.
+     ("rofo" leaves every tray that "ropa" produces unchanged.)
+R2.2 Running "rofo" and then "soki" gives the same result as running "soki" alone.
+     ("soki" cannot tell whether "rofo" was applied first.)
+R2.3 Running "rofo" three times in a row leaves every VODU tray exactly where it started.
+R3.1 Running "soki" and then "zoni" lands on the same tray as running "soki" alone.
+     ("zoni" leaves every tray that "soki" produces unchanged.)
+R3.2 Running "zoni" and then "baso" gives the same result as running "baso" alone.
+     ("baso" cannot tell whether "zoni" was applied first.)
+R3.3 Running "zoni" three times in a row leaves every RAPI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZAGI has exactly one tray, called n1.
+- NAJI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PALA, VODU, RAPI):
+D1.1 PALA must be a finite set with at most 1 tray.
+D1.2 List the "rilu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VODU must be a finite set with at most 1 tray.
+D2.2 List the "rofo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 RAPI must be a finite set with at most 1 tray.
+D3.2 List the "zoni" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PALA = {q1_1, ..., q1_k}
+tobi: n1 -> <PALA tray>
+rilu: q1_1 -> <PALA tray>, ..., q1_k -> <PALA tray>
+VODU = {q2_1, ..., q2_k}
+ropa: q1_1 -> <VODU tray>, ... (one entry per PALA tray)
+rofo: q2_1 -> <VODU tray>, ..., q2_k -> <VODU tray>
+RAPI = {q3_1, ..., q3_k}
+soki: q2_1 -> <RAPI tray>, ... (one entry per VODU tray)
+zoni: q3_1 -> <RAPI tray>, ..., q3_k -> <RAPI tray>
+baso: q3_1 -> <NAJI tray>, ... (one entry per RAPI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

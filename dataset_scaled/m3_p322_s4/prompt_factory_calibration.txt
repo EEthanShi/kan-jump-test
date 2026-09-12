@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: BUSO, TIGU, BUBI, ROPI, KALU. Toys move BUSO -> TIGU -> BUBI -> ROPI -> KALU.
+There are 7 moving steps:
+- "dibo" carries each BUSO slot to a TIGU slot.
+- "pufo" is an internal reshuffle of TIGU: it carries each TIGU slot to a TIGU slot.
+- "gisi" carries each TIGU slot to a BUBI slot.
+- "soji" is an internal reshuffle of BUBI: it carries each BUBI slot to a BUBI slot.
+- "kogo" carries each BUBI slot to a ROPI slot.
+- "zaro" is an internal reshuffle of ROPI: it carries each ROPI slot to a ROPI slot.
+- "soza" carries each ROPI slot to a KALU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "dibo" and then "pufo" lands on the same slot as running "dibo" alone.
+     ("pufo" leaves every slot that "dibo" produces unchanged.)
+R1.2 Running "pufo" and then "gisi" gives the same result as running "gisi" alone.
+     ("gisi" cannot tell whether "pufo" was applied first.)
+R1.3 Running "pufo" three times in a row leaves every TIGU slot exactly where it started.
+R2.1 Running "gisi" and then "soji" lands on the same slot as running "gisi" alone.
+     ("soji" leaves every slot that "gisi" produces unchanged.)
+R2.2 Running "soji" and then "kogo" gives the same result as running "kogo" alone.
+     ("kogo" cannot tell whether "soji" was applied first.)
+R2.3 Running "soji" twice in a row leaves every BUBI slot exactly where it started.
+R3.1 Running "kogo" and then "zaro" lands on the same slot as running "kogo" alone.
+     ("zaro" leaves every slot that "kogo" produces unchanged.)
+R3.2 Running "zaro" and then "soza" gives the same result as running "soza" alone.
+     ("soza" cannot tell whether "zaro" was applied first.)
+R3.3 Running "zaro" twice in a row leaves every ROPI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUSO has exactly one slot, called n1.
+- KALU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TIGU, BUBI, ROPI):
+D1.1 List the slots of TIGU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "pufo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of BUBI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "soji" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of ROPI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "zaro" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TIGU = {q1_1, ..., q1_k}
+dibo: n1 -> <TIGU slot>
+pufo: q1_1 -> <TIGU slot>, ..., q1_k -> <TIGU slot>
+BUBI = {q2_1, ..., q2_k}
+gisi: q1_1 -> <BUBI slot>, ... (one entry per TIGU slot)
+soji: q2_1 -> <BUBI slot>, ..., q2_k -> <BUBI slot>
+ROPI = {q3_1, ..., q3_k}
+kogo: q2_1 -> <ROPI slot>, ... (one entry per BUBI slot)
+zaro: q3_1 -> <ROPI slot>, ..., q3_k -> <ROPI slot>
+soza: q3_1 -> <KALU slot>, ... (one entry per ROPI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

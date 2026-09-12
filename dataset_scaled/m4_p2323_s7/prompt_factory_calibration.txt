@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: MIFO, DANO, ROZO, POLI, DUJU, BIFU. Toys move MIFO -> DANO -> ROZO -> POLI -> DUJU -> BIFU.
+There are 9 moving steps:
+- "joma" carries each MIFO slot to a DANO slot.
+- "tava" is an internal reshuffle of DANO: it carries each DANO slot to a DANO slot.
+- "topi" carries each DANO slot to a ROZO slot.
+- "moza" is an internal reshuffle of ROZO: it carries each ROZO slot to a ROZO slot.
+- "tiji" carries each ROZO slot to a POLI slot.
+- "suza" is an internal reshuffle of POLI: it carries each POLI slot to a POLI slot.
+- "vizu" carries each POLI slot to a DUJU slot.
+- "pigo" is an internal reshuffle of DUJU: it carries each DUJU slot to a DUJU slot.
+- "toro" carries each DUJU slot to a BIFU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "joma" and then "tava" lands on the same slot as running "joma" alone.
+     ("tava" leaves every slot that "joma" produces unchanged.)
+R1.2 Running "tava" and then "topi" gives the same result as running "topi" alone.
+     ("topi" cannot tell whether "tava" was applied first.)
+R1.3 Running "tava" twice in a row leaves every DANO slot exactly where it started.
+R2.1 Running "topi" and then "moza" lands on the same slot as running "topi" alone.
+     ("moza" leaves every slot that "topi" produces unchanged.)
+R2.2 Running "moza" and then "tiji" gives the same result as running "tiji" alone.
+     ("tiji" cannot tell whether "moza" was applied first.)
+R2.3 Running "moza" three times in a row leaves every ROZO slot exactly where it started.
+R3.1 Running "tiji" and then "suza" lands on the same slot as running "tiji" alone.
+     ("suza" leaves every slot that "tiji" produces unchanged.)
+R3.2 Running "suza" and then "vizu" gives the same result as running "vizu" alone.
+     ("vizu" cannot tell whether "suza" was applied first.)
+R3.3 Running "suza" twice in a row leaves every POLI slot exactly where it started.
+R4.1 Running "vizu" and then "pigo" lands on the same slot as running "vizu" alone.
+     ("pigo" leaves every slot that "vizu" produces unchanged.)
+R4.2 Running "pigo" and then "toro" gives the same result as running "toro" alone.
+     ("toro" cannot tell whether "pigo" was applied first.)
+R4.3 Running "pigo" three times in a row leaves every DUJU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MIFO has exactly one slot, called n1.
+- BIFU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DANO, ROZO, POLI, DUJU):
+D1.1 List the slots of DANO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "tava" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of ROZO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "moza" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of POLI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "suza" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of DUJU in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "pigo" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DANO = {q1_1, ..., q1_k}
+joma: n1 -> <DANO slot>
+tava: q1_1 -> <DANO slot>, ..., q1_k -> <DANO slot>
+ROZO = {q2_1, ..., q2_k}
+topi: q1_1 -> <ROZO slot>, ... (one entry per DANO slot)
+moza: q2_1 -> <ROZO slot>, ..., q2_k -> <ROZO slot>
+POLI = {q3_1, ..., q3_k}
+tiji: q2_1 -> <POLI slot>, ... (one entry per ROZO slot)
+suza: q3_1 -> <POLI slot>, ..., q3_k -> <POLI slot>
+DUJU = {q4_1, ..., q4_k}
+vizu: q3_1 -> <DUJU slot>, ... (one entry per POLI slot)
+pigo: q4_1 -> <DUJU slot>, ..., q4_k -> <DUJU slot>
+toro: q4_1 -> <BIFU slot>, ... (one entry per DUJU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

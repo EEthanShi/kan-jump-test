@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: SARA, NIPA, MURO, SITU, VAZI, KITI. Toys move SARA -> NIPA -> MURO -> SITU -> VAZI -> KITI.
+There are 9 moving steps:
+- "juda" carries each SARA slot to a NIPA slot.
+- "juno" is an internal reshuffle of NIPA: it carries each NIPA slot to a NIPA slot.
+- "domo" carries each NIPA slot to a MURO slot.
+- "sipi" is an internal reshuffle of MURO: it carries each MURO slot to a MURO slot.
+- "dipa" carries each MURO slot to a SITU slot.
+- "ruli" is an internal reshuffle of SITU: it carries each SITU slot to a SITU slot.
+- "sija" carries each SITU slot to a VAZI slot.
+- "toba" is an internal reshuffle of VAZI: it carries each VAZI slot to a VAZI slot.
+- "soba" carries each VAZI slot to a KITI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "juda" and then "juno" lands on the same slot as running "juda" alone.
+     ("juno" leaves every slot that "juda" produces unchanged.)
+R1.2 Running "juno" and then "domo" gives the same result as running "domo" alone.
+     ("domo" cannot tell whether "juno" was applied first.)
+R1.3 Running "juno" twice in a row leaves every NIPA slot exactly where it started.
+R2.1 Running "domo" and then "sipi" lands on the same slot as running "domo" alone.
+     ("sipi" leaves every slot that "domo" produces unchanged.)
+R2.2 Running "sipi" and then "dipa" gives the same result as running "dipa" alone.
+     ("dipa" cannot tell whether "sipi" was applied first.)
+R2.3 Running "sipi" three times in a row leaves every MURO slot exactly where it started.
+R3.1 Running "dipa" and then "ruli" lands on the same slot as running "dipa" alone.
+     ("ruli" leaves every slot that "dipa" produces unchanged.)
+R3.2 Running "ruli" and then "sija" gives the same result as running "sija" alone.
+     ("sija" cannot tell whether "ruli" was applied first.)
+R3.3 Running "ruli" twice in a row leaves every SITU slot exactly where it started.
+R4.1 Running "sija" and then "toba" lands on the same slot as running "sija" alone.
+     ("toba" leaves every slot that "sija" produces unchanged.)
+R4.2 Running "toba" and then "soba" gives the same result as running "soba" alone.
+     ("soba" cannot tell whether "toba" was applied first.)
+R4.3 Running "toba" three times in a row leaves every VAZI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SARA has exactly one slot, called n1.
+- KITI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NIPA, MURO, SITU, VAZI):
+D1.1 NIPA must be a finite set with at most 3 slots.
+D1.2 "juno" must NOT be the do-nothing move (it must move at least one NIPA slot).
+D2.1 MURO must be a finite set with at most 4 slots.
+D2.2 "sipi" must NOT be the do-nothing move (it must move at least one MURO slot).
+D3.1 SITU must be a finite set with at most 3 slots.
+D3.2 "ruli" must NOT be the do-nothing move (it must move at least one SITU slot).
+D4.1 VAZI must be a finite set with at most 4 slots.
+D4.2 "toba" must NOT be the do-nothing move (it must move at least one VAZI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NIPA = {q1_1, ..., q1_k}
+juda: n1 -> <NIPA slot>
+juno: q1_1 -> <NIPA slot>, ..., q1_k -> <NIPA slot>
+MURO = {q2_1, ..., q2_k}
+domo: q1_1 -> <MURO slot>, ... (one entry per NIPA slot)
+sipi: q2_1 -> <MURO slot>, ..., q2_k -> <MURO slot>
+SITU = {q3_1, ..., q3_k}
+dipa: q2_1 -> <SITU slot>, ... (one entry per MURO slot)
+ruli: q3_1 -> <SITU slot>, ..., q3_k -> <SITU slot>
+VAZI = {q4_1, ..., q4_k}
+sija: q3_1 -> <VAZI slot>, ... (one entry per SITU slot)
+toba: q4_1 -> <VAZI slot>, ..., q4_k -> <VAZI slot>
+soba: q4_1 -> <KITI slot>, ... (one entry per VAZI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: GUTU, PUFO, DOTO, RUMO, DUSU, ZUZI. Books move GUTU -> PUFO -> DOTO -> RUMO -> DUSU -> ZUZI.
+There are 9 moving steps:
+- "muzu" carries each GUTU tray to a PUFO tray.
+- "jami" is an internal rearrangement of PUFO: it carries each PUFO tray to a PUFO tray.
+- "japi" carries each PUFO tray to a DOTO tray.
+- "polu" is an internal rearrangement of DOTO: it carries each DOTO tray to a DOTO tray.
+- "mofu" carries each DOTO tray to a RUMO tray.
+- "ligo" is an internal rearrangement of RUMO: it carries each RUMO tray to a RUMO tray.
+- "fata" carries each RUMO tray to a DUSU tray.
+- "nuno" is an internal rearrangement of DUSU: it carries each DUSU tray to a DUSU tray.
+- "kifu" carries each DUSU tray to a ZUZI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "muzu" and then "jami" lands on the same tray as running "muzu" alone.
+     ("jami" leaves every tray that "muzu" produces unchanged.)
+R1.2 Running "jami" and then "japi" gives the same result as running "japi" alone.
+     ("japi" cannot tell whether "jami" was applied first.)
+R1.3 Running "jami" twice in a row leaves every PUFO tray exactly where it started.
+R2.1 Running "japi" and then "polu" lands on the same tray as running "japi" alone.
+     ("polu" leaves every tray that "japi" produces unchanged.)
+R2.2 Running "polu" and then "mofu" gives the same result as running "mofu" alone.
+     ("mofu" cannot tell whether "polu" was applied first.)
+R2.3 Running "polu" twice in a row leaves every DOTO tray exactly where it started.
+R3.1 Running "mofu" and then "ligo" lands on the same tray as running "mofu" alone.
+     ("ligo" leaves every tray that "mofu" produces unchanged.)
+R3.2 Running "ligo" and then "fata" gives the same result as running "fata" alone.
+     ("fata" cannot tell whether "ligo" was applied first.)
+R3.3 Running "ligo" twice in a row leaves every RUMO tray exactly where it started.
+R4.1 Running "fata" and then "nuno" lands on the same tray as running "fata" alone.
+     ("nuno" leaves every tray that "fata" produces unchanged.)
+R4.2 Running "nuno" and then "kifu" gives the same result as running "kifu" alone.
+     ("kifu" cannot tell whether "nuno" was applied first.)
+R4.3 Running "nuno" twice in a row leaves every DUSU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GUTU has exactly one tray, called n1.
+- ZUZI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PUFO, DOTO, RUMO, DUSU):
+D1.1 PUFO must be a finite set with at most 3 trays.
+D1.2 "jami" must NOT be the do-nothing move (it must move at least one PUFO tray).
+D2.1 DOTO must be a finite set with at most 3 trays.
+D2.2 "polu" must NOT be the do-nothing move (it must move at least one DOTO tray).
+D3.1 RUMO must be a finite set with at most 3 trays.
+D3.2 "ligo" must NOT be the do-nothing move (it must move at least one RUMO tray).
+D4.1 DUSU must be a finite set with at most 3 trays.
+D4.2 "nuno" must NOT be the do-nothing move (it must move at least one DUSU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PUFO = {q1_1, ..., q1_k}
+muzu: n1 -> <PUFO tray>
+jami: q1_1 -> <PUFO tray>, ..., q1_k -> <PUFO tray>
+DOTO = {q2_1, ..., q2_k}
+japi: q1_1 -> <DOTO tray>, ... (one entry per PUFO tray)
+polu: q2_1 -> <DOTO tray>, ..., q2_k -> <DOTO tray>
+RUMO = {q3_1, ..., q3_k}
+mofu: q2_1 -> <RUMO tray>, ... (one entry per DOTO tray)
+ligo: q3_1 -> <RUMO tray>, ..., q3_k -> <RUMO tray>
+DUSU = {q4_1, ..., q4_k}
+fata: q3_1 -> <DUSU tray>, ... (one entry per RUMO tray)
+nuno: q4_1 -> <DUSU tray>, ..., q4_k -> <DUSU tray>
+kifu: q4_1 -> <ZUZI tray>, ... (one entry per DUSU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

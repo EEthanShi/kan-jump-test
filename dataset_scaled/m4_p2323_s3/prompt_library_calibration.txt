@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: VARI, MUSA, GANU, GONO, SIRU, NANI. Books move VARI -> MUSA -> GANU -> GONO -> SIRU -> NANI.
+There are 9 moving steps:
+- "bona" carries each VARI tray to a MUSA tray.
+- "roga" is an internal rearrangement of MUSA: it carries each MUSA tray to a MUSA tray.
+- "zumu" carries each MUSA tray to a GANU tray.
+- "fugu" is an internal rearrangement of GANU: it carries each GANU tray to a GANU tray.
+- "kobu" carries each GANU tray to a GONO tray.
+- "nara" is an internal rearrangement of GONO: it carries each GONO tray to a GONO tray.
+- "divi" carries each GONO tray to a SIRU tray.
+- "faki" is an internal rearrangement of SIRU: it carries each SIRU tray to a SIRU tray.
+- "zaku" carries each SIRU tray to a NANI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bona" and then "roga" lands on the same tray as running "bona" alone.
+     ("roga" leaves every tray that "bona" produces unchanged.)
+R1.2 Running "roga" and then "zumu" gives the same result as running "zumu" alone.
+     ("zumu" cannot tell whether "roga" was applied first.)
+R1.3 Running "roga" twice in a row leaves every MUSA tray exactly where it started.
+R2.1 Running "zumu" and then "fugu" lands on the same tray as running "zumu" alone.
+     ("fugu" leaves every tray that "zumu" produces unchanged.)
+R2.2 Running "fugu" and then "kobu" gives the same result as running "kobu" alone.
+     ("kobu" cannot tell whether "fugu" was applied first.)
+R2.3 Running "fugu" three times in a row leaves every GANU tray exactly where it started.
+R3.1 Running "kobu" and then "nara" lands on the same tray as running "kobu" alone.
+     ("nara" leaves every tray that "kobu" produces unchanged.)
+R3.2 Running "nara" and then "divi" gives the same result as running "divi" alone.
+     ("divi" cannot tell whether "nara" was applied first.)
+R3.3 Running "nara" twice in a row leaves every GONO tray exactly where it started.
+R4.1 Running "divi" and then "faki" lands on the same tray as running "divi" alone.
+     ("faki" leaves every tray that "divi" produces unchanged.)
+R4.2 Running "faki" and then "zaku" gives the same result as running "zaku" alone.
+     ("zaku" cannot tell whether "faki" was applied first.)
+R4.3 Running "faki" three times in a row leaves every SIRU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VARI has exactly one tray, called n1.
+- NANI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MUSA, GANU, GONO, SIRU):
+D1.1 List the trays of MUSA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "roga" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of GANU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fugu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of GONO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "nara" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of SIRU in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "faki" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MUSA = {q1_1, ..., q1_k}
+bona: n1 -> <MUSA tray>
+roga: q1_1 -> <MUSA tray>, ..., q1_k -> <MUSA tray>
+GANU = {q2_1, ..., q2_k}
+zumu: q1_1 -> <GANU tray>, ... (one entry per MUSA tray)
+fugu: q2_1 -> <GANU tray>, ..., q2_k -> <GANU tray>
+GONO = {q3_1, ..., q3_k}
+kobu: q2_1 -> <GONO tray>, ... (one entry per GANU tray)
+nara: q3_1 -> <GONO tray>, ..., q3_k -> <GONO tray>
+SIRU = {q4_1, ..., q4_k}
+divi: q3_1 -> <SIRU tray>, ... (one entry per GONO tray)
+faki: q4_1 -> <SIRU tray>, ..., q4_k -> <SIRU tray>
+zaku: q4_1 -> <NANI tray>, ... (one entry per SIRU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

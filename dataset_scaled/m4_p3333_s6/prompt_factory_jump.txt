@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: SIFO, NARA, SIPI, LIPA, NALI, NILI. Toys move SIFO -> NARA -> SIPI -> LIPA -> NALI -> NILI.
+There are 9 moving steps:
+- "suko" carries each SIFO slot to a NARA slot.
+- "posi" is an internal reshuffle of NARA: it carries each NARA slot to a NARA slot.
+- "suju" carries each NARA slot to a SIPI slot.
+- "gova" is an internal reshuffle of SIPI: it carries each SIPI slot to a SIPI slot.
+- "ruba" carries each SIPI slot to a LIPA slot.
+- "tila" is an internal reshuffle of LIPA: it carries each LIPA slot to a LIPA slot.
+- "lira" carries each LIPA slot to a NALI slot.
+- "fiso" is an internal reshuffle of NALI: it carries each NALI slot to a NALI slot.
+- "gamu" carries each NALI slot to a NILI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "suko" and then "posi" lands on the same slot as running "suko" alone.
+     ("posi" leaves every slot that "suko" produces unchanged.)
+R1.2 Running "posi" and then "suju" gives the same result as running "suju" alone.
+     ("suju" cannot tell whether "posi" was applied first.)
+R1.3 Running "posi" three times in a row leaves every NARA slot exactly where it started.
+R2.1 Running "suju" and then "gova" lands on the same slot as running "suju" alone.
+     ("gova" leaves every slot that "suju" produces unchanged.)
+R2.2 Running "gova" and then "ruba" gives the same result as running "ruba" alone.
+     ("ruba" cannot tell whether "gova" was applied first.)
+R2.3 Running "gova" three times in a row leaves every SIPI slot exactly where it started.
+R3.1 Running "ruba" and then "tila" lands on the same slot as running "ruba" alone.
+     ("tila" leaves every slot that "ruba" produces unchanged.)
+R3.2 Running "tila" and then "lira" gives the same result as running "lira" alone.
+     ("lira" cannot tell whether "tila" was applied first.)
+R3.3 Running "tila" three times in a row leaves every LIPA slot exactly where it started.
+R4.1 Running "lira" and then "fiso" lands on the same slot as running "lira" alone.
+     ("fiso" leaves every slot that "lira" produces unchanged.)
+R4.2 Running "fiso" and then "gamu" gives the same result as running "gamu" alone.
+     ("gamu" cannot tell whether "fiso" was applied first.)
+R4.3 Running "fiso" three times in a row leaves every NALI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SIFO has exactly one slot, called n1.
+- NILI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NARA, SIPI, LIPA, NALI):
+D1.1 NARA must be a finite set with at most 4 slots.
+D1.2 "posi" must NOT be the do-nothing move (it must move at least one NARA slot).
+D2.1 SIPI must be a finite set with at most 4 slots.
+D2.2 "gova" must NOT be the do-nothing move (it must move at least one SIPI slot).
+D3.1 LIPA must be a finite set with at most 4 slots.
+D3.2 "tila" must NOT be the do-nothing move (it must move at least one LIPA slot).
+D4.1 NALI must be a finite set with at most 4 slots.
+D4.2 "fiso" must NOT be the do-nothing move (it must move at least one NALI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NARA = {q1_1, ..., q1_k}
+suko: n1 -> <NARA slot>
+posi: q1_1 -> <NARA slot>, ..., q1_k -> <NARA slot>
+SIPI = {q2_1, ..., q2_k}
+suju: q1_1 -> <SIPI slot>, ... (one entry per NARA slot)
+gova: q2_1 -> <SIPI slot>, ..., q2_k -> <SIPI slot>
+LIPA = {q3_1, ..., q3_k}
+ruba: q2_1 -> <LIPA slot>, ... (one entry per SIPI slot)
+tila: q3_1 -> <LIPA slot>, ..., q3_k -> <LIPA slot>
+NALI = {q4_1, ..., q4_k}
+lira: q3_1 -> <NALI slot>, ... (one entry per LIPA slot)
+fiso: q4_1 -> <NALI slot>, ..., q4_k -> <NALI slot>
+gamu: q4_1 -> <NILI slot>, ... (one entry per NALI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

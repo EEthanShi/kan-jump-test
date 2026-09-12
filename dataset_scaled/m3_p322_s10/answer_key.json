@@ -1,0 +1,108 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 3,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          3,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s10",
+          "stations": [
+            "DODA",
+            "BAFO",
+            "MIZA",
+            "RANO",
+            "BUSA"
+          ],
+          "chain_moves": [
+            "juli",
+            "pivu",
+            "rasi",
+            "pogu"
+          ],
+          "endo_moves": [
+            "poru",
+            "domo",
+            "juza"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "BAFO = {q1_1, q1_2, q1_3, q1_4}\njuli: n1 -> q1_1\nporu: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nMIZA = {q2_1, q2_2, q2_3}\npivu: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1, q1_4 -> q2_1\ndomo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nRANO = {q3_1, q3_2, q3_3}\nrasi: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\njuza: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\npogu: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1",
+      "kan_answer": "BAFO = {q1_1}\njuli: n1 -> q1_1\nporu: q1_1 -> q1_1\nMIZA = {q2_1}\npivu: q1_1 -> q2_1\ndomo: q2_1 -> q2_1\nRANO = {q3_1}\nrasi: q2_1 -> q3_1\njuza: q3_1 -> q3_1\npogu: q3_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          3,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s10",
+          "stations": [
+            "RALU",
+            "BASO",
+            "FAVI",
+            "KUJA",
+            "GUSO"
+          ],
+          "chain_moves": [
+            "moso",
+            "tiko",
+            "vuri",
+            "sanu"
+          ],
+          "endo_moves": [
+            "kati",
+            "gata",
+            "jitu"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "BASO = {q1_1, q1_2, q1_3, q1_4}\nmoso: n1 -> q1_1\nkati: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_4, q1_4 -> q1_2\nFAVI = {q2_1, q2_2, q2_3}\ntiko: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1, q1_4 -> q2_1\ngata: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nKUJA = {q3_1, q3_2, q3_3}\nvuri: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\njitu: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\nsanu: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1",
+      "kan_answer": "BASO = {q1_1}\nmoso: n1 -> q1_1\nkati: q1_1 -> q1_1\nFAVI = {q2_1}\ntiko: q1_1 -> q2_1\ngata: q2_1 -> q2_1\nKUJA = {q3_1}\nvuri: q2_1 -> q3_1\njitu: q3_1 -> q3_1\nsanu: q3_1 -> s1"
+    }
+  }
+}

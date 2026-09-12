@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: GUJI, BIMA, POZU, LODU, DOSI, TOSI. Books move GUJI -> BIMA -> POZU -> LODU -> DOSI -> TOSI.
+There are 9 moving steps:
+- "gizo" carries each GUJI tray to a BIMA tray.
+- "pova" is an internal rearrangement of BIMA: it carries each BIMA tray to a BIMA tray.
+- "zoga" carries each BIMA tray to a POZU tray.
+- "dori" is an internal rearrangement of POZU: it carries each POZU tray to a POZU tray.
+- "naso" carries each POZU tray to a LODU tray.
+- "fugi" is an internal rearrangement of LODU: it carries each LODU tray to a LODU tray.
+- "kolo" carries each LODU tray to a DOSI tray.
+- "jobu" is an internal rearrangement of DOSI: it carries each DOSI tray to a DOSI tray.
+- "buku" carries each DOSI tray to a TOSI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gizo" and then "pova" lands on the same tray as running "gizo" alone.
+     ("pova" leaves every tray that "gizo" produces unchanged.)
+R1.2 Running "pova" and then "zoga" gives the same result as running "zoga" alone.
+     ("zoga" cannot tell whether "pova" was applied first.)
+R1.3 Running "pova" twice in a row leaves every BIMA tray exactly where it started.
+R2.1 Running "zoga" and then "dori" lands on the same tray as running "zoga" alone.
+     ("dori" leaves every tray that "zoga" produces unchanged.)
+R2.2 Running "dori" and then "naso" gives the same result as running "naso" alone.
+     ("naso" cannot tell whether "dori" was applied first.)
+R2.3 Running "dori" three times in a row leaves every POZU tray exactly where it started.
+R3.1 Running "naso" and then "fugi" lands on the same tray as running "naso" alone.
+     ("fugi" leaves every tray that "naso" produces unchanged.)
+R3.2 Running "fugi" and then "kolo" gives the same result as running "kolo" alone.
+     ("kolo" cannot tell whether "fugi" was applied first.)
+R3.3 Running "fugi" twice in a row leaves every LODU tray exactly where it started.
+R4.1 Running "kolo" and then "jobu" lands on the same tray as running "kolo" alone.
+     ("jobu" leaves every tray that "kolo" produces unchanged.)
+R4.2 Running "jobu" and then "buku" gives the same result as running "buku" alone.
+     ("buku" cannot tell whether "jobu" was applied first.)
+R4.3 Running "jobu" three times in a row leaves every DOSI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GUJI has exactly one tray, called n1.
+- TOSI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BIMA, POZU, LODU, DOSI):
+D1.1 BIMA must be a finite set with at most 1 tray.
+D1.2 List the "pova" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 POZU must be a finite set with at most 1 tray.
+D2.2 List the "dori" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 LODU must be a finite set with at most 1 tray.
+D3.2 List the "fugi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 DOSI must be a finite set with at most 1 tray.
+D4.2 List the "jobu" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BIMA = {q1_1, ..., q1_k}
+gizo: n1 -> <BIMA tray>
+pova: q1_1 -> <BIMA tray>, ..., q1_k -> <BIMA tray>
+POZU = {q2_1, ..., q2_k}
+zoga: q1_1 -> <POZU tray>, ... (one entry per BIMA tray)
+dori: q2_1 -> <POZU tray>, ..., q2_k -> <POZU tray>
+LODU = {q3_1, ..., q3_k}
+naso: q2_1 -> <LODU tray>, ... (one entry per POZU tray)
+fugi: q3_1 -> <LODU tray>, ..., q3_k -> <LODU tray>
+DOSI = {q4_1, ..., q4_k}
+kolo: q3_1 -> <DOSI tray>, ... (one entry per LODU tray)
+jobu: q4_1 -> <DOSI tray>, ..., q4_k -> <DOSI tray>
+buku: q4_1 -> <TOSI tray>, ... (one entry per DOSI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

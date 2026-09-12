@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SUFA, SAJI, FOMU, BIJO, NADU. Toys move SUFA -> SAJI -> FOMU -> BIJO -> NADU.
+There are 7 moving steps:
+- "vigo" carries each SUFA slot to a SAJI slot.
+- "bali" is an internal reshuffle of SAJI: it carries each SAJI slot to a SAJI slot.
+- "juzi" carries each SAJI slot to a FOMU slot.
+- "jumi" is an internal reshuffle of FOMU: it carries each FOMU slot to a FOMU slot.
+- "liku" carries each FOMU slot to a BIJO slot.
+- "niko" is an internal reshuffle of BIJO: it carries each BIJO slot to a BIJO slot.
+- "ramo" carries each BIJO slot to a NADU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vigo" and then "bali" lands on the same slot as running "vigo" alone.
+     ("bali" leaves every slot that "vigo" produces unchanged.)
+R1.2 Running "bali" and then "juzi" gives the same result as running "juzi" alone.
+     ("juzi" cannot tell whether "bali" was applied first.)
+R1.3 Running "bali" three times in a row leaves every SAJI slot exactly where it started.
+R2.1 Running "juzi" and then "jumi" lands on the same slot as running "juzi" alone.
+     ("jumi" leaves every slot that "juzi" produces unchanged.)
+R2.2 Running "jumi" and then "liku" gives the same result as running "liku" alone.
+     ("liku" cannot tell whether "jumi" was applied first.)
+R2.3 Running "jumi" three times in a row leaves every FOMU slot exactly where it started.
+R3.1 Running "liku" and then "niko" lands on the same slot as running "liku" alone.
+     ("niko" leaves every slot that "liku" produces unchanged.)
+R3.2 Running "niko" and then "ramo" gives the same result as running "ramo" alone.
+     ("ramo" cannot tell whether "niko" was applied first.)
+R3.3 Running "niko" three times in a row leaves every BIJO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUFA has exactly one slot, called n1.
+- NADU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SAJI, FOMU, BIJO):
+D1.1 SAJI must be a finite set with at most 1 slot.
+D1.2 List the "bali" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 FOMU must be a finite set with at most 1 slot.
+D2.2 List the "jumi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 BIJO must be a finite set with at most 1 slot.
+D3.2 List the "niko" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SAJI = {q1_1, ..., q1_k}
+vigo: n1 -> <SAJI slot>
+bali: q1_1 -> <SAJI slot>, ..., q1_k -> <SAJI slot>
+FOMU = {q2_1, ..., q2_k}
+juzi: q1_1 -> <FOMU slot>, ... (one entry per SAJI slot)
+jumi: q2_1 -> <FOMU slot>, ..., q2_k -> <FOMU slot>
+BIJO = {q3_1, ..., q3_k}
+liku: q2_1 -> <BIJO slot>, ... (one entry per FOMU slot)
+niko: q3_1 -> <BIJO slot>, ..., q3_k -> <BIJO slot>
+ramo: q3_1 -> <NADU slot>, ... (one entry per BIJO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

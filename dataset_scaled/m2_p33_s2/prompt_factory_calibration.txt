@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: KULI, TUGO, MAKU, ZUGI. Toys move KULI -> TUGO -> MAKU -> ZUGI.
+There are 5 moving steps:
+- "jagu" carries each KULI slot to a TUGO slot.
+- "muja" is an internal reshuffle of TUGO: it carries each TUGO slot to a TUGO slot.
+- "vozo" carries each TUGO slot to a MAKU slot.
+- "tafu" is an internal reshuffle of MAKU: it carries each MAKU slot to a MAKU slot.
+- "faki" carries each MAKU slot to a ZUGI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "jagu" and then "muja" lands on the same slot as running "jagu" alone.
+     ("muja" leaves every slot that "jagu" produces unchanged.)
+R1.2 Running "muja" and then "vozo" gives the same result as running "vozo" alone.
+     ("vozo" cannot tell whether "muja" was applied first.)
+R1.3 Running "muja" three times in a row leaves every TUGO slot exactly where it started.
+R2.1 Running "vozo" and then "tafu" lands on the same slot as running "vozo" alone.
+     ("tafu" leaves every slot that "vozo" produces unchanged.)
+R2.2 Running "tafu" and then "faki" gives the same result as running "faki" alone.
+     ("faki" cannot tell whether "tafu" was applied first.)
+R2.3 Running "tafu" three times in a row leaves every MAKU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KULI has exactly one slot, called n1.
+- ZUGI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TUGO, MAKU):
+D1.1 List the slots of TUGO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "muja" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of MAKU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "tafu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TUGO = {q1_1, ..., q1_k}
+jagu: n1 -> <TUGO slot>
+muja: q1_1 -> <TUGO slot>, ..., q1_k -> <TUGO slot>
+MAKU = {q2_1, ..., q2_k}
+vozo: q1_1 -> <MAKU slot>, ... (one entry per TUGO slot)
+tafu: q2_1 -> <MAKU slot>, ..., q2_k -> <MAKU slot>
+faki: q2_1 -> <ZUGI slot>, ... (one entry per MAKU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: KIVI, KITO, MUMI. Toys move KIVI -> KITO -> MUMI.
+There are 3 moving steps:
+- "vipa" carries each KIVI slot to a KITO slot.
+- "rovu" is an internal reshuffle of KITO: it carries each KITO slot to a KITO slot.
+- "dumo" carries each KITO slot to a MUMI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vipa" and then "rovu" lands on the same slot as running "vipa" alone.
+     ("rovu" leaves every slot that "vipa" produces unchanged.)
+R1.2 Running "rovu" and then "dumo" gives the same result as running "dumo" alone.
+     ("dumo" cannot tell whether "rovu" was applied first.)
+R1.3 Running "rovu" twice in a row leaves every KITO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KIVI has exactly 2 slots, called n1, n2.
+- MUMI has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1.
+
+Requirements for the middle station (KITO):
+D1.1 KITO must be a finite set with at most 4 slots.
+D1.2 "rovu" must NOT be the do-nothing move (it must move at least one KITO slot).
+D1.3 "vipa" must carry different KIVI slots to different KITO slots.
+D1.4 Every MUMI slot must be reached by "dumo" from at least one KITO slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+KITO = {q1_1, ..., q1_k}
+vipa: n1 -> <KITO slot>, n2 -> <KITO slot>
+rovu: q1_1 -> <KITO slot>, ..., q1_k -> <KITO slot>
+dumo: q1_1 -> <MUMI slot>, ... (one entry per KITO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

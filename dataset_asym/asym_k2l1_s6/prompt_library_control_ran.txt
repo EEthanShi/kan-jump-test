@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: VUBA, GUJA, NUDO. Books move VUBA -> GUJA -> NUDO.
+There are 3 moving steps:
+- "poja" carries each VUBA tray to a GUJA tray.
+- "pazi" is an internal rearrangement of GUJA: it carries each GUJA tray to a GUJA tray.
+- "butu" carries each GUJA tray to a NUDO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "poja" and then "pazi" lands on the same tray as running "poja" alone.
+     ("pazi" leaves every tray that "poja" produces unchanged.)
+R1.2 Running "pazi" and then "butu" gives the same result as running "butu" alone.
+     ("butu" cannot tell whether "pazi" was applied first.)
+R1.3 Running "pazi" twice in a row leaves every GUJA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUBA has exactly 2 trays, called n1, n2.
+- NUDO has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (GUJA):
+D1.1 GUJA must be a finite set with at most 1 tray.
+D1.2 List the "pazi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "poja" table entries in VUBA tray order n1, n2.
+D1.4 Every NUDO tray must be reached by "butu" from at least one GUJA tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+GUJA = {q1_1, ..., q1_k}
+poja: n1 -> <GUJA tray>, n2 -> <GUJA tray>
+pazi: q1_1 -> <GUJA tray>, ..., q1_k -> <GUJA tray>
+butu: q1_1 -> <NUDO tray>, ... (one entry per GUJA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 1,
+ "l": 2,
+ "N": 3,
+ "lan_size_b": 1,
+ "ran_size_b": 2,
+ "ext_count": 23,
+ "adm_count": 3,
+ "chance": 0.13043478260869565,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym1x2_s10",
+     "stations": [
+      "VUZI",
+      "VAKI",
+      "TIFO"
+     ],
+     "chain_moves": [
+      "jafa",
+      "bazi"
+     ],
+     "endo_moves": [
+      "pabi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "VAKI = {q1_1}\njafa: n1 -> q1_1\npabi: q1_1 -> q1_1\nbazi: q1_1 -> s1",
+   "ran_answer": "VAKI = {q1_1, q1_2}\njafa: n1 -> q1_1\npabi: q1_1 -> q1_1, q1_2 -> q1_2\nbazi: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "VAKI = {q1_1, q1_2, q1_3}\njafa: n1 -> q1_1\npabi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nbazi: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym1x2_s10",
+     "stations": [
+      "ROVU",
+      "BALO",
+      "PAJI"
+     ],
+     "chain_moves": [
+      "rana",
+      "fado"
+     ],
+     "endo_moves": [
+      "tugo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "BALO = {q1_1}\nrana: n1 -> q1_1\ntugo: q1_1 -> q1_1\nfado: q1_1 -> s1",
+   "ran_answer": "BALO = {q1_1, q1_2}\nrana: n1 -> q1_1\ntugo: q1_1 -> q1_1, q1_2 -> q1_2\nfado: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "BALO = {q1_1, q1_2, q1_3}\nrana: n1 -> q1_1\ntugo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nfado: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  }
+ }
+}

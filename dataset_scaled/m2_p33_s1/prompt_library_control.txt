@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: ZUTO, ZUDI, NARO, MIMU. Books move ZUTO -> ZUDI -> NARO -> MIMU.
+There are 5 moving steps:
+- "gida" carries each ZUTO tray to a ZUDI tray.
+- "mijo" is an internal rearrangement of ZUDI: it carries each ZUDI tray to a ZUDI tray.
+- "juso" carries each ZUDI tray to a NARO tray.
+- "jita" is an internal rearrangement of NARO: it carries each NARO tray to a NARO tray.
+- "puji" carries each NARO tray to a MIMU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gida" and then "mijo" lands on the same tray as running "gida" alone.
+     ("mijo" leaves every tray that "gida" produces unchanged.)
+R1.2 Running "mijo" and then "juso" gives the same result as running "juso" alone.
+     ("juso" cannot tell whether "mijo" was applied first.)
+R1.3 Running "mijo" three times in a row leaves every ZUDI tray exactly where it started.
+R2.1 Running "juso" and then "jita" lands on the same tray as running "juso" alone.
+     ("jita" leaves every tray that "juso" produces unchanged.)
+R2.2 Running "jita" and then "puji" gives the same result as running "puji" alone.
+     ("puji" cannot tell whether "jita" was applied first.)
+R2.3 Running "jita" three times in a row leaves every NARO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZUTO has exactly one tray, called n1.
+- MIMU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZUDI, NARO):
+D1.1 ZUDI must be a finite set with at most 1 tray.
+D1.2 List the "mijo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 NARO must be a finite set with at most 1 tray.
+D2.2 List the "jita" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZUDI = {q1_1, ..., q1_k}
+gida: n1 -> <ZUDI tray>
+mijo: q1_1 -> <ZUDI tray>, ..., q1_k -> <ZUDI tray>
+NARO = {q2_1, ..., q2_k}
+juso: q1_1 -> <NARO tray>, ... (one entry per ZUDI tray)
+jita: q2_1 -> <NARO tray>, ..., q2_k -> <NARO tray>
+puji: q2_1 -> <MIMU tray>, ... (one entry per NARO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

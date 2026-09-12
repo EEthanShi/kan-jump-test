@@ -1,0 +1,99 @@
+{
+ "family": "asym",
+ "k": 4,
+ "l": 1,
+ "N": 6,
+ "lan_size_b": 4,
+ "ran_size_b": 1,
+ "ext_count": 7759,
+ "adm_count": 360,
+ "chance": 0.046397731666451864,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 4,
+    "l": 1,
+    "N": 6,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym4x1_s4",
+     "stations": [
+      "NIKU",
+      "NOMA",
+      "FUSO"
+     ],
+     "chain_moves": [
+      "gojo",
+      "puko"
+     ],
+     "endo_moves": [
+      "moga"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 4,
+     "l": 1
+    }
+   },
+   "lan_answer": "NOMA = {q1_1, q1_2, q1_3, q1_4}\ngojo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nmoga: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4\npuko: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+   "ran_answer": "NOMA = {q1_1}\ngojo: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1\nmoga: q1_1 -> q1_1\npuko: q1_1 -> s1",
+   "example_admissible_answer": "NOMA = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6}\ngojo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nmoga: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_6, q1_6 -> q1_5\npuko: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 4,
+    "l": 1,
+    "N": 6,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym4x1_s4",
+     "stations": [
+      "BUVI",
+      "LIDA",
+      "GIMI"
+     ],
+     "chain_moves": [
+      "minu",
+      "vuko"
+     ],
+     "endo_moves": [
+      "vosi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 4,
+     "l": 1
+    }
+   },
+   "lan_answer": "LIDA = {q1_1, q1_2, q1_3, q1_4}\nminu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nvosi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4\nvuko: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1",
+   "ran_answer": "LIDA = {q1_1}\nminu: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1\nvosi: q1_1 -> q1_1\nvuko: q1_1 -> s1",
+   "example_admissible_answer": "LIDA = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6}\nminu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4\nvosi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_6, q1_6 -> q1_5\nvuko: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1"
+  }
+ }
+}

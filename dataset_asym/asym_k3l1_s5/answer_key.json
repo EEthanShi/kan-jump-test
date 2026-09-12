@@ -1,0 +1,97 @@
+{
+ "family": "asym",
+ "k": 3,
+ "l": 1,
+ "N": 5,
+ "lan_size_b": 3,
+ "ran_size_b": 1,
+ "ext_count": 561,
+ "adm_count": 60,
+ "chance": 0.10695187165775401,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym3x1_s5",
+     "stations": [
+      "BOZI",
+      "LAGA",
+      "DIFO"
+     ],
+     "chain_moves": [
+      "jozi",
+      "tora"
+     ],
+     "endo_moves": [
+      "sipu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "LAGA = {q1_1, q1_2, q1_3}\njozi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nsipu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\ntora: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "LAGA = {q1_1}\njozi: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nsipu: q1_1 -> q1_1\ntora: q1_1 -> s1",
+   "example_admissible_answer": "LAGA = {q1_1, q1_2, q1_3, q1_4, q1_5}\njozi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nsipu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\ntora: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym3x1_s5",
+     "stations": [
+      "MIFO",
+      "BOTO",
+      "JIMA"
+     ],
+     "chain_moves": [
+      "gasi",
+      "dipu"
+     ],
+     "endo_moves": [
+      "pofo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "BOTO = {q1_1, q1_2, q1_3}\ngasi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\npofo: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\ndipu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "BOTO = {q1_1}\ngasi: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\npofo: q1_1 -> q1_1\ndipu: q1_1 -> s1",
+   "example_admissible_answer": "BOTO = {q1_1, q1_2, q1_3, q1_4, q1_5}\ngasi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\npofo: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\ndipu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  }
+ }
+}

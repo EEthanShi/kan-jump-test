@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: RAKO, JIGU, BIKI, SISO, KONU. Toys move RAKO -> JIGU -> BIKI -> SISO -> KONU.
+There are 7 moving steps:
+- "suja" carries each RAKO slot to a JIGU slot.
+- "ravi" is an internal reshuffle of JIGU: it carries each JIGU slot to a JIGU slot.
+- "maru" carries each JIGU slot to a BIKI slot.
+- "pibo" is an internal reshuffle of BIKI: it carries each BIKI slot to a BIKI slot.
+- "fofu" carries each BIKI slot to a SISO slot.
+- "kizu" is an internal reshuffle of SISO: it carries each SISO slot to a SISO slot.
+- "mora" carries each SISO slot to a KONU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "suja" and then "ravi" lands on the same slot as running "suja" alone.
+     ("ravi" leaves every slot that "suja" produces unchanged.)
+R1.2 Running "ravi" and then "maru" gives the same result as running "maru" alone.
+     ("maru" cannot tell whether "ravi" was applied first.)
+R1.3 Running "ravi" three times in a row leaves every JIGU slot exactly where it started.
+R2.1 Running "maru" and then "pibo" lands on the same slot as running "maru" alone.
+     ("pibo" leaves every slot that "maru" produces unchanged.)
+R2.2 Running "pibo" and then "fofu" gives the same result as running "fofu" alone.
+     ("fofu" cannot tell whether "pibo" was applied first.)
+R2.3 Running "pibo" twice in a row leaves every BIKI slot exactly where it started.
+R3.1 Running "fofu" and then "kizu" lands on the same slot as running "fofu" alone.
+     ("kizu" leaves every slot that "fofu" produces unchanged.)
+R3.2 Running "kizu" and then "mora" gives the same result as running "mora" alone.
+     ("mora" cannot tell whether "kizu" was applied first.)
+R3.3 Running "kizu" three times in a row leaves every SISO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RAKO has exactly one slot, called n1.
+- KONU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (JIGU, BIKI, SISO):
+D1.1 JIGU must be a finite set with at most 4 slots.
+D1.2 "ravi" must NOT be the do-nothing move (it must move at least one JIGU slot).
+D2.1 BIKI must be a finite set with at most 3 slots.
+D2.2 "pibo" must NOT be the do-nothing move (it must move at least one BIKI slot).
+D3.1 SISO must be a finite set with at most 4 slots.
+D3.2 "kizu" must NOT be the do-nothing move (it must move at least one SISO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+JIGU = {q1_1, ..., q1_k}
+suja: n1 -> <JIGU slot>
+ravi: q1_1 -> <JIGU slot>, ..., q1_k -> <JIGU slot>
+BIKI = {q2_1, ..., q2_k}
+maru: q1_1 -> <BIKI slot>, ... (one entry per JIGU slot)
+pibo: q2_1 -> <BIKI slot>, ..., q2_k -> <BIKI slot>
+SISO = {q3_1, ..., q3_k}
+fofu: q2_1 -> <SISO slot>, ... (one entry per BIKI slot)
+kizu: q3_1 -> <SISO slot>, ..., q3_k -> <SISO slot>
+mora: q3_1 -> <KONU slot>, ... (one entry per SISO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

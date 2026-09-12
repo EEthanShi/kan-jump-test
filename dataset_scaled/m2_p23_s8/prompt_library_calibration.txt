@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: VURI, FOZU, DARU, KUJA. Books move VURI -> FOZU -> DARU -> KUJA.
+There are 5 moving steps:
+- "bojo" carries each VURI tray to a FOZU tray.
+- "dino" is an internal rearrangement of FOZU: it carries each FOZU tray to a FOZU tray.
+- "bufa" carries each FOZU tray to a DARU tray.
+- "siro" is an internal rearrangement of DARU: it carries each DARU tray to a DARU tray.
+- "bunu" carries each DARU tray to a KUJA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "bojo" and then "dino" lands on the same tray as running "bojo" alone.
+     ("dino" leaves every tray that "bojo" produces unchanged.)
+R1.2 Running "dino" and then "bufa" gives the same result as running "bufa" alone.
+     ("bufa" cannot tell whether "dino" was applied first.)
+R1.3 Running "dino" twice in a row leaves every FOZU tray exactly where it started.
+R2.1 Running "bufa" and then "siro" lands on the same tray as running "bufa" alone.
+     ("siro" leaves every tray that "bufa" produces unchanged.)
+R2.2 Running "siro" and then "bunu" gives the same result as running "bunu" alone.
+     ("bunu" cannot tell whether "siro" was applied first.)
+R2.3 Running "siro" three times in a row leaves every DARU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VURI has exactly one tray, called n1.
+- KUJA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FOZU, DARU):
+D1.1 List the trays of FOZU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "dino" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of DARU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "siro" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FOZU = {q1_1, ..., q1_k}
+bojo: n1 -> <FOZU tray>
+dino: q1_1 -> <FOZU tray>, ..., q1_k -> <FOZU tray>
+DARU = {q2_1, ..., q2_k}
+bufa: q1_1 -> <DARU tray>, ... (one entry per FOZU tray)
+siro: q2_1 -> <DARU tray>, ..., q2_k -> <DARU tray>
+bunu: q2_1 -> <KUJA tray>, ... (one entry per DARU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

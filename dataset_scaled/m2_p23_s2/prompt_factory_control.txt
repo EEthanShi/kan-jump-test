@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: NANO, TAGO, LIBI, NUZI. Toys move NANO -> TAGO -> LIBI -> NUZI.
+There are 5 moving steps:
+- "tofo" carries each NANO slot to a TAGO slot.
+- "noza" is an internal reshuffle of TAGO: it carries each TAGO slot to a TAGO slot.
+- "ranu" carries each TAGO slot to a LIBI slot.
+- "lafi" is an internal reshuffle of LIBI: it carries each LIBI slot to a LIBI slot.
+- "zosi" carries each LIBI slot to a NUZI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tofo" and then "noza" lands on the same slot as running "tofo" alone.
+     ("noza" leaves every slot that "tofo" produces unchanged.)
+R1.2 Running "noza" and then "ranu" gives the same result as running "ranu" alone.
+     ("ranu" cannot tell whether "noza" was applied first.)
+R1.3 Running "noza" twice in a row leaves every TAGO slot exactly where it started.
+R2.1 Running "ranu" and then "lafi" lands on the same slot as running "ranu" alone.
+     ("lafi" leaves every slot that "ranu" produces unchanged.)
+R2.2 Running "lafi" and then "zosi" gives the same result as running "zosi" alone.
+     ("zosi" cannot tell whether "lafi" was applied first.)
+R2.3 Running "lafi" three times in a row leaves every LIBI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NANO has exactly one slot, called n1.
+- NUZI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TAGO, LIBI):
+D1.1 TAGO must be a finite set with at most 1 slot.
+D1.2 List the "noza" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 LIBI must be a finite set with at most 1 slot.
+D2.2 List the "lafi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TAGO = {q1_1, ..., q1_k}
+tofo: n1 -> <TAGO slot>
+noza: q1_1 -> <TAGO slot>, ..., q1_k -> <TAGO slot>
+LIBI = {q2_1, ..., q2_k}
+ranu: q1_1 -> <LIBI slot>, ... (one entry per TAGO slot)
+lafi: q2_1 -> <LIBI slot>, ..., q2_k -> <LIBI slot>
+zosi: q2_1 -> <NUZI slot>, ... (one entry per LIBI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

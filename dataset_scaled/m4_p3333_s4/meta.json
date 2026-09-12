@@ -1,0 +1,112 @@
+{
+  "m": 4,
+  "ps": [
+    3,
+    3,
+    3,
+    3
+  ],
+  "N": 5,
+  "certification_mode": "theorem",
+  "category_ok": true,
+  "c0_full_ok": true,
+  "f0_ok": true,
+  "ext_count": 462088731977,
+  "lan_sizes": {
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1
+  },
+  "ran_sizes": {
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1
+  },
+  "lan_eq_ran": true,
+  "kan_trivial": true,
+  "lan_in_ext": true,
+  "ran_in_ext": true,
+  "adm_count": 4096,
+  "chance": 8.864098422127018e-09,
+  "adm_count_formula": 4096,
+  "adm_count_matches_formula": true,
+  "J1": true,
+  "kan_violations": {
+    "Lan*": [
+      "K1_1",
+      "K1_2",
+      "K1_3",
+      "K1_4"
+    ],
+    "Ran*": [
+      "K1_1",
+      "K1_2",
+      "K1_3",
+      "K1_4"
+    ]
+  },
+  "J2_each_kan_violates": true,
+  "J2": true,
+  "J3": true,
+  "J4": true,
+  "J4_strong": true,
+  "adm_structure_ok": true,
+  "bound_entailed": true,
+  "non_pinning": {
+    "K1_1": {
+      "alive": 107724794048,
+      "fraction": 0.23312577562129755
+    },
+    "K2_1": {
+      "alive": 62483196332,
+      "fraction": 0.13521904346092134
+    },
+    "K1_2": {
+      "alive": 9775087472,
+      "fraction": 0.02115413511638398
+    },
+    "K2_2": {
+      "alive": 35641901252,
+      "fraction": 0.0771321583616846
+    },
+    "K1_3": {
+      "alive": 8149056400,
+      "fraction": 0.01763526317799416
+    },
+    "K2_3": {
+      "alive": 39028550372,
+      "fraction": 0.0844611601001831
+    },
+    "K1_4": {
+      "alive": 66815753440,
+      "fraction": 0.1445950719337724
+    },
+    "K2_4": {
+      "alive": 120018951902,
+      "fraction": 0.25973139701656656
+    }
+  },
+  "non_pinning_floor": 0.1,
+  "non_pinning_ok": false,
+  "certified": true,
+  "control": {
+    "m": 4,
+    "ps": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "N": 5,
+    "certification_mode": "theorem",
+    "adm_count": 1,
+    "J1": true,
+    "adm_equals_lan_component": true,
+    "lan_eq_ran": true,
+    "J3": true,
+    "J4_strong": true,
+    "certified": true
+  }
+}

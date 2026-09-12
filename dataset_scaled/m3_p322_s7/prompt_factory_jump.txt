@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: GUTI, MOPA, ROJU, MUTA, LOVA. Toys move GUTI -> MOPA -> ROJU -> MUTA -> LOVA.
+There are 7 moving steps:
+- "kifu" carries each GUTI slot to a MOPA slot.
+- "ponu" is an internal reshuffle of MOPA: it carries each MOPA slot to a MOPA slot.
+- "nudi" carries each MOPA slot to a ROJU slot.
+- "nodu" is an internal reshuffle of ROJU: it carries each ROJU slot to a ROJU slot.
+- "mofo" carries each ROJU slot to a MUTA slot.
+- "lori" is an internal reshuffle of MUTA: it carries each MUTA slot to a MUTA slot.
+- "fizu" carries each MUTA slot to a LOVA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kifu" and then "ponu" lands on the same slot as running "kifu" alone.
+     ("ponu" leaves every slot that "kifu" produces unchanged.)
+R1.2 Running "ponu" and then "nudi" gives the same result as running "nudi" alone.
+     ("nudi" cannot tell whether "ponu" was applied first.)
+R1.3 Running "ponu" three times in a row leaves every MOPA slot exactly where it started.
+R2.1 Running "nudi" and then "nodu" lands on the same slot as running "nudi" alone.
+     ("nodu" leaves every slot that "nudi" produces unchanged.)
+R2.2 Running "nodu" and then "mofo" gives the same result as running "mofo" alone.
+     ("mofo" cannot tell whether "nodu" was applied first.)
+R2.3 Running "nodu" twice in a row leaves every ROJU slot exactly where it started.
+R3.1 Running "mofo" and then "lori" lands on the same slot as running "mofo" alone.
+     ("lori" leaves every slot that "mofo" produces unchanged.)
+R3.2 Running "lori" and then "fizu" gives the same result as running "fizu" alone.
+     ("fizu" cannot tell whether "lori" was applied first.)
+R3.3 Running "lori" twice in a row leaves every MUTA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GUTI has exactly one slot, called n1.
+- LOVA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MOPA, ROJU, MUTA):
+D1.1 MOPA must be a finite set with at most 4 slots.
+D1.2 "ponu" must NOT be the do-nothing move (it must move at least one MOPA slot).
+D2.1 ROJU must be a finite set with at most 3 slots.
+D2.2 "nodu" must NOT be the do-nothing move (it must move at least one ROJU slot).
+D3.1 MUTA must be a finite set with at most 3 slots.
+D3.2 "lori" must NOT be the do-nothing move (it must move at least one MUTA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MOPA = {q1_1, ..., q1_k}
+kifu: n1 -> <MOPA slot>
+ponu: q1_1 -> <MOPA slot>, ..., q1_k -> <MOPA slot>
+ROJU = {q2_1, ..., q2_k}
+nudi: q1_1 -> <ROJU slot>, ... (one entry per MOPA slot)
+nodu: q2_1 -> <ROJU slot>, ..., q2_k -> <ROJU slot>
+MUTA = {q3_1, ..., q3_k}
+mofo: q2_1 -> <MUTA slot>, ... (one entry per ROJU slot)
+lori: q3_1 -> <MUTA slot>, ..., q3_k -> <MUTA slot>
+fizu: q3_1 -> <LOVA slot>, ... (one entry per MUTA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

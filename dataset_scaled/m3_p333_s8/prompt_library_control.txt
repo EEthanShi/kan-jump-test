@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZOJI, KOMA, BAVO, SINU, POSI. Books move ZOJI -> KOMA -> BAVO -> SINU -> POSI.
+There are 7 moving steps:
+- "tupi" carries each ZOJI tray to a KOMA tray.
+- "kabo" is an internal rearrangement of KOMA: it carries each KOMA tray to a KOMA tray.
+- "poza" carries each KOMA tray to a BAVO tray.
+- "razo" is an internal rearrangement of BAVO: it carries each BAVO tray to a BAVO tray.
+- "tuti" carries each BAVO tray to a SINU tray.
+- "puvi" is an internal rearrangement of SINU: it carries each SINU tray to a SINU tray.
+- "lira" carries each SINU tray to a POSI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tupi" and then "kabo" lands on the same tray as running "tupi" alone.
+     ("kabo" leaves every tray that "tupi" produces unchanged.)
+R1.2 Running "kabo" and then "poza" gives the same result as running "poza" alone.
+     ("poza" cannot tell whether "kabo" was applied first.)
+R1.3 Running "kabo" three times in a row leaves every KOMA tray exactly where it started.
+R2.1 Running "poza" and then "razo" lands on the same tray as running "poza" alone.
+     ("razo" leaves every tray that "poza" produces unchanged.)
+R2.2 Running "razo" and then "tuti" gives the same result as running "tuti" alone.
+     ("tuti" cannot tell whether "razo" was applied first.)
+R2.3 Running "razo" three times in a row leaves every BAVO tray exactly where it started.
+R3.1 Running "tuti" and then "puvi" lands on the same tray as running "tuti" alone.
+     ("puvi" leaves every tray that "tuti" produces unchanged.)
+R3.2 Running "puvi" and then "lira" gives the same result as running "lira" alone.
+     ("lira" cannot tell whether "puvi" was applied first.)
+R3.3 Running "puvi" three times in a row leaves every SINU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZOJI has exactly one tray, called n1.
+- POSI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KOMA, BAVO, SINU):
+D1.1 KOMA must be a finite set with at most 1 tray.
+D1.2 List the "kabo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 BAVO must be a finite set with at most 1 tray.
+D2.2 List the "razo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 SINU must be a finite set with at most 1 tray.
+D3.2 List the "puvi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KOMA = {q1_1, ..., q1_k}
+tupi: n1 -> <KOMA tray>
+kabo: q1_1 -> <KOMA tray>, ..., q1_k -> <KOMA tray>
+BAVO = {q2_1, ..., q2_k}
+poza: q1_1 -> <BAVO tray>, ... (one entry per KOMA tray)
+razo: q2_1 -> <BAVO tray>, ..., q2_k -> <BAVO tray>
+SINU = {q3_1, ..., q3_k}
+tuti: q2_1 -> <SINU tray>, ... (one entry per BAVO tray)
+puvi: q3_1 -> <SINU tray>, ..., q3_k -> <SINU tray>
+lira: q3_1 -> <POSI tray>, ... (one entry per SINU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

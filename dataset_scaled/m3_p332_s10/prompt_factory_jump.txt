@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: VUMA, BAKA, NAMI, FIKO, VILO. Toys move VUMA -> BAKA -> NAMI -> FIKO -> VILO.
+There are 7 moving steps:
+- "kalo" carries each VUMA slot to a BAKA slot.
+- "tola" is an internal reshuffle of BAKA: it carries each BAKA slot to a BAKA slot.
+- "suti" carries each BAKA slot to a NAMI slot.
+- "jiso" is an internal reshuffle of NAMI: it carries each NAMI slot to a NAMI slot.
+- "vudi" carries each NAMI slot to a FIKO slot.
+- "kibu" is an internal reshuffle of FIKO: it carries each FIKO slot to a FIKO slot.
+- "miva" carries each FIKO slot to a VILO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kalo" and then "tola" lands on the same slot as running "kalo" alone.
+     ("tola" leaves every slot that "kalo" produces unchanged.)
+R1.2 Running "tola" and then "suti" gives the same result as running "suti" alone.
+     ("suti" cannot tell whether "tola" was applied first.)
+R1.3 Running "tola" three times in a row leaves every BAKA slot exactly where it started.
+R2.1 Running "suti" and then "jiso" lands on the same slot as running "suti" alone.
+     ("jiso" leaves every slot that "suti" produces unchanged.)
+R2.2 Running "jiso" and then "vudi" gives the same result as running "vudi" alone.
+     ("vudi" cannot tell whether "jiso" was applied first.)
+R2.3 Running "jiso" three times in a row leaves every NAMI slot exactly where it started.
+R3.1 Running "vudi" and then "kibu" lands on the same slot as running "vudi" alone.
+     ("kibu" leaves every slot that "vudi" produces unchanged.)
+R3.2 Running "kibu" and then "miva" gives the same result as running "miva" alone.
+     ("miva" cannot tell whether "kibu" was applied first.)
+R3.3 Running "kibu" twice in a row leaves every FIKO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUMA has exactly one slot, called n1.
+- VILO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BAKA, NAMI, FIKO):
+D1.1 BAKA must be a finite set with at most 4 slots.
+D1.2 "tola" must NOT be the do-nothing move (it must move at least one BAKA slot).
+D2.1 NAMI must be a finite set with at most 4 slots.
+D2.2 "jiso" must NOT be the do-nothing move (it must move at least one NAMI slot).
+D3.1 FIKO must be a finite set with at most 3 slots.
+D3.2 "kibu" must NOT be the do-nothing move (it must move at least one FIKO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BAKA = {q1_1, ..., q1_k}
+kalo: n1 -> <BAKA slot>
+tola: q1_1 -> <BAKA slot>, ..., q1_k -> <BAKA slot>
+NAMI = {q2_1, ..., q2_k}
+suti: q1_1 -> <NAMI slot>, ... (one entry per BAKA slot)
+jiso: q2_1 -> <NAMI slot>, ..., q2_k -> <NAMI slot>
+FIKO = {q3_1, ..., q3_k}
+vudi: q2_1 -> <FIKO slot>, ... (one entry per NAMI slot)
+kibu: q3_1 -> <FIKO slot>, ..., q3_k -> <FIKO slot>
+miva: q3_1 -> <VILO slot>, ... (one entry per FIKO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

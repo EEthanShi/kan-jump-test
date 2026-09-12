@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: JOPO, JARU, RURU, JIGO, KUVA, TABA. Books move JOPO -> JARU -> RURU -> JIGO -> KUVA -> TABA.
+There are 9 moving steps:
+- "dapa" carries each JOPO tray to a JARU tray.
+- "pula" is an internal rearrangement of JARU: it carries each JARU tray to a JARU tray.
+- "dupa" carries each JARU tray to a RURU tray.
+- "zudi" is an internal rearrangement of RURU: it carries each RURU tray to a RURU tray.
+- "mizo" carries each RURU tray to a JIGO tray.
+- "tapu" is an internal rearrangement of JIGO: it carries each JIGO tray to a JIGO tray.
+- "baru" carries each JIGO tray to a KUVA tray.
+- "bago" is an internal rearrangement of KUVA: it carries each KUVA tray to a KUVA tray.
+- "vasu" carries each KUVA tray to a TABA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "dapa" and then "pula" lands on the same tray as running "dapa" alone.
+     ("pula" leaves every tray that "dapa" produces unchanged.)
+R1.2 Running "pula" and then "dupa" gives the same result as running "dupa" alone.
+     ("dupa" cannot tell whether "pula" was applied first.)
+R1.3 Running "pula" twice in a row leaves every JARU tray exactly where it started.
+R2.1 Running "dupa" and then "zudi" lands on the same tray as running "dupa" alone.
+     ("zudi" leaves every tray that "dupa" produces unchanged.)
+R2.2 Running "zudi" and then "mizo" gives the same result as running "mizo" alone.
+     ("mizo" cannot tell whether "zudi" was applied first.)
+R2.3 Running "zudi" three times in a row leaves every RURU tray exactly where it started.
+R3.1 Running "mizo" and then "tapu" lands on the same tray as running "mizo" alone.
+     ("tapu" leaves every tray that "mizo" produces unchanged.)
+R3.2 Running "tapu" and then "baru" gives the same result as running "baru" alone.
+     ("baru" cannot tell whether "tapu" was applied first.)
+R3.3 Running "tapu" twice in a row leaves every JIGO tray exactly where it started.
+R4.1 Running "baru" and then "bago" lands on the same tray as running "baru" alone.
+     ("bago" leaves every tray that "baru" produces unchanged.)
+R4.2 Running "bago" and then "vasu" gives the same result as running "vasu" alone.
+     ("vasu" cannot tell whether "bago" was applied first.)
+R4.3 Running "bago" three times in a row leaves every KUVA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOPO has exactly one tray, called n1.
+- TABA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JARU, RURU, JIGO, KUVA):
+D1.1 JARU must be a finite set with at most 1 tray.
+D1.2 List the "pula" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 RURU must be a finite set with at most 1 tray.
+D2.2 List the "zudi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 JIGO must be a finite set with at most 1 tray.
+D3.2 List the "tapu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 KUVA must be a finite set with at most 1 tray.
+D4.2 List the "bago" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JARU = {q1_1, ..., q1_k}
+dapa: n1 -> <JARU tray>
+pula: q1_1 -> <JARU tray>, ..., q1_k -> <JARU tray>
+RURU = {q2_1, ..., q2_k}
+dupa: q1_1 -> <RURU tray>, ... (one entry per JARU tray)
+zudi: q2_1 -> <RURU tray>, ..., q2_k -> <RURU tray>
+JIGO = {q3_1, ..., q3_k}
+mizo: q2_1 -> <JIGO tray>, ... (one entry per RURU tray)
+tapu: q3_1 -> <JIGO tray>, ..., q3_k -> <JIGO tray>
+KUVA = {q4_1, ..., q4_k}
+baru: q3_1 -> <KUVA tray>, ... (one entry per JIGO tray)
+bago: q4_1 -> <KUVA tray>, ..., q4_k -> <KUVA tray>
+vasu: q4_1 -> <TABA tray>, ... (one entry per KUVA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

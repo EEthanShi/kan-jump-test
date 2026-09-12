@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: VARU, MITI, NOJU, PIKI, LAPU. Toys move VARU -> MITI -> NOJU -> PIKI -> LAPU.
+There are 7 moving steps:
+- "rogo" carries each VARU slot to a MITI slot.
+- "zaga" is an internal reshuffle of MITI: it carries each MITI slot to a MITI slot.
+- "tozi" carries each MITI slot to a NOJU slot.
+- "mumo" is an internal reshuffle of NOJU: it carries each NOJU slot to a NOJU slot.
+- "rilo" carries each NOJU slot to a PIKI slot.
+- "siga" is an internal reshuffle of PIKI: it carries each PIKI slot to a PIKI slot.
+- "fodo" carries each PIKI slot to a LAPU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "rogo" and then "zaga" lands on the same slot as running "rogo" alone.
+     ("zaga" leaves every slot that "rogo" produces unchanged.)
+R1.2 Running "zaga" and then "tozi" gives the same result as running "tozi" alone.
+     ("tozi" cannot tell whether "zaga" was applied first.)
+R1.3 Running "zaga" twice in a row leaves every MITI slot exactly where it started.
+R2.1 Running "tozi" and then "mumo" lands on the same slot as running "tozi" alone.
+     ("mumo" leaves every slot that "tozi" produces unchanged.)
+R2.2 Running "mumo" and then "rilo" gives the same result as running "rilo" alone.
+     ("rilo" cannot tell whether "mumo" was applied first.)
+R2.3 Running "mumo" three times in a row leaves every NOJU slot exactly where it started.
+R3.1 Running "rilo" and then "siga" lands on the same slot as running "rilo" alone.
+     ("siga" leaves every slot that "rilo" produces unchanged.)
+R3.2 Running "siga" and then "fodo" gives the same result as running "fodo" alone.
+     ("fodo" cannot tell whether "siga" was applied first.)
+R3.3 Running "siga" three times in a row leaves every PIKI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VARU has exactly one slot, called n1.
+- LAPU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MITI, NOJU, PIKI):
+D1.1 MITI must be a finite set with at most 1 slot.
+D1.2 List the "zaga" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 NOJU must be a finite set with at most 1 slot.
+D2.2 List the "mumo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 PIKI must be a finite set with at most 1 slot.
+D3.2 List the "siga" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MITI = {q1_1, ..., q1_k}
+rogo: n1 -> <MITI slot>
+zaga: q1_1 -> <MITI slot>, ..., q1_k -> <MITI slot>
+NOJU = {q2_1, ..., q2_k}
+tozi: q1_1 -> <NOJU slot>, ... (one entry per MITI slot)
+mumo: q2_1 -> <NOJU slot>, ..., q2_k -> <NOJU slot>
+PIKI = {q3_1, ..., q3_k}
+rilo: q2_1 -> <PIKI slot>, ... (one entry per NOJU slot)
+siga: q3_1 -> <PIKI slot>, ..., q3_k -> <PIKI slot>
+fodo: q3_1 -> <LAPU slot>, ... (one entry per PIKI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

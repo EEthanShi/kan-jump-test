@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: JIJO, ZARU, ZADU, TIZI. Toys move JIJO -> ZARU -> ZADU -> TIZI.
+There are 5 moving steps:
+- "nimi" carries each JIJO slot to a ZARU slot.
+- "zoba" is an internal reshuffle of ZARU: it carries each ZARU slot to a ZARU slot.
+- "dunu" carries each ZARU slot to a ZADU slot.
+- "puda" is an internal reshuffle of ZADU: it carries each ZADU slot to a ZADU slot.
+- "vizo" carries each ZADU slot to a TIZI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nimi" and then "zoba" lands on the same slot as running "nimi" alone.
+     ("zoba" leaves every slot that "nimi" produces unchanged.)
+R1.2 Running "zoba" and then "dunu" gives the same result as running "dunu" alone.
+     ("dunu" cannot tell whether "zoba" was applied first.)
+R1.3 Running "zoba" three times in a row leaves every ZARU slot exactly where it started.
+R2.1 Running "dunu" and then "puda" lands on the same slot as running "dunu" alone.
+     ("puda" leaves every slot that "dunu" produces unchanged.)
+R2.2 Running "puda" and then "vizo" gives the same result as running "vizo" alone.
+     ("vizo" cannot tell whether "puda" was applied first.)
+R2.3 Running "puda" twice in a row leaves every ZADU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JIJO has exactly one slot, called n1.
+- TIZI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (ZARU, ZADU):
+D1.1 ZARU must be a finite set with at most 4 slots.
+D1.2 "zoba" must NOT be the do-nothing move (it must move at least one ZARU slot).
+D2.1 ZADU must be a finite set with at most 3 slots.
+D2.2 "puda" must NOT be the do-nothing move (it must move at least one ZADU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+ZARU = {q1_1, ..., q1_k}
+nimi: n1 -> <ZARU slot>
+zoba: q1_1 -> <ZARU slot>, ..., q1_k -> <ZARU slot>
+ZADU = {q2_1, ..., q2_k}
+dunu: q1_1 -> <ZADU slot>, ... (one entry per ZARU slot)
+puda: q2_1 -> <ZADU slot>, ..., q2_k -> <ZADU slot>
+vizo: q2_1 -> <TIZI slot>, ... (one entry per ZADU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

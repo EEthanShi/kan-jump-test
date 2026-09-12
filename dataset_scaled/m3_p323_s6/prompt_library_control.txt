@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: TUPA, PANO, VIJI, PODU, GOJI. Books move TUPA -> PANO -> VIJI -> PODU -> GOJI.
+There are 7 moving steps:
+- "robi" carries each TUPA tray to a PANO tray.
+- "kula" is an internal rearrangement of PANO: it carries each PANO tray to a PANO tray.
+- "ziba" carries each PANO tray to a VIJI tray.
+- "tulo" is an internal rearrangement of VIJI: it carries each VIJI tray to a VIJI tray.
+- "tasa" carries each VIJI tray to a PODU tray.
+- "gadu" is an internal rearrangement of PODU: it carries each PODU tray to a PODU tray.
+- "sija" carries each PODU tray to a GOJI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "robi" and then "kula" lands on the same tray as running "robi" alone.
+     ("kula" leaves every tray that "robi" produces unchanged.)
+R1.2 Running "kula" and then "ziba" gives the same result as running "ziba" alone.
+     ("ziba" cannot tell whether "kula" was applied first.)
+R1.3 Running "kula" three times in a row leaves every PANO tray exactly where it started.
+R2.1 Running "ziba" and then "tulo" lands on the same tray as running "ziba" alone.
+     ("tulo" leaves every tray that "ziba" produces unchanged.)
+R2.2 Running "tulo" and then "tasa" gives the same result as running "tasa" alone.
+     ("tasa" cannot tell whether "tulo" was applied first.)
+R2.3 Running "tulo" twice in a row leaves every VIJI tray exactly where it started.
+R3.1 Running "tasa" and then "gadu" lands on the same tray as running "tasa" alone.
+     ("gadu" leaves every tray that "tasa" produces unchanged.)
+R3.2 Running "gadu" and then "sija" gives the same result as running "sija" alone.
+     ("sija" cannot tell whether "gadu" was applied first.)
+R3.3 Running "gadu" three times in a row leaves every PODU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TUPA has exactly one tray, called n1.
+- GOJI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PANO, VIJI, PODU):
+D1.1 PANO must be a finite set with at most 1 tray.
+D1.2 List the "kula" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VIJI must be a finite set with at most 1 tray.
+D2.2 List the "tulo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 PODU must be a finite set with at most 1 tray.
+D3.2 List the "gadu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PANO = {q1_1, ..., q1_k}
+robi: n1 -> <PANO tray>
+kula: q1_1 -> <PANO tray>, ..., q1_k -> <PANO tray>
+VIJI = {q2_1, ..., q2_k}
+ziba: q1_1 -> <VIJI tray>, ... (one entry per PANO tray)
+tulo: q2_1 -> <VIJI tray>, ..., q2_k -> <VIJI tray>
+PODU = {q3_1, ..., q3_k}
+tasa: q2_1 -> <PODU tray>, ... (one entry per VIJI tray)
+gadu: q3_1 -> <PODU tray>, ..., q3_k -> <PODU tray>
+sija: q3_1 -> <GOJI tray>, ... (one entry per PODU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

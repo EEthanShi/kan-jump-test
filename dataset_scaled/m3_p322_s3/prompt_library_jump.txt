@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: BAKA, DULA, KAZU, MOVO, VUMA. Books move BAKA -> DULA -> KAZU -> MOVO -> VUMA.
+There are 7 moving steps:
+- "nalu" carries each BAKA tray to a DULA tray.
+- "joto" is an internal rearrangement of DULA: it carries each DULA tray to a DULA tray.
+- "silu" carries each DULA tray to a KAZU tray.
+- "ziva" is an internal rearrangement of KAZU: it carries each KAZU tray to a KAZU tray.
+- "busu" carries each KAZU tray to a MOVO tray.
+- "zuzi" is an internal rearrangement of MOVO: it carries each MOVO tray to a MOVO tray.
+- "tipo" carries each MOVO tray to a VUMA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nalu" and then "joto" lands on the same tray as running "nalu" alone.
+     ("joto" leaves every tray that "nalu" produces unchanged.)
+R1.2 Running "joto" and then "silu" gives the same result as running "silu" alone.
+     ("silu" cannot tell whether "joto" was applied first.)
+R1.3 Running "joto" three times in a row leaves every DULA tray exactly where it started.
+R2.1 Running "silu" and then "ziva" lands on the same tray as running "silu" alone.
+     ("ziva" leaves every tray that "silu" produces unchanged.)
+R2.2 Running "ziva" and then "busu" gives the same result as running "busu" alone.
+     ("busu" cannot tell whether "ziva" was applied first.)
+R2.3 Running "ziva" twice in a row leaves every KAZU tray exactly where it started.
+R3.1 Running "busu" and then "zuzi" lands on the same tray as running "busu" alone.
+     ("zuzi" leaves every tray that "busu" produces unchanged.)
+R3.2 Running "zuzi" and then "tipo" gives the same result as running "tipo" alone.
+     ("tipo" cannot tell whether "zuzi" was applied first.)
+R3.3 Running "zuzi" twice in a row leaves every MOVO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BAKA has exactly one tray, called n1.
+- VUMA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DULA, KAZU, MOVO):
+D1.1 DULA must be a finite set with at most 4 trays.
+D1.2 "joto" must NOT be the do-nothing move (it must move at least one DULA tray).
+D2.1 KAZU must be a finite set with at most 3 trays.
+D2.2 "ziva" must NOT be the do-nothing move (it must move at least one KAZU tray).
+D3.1 MOVO must be a finite set with at most 3 trays.
+D3.2 "zuzi" must NOT be the do-nothing move (it must move at least one MOVO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DULA = {q1_1, ..., q1_k}
+nalu: n1 -> <DULA tray>
+joto: q1_1 -> <DULA tray>, ..., q1_k -> <DULA tray>
+KAZU = {q2_1, ..., q2_k}
+silu: q1_1 -> <KAZU tray>, ... (one entry per DULA tray)
+ziva: q2_1 -> <KAZU tray>, ..., q2_k -> <KAZU tray>
+MOVO = {q3_1, ..., q3_k}
+busu: q2_1 -> <MOVO tray>, ... (one entry per KAZU tray)
+zuzi: q3_1 -> <MOVO tray>, ..., q3_k -> <MOVO tray>
+tipo: q3_1 -> <VUMA tray>, ... (one entry per MOVO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

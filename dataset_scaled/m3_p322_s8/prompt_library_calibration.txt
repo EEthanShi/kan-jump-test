@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: SOJA, SOVU, FIVA, ZIKU, GADI. Books move SOJA -> SOVU -> FIVA -> ZIKU -> GADI.
+There are 7 moving steps:
+- "zugi" carries each SOJA tray to a SOVU tray.
+- "badu" is an internal rearrangement of SOVU: it carries each SOVU tray to a SOVU tray.
+- "pobu" carries each SOVU tray to a FIVA tray.
+- "falu" is an internal rearrangement of FIVA: it carries each FIVA tray to a FIVA tray.
+- "tado" carries each FIVA tray to a ZIKU tray.
+- "goli" is an internal rearrangement of ZIKU: it carries each ZIKU tray to a ZIKU tray.
+- "rifu" carries each ZIKU tray to a GADI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zugi" and then "badu" lands on the same tray as running "zugi" alone.
+     ("badu" leaves every tray that "zugi" produces unchanged.)
+R1.2 Running "badu" and then "pobu" gives the same result as running "pobu" alone.
+     ("pobu" cannot tell whether "badu" was applied first.)
+R1.3 Running "badu" three times in a row leaves every SOVU tray exactly where it started.
+R2.1 Running "pobu" and then "falu" lands on the same tray as running "pobu" alone.
+     ("falu" leaves every tray that "pobu" produces unchanged.)
+R2.2 Running "falu" and then "tado" gives the same result as running "tado" alone.
+     ("tado" cannot tell whether "falu" was applied first.)
+R2.3 Running "falu" twice in a row leaves every FIVA tray exactly where it started.
+R3.1 Running "tado" and then "goli" lands on the same tray as running "tado" alone.
+     ("goli" leaves every tray that "tado" produces unchanged.)
+R3.2 Running "goli" and then "rifu" gives the same result as running "rifu" alone.
+     ("rifu" cannot tell whether "goli" was applied first.)
+R3.3 Running "goli" twice in a row leaves every ZIKU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOJA has exactly one tray, called n1.
+- GADI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SOVU, FIVA, ZIKU):
+D1.1 List the trays of SOVU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "badu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of FIVA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "falu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of ZIKU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "goli" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SOVU = {q1_1, ..., q1_k}
+zugi: n1 -> <SOVU tray>
+badu: q1_1 -> <SOVU tray>, ..., q1_k -> <SOVU tray>
+FIVA = {q2_1, ..., q2_k}
+pobu: q1_1 -> <FIVA tray>, ... (one entry per SOVU tray)
+falu: q2_1 -> <FIVA tray>, ..., q2_k -> <FIVA tray>
+ZIKU = {q3_1, ..., q3_k}
+tado: q2_1 -> <ZIKU tray>, ... (one entry per FIVA tray)
+goli: q3_1 -> <ZIKU tray>, ..., q3_k -> <ZIKU tray>
+rifu: q3_1 -> <GADI tray>, ... (one entry per ZIKU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

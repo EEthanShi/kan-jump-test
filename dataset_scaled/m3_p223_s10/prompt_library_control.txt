@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: JUTO, GADU, MOFI, LOZI, SIBA. Books move JUTO -> GADU -> MOFI -> LOZI -> SIBA.
+There are 7 moving steps:
+- "laja" carries each JUTO tray to a GADU tray.
+- "rata" is an internal rearrangement of GADU: it carries each GADU tray to a GADU tray.
+- "vilo" carries each GADU tray to a MOFI tray.
+- "pubi" is an internal rearrangement of MOFI: it carries each MOFI tray to a MOFI tray.
+- "rupi" carries each MOFI tray to a LOZI tray.
+- "bora" is an internal rearrangement of LOZI: it carries each LOZI tray to a LOZI tray.
+- "lotu" carries each LOZI tray to a SIBA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "laja" and then "rata" lands on the same tray as running "laja" alone.
+     ("rata" leaves every tray that "laja" produces unchanged.)
+R1.2 Running "rata" and then "vilo" gives the same result as running "vilo" alone.
+     ("vilo" cannot tell whether "rata" was applied first.)
+R1.3 Running "rata" twice in a row leaves every GADU tray exactly where it started.
+R2.1 Running "vilo" and then "pubi" lands on the same tray as running "vilo" alone.
+     ("pubi" leaves every tray that "vilo" produces unchanged.)
+R2.2 Running "pubi" and then "rupi" gives the same result as running "rupi" alone.
+     ("rupi" cannot tell whether "pubi" was applied first.)
+R2.3 Running "pubi" twice in a row leaves every MOFI tray exactly where it started.
+R3.1 Running "rupi" and then "bora" lands on the same tray as running "rupi" alone.
+     ("bora" leaves every tray that "rupi" produces unchanged.)
+R3.2 Running "bora" and then "lotu" gives the same result as running "lotu" alone.
+     ("lotu" cannot tell whether "bora" was applied first.)
+R3.3 Running "bora" three times in a row leaves every LOZI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JUTO has exactly one tray, called n1.
+- SIBA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (GADU, MOFI, LOZI):
+D1.1 GADU must be a finite set with at most 1 tray.
+D1.2 List the "rata" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 MOFI must be a finite set with at most 1 tray.
+D2.2 List the "pubi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 LOZI must be a finite set with at most 1 tray.
+D3.2 List the "bora" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+GADU = {q1_1, ..., q1_k}
+laja: n1 -> <GADU tray>
+rata: q1_1 -> <GADU tray>, ..., q1_k -> <GADU tray>
+MOFI = {q2_1, ..., q2_k}
+vilo: q1_1 -> <MOFI tray>, ... (one entry per GADU tray)
+pubi: q2_1 -> <MOFI tray>, ..., q2_k -> <MOFI tray>
+LOZI = {q3_1, ..., q3_k}
+rupi: q2_1 -> <LOZI tray>, ... (one entry per MOFI tray)
+bora: q3_1 -> <LOZI tray>, ..., q3_k -> <LOZI tray>
+lotu: q3_1 -> <SIBA tray>, ... (one entry per LOZI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

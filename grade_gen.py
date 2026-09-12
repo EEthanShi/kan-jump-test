@@ -36,6 +36,13 @@ def make_grade_meta(inst, naming):
     }
 
 
+def _last_match(pattern, text, flags=0):
+    m = None
+    for m in re.finditer(pattern, text, flags):
+        pass
+    return m
+
+
 def _parse_table(text, move):
     mm = re.search(re.escape(move) + r"\s*:\s*([^\n]+)", text, re.I)
     if not mm:
@@ -54,7 +61,21 @@ def _parse_table(text, move):
 
 
 def parse_answer(meta, text):
-    """Extract per-station state sets and tables. Returns dict or None."""
+    """Extract per-station state sets and tables. Returns dict or None.
+
+    An answer is the block that starts at a declaration of the first station. A model may draft
+    one design, reject it and write another, and may add prose after the final block, so try every
+    such block from the last to the first and take the first one that parses completely."""
+    first = re.escape(meta['naming']['stations'][1]) + r"\s*=\s*\{"
+    starts = [m.start() for m in re.finditer(first, text, re.I)]
+    for s in reversed(starts):
+        got = _parse_at(meta, text[s:])
+        if got is not None:
+            return got
+    return _parse_at(meta, text)
+
+
+def _parse_at(meta, text):
     m, N = meta['m'], meta['N']
     nm = meta['naming']
     stations, cmoves, emoves = (nm['stations'], nm['chain_moves'],

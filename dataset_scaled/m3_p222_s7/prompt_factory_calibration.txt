@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SALI, BIMU, POMO, BIFU, ZATO. Toys move SALI -> BIMU -> POMO -> BIFU -> ZATO.
+There are 7 moving steps:
+- "pisu" carries each SALI slot to a BIMU slot.
+- "zoki" is an internal reshuffle of BIMU: it carries each BIMU slot to a BIMU slot.
+- "vino" carries each BIMU slot to a POMO slot.
+- "jivi" is an internal reshuffle of POMO: it carries each POMO slot to a POMO slot.
+- "bozi" carries each POMO slot to a BIFU slot.
+- "lavi" is an internal reshuffle of BIFU: it carries each BIFU slot to a BIFU slot.
+- "sari" carries each BIFU slot to a ZATO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pisu" and then "zoki" lands on the same slot as running "pisu" alone.
+     ("zoki" leaves every slot that "pisu" produces unchanged.)
+R1.2 Running "zoki" and then "vino" gives the same result as running "vino" alone.
+     ("vino" cannot tell whether "zoki" was applied first.)
+R1.3 Running "zoki" twice in a row leaves every BIMU slot exactly where it started.
+R2.1 Running "vino" and then "jivi" lands on the same slot as running "vino" alone.
+     ("jivi" leaves every slot that "vino" produces unchanged.)
+R2.2 Running "jivi" and then "bozi" gives the same result as running "bozi" alone.
+     ("bozi" cannot tell whether "jivi" was applied first.)
+R2.3 Running "jivi" twice in a row leaves every POMO slot exactly where it started.
+R3.1 Running "bozi" and then "lavi" lands on the same slot as running "bozi" alone.
+     ("lavi" leaves every slot that "bozi" produces unchanged.)
+R3.2 Running "lavi" and then "sari" gives the same result as running "sari" alone.
+     ("sari" cannot tell whether "lavi" was applied first.)
+R3.3 Running "lavi" twice in a row leaves every BIFU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SALI has exactly one slot, called n1.
+- ZATO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BIMU, POMO, BIFU):
+D1.1 List the slots of BIMU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zoki" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of POMO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "jivi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of BIFU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "lavi" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BIMU = {q1_1, ..., q1_k}
+pisu: n1 -> <BIMU slot>
+zoki: q1_1 -> <BIMU slot>, ..., q1_k -> <BIMU slot>
+POMO = {q2_1, ..., q2_k}
+vino: q1_1 -> <POMO slot>, ... (one entry per BIMU slot)
+jivi: q2_1 -> <POMO slot>, ..., q2_k -> <POMO slot>
+BIFU = {q3_1, ..., q3_k}
+bozi: q2_1 -> <BIFU slot>, ... (one entry per POMO slot)
+lavi: q3_1 -> <BIFU slot>, ..., q3_k -> <BIFU slot>
+sari: q3_1 -> <ZATO slot>, ... (one entry per BIFU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

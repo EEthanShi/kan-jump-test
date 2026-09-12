@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: JALA, JUVI, LUTA. Books move JALA -> JUVI -> LUTA.
+There are 3 moving steps:
+- "vozu" carries each JALA tray to a JUVI tray.
+- "sopi" is an internal rearrangement of JUVI: it carries each JUVI tray to a JUVI tray.
+- "nama" carries each JUVI tray to a LUTA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vozu" and then "sopi" lands on the same tray as running "vozu" alone.
+     ("sopi" leaves every tray that "vozu" produces unchanged.)
+R1.2 Running "sopi" and then "nama" gives the same result as running "nama" alone.
+     ("nama" cannot tell whether "sopi" was applied first.)
+R1.3 Running "sopi" twice in a row leaves every JUVI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JALA has exactly 4 trays, called n1, n2, n3, n4.
+- LUTA has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1, n4 to s1.
+
+Requirements for the middle cart (JUVI):
+D1.1 List the trays of JUVI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "sopi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "vozu" table entries in JALA tray order n1, n2, n3, n4.
+D1.4 List the "nama" table entries in JUVI tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 6 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+JUVI = {q1_1, ..., q1_k}
+vozu: n1 -> <JUVI tray>, n2 -> <JUVI tray>, n3 -> <JUVI tray>, n4 -> <JUVI tray>
+sopi: q1_1 -> <JUVI tray>, ..., q1_k -> <JUVI tray>
+nama: q1_1 -> <LUTA tray>, ... (one entry per JUVI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: JAZO, VABU, LATO, KAZO, RAGO. Books move JAZO -> VABU -> LATO -> KAZO -> RAGO.
+There are 7 moving steps:
+- "viso" carries each JAZO tray to a VABU tray.
+- "dati" is an internal rearrangement of VABU: it carries each VABU tray to a VABU tray.
+- "rudo" carries each VABU tray to a LATO tray.
+- "gobi" is an internal rearrangement of LATO: it carries each LATO tray to a LATO tray.
+- "zuna" carries each LATO tray to a KAZO tray.
+- "novi" is an internal rearrangement of KAZO: it carries each KAZO tray to a KAZO tray.
+- "kano" carries each KAZO tray to a RAGO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "viso" and then "dati" lands on the same tray as running "viso" alone.
+     ("dati" leaves every tray that "viso" produces unchanged.)
+R1.2 Running "dati" and then "rudo" gives the same result as running "rudo" alone.
+     ("rudo" cannot tell whether "dati" was applied first.)
+R1.3 Running "dati" twice in a row leaves every VABU tray exactly where it started.
+R2.1 Running "rudo" and then "gobi" lands on the same tray as running "rudo" alone.
+     ("gobi" leaves every tray that "rudo" produces unchanged.)
+R2.2 Running "gobi" and then "zuna" gives the same result as running "zuna" alone.
+     ("zuna" cannot tell whether "gobi" was applied first.)
+R2.3 Running "gobi" three times in a row leaves every LATO tray exactly where it started.
+R3.1 Running "zuna" and then "novi" lands on the same tray as running "zuna" alone.
+     ("novi" leaves every tray that "zuna" produces unchanged.)
+R3.2 Running "novi" and then "kano" gives the same result as running "kano" alone.
+     ("kano" cannot tell whether "novi" was applied first.)
+R3.3 Running "novi" three times in a row leaves every KAZO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JAZO has exactly one tray, called n1.
+- RAGO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VABU, LATO, KAZO):
+D1.1 List the trays of VABU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "dati" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of LATO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "gobi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of KAZO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "novi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VABU = {q1_1, ..., q1_k}
+viso: n1 -> <VABU tray>
+dati: q1_1 -> <VABU tray>, ..., q1_k -> <VABU tray>
+LATO = {q2_1, ..., q2_k}
+rudo: q1_1 -> <LATO tray>, ... (one entry per VABU tray)
+gobi: q2_1 -> <LATO tray>, ..., q2_k -> <LATO tray>
+KAZO = {q3_1, ..., q3_k}
+zuna: q2_1 -> <KAZO tray>, ... (one entry per LATO tray)
+novi: q3_1 -> <KAZO tray>, ..., q3_k -> <KAZO tray>
+kano: q3_1 -> <RAGO tray>, ... (one entry per KAZO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

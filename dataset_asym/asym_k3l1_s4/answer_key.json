@@ -1,0 +1,97 @@
+{
+ "family": "asym",
+ "k": 3,
+ "l": 1,
+ "N": 5,
+ "lan_size_b": 3,
+ "ran_size_b": 1,
+ "ext_count": 561,
+ "adm_count": 60,
+ "chance": 0.10695187165775401,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym3x1_s4",
+     "stations": [
+      "TOLU",
+      "RUZA",
+      "NIRA"
+     ],
+     "chain_moves": [
+      "dopi",
+      "paju"
+     ],
+     "endo_moves": [
+      "totu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "RUZA = {q1_1, q1_2, q1_3}\ndopi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\ntotu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\npaju: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "RUZA = {q1_1}\ndopi: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\ntotu: q1_1 -> q1_1\npaju: q1_1 -> s1",
+   "example_admissible_answer": "RUZA = {q1_1, q1_2, q1_3, q1_4, q1_5}\ndopi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\ntotu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\npaju: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym3x1_s4",
+     "stations": [
+      "JADU",
+      "TORA",
+      "POVO"
+     ],
+     "chain_moves": [
+      "gisu",
+      "vima"
+     ],
+     "endo_moves": [
+      "fomi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "TORA = {q1_1, q1_2, q1_3}\ngisu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nfomi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nvima: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "TORA = {q1_1}\ngisu: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nfomi: q1_1 -> q1_1\nvima: q1_1 -> s1",
+   "example_admissible_answer": "TORA = {q1_1, q1_2, q1_3, q1_4, q1_5}\ngisu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nfomi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nvima: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  }
+ }
+}

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: ROSA, ZUZA, RUKO, LAKU, JUBU, POGU. Books move ROSA -> ZUZA -> RUKO -> LAKU -> JUBU -> POGU.
+There are 9 moving steps:
+- "niso" carries each ROSA tray to a ZUZA tray.
+- "koji" is an internal rearrangement of ZUZA: it carries each ZUZA tray to a ZUZA tray.
+- "kazu" carries each ZUZA tray to a RUKO tray.
+- "bani" is an internal rearrangement of RUKO: it carries each RUKO tray to a RUKO tray.
+- "kugu" carries each RUKO tray to a LAKU tray.
+- "tivu" is an internal rearrangement of LAKU: it carries each LAKU tray to a LAKU tray.
+- "sopi" carries each LAKU tray to a JUBU tray.
+- "biza" is an internal rearrangement of JUBU: it carries each JUBU tray to a JUBU tray.
+- "kudo" carries each JUBU tray to a POGU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "niso" and then "koji" lands on the same tray as running "niso" alone.
+     ("koji" leaves every tray that "niso" produces unchanged.)
+R1.2 Running "koji" and then "kazu" gives the same result as running "kazu" alone.
+     ("kazu" cannot tell whether "koji" was applied first.)
+R1.3 Running "koji" twice in a row leaves every ZUZA tray exactly where it started.
+R2.1 Running "kazu" and then "bani" lands on the same tray as running "kazu" alone.
+     ("bani" leaves every tray that "kazu" produces unchanged.)
+R2.2 Running "bani" and then "kugu" gives the same result as running "kugu" alone.
+     ("kugu" cannot tell whether "bani" was applied first.)
+R2.3 Running "bani" twice in a row leaves every RUKO tray exactly where it started.
+R3.1 Running "kugu" and then "tivu" lands on the same tray as running "kugu" alone.
+     ("tivu" leaves every tray that "kugu" produces unchanged.)
+R3.2 Running "tivu" and then "sopi" gives the same result as running "sopi" alone.
+     ("sopi" cannot tell whether "tivu" was applied first.)
+R3.3 Running "tivu" twice in a row leaves every LAKU tray exactly where it started.
+R4.1 Running "sopi" and then "biza" lands on the same tray as running "sopi" alone.
+     ("biza" leaves every tray that "sopi" produces unchanged.)
+R4.2 Running "biza" and then "kudo" gives the same result as running "kudo" alone.
+     ("kudo" cannot tell whether "biza" was applied first.)
+R4.3 Running "biza" twice in a row leaves every JUBU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ROSA has exactly one tray, called n1.
+- POGU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZUZA, RUKO, LAKU, JUBU):
+D1.1 ZUZA must be a finite set with at most 3 trays.
+D1.2 "koji" must NOT be the do-nothing move (it must move at least one ZUZA tray).
+D2.1 RUKO must be a finite set with at most 3 trays.
+D2.2 "bani" must NOT be the do-nothing move (it must move at least one RUKO tray).
+D3.1 LAKU must be a finite set with at most 3 trays.
+D3.2 "tivu" must NOT be the do-nothing move (it must move at least one LAKU tray).
+D4.1 JUBU must be a finite set with at most 3 trays.
+D4.2 "biza" must NOT be the do-nothing move (it must move at least one JUBU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZUZA = {q1_1, ..., q1_k}
+niso: n1 -> <ZUZA tray>
+koji: q1_1 -> <ZUZA tray>, ..., q1_k -> <ZUZA tray>
+RUKO = {q2_1, ..., q2_k}
+kazu: q1_1 -> <RUKO tray>, ... (one entry per ZUZA tray)
+bani: q2_1 -> <RUKO tray>, ..., q2_k -> <RUKO tray>
+LAKU = {q3_1, ..., q3_k}
+kugu: q2_1 -> <LAKU tray>, ... (one entry per RUKO tray)
+tivu: q3_1 -> <LAKU tray>, ..., q3_k -> <LAKU tray>
+JUBU = {q4_1, ..., q4_k}
+sopi: q3_1 -> <JUBU tray>, ... (one entry per LAKU tray)
+biza: q4_1 -> <JUBU tray>, ..., q4_k -> <JUBU tray>
+kudo: q4_1 -> <POGU tray>, ... (one entry per JUBU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

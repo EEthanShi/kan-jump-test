@@ -1,0 +1,124 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 3,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 4,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 4,
+        "ps": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s9",
+          "stations": [
+            "VUTU",
+            "KUPO",
+            "GAPA",
+            "VUGU",
+            "BODI",
+            "FUDO"
+          ],
+          "chain_moves": [
+            "vola",
+            "vata",
+            "kafo",
+            "noza",
+            "tugo"
+          ],
+          "endo_moves": [
+            "doba",
+            "nuvo",
+            "sosa",
+            "pura"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_",
+            "q4_"
+          ]
+        }
+      },
+      "example_admissible_answer": "KUPO = {q1_1, q1_2, q1_3}\nvola: n1 -> q1_1\ndoba: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nGAPA = {q2_1, q2_2, q2_3}\nvata: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nnuvo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nVUGU = {q3_1, q3_2, q3_3}\nkafo: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\nsosa: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\nBODI = {q4_1, q4_2, q4_3}\nnoza: q3_1 -> q4_1, q3_2 -> q4_1, q3_3 -> q4_1\npura: q4_1 -> q4_1, q4_2 -> q4_3, q4_3 -> q4_2\ntugo: q4_1 -> s1, q4_2 -> s1, q4_3 -> s1",
+      "kan_answer": "KUPO = {q1_1}\nvola: n1 -> q1_1\ndoba: q1_1 -> q1_1\nGAPA = {q2_1}\nvata: q1_1 -> q2_1\nnuvo: q2_1 -> q2_1\nVUGU = {q3_1}\nkafo: q2_1 -> q3_1\nsosa: q3_1 -> q3_1\nBODI = {q4_1}\nnoza: q3_1 -> q4_1\npura: q4_1 -> q4_1\ntugo: q4_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 4,
+        "ps": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s9",
+          "stations": [
+            "RUGI",
+            "SUKA",
+            "BORO",
+            "FAGI",
+            "ZUGO",
+            "MUJI"
+          ],
+          "chain_moves": [
+            "patu",
+            "rija",
+            "tibi",
+            "fabu",
+            "mopa"
+          ],
+          "endo_moves": [
+            "nago",
+            "sipo",
+            "jadu",
+            "zota"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_",
+            "q4_"
+          ]
+        }
+      },
+      "example_admissible_answer": "SUKA = {q1_1, q1_2, q1_3}\npatu: n1 -> q1_1\nnago: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nBORO = {q2_1, q2_2, q2_3}\nrija: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nsipo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nFAGI = {q3_1, q3_2, q3_3}\ntibi: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\njadu: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\nZUGO = {q4_1, q4_2, q4_3}\nfabu: q3_1 -> q4_1, q3_2 -> q4_1, q3_3 -> q4_1\nzota: q4_1 -> q4_1, q4_2 -> q4_3, q4_3 -> q4_2\nmopa: q4_1 -> s1, q4_2 -> s1, q4_3 -> s1",
+      "kan_answer": "SUKA = {q1_1}\npatu: n1 -> q1_1\nnago: q1_1 -> q1_1\nBORO = {q2_1}\nrija: q1_1 -> q2_1\nsipo: q2_1 -> q2_1\nFAGI = {q3_1}\ntibi: q2_1 -> q3_1\njadu: q3_1 -> q3_1\nZUGO = {q4_1}\nfabu: q3_1 -> q4_1\nzota: q4_1 -> q4_1\nmopa: q4_1 -> s1"
+    }
+  }
+}

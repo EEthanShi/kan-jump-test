@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: PUBO, BURA, PUJO, LANI, MAVI, GIVO. Toys move PUBO -> BURA -> PUJO -> LANI -> MAVI -> GIVO.
+There are 9 moving steps:
+- "vuso" carries each PUBO slot to a BURA slot.
+- "lusi" is an internal reshuffle of BURA: it carries each BURA slot to a BURA slot.
+- "goga" carries each BURA slot to a PUJO slot.
+- "fapa" is an internal reshuffle of PUJO: it carries each PUJO slot to a PUJO slot.
+- "komu" carries each PUJO slot to a LANI slot.
+- "luvi" is an internal reshuffle of LANI: it carries each LANI slot to a LANI slot.
+- "kopi" carries each LANI slot to a MAVI slot.
+- "zitu" is an internal reshuffle of MAVI: it carries each MAVI slot to a MAVI slot.
+- "niro" carries each MAVI slot to a GIVO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vuso" and then "lusi" lands on the same slot as running "vuso" alone.
+     ("lusi" leaves every slot that "vuso" produces unchanged.)
+R1.2 Running "lusi" and then "goga" gives the same result as running "goga" alone.
+     ("goga" cannot tell whether "lusi" was applied first.)
+R1.3 Running "lusi" twice in a row leaves every BURA slot exactly where it started.
+R2.1 Running "goga" and then "fapa" lands on the same slot as running "goga" alone.
+     ("fapa" leaves every slot that "goga" produces unchanged.)
+R2.2 Running "fapa" and then "komu" gives the same result as running "komu" alone.
+     ("komu" cannot tell whether "fapa" was applied first.)
+R2.3 Running "fapa" twice in a row leaves every PUJO slot exactly where it started.
+R3.1 Running "komu" and then "luvi" lands on the same slot as running "komu" alone.
+     ("luvi" leaves every slot that "komu" produces unchanged.)
+R3.2 Running "luvi" and then "kopi" gives the same result as running "kopi" alone.
+     ("kopi" cannot tell whether "luvi" was applied first.)
+R3.3 Running "luvi" twice in a row leaves every LANI slot exactly where it started.
+R4.1 Running "kopi" and then "zitu" lands on the same slot as running "kopi" alone.
+     ("zitu" leaves every slot that "kopi" produces unchanged.)
+R4.2 Running "zitu" and then "niro" gives the same result as running "niro" alone.
+     ("niro" cannot tell whether "zitu" was applied first.)
+R4.3 Running "zitu" twice in a row leaves every MAVI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUBO has exactly one slot, called n1.
+- GIVO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BURA, PUJO, LANI, MAVI):
+D1.1 List the slots of BURA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "lusi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of PUJO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fapa" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of LANI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "luvi" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of MAVI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "zitu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BURA = {q1_1, ..., q1_k}
+vuso: n1 -> <BURA slot>
+lusi: q1_1 -> <BURA slot>, ..., q1_k -> <BURA slot>
+PUJO = {q2_1, ..., q2_k}
+goga: q1_1 -> <PUJO slot>, ... (one entry per BURA slot)
+fapa: q2_1 -> <PUJO slot>, ..., q2_k -> <PUJO slot>
+LANI = {q3_1, ..., q3_k}
+komu: q2_1 -> <LANI slot>, ... (one entry per PUJO slot)
+luvi: q3_1 -> <LANI slot>, ..., q3_k -> <LANI slot>
+MAVI = {q4_1, ..., q4_k}
+kopi: q3_1 -> <MAVI slot>, ... (one entry per LANI slot)
+zitu: q4_1 -> <MAVI slot>, ..., q4_k -> <MAVI slot>
+niro: q4_1 -> <GIVO slot>, ... (one entry per MAVI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

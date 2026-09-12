@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: VUTA, KOZO, PIRA, DAGA, FOMU, RODA. Books move VUTA -> KOZO -> PIRA -> DAGA -> FOMU -> RODA.
+There are 9 moving steps:
+- "pifa" carries each VUTA tray to a KOZO tray.
+- "zaba" is an internal rearrangement of KOZO: it carries each KOZO tray to a KOZO tray.
+- "pika" carries each KOZO tray to a PIRA tray.
+- "nubo" is an internal rearrangement of PIRA: it carries each PIRA tray to a PIRA tray.
+- "suku" carries each PIRA tray to a DAGA tray.
+- "pago" is an internal rearrangement of DAGA: it carries each DAGA tray to a DAGA tray.
+- "liro" carries each DAGA tray to a FOMU tray.
+- "raga" is an internal rearrangement of FOMU: it carries each FOMU tray to a FOMU tray.
+- "vona" carries each FOMU tray to a RODA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "pifa" and then "zaba" lands on the same tray as running "pifa" alone.
+     ("zaba" leaves every tray that "pifa" produces unchanged.)
+R1.2 Running "zaba" and then "pika" gives the same result as running "pika" alone.
+     ("pika" cannot tell whether "zaba" was applied first.)
+R1.3 Running "zaba" twice in a row leaves every KOZO tray exactly where it started.
+R2.1 Running "pika" and then "nubo" lands on the same tray as running "pika" alone.
+     ("nubo" leaves every tray that "pika" produces unchanged.)
+R2.2 Running "nubo" and then "suku" gives the same result as running "suku" alone.
+     ("suku" cannot tell whether "nubo" was applied first.)
+R2.3 Running "nubo" three times in a row leaves every PIRA tray exactly where it started.
+R3.1 Running "suku" and then "pago" lands on the same tray as running "suku" alone.
+     ("pago" leaves every tray that "suku" produces unchanged.)
+R3.2 Running "pago" and then "liro" gives the same result as running "liro" alone.
+     ("liro" cannot tell whether "pago" was applied first.)
+R3.3 Running "pago" twice in a row leaves every DAGA tray exactly where it started.
+R4.1 Running "liro" and then "raga" lands on the same tray as running "liro" alone.
+     ("raga" leaves every tray that "liro" produces unchanged.)
+R4.2 Running "raga" and then "vona" gives the same result as running "vona" alone.
+     ("vona" cannot tell whether "raga" was applied first.)
+R4.3 Running "raga" three times in a row leaves every FOMU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUTA has exactly one tray, called n1.
+- RODA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KOZO, PIRA, DAGA, FOMU):
+D1.1 List the trays of KOZO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zaba" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of PIRA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "nubo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of DAGA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "pago" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of FOMU in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "raga" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KOZO = {q1_1, ..., q1_k}
+pifa: n1 -> <KOZO tray>
+zaba: q1_1 -> <KOZO tray>, ..., q1_k -> <KOZO tray>
+PIRA = {q2_1, ..., q2_k}
+pika: q1_1 -> <PIRA tray>, ... (one entry per KOZO tray)
+nubo: q2_1 -> <PIRA tray>, ..., q2_k -> <PIRA tray>
+DAGA = {q3_1, ..., q3_k}
+suku: q2_1 -> <DAGA tray>, ... (one entry per PIRA tray)
+pago: q3_1 -> <DAGA tray>, ..., q3_k -> <DAGA tray>
+FOMU = {q4_1, ..., q4_k}
+liro: q3_1 -> <FOMU tray>, ... (one entry per DAGA tray)
+raga: q4_1 -> <FOMU tray>, ..., q4_k -> <FOMU tray>
+vona: q4_1 -> <RODA tray>, ... (one entry per FOMU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

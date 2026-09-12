@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: NOGA, FURA, KARA. Books move NOGA -> FURA -> KARA.
+There are 3 moving steps:
+- "riju" carries each NOGA tray to a FURA tray.
+- "juri" is an internal rearrangement of FURA: it carries each FURA tray to a FURA tray.
+- "jono" carries each FURA tray to a KARA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "riju" and then "juri" lands on the same tray as running "riju" alone.
+     ("juri" leaves every tray that "riju" produces unchanged.)
+R1.2 Running "juri" and then "jono" gives the same result as running "jono" alone.
+     ("jono" cannot tell whether "juri" was applied first.)
+R1.3 Running "juri" twice in a row leaves every FURA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NOGA has exactly 2 trays, called n1, n2.
+- KARA has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (FURA):
+D1.1 List the trays of FURA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "juri" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "riju" table entries in NOGA tray order n1, n2.
+D1.4 List the "jono" table entries in FURA tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+FURA = {q1_1, ..., q1_k}
+riju: n1 -> <FURA tray>, n2 -> <FURA tray>
+juri: q1_1 -> <FURA tray>, ..., q1_k -> <FURA tray>
+jono: q1_1 -> <KARA tray>, ... (one entry per FURA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

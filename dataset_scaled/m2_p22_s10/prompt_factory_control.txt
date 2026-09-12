@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: BOPO, MOKA, PIDI, JIDU. Toys move BOPO -> MOKA -> PIDI -> JIDU.
+There are 5 moving steps:
+- "kona" carries each BOPO slot to a MOKA slot.
+- "tomo" is an internal reshuffle of MOKA: it carries each MOKA slot to a MOKA slot.
+- "jofa" carries each MOKA slot to a PIDI slot.
+- "donu" is an internal reshuffle of PIDI: it carries each PIDI slot to a PIDI slot.
+- "tifu" carries each PIDI slot to a JIDU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kona" and then "tomo" lands on the same slot as running "kona" alone.
+     ("tomo" leaves every slot that "kona" produces unchanged.)
+R1.2 Running "tomo" and then "jofa" gives the same result as running "jofa" alone.
+     ("jofa" cannot tell whether "tomo" was applied first.)
+R1.3 Running "tomo" twice in a row leaves every MOKA slot exactly where it started.
+R2.1 Running "jofa" and then "donu" lands on the same slot as running "jofa" alone.
+     ("donu" leaves every slot that "jofa" produces unchanged.)
+R2.2 Running "donu" and then "tifu" gives the same result as running "tifu" alone.
+     ("tifu" cannot tell whether "donu" was applied first.)
+R2.3 Running "donu" twice in a row leaves every PIDI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BOPO has exactly one slot, called n1.
+- JIDU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MOKA, PIDI):
+D1.1 MOKA must be a finite set with at most 1 slot.
+D1.2 List the "tomo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 PIDI must be a finite set with at most 1 slot.
+D2.2 List the "donu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MOKA = {q1_1, ..., q1_k}
+kona: n1 -> <MOKA slot>
+tomo: q1_1 -> <MOKA slot>, ..., q1_k -> <MOKA slot>
+PIDI = {q2_1, ..., q2_k}
+jofa: q1_1 -> <PIDI slot>, ... (one entry per MOKA slot)
+donu: q2_1 -> <PIDI slot>, ..., q2_k -> <PIDI slot>
+tifu: q2_1 -> <JIDU slot>, ... (one entry per PIDI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

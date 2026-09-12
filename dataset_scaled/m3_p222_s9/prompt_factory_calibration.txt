@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: MINA, KOKA, PITA, KODI, BAZI. Toys move MINA -> KOKA -> PITA -> KODI -> BAZI.
+There are 7 moving steps:
+- "zapa" carries each MINA slot to a KOKA slot.
+- "niko" is an internal reshuffle of KOKA: it carries each KOKA slot to a KOKA slot.
+- "mofo" carries each KOKA slot to a PITA slot.
+- "raku" is an internal reshuffle of PITA: it carries each PITA slot to a PITA slot.
+- "fovo" carries each PITA slot to a KODI slot.
+- "zipa" is an internal reshuffle of KODI: it carries each KODI slot to a KODI slot.
+- "naka" carries each KODI slot to a BAZI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zapa" and then "niko" lands on the same slot as running "zapa" alone.
+     ("niko" leaves every slot that "zapa" produces unchanged.)
+R1.2 Running "niko" and then "mofo" gives the same result as running "mofo" alone.
+     ("mofo" cannot tell whether "niko" was applied first.)
+R1.3 Running "niko" twice in a row leaves every KOKA slot exactly where it started.
+R2.1 Running "mofo" and then "raku" lands on the same slot as running "mofo" alone.
+     ("raku" leaves every slot that "mofo" produces unchanged.)
+R2.2 Running "raku" and then "fovo" gives the same result as running "fovo" alone.
+     ("fovo" cannot tell whether "raku" was applied first.)
+R2.3 Running "raku" twice in a row leaves every PITA slot exactly where it started.
+R3.1 Running "fovo" and then "zipa" lands on the same slot as running "fovo" alone.
+     ("zipa" leaves every slot that "fovo" produces unchanged.)
+R3.2 Running "zipa" and then "naka" gives the same result as running "naka" alone.
+     ("naka" cannot tell whether "zipa" was applied first.)
+R3.3 Running "zipa" twice in a row leaves every KODI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MINA has exactly one slot, called n1.
+- BAZI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KOKA, PITA, KODI):
+D1.1 List the slots of KOKA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "niko" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of PITA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "raku" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of KODI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "zipa" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KOKA = {q1_1, ..., q1_k}
+zapa: n1 -> <KOKA slot>
+niko: q1_1 -> <KOKA slot>, ..., q1_k -> <KOKA slot>
+PITA = {q2_1, ..., q2_k}
+mofo: q1_1 -> <PITA slot>, ... (one entry per KOKA slot)
+raku: q2_1 -> <PITA slot>, ..., q2_k -> <PITA slot>
+KODI = {q3_1, ..., q3_k}
+fovo: q2_1 -> <KODI slot>, ... (one entry per PITA slot)
+zipa: q3_1 -> <KODI slot>, ..., q3_k -> <KODI slot>
+naka: q3_1 -> <BAZI slot>, ... (one entry per KODI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

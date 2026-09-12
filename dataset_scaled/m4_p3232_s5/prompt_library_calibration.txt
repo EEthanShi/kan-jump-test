@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: KOKA, ZUGU, DASO, VALU, PAVU, PIZA. Books move KOKA -> ZUGU -> DASO -> VALU -> PAVU -> PIZA.
+There are 9 moving steps:
+- "miva" carries each KOKA tray to a ZUGU tray.
+- "loru" is an internal rearrangement of ZUGU: it carries each ZUGU tray to a ZUGU tray.
+- "nito" carries each ZUGU tray to a DASO tray.
+- "gufu" is an internal rearrangement of DASO: it carries each DASO tray to a DASO tray.
+- "lovi" carries each DASO tray to a VALU tray.
+- "zusu" is an internal rearrangement of VALU: it carries each VALU tray to a VALU tray.
+- "fupo" carries each VALU tray to a PAVU tray.
+- "tozi" is an internal rearrangement of PAVU: it carries each PAVU tray to a PAVU tray.
+- "dapu" carries each PAVU tray to a PIZA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "miva" and then "loru" lands on the same tray as running "miva" alone.
+     ("loru" leaves every tray that "miva" produces unchanged.)
+R1.2 Running "loru" and then "nito" gives the same result as running "nito" alone.
+     ("nito" cannot tell whether "loru" was applied first.)
+R1.3 Running "loru" three times in a row leaves every ZUGU tray exactly where it started.
+R2.1 Running "nito" and then "gufu" lands on the same tray as running "nito" alone.
+     ("gufu" leaves every tray that "nito" produces unchanged.)
+R2.2 Running "gufu" and then "lovi" gives the same result as running "lovi" alone.
+     ("lovi" cannot tell whether "gufu" was applied first.)
+R2.3 Running "gufu" twice in a row leaves every DASO tray exactly where it started.
+R3.1 Running "lovi" and then "zusu" lands on the same tray as running "lovi" alone.
+     ("zusu" leaves every tray that "lovi" produces unchanged.)
+R3.2 Running "zusu" and then "fupo" gives the same result as running "fupo" alone.
+     ("fupo" cannot tell whether "zusu" was applied first.)
+R3.3 Running "zusu" three times in a row leaves every VALU tray exactly where it started.
+R4.1 Running "fupo" and then "tozi" lands on the same tray as running "fupo" alone.
+     ("tozi" leaves every tray that "fupo" produces unchanged.)
+R4.2 Running "tozi" and then "dapu" gives the same result as running "dapu" alone.
+     ("dapu" cannot tell whether "tozi" was applied first.)
+R4.3 Running "tozi" twice in a row leaves every PAVU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KOKA has exactly one tray, called n1.
+- PIZA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZUGU, DASO, VALU, PAVU):
+D1.1 List the trays of ZUGU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "loru" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of DASO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "gufu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of VALU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "zusu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of PAVU in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "tozi" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZUGU = {q1_1, ..., q1_k}
+miva: n1 -> <ZUGU tray>
+loru: q1_1 -> <ZUGU tray>, ..., q1_k -> <ZUGU tray>
+DASO = {q2_1, ..., q2_k}
+nito: q1_1 -> <DASO tray>, ... (one entry per ZUGU tray)
+gufu: q2_1 -> <DASO tray>, ..., q2_k -> <DASO tray>
+VALU = {q3_1, ..., q3_k}
+lovi: q2_1 -> <VALU tray>, ... (one entry per DASO tray)
+zusu: q3_1 -> <VALU tray>, ..., q3_k -> <VALU tray>
+PAVU = {q4_1, ..., q4_k}
+fupo: q3_1 -> <PAVU tray>, ... (one entry per VALU tray)
+tozi: q4_1 -> <PAVU tray>, ..., q4_k -> <PAVU tray>
+dapu: q4_1 -> <PIZA tray>, ... (one entry per PAVU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: SOPO, RUSU, MUMA. Toys move SOPO -> RUSU -> MUMA.
+There are 3 moving steps:
+- "karo" carries each SOPO slot to a RUSU slot.
+- "nona" is an internal reshuffle of RUSU: it carries each RUSU slot to a RUSU slot.
+- "diko" carries each RUSU slot to a MUMA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "karo" and then "nona" lands on the same slot as running "karo" alone.
+     ("nona" leaves every slot that "karo" produces unchanged.)
+R1.2 Running "nona" and then "diko" gives the same result as running "diko" alone.
+     ("diko" cannot tell whether "nona" was applied first.)
+R1.3 Running "nona" twice in a row leaves every RUSU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOPO has exactly 3 slots, called n1, n2, n3.
+- MUMA has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle station (RUSU):
+D1.1 RUSU must be a finite set with at most 3 slots.
+D1.2 List the "nona" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 "karo" must carry different SOPO slots to different RUSU slots.
+D1.4 List the "diko" table entries in RUSU slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+RUSU = {q1_1, ..., q1_k}
+karo: n1 -> <RUSU slot>, n2 -> <RUSU slot>, n3 -> <RUSU slot>
+nona: q1_1 -> <RUSU slot>, ..., q1_k -> <RUSU slot>
+diko: q1_1 -> <MUMA slot>, ... (one entry per RUSU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

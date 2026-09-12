@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: KIMO, VORA, SIJA, ZUSI, MUFU, DOLI. Toys move KIMO -> VORA -> SIJA -> ZUSI -> MUFU -> DOLI.
+There are 9 moving steps:
+- "moza" carries each KIMO slot to a VORA slot.
+- "digo" is an internal reshuffle of VORA: it carries each VORA slot to a VORA slot.
+- "nika" carries each VORA slot to a SIJA slot.
+- "juza" is an internal reshuffle of SIJA: it carries each SIJA slot to a SIJA slot.
+- "daru" carries each SIJA slot to a ZUSI slot.
+- "rido" is an internal reshuffle of ZUSI: it carries each ZUSI slot to a ZUSI slot.
+- "famu" carries each ZUSI slot to a MUFU slot.
+- "kibo" is an internal reshuffle of MUFU: it carries each MUFU slot to a MUFU slot.
+- "zora" carries each MUFU slot to a DOLI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "moza" and then "digo" lands on the same slot as running "moza" alone.
+     ("digo" leaves every slot that "moza" produces unchanged.)
+R1.2 Running "digo" and then "nika" gives the same result as running "nika" alone.
+     ("nika" cannot tell whether "digo" was applied first.)
+R1.3 Running "digo" three times in a row leaves every VORA slot exactly where it started.
+R2.1 Running "nika" and then "juza" lands on the same slot as running "nika" alone.
+     ("juza" leaves every slot that "nika" produces unchanged.)
+R2.2 Running "juza" and then "daru" gives the same result as running "daru" alone.
+     ("daru" cannot tell whether "juza" was applied first.)
+R2.3 Running "juza" three times in a row leaves every SIJA slot exactly where it started.
+R3.1 Running "daru" and then "rido" lands on the same slot as running "daru" alone.
+     ("rido" leaves every slot that "daru" produces unchanged.)
+R3.2 Running "rido" and then "famu" gives the same result as running "famu" alone.
+     ("famu" cannot tell whether "rido" was applied first.)
+R3.3 Running "rido" three times in a row leaves every ZUSI slot exactly where it started.
+R4.1 Running "famu" and then "kibo" lands on the same slot as running "famu" alone.
+     ("kibo" leaves every slot that "famu" produces unchanged.)
+R4.2 Running "kibo" and then "zora" gives the same result as running "zora" alone.
+     ("zora" cannot tell whether "kibo" was applied first.)
+R4.3 Running "kibo" three times in a row leaves every MUFU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KIMO has exactly one slot, called n1.
+- DOLI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (VORA, SIJA, ZUSI, MUFU):
+D1.1 VORA must be a finite set with at most 1 slot.
+D1.2 List the "digo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 SIJA must be a finite set with at most 1 slot.
+D2.2 List the "juza" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 ZUSI must be a finite set with at most 1 slot.
+D3.2 List the "rido" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 MUFU must be a finite set with at most 1 slot.
+D4.2 List the "kibo" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+VORA = {q1_1, ..., q1_k}
+moza: n1 -> <VORA slot>
+digo: q1_1 -> <VORA slot>, ..., q1_k -> <VORA slot>
+SIJA = {q2_1, ..., q2_k}
+nika: q1_1 -> <SIJA slot>, ... (one entry per VORA slot)
+juza: q2_1 -> <SIJA slot>, ..., q2_k -> <SIJA slot>
+ZUSI = {q3_1, ..., q3_k}
+daru: q2_1 -> <ZUSI slot>, ... (one entry per SIJA slot)
+rido: q3_1 -> <ZUSI slot>, ..., q3_k -> <ZUSI slot>
+MUFU = {q4_1, ..., q4_k}
+famu: q3_1 -> <MUFU slot>, ... (one entry per ZUSI slot)
+kibo: q4_1 -> <MUFU slot>, ..., q4_k -> <MUFU slot>
+zora: q4_1 -> <DOLI slot>, ... (one entry per MUFU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

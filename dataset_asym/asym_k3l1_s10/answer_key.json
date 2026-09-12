@@ -1,0 +1,97 @@
+{
+ "family": "asym",
+ "k": 3,
+ "l": 1,
+ "N": 5,
+ "lan_size_b": 3,
+ "ran_size_b": 1,
+ "ext_count": 561,
+ "adm_count": 60,
+ "chance": 0.10695187165775401,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym3x1_s10",
+     "stations": [
+      "MUTI",
+      "NIKI",
+      "NOSO"
+     ],
+     "chain_moves": [
+      "doti",
+      "mugi"
+     ],
+     "endo_moves": [
+      "zugu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "NIKI = {q1_1, q1_2, q1_3}\ndoti: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nzugu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nmugi: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "NIKI = {q1_1}\ndoti: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nzugu: q1_1 -> q1_1\nmugi: q1_1 -> s1",
+   "example_admissible_answer": "NIKI = {q1_1, q1_2, q1_3, q1_4, q1_5}\ndoti: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nzugu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nmugi: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym3x1_s10",
+     "stations": [
+      "MIJU",
+      "FADO",
+      "NUBO"
+     ],
+     "chain_moves": [
+      "ropo",
+      "binu"
+     ],
+     "endo_moves": [
+      "rifi"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "FADO = {q1_1, q1_2, q1_3}\nropo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nrifi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nbinu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "FADO = {q1_1}\nropo: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nrifi: q1_1 -> q1_1\nbinu: q1_1 -> s1",
+   "example_admissible_answer": "FADO = {q1_1, q1_2, q1_3, q1_4, q1_5}\nropo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nrifi: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nbinu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  }
+ }
+}

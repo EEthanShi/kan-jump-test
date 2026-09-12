@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SODI, TUSI, GAPO, GOMU, KUNO. Toys move SODI -> TUSI -> GAPO -> GOMU -> KUNO.
+There are 7 moving steps:
+- "jibu" carries each SODI slot to a TUSI slot.
+- "paba" is an internal reshuffle of TUSI: it carries each TUSI slot to a TUSI slot.
+- "sita" carries each TUSI slot to a GAPO slot.
+- "sifo" is an internal reshuffle of GAPO: it carries each GAPO slot to a GAPO slot.
+- "napa" carries each GAPO slot to a GOMU slot.
+- "fufo" is an internal reshuffle of GOMU: it carries each GOMU slot to a GOMU slot.
+- "ribo" carries each GOMU slot to a KUNO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "jibu" and then "paba" lands on the same slot as running "jibu" alone.
+     ("paba" leaves every slot that "jibu" produces unchanged.)
+R1.2 Running "paba" and then "sita" gives the same result as running "sita" alone.
+     ("sita" cannot tell whether "paba" was applied first.)
+R1.3 Running "paba" twice in a row leaves every TUSI slot exactly where it started.
+R2.1 Running "sita" and then "sifo" lands on the same slot as running "sita" alone.
+     ("sifo" leaves every slot that "sita" produces unchanged.)
+R2.2 Running "sifo" and then "napa" gives the same result as running "napa" alone.
+     ("napa" cannot tell whether "sifo" was applied first.)
+R2.3 Running "sifo" three times in a row leaves every GAPO slot exactly where it started.
+R3.1 Running "napa" and then "fufo" lands on the same slot as running "napa" alone.
+     ("fufo" leaves every slot that "napa" produces unchanged.)
+R3.2 Running "fufo" and then "ribo" gives the same result as running "ribo" alone.
+     ("ribo" cannot tell whether "fufo" was applied first.)
+R3.3 Running "fufo" twice in a row leaves every GOMU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SODI has exactly one slot, called n1.
+- KUNO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TUSI, GAPO, GOMU):
+D1.1 TUSI must be a finite set with at most 3 slots.
+D1.2 "paba" must NOT be the do-nothing move (it must move at least one TUSI slot).
+D2.1 GAPO must be a finite set with at most 4 slots.
+D2.2 "sifo" must NOT be the do-nothing move (it must move at least one GAPO slot).
+D3.1 GOMU must be a finite set with at most 3 slots.
+D3.2 "fufo" must NOT be the do-nothing move (it must move at least one GOMU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TUSI = {q1_1, ..., q1_k}
+jibu: n1 -> <TUSI slot>
+paba: q1_1 -> <TUSI slot>, ..., q1_k -> <TUSI slot>
+GAPO = {q2_1, ..., q2_k}
+sita: q1_1 -> <GAPO slot>, ... (one entry per TUSI slot)
+sifo: q2_1 -> <GAPO slot>, ..., q2_k -> <GAPO slot>
+GOMU = {q3_1, ..., q3_k}
+napa: q2_1 -> <GOMU slot>, ... (one entry per GAPO slot)
+fufo: q3_1 -> <GOMU slot>, ..., q3_k -> <GOMU slot>
+ribo: q3_1 -> <KUNO slot>, ... (one entry per GOMU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,95 @@
+{
+ "family": "asym",
+ "k": 1,
+ "l": 2,
+ "N": 3,
+ "lan_size_b": 1,
+ "ran_size_b": 2,
+ "ext_count": 23,
+ "adm_count": 3,
+ "chance": 0.13043478260869565,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym1x2_s7",
+     "stations": [
+      "ZOMI",
+      "KOZA",
+      "GOJA"
+     ],
+     "chain_moves": [
+      "sapa",
+      "doli"
+     ],
+     "endo_moves": [
+      "buni"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "KOZA = {q1_1}\nsapa: n1 -> q1_1\nbuni: q1_1 -> q1_1\ndoli: q1_1 -> s1",
+   "ran_answer": "KOZA = {q1_1, q1_2}\nsapa: n1 -> q1_1\nbuni: q1_1 -> q1_1, q1_2 -> q1_2\ndoli: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "KOZA = {q1_1, q1_2, q1_3}\nsapa: n1 -> q1_1\nbuni: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\ndoli: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 1,
+    "l": 2,
+    "N": 3,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym1x2_s7",
+     "stations": [
+      "GOGA",
+      "SAMU",
+      "GOFO"
+     ],
+     "chain_moves": [
+      "salu",
+      "muga"
+     ],
+     "endo_moves": [
+      "jilo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 1,
+     "l": 2
+    }
+   },
+   "lan_answer": "SAMU = {q1_1}\nsalu: n1 -> q1_1\njilo: q1_1 -> q1_1\nmuga: q1_1 -> s1",
+   "ran_answer": "SAMU = {q1_1, q1_2}\nsalu: n1 -> q1_1\njilo: q1_1 -> q1_1, q1_2 -> q1_2\nmuga: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "SAMU = {q1_1, q1_2, q1_3}\nsalu: n1 -> q1_1\njilo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nmuga: q1_1 -> s1, q1_2 -> s2, q1_3 -> s2"
+  }
+ }
+}

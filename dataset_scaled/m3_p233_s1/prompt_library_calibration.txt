@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: FAFO, TANI, MORU, SARU, SUBU. Books move FAFO -> TANI -> MORU -> SARU -> SUBU.
+There are 7 moving steps:
+- "zaka" carries each FAFO tray to a TANI tray.
+- "zufu" is an internal rearrangement of TANI: it carries each TANI tray to a TANI tray.
+- "sura" carries each TANI tray to a MORU tray.
+- "vomi" is an internal rearrangement of MORU: it carries each MORU tray to a MORU tray.
+- "doza" carries each MORU tray to a SARU tray.
+- "volu" is an internal rearrangement of SARU: it carries each SARU tray to a SARU tray.
+- "zuru" carries each SARU tray to a SUBU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zaka" and then "zufu" lands on the same tray as running "zaka" alone.
+     ("zufu" leaves every tray that "zaka" produces unchanged.)
+R1.2 Running "zufu" and then "sura" gives the same result as running "sura" alone.
+     ("sura" cannot tell whether "zufu" was applied first.)
+R1.3 Running "zufu" twice in a row leaves every TANI tray exactly where it started.
+R2.1 Running "sura" and then "vomi" lands on the same tray as running "sura" alone.
+     ("vomi" leaves every tray that "sura" produces unchanged.)
+R2.2 Running "vomi" and then "doza" gives the same result as running "doza" alone.
+     ("doza" cannot tell whether "vomi" was applied first.)
+R2.3 Running "vomi" three times in a row leaves every MORU tray exactly where it started.
+R3.1 Running "doza" and then "volu" lands on the same tray as running "doza" alone.
+     ("volu" leaves every tray that "doza" produces unchanged.)
+R3.2 Running "volu" and then "zuru" gives the same result as running "zuru" alone.
+     ("zuru" cannot tell whether "volu" was applied first.)
+R3.3 Running "volu" three times in a row leaves every SARU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FAFO has exactly one tray, called n1.
+- SUBU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TANI, MORU, SARU):
+D1.1 List the trays of TANI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zufu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of MORU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "vomi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of SARU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "volu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TANI = {q1_1, ..., q1_k}
+zaka: n1 -> <TANI tray>
+zufu: q1_1 -> <TANI tray>, ..., q1_k -> <TANI tray>
+MORU = {q2_1, ..., q2_k}
+sura: q1_1 -> <MORU tray>, ... (one entry per TANI tray)
+vomi: q2_1 -> <MORU tray>, ..., q2_k -> <MORU tray>
+SARU = {q3_1, ..., q3_k}
+doza: q2_1 -> <SARU tray>, ... (one entry per MORU tray)
+volu: q3_1 -> <SARU tray>, ..., q3_k -> <SARU tray>
+zuru: q3_1 -> <SUBU tray>, ... (one entry per SARU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

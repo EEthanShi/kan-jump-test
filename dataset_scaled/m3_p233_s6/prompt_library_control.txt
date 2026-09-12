@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: LUZA, MONA, DAJI, JIKO, TIGO. Books move LUZA -> MONA -> DAJI -> JIKO -> TIGO.
+There are 7 moving steps:
+- "faka" carries each LUZA tray to a MONA tray.
+- "biga" is an internal rearrangement of MONA: it carries each MONA tray to a MONA tray.
+- "toju" carries each MONA tray to a DAJI tray.
+- "buvu" is an internal rearrangement of DAJI: it carries each DAJI tray to a DAJI tray.
+- "tudu" carries each DAJI tray to a JIKO tray.
+- "bomi" is an internal rearrangement of JIKO: it carries each JIKO tray to a JIKO tray.
+- "fobu" carries each JIKO tray to a TIGO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "faka" and then "biga" lands on the same tray as running "faka" alone.
+     ("biga" leaves every tray that "faka" produces unchanged.)
+R1.2 Running "biga" and then "toju" gives the same result as running "toju" alone.
+     ("toju" cannot tell whether "biga" was applied first.)
+R1.3 Running "biga" twice in a row leaves every MONA tray exactly where it started.
+R2.1 Running "toju" and then "buvu" lands on the same tray as running "toju" alone.
+     ("buvu" leaves every tray that "toju" produces unchanged.)
+R2.2 Running "buvu" and then "tudu" gives the same result as running "tudu" alone.
+     ("tudu" cannot tell whether "buvu" was applied first.)
+R2.3 Running "buvu" three times in a row leaves every DAJI tray exactly where it started.
+R3.1 Running "tudu" and then "bomi" lands on the same tray as running "tudu" alone.
+     ("bomi" leaves every tray that "tudu" produces unchanged.)
+R3.2 Running "bomi" and then "fobu" gives the same result as running "fobu" alone.
+     ("fobu" cannot tell whether "bomi" was applied first.)
+R3.3 Running "bomi" three times in a row leaves every JIKO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LUZA has exactly one tray, called n1.
+- TIGO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MONA, DAJI, JIKO):
+D1.1 MONA must be a finite set with at most 1 tray.
+D1.2 List the "biga" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 DAJI must be a finite set with at most 1 tray.
+D2.2 List the "buvu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 JIKO must be a finite set with at most 1 tray.
+D3.2 List the "bomi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MONA = {q1_1, ..., q1_k}
+faka: n1 -> <MONA tray>
+biga: q1_1 -> <MONA tray>, ..., q1_k -> <MONA tray>
+DAJI = {q2_1, ..., q2_k}
+toju: q1_1 -> <DAJI tray>, ... (one entry per MONA tray)
+buvu: q2_1 -> <DAJI tray>, ..., q2_k -> <DAJI tray>
+JIKO = {q3_1, ..., q3_k}
+tudu: q2_1 -> <JIKO tray>, ... (one entry per DAJI tray)
+bomi: q3_1 -> <JIKO tray>, ..., q3_k -> <JIKO tray>
+fobu: q3_1 -> <TIGO tray>, ... (one entry per JIKO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

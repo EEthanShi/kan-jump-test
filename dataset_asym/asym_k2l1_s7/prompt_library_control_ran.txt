@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: LIZI, ROPO, JULA. Books move LIZI -> ROPO -> JULA.
+There are 3 moving steps:
+- "sonu" carries each LIZI tray to a ROPO tray.
+- "gafo" is an internal rearrangement of ROPO: it carries each ROPO tray to a ROPO tray.
+- "zilu" carries each ROPO tray to a JULA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sonu" and then "gafo" lands on the same tray as running "sonu" alone.
+     ("gafo" leaves every tray that "sonu" produces unchanged.)
+R1.2 Running "gafo" and then "zilu" gives the same result as running "zilu" alone.
+     ("zilu" cannot tell whether "gafo" was applied first.)
+R1.3 Running "gafo" twice in a row leaves every ROPO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LIZI has exactly 2 trays, called n1, n2.
+- JULA has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (ROPO):
+D1.1 ROPO must be a finite set with at most 1 tray.
+D1.2 List the "gafo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "sonu" table entries in LIZI tray order n1, n2.
+D1.4 Every JULA tray must be reached by "zilu" from at least one ROPO tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+ROPO = {q1_1, ..., q1_k}
+sonu: n1 -> <ROPO tray>, n2 -> <ROPO tray>
+gafo: q1_1 -> <ROPO tray>, ..., q1_k -> <ROPO tray>
+zilu: q1_1 -> <JULA tray>, ... (one entry per ROPO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: LAFA, ZANI, VUJU, JUTO. Toys move LAFA -> ZANI -> VUJU -> JUTO.
+There are 5 moving steps:
+- "sova" carries each LAFA slot to a ZANI slot.
+- "vogi" is an internal reshuffle of ZANI: it carries each ZANI slot to a ZANI slot.
+- "mota" carries each ZANI slot to a VUJU slot.
+- "zodi" is an internal reshuffle of VUJU: it carries each VUJU slot to a VUJU slot.
+- "muko" carries each VUJU slot to a JUTO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "sova" and then "vogi" lands on the same slot as running "sova" alone.
+     ("vogi" leaves every slot that "sova" produces unchanged.)
+R1.2 Running "vogi" and then "mota" gives the same result as running "mota" alone.
+     ("mota" cannot tell whether "vogi" was applied first.)
+R1.3 Running "vogi" three times in a row leaves every ZANI slot exactly where it started.
+R2.1 Running "mota" and then "zodi" lands on the same slot as running "mota" alone.
+     ("zodi" leaves every slot that "mota" produces unchanged.)
+R2.2 Running "zodi" and then "muko" gives the same result as running "muko" alone.
+     ("muko" cannot tell whether "zodi" was applied first.)
+R2.3 Running "zodi" three times in a row leaves every VUJU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LAFA has exactly one slot, called n1.
+- JUTO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (ZANI, VUJU):
+D1.1 List the slots of ZANI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vogi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of VUJU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zodi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+ZANI = {q1_1, ..., q1_k}
+sova: n1 -> <ZANI slot>
+vogi: q1_1 -> <ZANI slot>, ..., q1_k -> <ZANI slot>
+VUJU = {q2_1, ..., q2_k}
+mota: q1_1 -> <VUJU slot>, ... (one entry per ZANI slot)
+zodi: q2_1 -> <VUJU slot>, ..., q2_k -> <VUJU slot>
+muko: q2_1 -> <JUTO slot>, ... (one entry per VUJU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

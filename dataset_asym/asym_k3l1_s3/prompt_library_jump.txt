@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: LIMU, FUJA, DOJI. Books move LIMU -> FUJA -> DOJI.
+There are 3 moving steps:
+- "gisa" carries each LIMU tray to a FUJA tray.
+- "roro" is an internal rearrangement of FUJA: it carries each FUJA tray to a FUJA tray.
+- "tumo" carries each FUJA tray to a DOJI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gisa" and then "roro" lands on the same tray as running "gisa" alone.
+     ("roro" leaves every tray that "gisa" produces unchanged.)
+R1.2 Running "roro" and then "tumo" gives the same result as running "tumo" alone.
+     ("tumo" cannot tell whether "roro" was applied first.)
+R1.3 Running "roro" twice in a row leaves every FUJA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LIMU has exactly 3 trays, called n1, n2, n3.
+- DOJI has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (FUJA):
+D1.1 FUJA must be a finite set with at most 5 trays.
+D1.2 "roro" must NOT be the do-nothing move (it must move at least one FUJA tray).
+D1.3 "gisa" must carry different LIMU trays to different FUJA trays.
+D1.4 Every DOJI tray must be reached by "tumo" from at least one FUJA tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+FUJA = {q1_1, ..., q1_k}
+gisa: n1 -> <FUJA tray>, n2 -> <FUJA tray>, n3 -> <FUJA tray>
+roro: q1_1 -> <FUJA tray>, ..., q1_k -> <FUJA tray>
+tumo: q1_1 -> <DOJI tray>, ... (one entry per FUJA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

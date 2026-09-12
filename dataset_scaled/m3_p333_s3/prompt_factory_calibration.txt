@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: VAMA, SOBU, RASO, GOMI, TALO. Toys move VAMA -> SOBU -> RASO -> GOMI -> TALO.
+There are 7 moving steps:
+- "nitu" carries each VAMA slot to a SOBU slot.
+- "noru" is an internal reshuffle of SOBU: it carries each SOBU slot to a SOBU slot.
+- "jiro" carries each SOBU slot to a RASO slot.
+- "rabo" is an internal reshuffle of RASO: it carries each RASO slot to a RASO slot.
+- "sofi" carries each RASO slot to a GOMI slot.
+- "siku" is an internal reshuffle of GOMI: it carries each GOMI slot to a GOMI slot.
+- "napu" carries each GOMI slot to a TALO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nitu" and then "noru" lands on the same slot as running "nitu" alone.
+     ("noru" leaves every slot that "nitu" produces unchanged.)
+R1.2 Running "noru" and then "jiro" gives the same result as running "jiro" alone.
+     ("jiro" cannot tell whether "noru" was applied first.)
+R1.3 Running "noru" three times in a row leaves every SOBU slot exactly where it started.
+R2.1 Running "jiro" and then "rabo" lands on the same slot as running "jiro" alone.
+     ("rabo" leaves every slot that "jiro" produces unchanged.)
+R2.2 Running "rabo" and then "sofi" gives the same result as running "sofi" alone.
+     ("sofi" cannot tell whether "rabo" was applied first.)
+R2.3 Running "rabo" three times in a row leaves every RASO slot exactly where it started.
+R3.1 Running "sofi" and then "siku" lands on the same slot as running "sofi" alone.
+     ("siku" leaves every slot that "sofi" produces unchanged.)
+R3.2 Running "siku" and then "napu" gives the same result as running "napu" alone.
+     ("napu" cannot tell whether "siku" was applied first.)
+R3.3 Running "siku" three times in a row leaves every GOMI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VAMA has exactly one slot, called n1.
+- TALO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SOBU, RASO, GOMI):
+D1.1 List the slots of SOBU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "noru" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of RASO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "rabo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of GOMI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "siku" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SOBU = {q1_1, ..., q1_k}
+nitu: n1 -> <SOBU slot>
+noru: q1_1 -> <SOBU slot>, ..., q1_k -> <SOBU slot>
+RASO = {q2_1, ..., q2_k}
+jiro: q1_1 -> <RASO slot>, ... (one entry per SOBU slot)
+rabo: q2_1 -> <RASO slot>, ..., q2_k -> <RASO slot>
+GOMI = {q3_1, ..., q3_k}
+sofi: q2_1 -> <GOMI slot>, ... (one entry per RASO slot)
+siku: q3_1 -> <GOMI slot>, ..., q3_k -> <GOMI slot>
+napu: q3_1 -> <TALO slot>, ... (one entry per GOMI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

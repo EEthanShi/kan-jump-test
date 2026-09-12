@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: FADU, JODU, BUFU, MAZA. Books move FADU -> JODU -> BUFU -> MAZA.
+There are 5 moving steps:
+- "dajo" carries each FADU tray to a JODU tray.
+- "fafi" is an internal rearrangement of JODU: it carries each JODU tray to a JODU tray.
+- "zini" carries each JODU tray to a BUFU tray.
+- "zomi" is an internal rearrangement of BUFU: it carries each BUFU tray to a BUFU tray.
+- "subo" carries each BUFU tray to a MAZA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "dajo" and then "fafi" lands on the same tray as running "dajo" alone.
+     ("fafi" leaves every tray that "dajo" produces unchanged.)
+R1.2 Running "fafi" and then "zini" gives the same result as running "zini" alone.
+     ("zini" cannot tell whether "fafi" was applied first.)
+R1.3 Running "fafi" twice in a row leaves every JODU tray exactly where it started.
+R2.1 Running "zini" and then "zomi" lands on the same tray as running "zini" alone.
+     ("zomi" leaves every tray that "zini" produces unchanged.)
+R2.2 Running "zomi" and then "subo" gives the same result as running "subo" alone.
+     ("subo" cannot tell whether "zomi" was applied first.)
+R2.3 Running "zomi" twice in a row leaves every BUFU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FADU has exactly one tray, called n1.
+- MAZA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JODU, BUFU):
+D1.1 JODU must be a finite set with at most 3 trays.
+D1.2 "fafi" must NOT be the do-nothing move (it must move at least one JODU tray).
+D2.1 BUFU must be a finite set with at most 3 trays.
+D2.2 "zomi" must NOT be the do-nothing move (it must move at least one BUFU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JODU = {q1_1, ..., q1_k}
+dajo: n1 -> <JODU tray>
+fafi: q1_1 -> <JODU tray>, ..., q1_k -> <JODU tray>
+BUFU = {q2_1, ..., q2_k}
+zini: q1_1 -> <BUFU tray>, ... (one entry per JODU tray)
+zomi: q2_1 -> <BUFU tray>, ..., q2_k -> <BUFU tray>
+subo: q2_1 -> <MAZA tray>, ... (one entry per BUFU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

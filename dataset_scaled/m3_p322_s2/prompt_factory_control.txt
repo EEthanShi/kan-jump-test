@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: KOVA, MOSO, TUZO, SADI, GORU. Toys move KOVA -> MOSO -> TUZO -> SADI -> GORU.
+There are 7 moving steps:
+- "pino" carries each KOVA slot to a MOSO slot.
+- "pili" is an internal reshuffle of MOSO: it carries each MOSO slot to a MOSO slot.
+- "fofo" carries each MOSO slot to a TUZO slot.
+- "tudo" is an internal reshuffle of TUZO: it carries each TUZO slot to a TUZO slot.
+- "luga" carries each TUZO slot to a SADI slot.
+- "rivu" is an internal reshuffle of SADI: it carries each SADI slot to a SADI slot.
+- "fula" carries each SADI slot to a GORU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pino" and then "pili" lands on the same slot as running "pino" alone.
+     ("pili" leaves every slot that "pino" produces unchanged.)
+R1.2 Running "pili" and then "fofo" gives the same result as running "fofo" alone.
+     ("fofo" cannot tell whether "pili" was applied first.)
+R1.3 Running "pili" three times in a row leaves every MOSO slot exactly where it started.
+R2.1 Running "fofo" and then "tudo" lands on the same slot as running "fofo" alone.
+     ("tudo" leaves every slot that "fofo" produces unchanged.)
+R2.2 Running "tudo" and then "luga" gives the same result as running "luga" alone.
+     ("luga" cannot tell whether "tudo" was applied first.)
+R2.3 Running "tudo" twice in a row leaves every TUZO slot exactly where it started.
+R3.1 Running "luga" and then "rivu" lands on the same slot as running "luga" alone.
+     ("rivu" leaves every slot that "luga" produces unchanged.)
+R3.2 Running "rivu" and then "fula" gives the same result as running "fula" alone.
+     ("fula" cannot tell whether "rivu" was applied first.)
+R3.3 Running "rivu" twice in a row leaves every SADI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KOVA has exactly one slot, called n1.
+- GORU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MOSO, TUZO, SADI):
+D1.1 MOSO must be a finite set with at most 1 slot.
+D1.2 List the "pili" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 TUZO must be a finite set with at most 1 slot.
+D2.2 List the "tudo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 SADI must be a finite set with at most 1 slot.
+D3.2 List the "rivu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MOSO = {q1_1, ..., q1_k}
+pino: n1 -> <MOSO slot>
+pili: q1_1 -> <MOSO slot>, ..., q1_k -> <MOSO slot>
+TUZO = {q2_1, ..., q2_k}
+fofo: q1_1 -> <TUZO slot>, ... (one entry per MOSO slot)
+tudo: q2_1 -> <TUZO slot>, ..., q2_k -> <TUZO slot>
+SADI = {q3_1, ..., q3_k}
+luga: q2_1 -> <SADI slot>, ... (one entry per TUZO slot)
+rivu: q3_1 -> <SADI slot>, ..., q3_k -> <SADI slot>
+fula: q3_1 -> <GORU slot>, ... (one entry per SADI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

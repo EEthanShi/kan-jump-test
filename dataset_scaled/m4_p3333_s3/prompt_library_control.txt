@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: MUDA, DUMI, FOFI, MOBA, SABO, JUPA. Books move MUDA -> DUMI -> FOFI -> MOBA -> SABO -> JUPA.
+There are 9 moving steps:
+- "nuju" carries each MUDA tray to a DUMI tray.
+- "difi" is an internal rearrangement of DUMI: it carries each DUMI tray to a DUMI tray.
+- "mafu" carries each DUMI tray to a FOFI tray.
+- "fiko" is an internal rearrangement of FOFI: it carries each FOFI tray to a FOFI tray.
+- "gaju" carries each FOFI tray to a MOBA tray.
+- "panu" is an internal rearrangement of MOBA: it carries each MOBA tray to a MOBA tray.
+- "dana" carries each MOBA tray to a SABO tray.
+- "limu" is an internal rearrangement of SABO: it carries each SABO tray to a SABO tray.
+- "vizu" carries each SABO tray to a JUPA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nuju" and then "difi" lands on the same tray as running "nuju" alone.
+     ("difi" leaves every tray that "nuju" produces unchanged.)
+R1.2 Running "difi" and then "mafu" gives the same result as running "mafu" alone.
+     ("mafu" cannot tell whether "difi" was applied first.)
+R1.3 Running "difi" three times in a row leaves every DUMI tray exactly where it started.
+R2.1 Running "mafu" and then "fiko" lands on the same tray as running "mafu" alone.
+     ("fiko" leaves every tray that "mafu" produces unchanged.)
+R2.2 Running "fiko" and then "gaju" gives the same result as running "gaju" alone.
+     ("gaju" cannot tell whether "fiko" was applied first.)
+R2.3 Running "fiko" three times in a row leaves every FOFI tray exactly where it started.
+R3.1 Running "gaju" and then "panu" lands on the same tray as running "gaju" alone.
+     ("panu" leaves every tray that "gaju" produces unchanged.)
+R3.2 Running "panu" and then "dana" gives the same result as running "dana" alone.
+     ("dana" cannot tell whether "panu" was applied first.)
+R3.3 Running "panu" three times in a row leaves every MOBA tray exactly where it started.
+R4.1 Running "dana" and then "limu" lands on the same tray as running "dana" alone.
+     ("limu" leaves every tray that "dana" produces unchanged.)
+R4.2 Running "limu" and then "vizu" gives the same result as running "vizu" alone.
+     ("vizu" cannot tell whether "limu" was applied first.)
+R4.3 Running "limu" three times in a row leaves every SABO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MUDA has exactly one tray, called n1.
+- JUPA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DUMI, FOFI, MOBA, SABO):
+D1.1 DUMI must be a finite set with at most 1 tray.
+D1.2 List the "difi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 FOFI must be a finite set with at most 1 tray.
+D2.2 List the "fiko" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 MOBA must be a finite set with at most 1 tray.
+D3.2 List the "panu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 SABO must be a finite set with at most 1 tray.
+D4.2 List the "limu" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DUMI = {q1_1, ..., q1_k}
+nuju: n1 -> <DUMI tray>
+difi: q1_1 -> <DUMI tray>, ..., q1_k -> <DUMI tray>
+FOFI = {q2_1, ..., q2_k}
+mafu: q1_1 -> <FOFI tray>, ... (one entry per DUMI tray)
+fiko: q2_1 -> <FOFI tray>, ..., q2_k -> <FOFI tray>
+MOBA = {q3_1, ..., q3_k}
+gaju: q2_1 -> <MOBA tray>, ... (one entry per FOFI tray)
+panu: q3_1 -> <MOBA tray>, ..., q3_k -> <MOBA tray>
+SABO = {q4_1, ..., q4_k}
+dana: q3_1 -> <SABO tray>, ... (one entry per MOBA tray)
+limu: q4_1 -> <SABO tray>, ..., q4_k -> <SABO tray>
+vizu: q4_1 -> <JUPA tray>, ... (one entry per SABO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: BIKO, BAZU, POVO, TOKU, TURU. Books move BIKO -> BAZU -> POVO -> TOKU -> TURU.
+There are 7 moving steps:
+- "kuja" carries each BIKO tray to a BAZU tray.
+- "zuko" is an internal rearrangement of BAZU: it carries each BAZU tray to a BAZU tray.
+- "kafu" carries each BAZU tray to a POVO tray.
+- "rila" is an internal rearrangement of POVO: it carries each POVO tray to a POVO tray.
+- "zizu" carries each POVO tray to a TOKU tray.
+- "jiko" is an internal rearrangement of TOKU: it carries each TOKU tray to a TOKU tray.
+- "nili" carries each TOKU tray to a TURU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kuja" and then "zuko" lands on the same tray as running "kuja" alone.
+     ("zuko" leaves every tray that "kuja" produces unchanged.)
+R1.2 Running "zuko" and then "kafu" gives the same result as running "kafu" alone.
+     ("kafu" cannot tell whether "zuko" was applied first.)
+R1.3 Running "zuko" twice in a row leaves every BAZU tray exactly where it started.
+R2.1 Running "kafu" and then "rila" lands on the same tray as running "kafu" alone.
+     ("rila" leaves every tray that "kafu" produces unchanged.)
+R2.2 Running "rila" and then "zizu" gives the same result as running "zizu" alone.
+     ("zizu" cannot tell whether "rila" was applied first.)
+R2.3 Running "rila" three times in a row leaves every POVO tray exactly where it started.
+R3.1 Running "zizu" and then "jiko" lands on the same tray as running "zizu" alone.
+     ("jiko" leaves every tray that "zizu" produces unchanged.)
+R3.2 Running "jiko" and then "nili" gives the same result as running "nili" alone.
+     ("nili" cannot tell whether "jiko" was applied first.)
+R3.3 Running "jiko" three times in a row leaves every TOKU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BIKO has exactly one tray, called n1.
+- TURU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BAZU, POVO, TOKU):
+D1.1 BAZU must be a finite set with at most 3 trays.
+D1.2 "zuko" must NOT be the do-nothing move (it must move at least one BAZU tray).
+D2.1 POVO must be a finite set with at most 4 trays.
+D2.2 "rila" must NOT be the do-nothing move (it must move at least one POVO tray).
+D3.1 TOKU must be a finite set with at most 4 trays.
+D3.2 "jiko" must NOT be the do-nothing move (it must move at least one TOKU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BAZU = {q1_1, ..., q1_k}
+kuja: n1 -> <BAZU tray>
+zuko: q1_1 -> <BAZU tray>, ..., q1_k -> <BAZU tray>
+POVO = {q2_1, ..., q2_k}
+kafu: q1_1 -> <POVO tray>, ... (one entry per BAZU tray)
+rila: q2_1 -> <POVO tray>, ..., q2_k -> <POVO tray>
+TOKU = {q3_1, ..., q3_k}
+zizu: q2_1 -> <TOKU tray>, ... (one entry per POVO tray)
+jiko: q3_1 -> <TOKU tray>, ..., q3_k -> <TOKU tray>
+nili: q3_1 -> <TURU tray>, ... (one entry per TOKU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

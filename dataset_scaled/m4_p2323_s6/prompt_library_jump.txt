@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: RUZA, SIJU, DIZI, JIZO, VODU, BABO. Books move RUZA -> SIJU -> DIZI -> JIZO -> VODU -> BABO.
+There are 9 moving steps:
+- "nizi" carries each RUZA tray to a SIJU tray.
+- "pifo" is an internal rearrangement of SIJU: it carries each SIJU tray to a SIJU tray.
+- "rura" carries each SIJU tray to a DIZI tray.
+- "vili" is an internal rearrangement of DIZI: it carries each DIZI tray to a DIZI tray.
+- "tado" carries each DIZI tray to a JIZO tray.
+- "kapo" is an internal rearrangement of JIZO: it carries each JIZO tray to a JIZO tray.
+- "lido" carries each JIZO tray to a VODU tray.
+- "folo" is an internal rearrangement of VODU: it carries each VODU tray to a VODU tray.
+- "gosi" carries each VODU tray to a BABO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nizi" and then "pifo" lands on the same tray as running "nizi" alone.
+     ("pifo" leaves every tray that "nizi" produces unchanged.)
+R1.2 Running "pifo" and then "rura" gives the same result as running "rura" alone.
+     ("rura" cannot tell whether "pifo" was applied first.)
+R1.3 Running "pifo" twice in a row leaves every SIJU tray exactly where it started.
+R2.1 Running "rura" and then "vili" lands on the same tray as running "rura" alone.
+     ("vili" leaves every tray that "rura" produces unchanged.)
+R2.2 Running "vili" and then "tado" gives the same result as running "tado" alone.
+     ("tado" cannot tell whether "vili" was applied first.)
+R2.3 Running "vili" three times in a row leaves every DIZI tray exactly where it started.
+R3.1 Running "tado" and then "kapo" lands on the same tray as running "tado" alone.
+     ("kapo" leaves every tray that "tado" produces unchanged.)
+R3.2 Running "kapo" and then "lido" gives the same result as running "lido" alone.
+     ("lido" cannot tell whether "kapo" was applied first.)
+R3.3 Running "kapo" twice in a row leaves every JIZO tray exactly where it started.
+R4.1 Running "lido" and then "folo" lands on the same tray as running "lido" alone.
+     ("folo" leaves every tray that "lido" produces unchanged.)
+R4.2 Running "folo" and then "gosi" gives the same result as running "gosi" alone.
+     ("gosi" cannot tell whether "folo" was applied first.)
+R4.3 Running "folo" three times in a row leaves every VODU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RUZA has exactly one tray, called n1.
+- BABO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SIJU, DIZI, JIZO, VODU):
+D1.1 SIJU must be a finite set with at most 3 trays.
+D1.2 "pifo" must NOT be the do-nothing move (it must move at least one SIJU tray).
+D2.1 DIZI must be a finite set with at most 4 trays.
+D2.2 "vili" must NOT be the do-nothing move (it must move at least one DIZI tray).
+D3.1 JIZO must be a finite set with at most 3 trays.
+D3.2 "kapo" must NOT be the do-nothing move (it must move at least one JIZO tray).
+D4.1 VODU must be a finite set with at most 4 trays.
+D4.2 "folo" must NOT be the do-nothing move (it must move at least one VODU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SIJU = {q1_1, ..., q1_k}
+nizi: n1 -> <SIJU tray>
+pifo: q1_1 -> <SIJU tray>, ..., q1_k -> <SIJU tray>
+DIZI = {q2_1, ..., q2_k}
+rura: q1_1 -> <DIZI tray>, ... (one entry per SIJU tray)
+vili: q2_1 -> <DIZI tray>, ..., q2_k -> <DIZI tray>
+JIZO = {q3_1, ..., q3_k}
+tado: q2_1 -> <JIZO tray>, ... (one entry per DIZI tray)
+kapo: q3_1 -> <JIZO tray>, ..., q3_k -> <JIZO tray>
+VODU = {q4_1, ..., q4_k}
+lido: q3_1 -> <VODU tray>, ... (one entry per JIZO tray)
+folo: q4_1 -> <VODU tray>, ..., q4_k -> <VODU tray>
+gosi: q4_1 -> <BABO tray>, ... (one entry per VODU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

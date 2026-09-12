@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: LAKA, TOGU, BIVA, ZIMI, GABI. Books move LAKA -> TOGU -> BIVA -> ZIMI -> GABI.
+There are 7 moving steps:
+- "guna" carries each LAKA tray to a TOGU tray.
+- "vapa" is an internal rearrangement of TOGU: it carries each TOGU tray to a TOGU tray.
+- "biro" carries each TOGU tray to a BIVA tray.
+- "jaku" is an internal rearrangement of BIVA: it carries each BIVA tray to a BIVA tray.
+- "zujo" carries each BIVA tray to a ZIMI tray.
+- "govo" is an internal rearrangement of ZIMI: it carries each ZIMI tray to a ZIMI tray.
+- "jamu" carries each ZIMI tray to a GABI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "guna" and then "vapa" lands on the same tray as running "guna" alone.
+     ("vapa" leaves every tray that "guna" produces unchanged.)
+R1.2 Running "vapa" and then "biro" gives the same result as running "biro" alone.
+     ("biro" cannot tell whether "vapa" was applied first.)
+R1.3 Running "vapa" three times in a row leaves every TOGU tray exactly where it started.
+R2.1 Running "biro" and then "jaku" lands on the same tray as running "biro" alone.
+     ("jaku" leaves every tray that "biro" produces unchanged.)
+R2.2 Running "jaku" and then "zujo" gives the same result as running "zujo" alone.
+     ("zujo" cannot tell whether "jaku" was applied first.)
+R2.3 Running "jaku" three times in a row leaves every BIVA tray exactly where it started.
+R3.1 Running "zujo" and then "govo" lands on the same tray as running "zujo" alone.
+     ("govo" leaves every tray that "zujo" produces unchanged.)
+R3.2 Running "govo" and then "jamu" gives the same result as running "jamu" alone.
+     ("jamu" cannot tell whether "govo" was applied first.)
+R3.3 Running "govo" twice in a row leaves every ZIMI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LAKA has exactly one tray, called n1.
+- GABI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TOGU, BIVA, ZIMI):
+D1.1 TOGU must be a finite set with at most 4 trays.
+D1.2 "vapa" must NOT be the do-nothing move (it must move at least one TOGU tray).
+D2.1 BIVA must be a finite set with at most 4 trays.
+D2.2 "jaku" must NOT be the do-nothing move (it must move at least one BIVA tray).
+D3.1 ZIMI must be a finite set with at most 3 trays.
+D3.2 "govo" must NOT be the do-nothing move (it must move at least one ZIMI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TOGU = {q1_1, ..., q1_k}
+guna: n1 -> <TOGU tray>
+vapa: q1_1 -> <TOGU tray>, ..., q1_k -> <TOGU tray>
+BIVA = {q2_1, ..., q2_k}
+biro: q1_1 -> <BIVA tray>, ... (one entry per TOGU tray)
+jaku: q2_1 -> <BIVA tray>, ..., q2_k -> <BIVA tray>
+ZIMI = {q3_1, ..., q3_k}
+zujo: q2_1 -> <ZIMI tray>, ... (one entry per BIVA tray)
+govo: q3_1 -> <ZIMI tray>, ..., q3_k -> <ZIMI tray>
+jamu: q3_1 -> <GABI tray>, ... (one entry per ZIMI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

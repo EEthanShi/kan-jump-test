@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: BUTO, TUTI, BUGA, LAFO. Books move BUTO -> TUTI -> BUGA -> LAFO.
+There are 5 moving steps:
+- "kuba" carries each BUTO tray to a TUTI tray.
+- "juvu" is an internal rearrangement of TUTI: it carries each TUTI tray to a TUTI tray.
+- "toro" carries each TUTI tray to a BUGA tray.
+- "nasu" is an internal rearrangement of BUGA: it carries each BUGA tray to a BUGA tray.
+- "fana" carries each BUGA tray to a LAFO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kuba" and then "juvu" lands on the same tray as running "kuba" alone.
+     ("juvu" leaves every tray that "kuba" produces unchanged.)
+R1.2 Running "juvu" and then "toro" gives the same result as running "toro" alone.
+     ("toro" cannot tell whether "juvu" was applied first.)
+R1.3 Running "juvu" twice in a row leaves every TUTI tray exactly where it started.
+R2.1 Running "toro" and then "nasu" lands on the same tray as running "toro" alone.
+     ("nasu" leaves every tray that "toro" produces unchanged.)
+R2.2 Running "nasu" and then "fana" gives the same result as running "fana" alone.
+     ("fana" cannot tell whether "nasu" was applied first.)
+R2.3 Running "nasu" three times in a row leaves every BUGA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUTO has exactly one tray, called n1.
+- LAFO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TUTI, BUGA):
+D1.1 TUTI must be a finite set with at most 1 tray.
+D1.2 List the "juvu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 BUGA must be a finite set with at most 1 tray.
+D2.2 List the "nasu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TUTI = {q1_1, ..., q1_k}
+kuba: n1 -> <TUTI tray>
+juvu: q1_1 -> <TUTI tray>, ..., q1_k -> <TUTI tray>
+BUGA = {q2_1, ..., q2_k}
+toro: q1_1 -> <BUGA tray>, ... (one entry per TUTI tray)
+nasu: q2_1 -> <BUGA tray>, ..., q2_k -> <BUGA tray>
+fana: q2_1 -> <LAFO tray>, ... (one entry per BUGA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

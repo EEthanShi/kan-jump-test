@@ -1,0 +1,39 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: VABO, RATU, FOGU. Toys move VABO -> RATU -> FOGU.
+There are 3 moving steps:
+- "kalo" carries each VABO slot to a RATU slot.
+- "bivi" is an internal reshuffle of RATU: it carries each RATU slot to a RATU slot.
+- "tovi" carries each RATU slot to a FOGU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kalo" and then "bivi" lands on the same slot as running "kalo" alone.
+     ("bivi" leaves every slot that "kalo" produces unchanged.)
+R1.2 Running "bivi" and then "tovi" gives the same result as running "tovi" alone.
+     ("tovi" cannot tell whether "bivi" was applied first.)
+R1.3 Running "bivi" three times in a row leaves every RATU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VABO has exactly one slot, called n1.
+- FOGU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (RATU):
+D1.1 RATU must be a finite set with at most 4 slots.
+D1.2 "bivi" must NOT be the do-nothing move (it must move at least one RATU slot).
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+RATU = {q1_1, ..., q1_k}
+kalo: n1 -> <RATU slot>
+bivi: q1_1 -> <RATU slot>, ..., q1_k -> <RATU slot>
+tovi: q1_1 -> <FOGU slot>, ... (one entry per RATU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: NUZI, KABU, SUPI, RUBI, BUKA. Books move NUZI -> KABU -> SUPI -> RUBI -> BUKA.
+There are 7 moving steps:
+- "nabi" carries each NUZI tray to a KABU tray.
+- "vugo" is an internal rearrangement of KABU: it carries each KABU tray to a KABU tray.
+- "roki" carries each KABU tray to a SUPI tray.
+- "miru" is an internal rearrangement of SUPI: it carries each SUPI tray to a SUPI tray.
+- "piju" carries each SUPI tray to a RUBI tray.
+- "ralo" is an internal rearrangement of RUBI: it carries each RUBI tray to a RUBI tray.
+- "zopa" carries each RUBI tray to a BUKA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nabi" and then "vugo" lands on the same tray as running "nabi" alone.
+     ("vugo" leaves every tray that "nabi" produces unchanged.)
+R1.2 Running "vugo" and then "roki" gives the same result as running "roki" alone.
+     ("roki" cannot tell whether "vugo" was applied first.)
+R1.3 Running "vugo" three times in a row leaves every KABU tray exactly where it started.
+R2.1 Running "roki" and then "miru" lands on the same tray as running "roki" alone.
+     ("miru" leaves every tray that "roki" produces unchanged.)
+R2.2 Running "miru" and then "piju" gives the same result as running "piju" alone.
+     ("piju" cannot tell whether "miru" was applied first.)
+R2.3 Running "miru" three times in a row leaves every SUPI tray exactly where it started.
+R3.1 Running "piju" and then "ralo" lands on the same tray as running "piju" alone.
+     ("ralo" leaves every tray that "piju" produces unchanged.)
+R3.2 Running "ralo" and then "zopa" gives the same result as running "zopa" alone.
+     ("zopa" cannot tell whether "ralo" was applied first.)
+R3.3 Running "ralo" twice in a row leaves every RUBI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NUZI has exactly one tray, called n1.
+- BUKA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KABU, SUPI, RUBI):
+D1.1 KABU must be a finite set with at most 4 trays.
+D1.2 "vugo" must NOT be the do-nothing move (it must move at least one KABU tray).
+D2.1 SUPI must be a finite set with at most 4 trays.
+D2.2 "miru" must NOT be the do-nothing move (it must move at least one SUPI tray).
+D3.1 RUBI must be a finite set with at most 3 trays.
+D3.2 "ralo" must NOT be the do-nothing move (it must move at least one RUBI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KABU = {q1_1, ..., q1_k}
+nabi: n1 -> <KABU tray>
+vugo: q1_1 -> <KABU tray>, ..., q1_k -> <KABU tray>
+SUPI = {q2_1, ..., q2_k}
+roki: q1_1 -> <SUPI tray>, ... (one entry per KABU tray)
+miru: q2_1 -> <SUPI tray>, ..., q2_k -> <SUPI tray>
+RUBI = {q3_1, ..., q3_k}
+piju: q2_1 -> <RUBI tray>, ... (one entry per SUPI tray)
+ralo: q3_1 -> <RUBI tray>, ..., q3_k -> <RUBI tray>
+zopa: q3_1 -> <BUKA tray>, ... (one entry per RUBI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

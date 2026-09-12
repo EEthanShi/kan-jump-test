@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DUBI, RARU, BITA, BODA, LOSA. Toys move DUBI -> RARU -> BITA -> BODA -> LOSA.
+There are 7 moving steps:
+- "kuna" carries each DUBI slot to a RARU slot.
+- "vomu" is an internal reshuffle of RARU: it carries each RARU slot to a RARU slot.
+- "ravu" carries each RARU slot to a BITA slot.
+- "komi" is an internal reshuffle of BITA: it carries each BITA slot to a BITA slot.
+- "jini" carries each BITA slot to a BODA slot.
+- "rona" is an internal reshuffle of BODA: it carries each BODA slot to a BODA slot.
+- "mafo" carries each BODA slot to a LOSA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kuna" and then "vomu" lands on the same slot as running "kuna" alone.
+     ("vomu" leaves every slot that "kuna" produces unchanged.)
+R1.2 Running "vomu" and then "ravu" gives the same result as running "ravu" alone.
+     ("ravu" cannot tell whether "vomu" was applied first.)
+R1.3 Running "vomu" three times in a row leaves every RARU slot exactly where it started.
+R2.1 Running "ravu" and then "komi" lands on the same slot as running "ravu" alone.
+     ("komi" leaves every slot that "ravu" produces unchanged.)
+R2.2 Running "komi" and then "jini" gives the same result as running "jini" alone.
+     ("jini" cannot tell whether "komi" was applied first.)
+R2.3 Running "komi" twice in a row leaves every BITA slot exactly where it started.
+R3.1 Running "jini" and then "rona" lands on the same slot as running "jini" alone.
+     ("rona" leaves every slot that "jini" produces unchanged.)
+R3.2 Running "rona" and then "mafo" gives the same result as running "mafo" alone.
+     ("mafo" cannot tell whether "rona" was applied first.)
+R3.3 Running "rona" three times in a row leaves every BODA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DUBI has exactly one slot, called n1.
+- LOSA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (RARU, BITA, BODA):
+D1.1 RARU must be a finite set with at most 1 slot.
+D1.2 List the "vomu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 BITA must be a finite set with at most 1 slot.
+D2.2 List the "komi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 BODA must be a finite set with at most 1 slot.
+D3.2 List the "rona" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+RARU = {q1_1, ..., q1_k}
+kuna: n1 -> <RARU slot>
+vomu: q1_1 -> <RARU slot>, ..., q1_k -> <RARU slot>
+BITA = {q2_1, ..., q2_k}
+ravu: q1_1 -> <BITA slot>, ... (one entry per RARU slot)
+komi: q2_1 -> <BITA slot>, ..., q2_k -> <BITA slot>
+BODA = {q3_1, ..., q3_k}
+jini: q2_1 -> <BODA slot>, ... (one entry per BITA slot)
+rona: q3_1 -> <BODA slot>, ..., q3_k -> <BODA slot>
+mafo: q3_1 -> <LOSA slot>, ... (one entry per BODA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

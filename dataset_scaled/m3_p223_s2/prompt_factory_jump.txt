@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: RAVA, NOKO, LARU, RUKO, ZIKI. Toys move RAVA -> NOKO -> LARU -> RUKO -> ZIKI.
+There are 7 moving steps:
+- "rili" carries each RAVA slot to a NOKO slot.
+- "pupo" is an internal reshuffle of NOKO: it carries each NOKO slot to a NOKO slot.
+- "kivu" carries each NOKO slot to a LARU slot.
+- "juto" is an internal reshuffle of LARU: it carries each LARU slot to a LARU slot.
+- "foda" carries each LARU slot to a RUKO slot.
+- "puji" is an internal reshuffle of RUKO: it carries each RUKO slot to a RUKO slot.
+- "dupi" carries each RUKO slot to a ZIKI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "rili" and then "pupo" lands on the same slot as running "rili" alone.
+     ("pupo" leaves every slot that "rili" produces unchanged.)
+R1.2 Running "pupo" and then "kivu" gives the same result as running "kivu" alone.
+     ("kivu" cannot tell whether "pupo" was applied first.)
+R1.3 Running "pupo" twice in a row leaves every NOKO slot exactly where it started.
+R2.1 Running "kivu" and then "juto" lands on the same slot as running "kivu" alone.
+     ("juto" leaves every slot that "kivu" produces unchanged.)
+R2.2 Running "juto" and then "foda" gives the same result as running "foda" alone.
+     ("foda" cannot tell whether "juto" was applied first.)
+R2.3 Running "juto" twice in a row leaves every LARU slot exactly where it started.
+R3.1 Running "foda" and then "puji" lands on the same slot as running "foda" alone.
+     ("puji" leaves every slot that "foda" produces unchanged.)
+R3.2 Running "puji" and then "dupi" gives the same result as running "dupi" alone.
+     ("dupi" cannot tell whether "puji" was applied first.)
+R3.3 Running "puji" three times in a row leaves every RUKO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RAVA has exactly one slot, called n1.
+- ZIKI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NOKO, LARU, RUKO):
+D1.1 NOKO must be a finite set with at most 3 slots.
+D1.2 "pupo" must NOT be the do-nothing move (it must move at least one NOKO slot).
+D2.1 LARU must be a finite set with at most 3 slots.
+D2.2 "juto" must NOT be the do-nothing move (it must move at least one LARU slot).
+D3.1 RUKO must be a finite set with at most 4 slots.
+D3.2 "puji" must NOT be the do-nothing move (it must move at least one RUKO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NOKO = {q1_1, ..., q1_k}
+rili: n1 -> <NOKO slot>
+pupo: q1_1 -> <NOKO slot>, ..., q1_k -> <NOKO slot>
+LARU = {q2_1, ..., q2_k}
+kivu: q1_1 -> <LARU slot>, ... (one entry per NOKO slot)
+juto: q2_1 -> <LARU slot>, ..., q2_k -> <LARU slot>
+RUKO = {q3_1, ..., q3_k}
+foda: q2_1 -> <RUKO slot>, ... (one entry per LARU slot)
+puji: q3_1 -> <RUKO slot>, ..., q3_k -> <RUKO slot>
+dupi: q3_1 -> <ZIKI slot>, ... (one entry per RUKO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

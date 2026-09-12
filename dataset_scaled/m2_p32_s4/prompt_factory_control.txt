@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: MOBO, ZOBI, BIKO, ZUKU. Toys move MOBO -> ZOBI -> BIKO -> ZUKU.
+There are 5 moving steps:
+- "baro" carries each MOBO slot to a ZOBI slot.
+- "piji" is an internal reshuffle of ZOBI: it carries each ZOBI slot to a ZOBI slot.
+- "dito" carries each ZOBI slot to a BIKO slot.
+- "zimi" is an internal reshuffle of BIKO: it carries each BIKO slot to a BIKO slot.
+- "tivo" carries each BIKO slot to a ZUKU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "baro" and then "piji" lands on the same slot as running "baro" alone.
+     ("piji" leaves every slot that "baro" produces unchanged.)
+R1.2 Running "piji" and then "dito" gives the same result as running "dito" alone.
+     ("dito" cannot tell whether "piji" was applied first.)
+R1.3 Running "piji" three times in a row leaves every ZOBI slot exactly where it started.
+R2.1 Running "dito" and then "zimi" lands on the same slot as running "dito" alone.
+     ("zimi" leaves every slot that "dito" produces unchanged.)
+R2.2 Running "zimi" and then "tivo" gives the same result as running "tivo" alone.
+     ("tivo" cannot tell whether "zimi" was applied first.)
+R2.3 Running "zimi" twice in a row leaves every BIKO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOBO has exactly one slot, called n1.
+- ZUKU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (ZOBI, BIKO):
+D1.1 ZOBI must be a finite set with at most 1 slot.
+D1.2 List the "piji" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 BIKO must be a finite set with at most 1 slot.
+D2.2 List the "zimi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+ZOBI = {q1_1, ..., q1_k}
+baro: n1 -> <ZOBI slot>
+piji: q1_1 -> <ZOBI slot>, ..., q1_k -> <ZOBI slot>
+BIKO = {q2_1, ..., q2_k}
+dito: q1_1 -> <BIKO slot>, ... (one entry per ZOBI slot)
+zimi: q2_1 -> <BIKO slot>, ..., q2_k -> <BIKO slot>
+tivo: q2_1 -> <ZUKU slot>, ... (one entry per BIKO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

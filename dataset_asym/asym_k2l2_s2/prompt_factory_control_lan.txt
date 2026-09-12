@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: POFA, LAPO, BIDO. Toys move POFA -> LAPO -> BIDO.
+There are 3 moving steps:
+- "vagu" carries each POFA slot to a LAPO slot.
+- "vuna" is an internal reshuffle of LAPO: it carries each LAPO slot to a LAPO slot.
+- "tavo" carries each LAPO slot to a BIDO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vagu" and then "vuna" lands on the same slot as running "vagu" alone.
+     ("vuna" leaves every slot that "vagu" produces unchanged.)
+R1.2 Running "vuna" and then "tavo" gives the same result as running "tavo" alone.
+     ("tavo" cannot tell whether "vuna" was applied first.)
+R1.3 Running "vuna" twice in a row leaves every LAPO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- POFA has exactly 2 slots, called n1, n2.
+- BIDO has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1.
+
+Requirements for the middle station (LAPO):
+D1.1 LAPO must be a finite set with at most 2 slots.
+D1.2 List the "vuna" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 "vagu" must carry different POFA slots to different LAPO slots.
+D1.4 List the "tavo" table entries in LAPO slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+LAPO = {q1_1, ..., q1_k}
+vagu: n1 -> <LAPO slot>, n2 -> <LAPO slot>
+vuna: q1_1 -> <LAPO slot>, ..., q1_k -> <LAPO slot>
+tavo: q1_1 -> <BIDO slot>, ... (one entry per LAPO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

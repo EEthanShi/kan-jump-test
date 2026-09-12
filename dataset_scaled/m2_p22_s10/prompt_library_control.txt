@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: PARO, DULU, ZAVU, FUDO. Books move PARO -> DULU -> ZAVU -> FUDO.
+There are 5 moving steps:
+- "vati" carries each PARO tray to a DULU tray.
+- "dovi" is an internal rearrangement of DULU: it carries each DULU tray to a DULU tray.
+- "juki" carries each DULU tray to a ZAVU tray.
+- "zujo" is an internal rearrangement of ZAVU: it carries each ZAVU tray to a ZAVU tray.
+- "jipo" carries each ZAVU tray to a FUDO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vati" and then "dovi" lands on the same tray as running "vati" alone.
+     ("dovi" leaves every tray that "vati" produces unchanged.)
+R1.2 Running "dovi" and then "juki" gives the same result as running "juki" alone.
+     ("juki" cannot tell whether "dovi" was applied first.)
+R1.3 Running "dovi" twice in a row leaves every DULU tray exactly where it started.
+R2.1 Running "juki" and then "zujo" lands on the same tray as running "juki" alone.
+     ("zujo" leaves every tray that "juki" produces unchanged.)
+R2.2 Running "zujo" and then "jipo" gives the same result as running "jipo" alone.
+     ("jipo" cannot tell whether "zujo" was applied first.)
+R2.3 Running "zujo" twice in a row leaves every ZAVU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PARO has exactly one tray, called n1.
+- FUDO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DULU, ZAVU):
+D1.1 DULU must be a finite set with at most 1 tray.
+D1.2 List the "dovi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 ZAVU must be a finite set with at most 1 tray.
+D2.2 List the "zujo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DULU = {q1_1, ..., q1_k}
+vati: n1 -> <DULU tray>
+dovi: q1_1 -> <DULU tray>, ..., q1_k -> <DULU tray>
+ZAVU = {q2_1, ..., q2_k}
+juki: q1_1 -> <ZAVU tray>, ... (one entry per DULU tray)
+zujo: q2_1 -> <ZAVU tray>, ..., q2_k -> <ZAVU tray>
+jipo: q2_1 -> <FUDO tray>, ... (one entry per ZAVU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

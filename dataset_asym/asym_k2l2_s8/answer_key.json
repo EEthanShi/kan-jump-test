@@ -1,0 +1,97 @@
+{
+ "family": "asym",
+ "k": 2,
+ "l": 2,
+ "N": 4,
+ "lan_size_b": 2,
+ "ran_size_b": 2,
+ "ext_count": 189,
+ "adm_count": 12,
+ "chance": 0.06349206349206349,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 2,
+    "N": 4,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym2x2_s8",
+     "stations": [
+      "MAMI",
+      "GINA",
+      "MARU"
+     ],
+     "chain_moves": [
+      "logi",
+      "vabu"
+     ],
+     "endo_moves": [
+      "poda"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 2,
+     "l": 2
+    }
+   },
+   "lan_answer": "GINA = {q1_1, q1_2}\nlogi: n1 -> q1_1, n2 -> q1_2\npoda: q1_1 -> q1_1, q1_2 -> q1_2\nvabu: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "GINA = {q1_1, q1_2}\nlogi: n1 -> q1_1, n2 -> q1_1\npoda: q1_1 -> q1_1, q1_2 -> q1_2\nvabu: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "GINA = {q1_1, q1_2, q1_3, q1_4}\nlogi: n1 -> q1_1, n2 -> q1_2\npoda: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\nvabu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s2, q1_4 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 2,
+    "l": 2,
+    "N": 4,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym2x2_s8",
+     "stations": [
+      "BIPU",
+      "TAPI",
+      "POVU"
+     ],
+     "chain_moves": [
+      "noku",
+      "fofo"
+     ],
+     "endo_moves": [
+      "zamo"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 2,
+     "l": 2
+    }
+   },
+   "lan_answer": "TAPI = {q1_1, q1_2}\nnoku: n1 -> q1_1, n2 -> q1_2\nzamo: q1_1 -> q1_1, q1_2 -> q1_2\nfofo: q1_1 -> s1, q1_2 -> s1",
+   "ran_answer": "TAPI = {q1_1, q1_2}\nnoku: n1 -> q1_1, n2 -> q1_1\nzamo: q1_1 -> q1_1, q1_2 -> q1_2\nfofo: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "TAPI = {q1_1, q1_2, q1_3, q1_4}\nnoku: n1 -> q1_1, n2 -> q1_2\nzamo: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_4, q1_4 -> q1_3\nfofo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s2, q1_4 -> s2"
+  }
+ }
+}

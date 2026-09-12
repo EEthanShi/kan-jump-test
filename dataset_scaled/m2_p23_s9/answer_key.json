@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s9",
+          "stations": [
+            "TUPI",
+            "PUBA",
+            "JUPA",
+            "LUKO"
+          ],
+          "chain_moves": [
+            "jika",
+            "paju",
+            "tago"
+          ],
+          "endo_moves": [
+            "jivi",
+            "japo"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "PUBA = {q1_1, q1_2, q1_3}\njika: n1 -> q1_1\njivi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nJUPA = {q2_1, q2_2, q2_3, q2_4}\npaju: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\njapo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\ntago: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "PUBA = {q1_1}\njika: n1 -> q1_1\njivi: q1_1 -> q1_1\nJUPA = {q2_1}\npaju: q1_1 -> q2_1\njapo: q2_1 -> q2_1\ntago: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s9",
+          "stations": [
+            "FUKU",
+            "KUPU",
+            "GINA",
+            "FIJU"
+          ],
+          "chain_moves": [
+            "noba",
+            "lago",
+            "kala"
+          ],
+          "endo_moves": [
+            "dupi",
+            "nuti"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "KUPU = {q1_1, q1_2, q1_3}\nnoba: n1 -> q1_1\ndupi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nGINA = {q2_1, q2_2, q2_3, q2_4}\nlago: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nnuti: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\nkala: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "KUPU = {q1_1}\nnoba: n1 -> q1_1\ndupi: q1_1 -> q1_1\nGINA = {q2_1}\nlago: q1_1 -> q2_1\nnuti: q2_1 -> q2_1\nkala: q2_1 -> s1"
+    }
+  }
+}

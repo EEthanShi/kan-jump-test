@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: KOBU, FASO, SINO, SAKI, DIBO, LIRU. Books move KOBU -> FASO -> SINO -> SAKI -> DIBO -> LIRU.
+There are 9 moving steps:
+- "dimi" carries each KOBU tray to a FASO tray.
+- "tuki" is an internal rearrangement of FASO: it carries each FASO tray to a FASO tray.
+- "sudo" carries each FASO tray to a SINO tray.
+- "gati" is an internal rearrangement of SINO: it carries each SINO tray to a SINO tray.
+- "timu" carries each SINO tray to a SAKI tray.
+- "nado" is an internal rearrangement of SAKI: it carries each SAKI tray to a SAKI tray.
+- "dafi" carries each SAKI tray to a DIBO tray.
+- "figi" is an internal rearrangement of DIBO: it carries each DIBO tray to a DIBO tray.
+- "botu" carries each DIBO tray to a LIRU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "dimi" and then "tuki" lands on the same tray as running "dimi" alone.
+     ("tuki" leaves every tray that "dimi" produces unchanged.)
+R1.2 Running "tuki" and then "sudo" gives the same result as running "sudo" alone.
+     ("sudo" cannot tell whether "tuki" was applied first.)
+R1.3 Running "tuki" three times in a row leaves every FASO tray exactly where it started.
+R2.1 Running "sudo" and then "gati" lands on the same tray as running "sudo" alone.
+     ("gati" leaves every tray that "sudo" produces unchanged.)
+R2.2 Running "gati" and then "timu" gives the same result as running "timu" alone.
+     ("timu" cannot tell whether "gati" was applied first.)
+R2.3 Running "gati" twice in a row leaves every SINO tray exactly where it started.
+R3.1 Running "timu" and then "nado" lands on the same tray as running "timu" alone.
+     ("nado" leaves every tray that "timu" produces unchanged.)
+R3.2 Running "nado" and then "dafi" gives the same result as running "dafi" alone.
+     ("dafi" cannot tell whether "nado" was applied first.)
+R3.3 Running "nado" three times in a row leaves every SAKI tray exactly where it started.
+R4.1 Running "dafi" and then "figi" lands on the same tray as running "dafi" alone.
+     ("figi" leaves every tray that "dafi" produces unchanged.)
+R4.2 Running "figi" and then "botu" gives the same result as running "botu" alone.
+     ("botu" cannot tell whether "figi" was applied first.)
+R4.3 Running "figi" twice in a row leaves every DIBO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KOBU has exactly one tray, called n1.
+- LIRU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FASO, SINO, SAKI, DIBO):
+D1.1 List the trays of FASO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "tuki" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of SINO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "gati" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of SAKI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "nado" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of DIBO in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "figi" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FASO = {q1_1, ..., q1_k}
+dimi: n1 -> <FASO tray>
+tuki: q1_1 -> <FASO tray>, ..., q1_k -> <FASO tray>
+SINO = {q2_1, ..., q2_k}
+sudo: q1_1 -> <SINO tray>, ... (one entry per FASO tray)
+gati: q2_1 -> <SINO tray>, ..., q2_k -> <SINO tray>
+SAKI = {q3_1, ..., q3_k}
+timu: q2_1 -> <SAKI tray>, ... (one entry per SINO tray)
+nado: q3_1 -> <SAKI tray>, ..., q3_k -> <SAKI tray>
+DIBO = {q4_1, ..., q4_k}
+dafi: q3_1 -> <DIBO tray>, ... (one entry per SAKI tray)
+figi: q4_1 -> <DIBO tray>, ..., q4_k -> <DIBO tray>
+botu: q4_1 -> <LIRU tray>, ... (one entry per DIBO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

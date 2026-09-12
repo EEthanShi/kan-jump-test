@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: VUDO, ZARO, BUSU. Books move VUDO -> ZARO -> BUSU.
+There are 3 moving steps:
+- "jifu" carries each VUDO tray to a ZARO tray.
+- "liki" is an internal rearrangement of ZARO: it carries each ZARO tray to a ZARO tray.
+- "lito" carries each ZARO tray to a BUSU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "jifu" and then "liki" lands on the same tray as running "jifu" alone.
+     ("liki" leaves every tray that "jifu" produces unchanged.)
+R1.2 Running "liki" and then "lito" gives the same result as running "lito" alone.
+     ("lito" cannot tell whether "liki" was applied first.)
+R1.3 Running "liki" twice in a row leaves every ZARO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VUDO has exactly 4 trays, called n1, n2, n3, n4.
+- BUSU has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1, n4 to s1.
+
+Requirements for the middle cart (ZARO):
+D1.1 ZARO must be a finite set with at most 4 trays.
+D1.2 List the "liki" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 "jifu" must carry different VUDO trays to different ZARO trays.
+D1.4 List the "lito" table entries in ZARO tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 6 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+ZARO = {q1_1, ..., q1_k}
+jifu: n1 -> <ZARO tray>, n2 -> <ZARO tray>, n3 -> <ZARO tray>, n4 -> <ZARO tray>
+liki: q1_1 -> <ZARO tray>, ..., q1_k -> <ZARO tray>
+lito: q1_1 -> <BUSU tray>, ... (one entry per ZARO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

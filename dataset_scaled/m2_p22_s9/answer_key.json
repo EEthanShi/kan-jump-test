@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s9",
+          "stations": [
+            "KUBA",
+            "RANI",
+            "MIVA",
+            "DAFU"
+          ],
+          "chain_moves": [
+            "dizi",
+            "lulo",
+            "juji"
+          ],
+          "endo_moves": [
+            "zaka",
+            "jigo"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "RANI = {q1_1, q1_2, q1_3}\ndizi: n1 -> q1_1\nzaka: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nMIVA = {q2_1, q2_2, q2_3}\nlulo: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\njigo: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\njuji: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "RANI = {q1_1}\ndizi: n1 -> q1_1\nzaka: q1_1 -> q1_1\nMIVA = {q2_1}\nlulo: q1_1 -> q2_1\njigo: q2_1 -> q2_1\njuji: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s9",
+          "stations": [
+            "FADU",
+            "JODU",
+            "BUFU",
+            "MAZA"
+          ],
+          "chain_moves": [
+            "dajo",
+            "zini",
+            "subo"
+          ],
+          "endo_moves": [
+            "fafi",
+            "zomi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "JODU = {q1_1, q1_2, q1_3}\ndajo: n1 -> q1_1\nfafi: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nBUFU = {q2_1, q2_2, q2_3}\nzini: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nzomi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nsubo: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1",
+      "kan_answer": "JODU = {q1_1}\ndajo: n1 -> q1_1\nfafi: q1_1 -> q1_1\nBUFU = {q2_1}\nzini: q1_1 -> q2_1\nzomi: q2_1 -> q2_1\nsubo: q2_1 -> s1"
+    }
+  }
+}

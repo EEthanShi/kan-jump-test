@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: VAMO, LANU, SIZA, SOKI, PUTI, MIRA. Toys move VAMO -> LANU -> SIZA -> SOKI -> PUTI -> MIRA.
+There are 9 moving steps:
+- "pugu" carries each VAMO slot to a LANU slot.
+- "kuri" is an internal reshuffle of LANU: it carries each LANU slot to a LANU slot.
+- "mufo" carries each LANU slot to a SIZA slot.
+- "tima" is an internal reshuffle of SIZA: it carries each SIZA slot to a SIZA slot.
+- "malu" carries each SIZA slot to a SOKI slot.
+- "gava" is an internal reshuffle of SOKI: it carries each SOKI slot to a SOKI slot.
+- "nusu" carries each SOKI slot to a PUTI slot.
+- "rala" is an internal reshuffle of PUTI: it carries each PUTI slot to a PUTI slot.
+- "novu" carries each PUTI slot to a MIRA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pugu" and then "kuri" lands on the same slot as running "pugu" alone.
+     ("kuri" leaves every slot that "pugu" produces unchanged.)
+R1.2 Running "kuri" and then "mufo" gives the same result as running "mufo" alone.
+     ("mufo" cannot tell whether "kuri" was applied first.)
+R1.3 Running "kuri" three times in a row leaves every LANU slot exactly where it started.
+R2.1 Running "mufo" and then "tima" lands on the same slot as running "mufo" alone.
+     ("tima" leaves every slot that "mufo" produces unchanged.)
+R2.2 Running "tima" and then "malu" gives the same result as running "malu" alone.
+     ("malu" cannot tell whether "tima" was applied first.)
+R2.3 Running "tima" twice in a row leaves every SIZA slot exactly where it started.
+R3.1 Running "malu" and then "gava" lands on the same slot as running "malu" alone.
+     ("gava" leaves every slot that "malu" produces unchanged.)
+R3.2 Running "gava" and then "nusu" gives the same result as running "nusu" alone.
+     ("nusu" cannot tell whether "gava" was applied first.)
+R3.3 Running "gava" three times in a row leaves every SOKI slot exactly where it started.
+R4.1 Running "nusu" and then "rala" lands on the same slot as running "nusu" alone.
+     ("rala" leaves every slot that "nusu" produces unchanged.)
+R4.2 Running "rala" and then "novu" gives the same result as running "novu" alone.
+     ("novu" cannot tell whether "rala" was applied first.)
+R4.3 Running "rala" twice in a row leaves every PUTI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VAMO has exactly one slot, called n1.
+- MIRA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (LANU, SIZA, SOKI, PUTI):
+D1.1 List the slots of LANU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kuri" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of SIZA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "tima" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of SOKI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "gava" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of PUTI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "rala" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+LANU = {q1_1, ..., q1_k}
+pugu: n1 -> <LANU slot>
+kuri: q1_1 -> <LANU slot>, ..., q1_k -> <LANU slot>
+SIZA = {q2_1, ..., q2_k}
+mufo: q1_1 -> <SIZA slot>, ... (one entry per LANU slot)
+tima: q2_1 -> <SIZA slot>, ..., q2_k -> <SIZA slot>
+SOKI = {q3_1, ..., q3_k}
+malu: q2_1 -> <SOKI slot>, ... (one entry per SIZA slot)
+gava: q3_1 -> <SOKI slot>, ..., q3_k -> <SOKI slot>
+PUTI = {q4_1, ..., q4_k}
+nusu: q3_1 -> <PUTI slot>, ... (one entry per SOKI slot)
+rala: q4_1 -> <PUTI slot>, ..., q4_k -> <PUTI slot>
+novu: q4_1 -> <MIRA slot>, ... (one entry per PUTI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

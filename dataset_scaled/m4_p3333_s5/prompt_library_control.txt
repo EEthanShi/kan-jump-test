@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: KAKO, MAMU, JADI, GAVA, NOBU, NARI. Books move KAKO -> MAMU -> JADI -> GAVA -> NOBU -> NARI.
+There are 9 moving steps:
+- "diso" carries each KAKO tray to a MAMU tray.
+- "gabi" is an internal rearrangement of MAMU: it carries each MAMU tray to a MAMU tray.
+- "zamo" carries each MAMU tray to a JADI tray.
+- "jina" is an internal rearrangement of JADI: it carries each JADI tray to a JADI tray.
+- "faba" carries each JADI tray to a GAVA tray.
+- "vipi" is an internal rearrangement of GAVA: it carries each GAVA tray to a GAVA tray.
+- "dozi" carries each GAVA tray to a NOBU tray.
+- "ludi" is an internal rearrangement of NOBU: it carries each NOBU tray to a NOBU tray.
+- "pudi" carries each NOBU tray to a NARI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "diso" and then "gabi" lands on the same tray as running "diso" alone.
+     ("gabi" leaves every tray that "diso" produces unchanged.)
+R1.2 Running "gabi" and then "zamo" gives the same result as running "zamo" alone.
+     ("zamo" cannot tell whether "gabi" was applied first.)
+R1.3 Running "gabi" three times in a row leaves every MAMU tray exactly where it started.
+R2.1 Running "zamo" and then "jina" lands on the same tray as running "zamo" alone.
+     ("jina" leaves every tray that "zamo" produces unchanged.)
+R2.2 Running "jina" and then "faba" gives the same result as running "faba" alone.
+     ("faba" cannot tell whether "jina" was applied first.)
+R2.3 Running "jina" three times in a row leaves every JADI tray exactly where it started.
+R3.1 Running "faba" and then "vipi" lands on the same tray as running "faba" alone.
+     ("vipi" leaves every tray that "faba" produces unchanged.)
+R3.2 Running "vipi" and then "dozi" gives the same result as running "dozi" alone.
+     ("dozi" cannot tell whether "vipi" was applied first.)
+R3.3 Running "vipi" three times in a row leaves every GAVA tray exactly where it started.
+R4.1 Running "dozi" and then "ludi" lands on the same tray as running "dozi" alone.
+     ("ludi" leaves every tray that "dozi" produces unchanged.)
+R4.2 Running "ludi" and then "pudi" gives the same result as running "pudi" alone.
+     ("pudi" cannot tell whether "ludi" was applied first.)
+R4.3 Running "ludi" three times in a row leaves every NOBU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KAKO has exactly one tray, called n1.
+- NARI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MAMU, JADI, GAVA, NOBU):
+D1.1 MAMU must be a finite set with at most 1 tray.
+D1.2 List the "gabi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 JADI must be a finite set with at most 1 tray.
+D2.2 List the "jina" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 GAVA must be a finite set with at most 1 tray.
+D3.2 List the "vipi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 NOBU must be a finite set with at most 1 tray.
+D4.2 List the "ludi" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MAMU = {q1_1, ..., q1_k}
+diso: n1 -> <MAMU tray>
+gabi: q1_1 -> <MAMU tray>, ..., q1_k -> <MAMU tray>
+JADI = {q2_1, ..., q2_k}
+zamo: q1_1 -> <JADI tray>, ... (one entry per MAMU tray)
+jina: q2_1 -> <JADI tray>, ..., q2_k -> <JADI tray>
+GAVA = {q3_1, ..., q3_k}
+faba: q2_1 -> <GAVA tray>, ... (one entry per JADI tray)
+vipi: q3_1 -> <GAVA tray>, ..., q3_k -> <GAVA tray>
+NOBU = {q4_1, ..., q4_k}
+dozi: q3_1 -> <NOBU tray>, ... (one entry per GAVA tray)
+ludi: q4_1 -> <NOBU tray>, ..., q4_k -> <NOBU tray>
+pudi: q4_1 -> <NARI tray>, ... (one entry per NOBU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: BAVO, FAGI, GUNI, ZOMU. Books move BAVO -> FAGI -> GUNI -> ZOMU.
+There are 5 moving steps:
+- "zapi" carries each BAVO tray to a FAGI tray.
+- "kuva" is an internal rearrangement of FAGI: it carries each FAGI tray to a FAGI tray.
+- "vuju" carries each FAGI tray to a GUNI tray.
+- "juda" is an internal rearrangement of GUNI: it carries each GUNI tray to a GUNI tray.
+- "dobo" carries each GUNI tray to a ZOMU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zapi" and then "kuva" lands on the same tray as running "zapi" alone.
+     ("kuva" leaves every tray that "zapi" produces unchanged.)
+R1.2 Running "kuva" and then "vuju" gives the same result as running "vuju" alone.
+     ("vuju" cannot tell whether "kuva" was applied first.)
+R1.3 Running "kuva" twice in a row leaves every FAGI tray exactly where it started.
+R2.1 Running "vuju" and then "juda" lands on the same tray as running "vuju" alone.
+     ("juda" leaves every tray that "vuju" produces unchanged.)
+R2.2 Running "juda" and then "dobo" gives the same result as running "dobo" alone.
+     ("dobo" cannot tell whether "juda" was applied first.)
+R2.3 Running "juda" three times in a row leaves every GUNI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BAVO has exactly one tray, called n1.
+- ZOMU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FAGI, GUNI):
+D1.1 FAGI must be a finite set with at most 1 tray.
+D1.2 List the "kuva" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 GUNI must be a finite set with at most 1 tray.
+D2.2 List the "juda" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FAGI = {q1_1, ..., q1_k}
+zapi: n1 -> <FAGI tray>
+kuva: q1_1 -> <FAGI tray>, ..., q1_k -> <FAGI tray>
+GUNI = {q2_1, ..., q2_k}
+vuju: q1_1 -> <GUNI tray>, ... (one entry per FAGI tray)
+juda: q2_1 -> <GUNI tray>, ..., q2_k -> <GUNI tray>
+dobo: q2_1 -> <ZOMU tray>, ... (one entry per GUNI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: RAJO, FOPI, MULI, KIVI, VIPU, LUMO. Books move RAJO -> FOPI -> MULI -> KIVI -> VIPU -> LUMO.
+There are 9 moving steps:
+- "vola" carries each RAJO tray to a FOPI tray.
+- "suku" is an internal rearrangement of FOPI: it carries each FOPI tray to a FOPI tray.
+- "pazo" carries each FOPI tray to a MULI tray.
+- "rozi" is an internal rearrangement of MULI: it carries each MULI tray to a MULI tray.
+- "toko" carries each MULI tray to a KIVI tray.
+- "nigi" is an internal rearrangement of KIVI: it carries each KIVI tray to a KIVI tray.
+- "nivi" carries each KIVI tray to a VIPU tray.
+- "tita" is an internal rearrangement of VIPU: it carries each VIPU tray to a VIPU tray.
+- "zogo" carries each VIPU tray to a LUMO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vola" and then "suku" lands on the same tray as running "vola" alone.
+     ("suku" leaves every tray that "vola" produces unchanged.)
+R1.2 Running "suku" and then "pazo" gives the same result as running "pazo" alone.
+     ("pazo" cannot tell whether "suku" was applied first.)
+R1.3 Running "suku" three times in a row leaves every FOPI tray exactly where it started.
+R2.1 Running "pazo" and then "rozi" lands on the same tray as running "pazo" alone.
+     ("rozi" leaves every tray that "pazo" produces unchanged.)
+R2.2 Running "rozi" and then "toko" gives the same result as running "toko" alone.
+     ("toko" cannot tell whether "rozi" was applied first.)
+R2.3 Running "rozi" three times in a row leaves every MULI tray exactly where it started.
+R3.1 Running "toko" and then "nigi" lands on the same tray as running "toko" alone.
+     ("nigi" leaves every tray that "toko" produces unchanged.)
+R3.2 Running "nigi" and then "nivi" gives the same result as running "nivi" alone.
+     ("nivi" cannot tell whether "nigi" was applied first.)
+R3.3 Running "nigi" three times in a row leaves every KIVI tray exactly where it started.
+R4.1 Running "nivi" and then "tita" lands on the same tray as running "nivi" alone.
+     ("tita" leaves every tray that "nivi" produces unchanged.)
+R4.2 Running "tita" and then "zogo" gives the same result as running "zogo" alone.
+     ("zogo" cannot tell whether "tita" was applied first.)
+R4.3 Running "tita" three times in a row leaves every VIPU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RAJO has exactly one tray, called n1.
+- LUMO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FOPI, MULI, KIVI, VIPU):
+D1.1 FOPI must be a finite set with at most 1 tray.
+D1.2 List the "suku" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 MULI must be a finite set with at most 1 tray.
+D2.2 List the "rozi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 KIVI must be a finite set with at most 1 tray.
+D3.2 List the "nigi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 VIPU must be a finite set with at most 1 tray.
+D4.2 List the "tita" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FOPI = {q1_1, ..., q1_k}
+vola: n1 -> <FOPI tray>
+suku: q1_1 -> <FOPI tray>, ..., q1_k -> <FOPI tray>
+MULI = {q2_1, ..., q2_k}
+pazo: q1_1 -> <MULI tray>, ... (one entry per FOPI tray)
+rozi: q2_1 -> <MULI tray>, ..., q2_k -> <MULI tray>
+KIVI = {q3_1, ..., q3_k}
+toko: q2_1 -> <KIVI tray>, ... (one entry per MULI tray)
+nigi: q3_1 -> <KIVI tray>, ..., q3_k -> <KIVI tray>
+VIPU = {q4_1, ..., q4_k}
+nivi: q3_1 -> <VIPU tray>, ... (one entry per KIVI tray)
+tita: q4_1 -> <VIPU tray>, ..., q4_k -> <VIPU tray>
+zogo: q4_1 -> <LUMO tray>, ... (one entry per VIPU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

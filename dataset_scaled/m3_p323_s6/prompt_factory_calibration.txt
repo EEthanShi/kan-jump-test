@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DOMA, MIDA, FITU, DODA, MAFA. Toys move DOMA -> MIDA -> FITU -> DODA -> MAFA.
+There are 7 moving steps:
+- "fulo" carries each DOMA slot to a MIDA slot.
+- "kita" is an internal reshuffle of MIDA: it carries each MIDA slot to a MIDA slot.
+- "rubo" carries each MIDA slot to a FITU slot.
+- "fodo" is an internal reshuffle of FITU: it carries each FITU slot to a FITU slot.
+- "dimu" carries each FITU slot to a DODA slot.
+- "posu" is an internal reshuffle of DODA: it carries each DODA slot to a DODA slot.
+- "pida" carries each DODA slot to a MAFA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "fulo" and then "kita" lands on the same slot as running "fulo" alone.
+     ("kita" leaves every slot that "fulo" produces unchanged.)
+R1.2 Running "kita" and then "rubo" gives the same result as running "rubo" alone.
+     ("rubo" cannot tell whether "kita" was applied first.)
+R1.3 Running "kita" three times in a row leaves every MIDA slot exactly where it started.
+R2.1 Running "rubo" and then "fodo" lands on the same slot as running "rubo" alone.
+     ("fodo" leaves every slot that "rubo" produces unchanged.)
+R2.2 Running "fodo" and then "dimu" gives the same result as running "dimu" alone.
+     ("dimu" cannot tell whether "fodo" was applied first.)
+R2.3 Running "fodo" twice in a row leaves every FITU slot exactly where it started.
+R3.1 Running "dimu" and then "posu" lands on the same slot as running "dimu" alone.
+     ("posu" leaves every slot that "dimu" produces unchanged.)
+R3.2 Running "posu" and then "pida" gives the same result as running "pida" alone.
+     ("pida" cannot tell whether "posu" was applied first.)
+R3.3 Running "posu" three times in a row leaves every DODA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DOMA has exactly one slot, called n1.
+- MAFA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MIDA, FITU, DODA):
+D1.1 List the slots of MIDA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kita" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of FITU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fodo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of DODA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "posu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MIDA = {q1_1, ..., q1_k}
+fulo: n1 -> <MIDA slot>
+kita: q1_1 -> <MIDA slot>, ..., q1_k -> <MIDA slot>
+FITU = {q2_1, ..., q2_k}
+rubo: q1_1 -> <FITU slot>, ... (one entry per MIDA slot)
+fodo: q2_1 -> <FITU slot>, ..., q2_k -> <FITU slot>
+DODA = {q3_1, ..., q3_k}
+dimu: q2_1 -> <DODA slot>, ... (one entry per FITU slot)
+posu: q3_1 -> <DODA slot>, ..., q3_k -> <DODA slot>
+pida: q3_1 -> <MAFA slot>, ... (one entry per DODA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

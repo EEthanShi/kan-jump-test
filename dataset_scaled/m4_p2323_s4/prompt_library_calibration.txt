@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: JOGU, SINU, GOVI, BIGU, DOLI, SIDO. Books move JOGU -> SINU -> GOVI -> BIGU -> DOLI -> SIDO.
+There are 9 moving steps:
+- "juro" carries each JOGU tray to a SINU tray.
+- "guma" is an internal rearrangement of SINU: it carries each SINU tray to a SINU tray.
+- "bolo" carries each SINU tray to a GOVI tray.
+- "karo" is an internal rearrangement of GOVI: it carries each GOVI tray to a GOVI tray.
+- "suta" carries each GOVI tray to a BIGU tray.
+- "vajo" is an internal rearrangement of BIGU: it carries each BIGU tray to a BIGU tray.
+- "vudo" carries each BIGU tray to a DOLI tray.
+- "nuga" is an internal rearrangement of DOLI: it carries each DOLI tray to a DOLI tray.
+- "javu" carries each DOLI tray to a SIDO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "juro" and then "guma" lands on the same tray as running "juro" alone.
+     ("guma" leaves every tray that "juro" produces unchanged.)
+R1.2 Running "guma" and then "bolo" gives the same result as running "bolo" alone.
+     ("bolo" cannot tell whether "guma" was applied first.)
+R1.3 Running "guma" twice in a row leaves every SINU tray exactly where it started.
+R2.1 Running "bolo" and then "karo" lands on the same tray as running "bolo" alone.
+     ("karo" leaves every tray that "bolo" produces unchanged.)
+R2.2 Running "karo" and then "suta" gives the same result as running "suta" alone.
+     ("suta" cannot tell whether "karo" was applied first.)
+R2.3 Running "karo" three times in a row leaves every GOVI tray exactly where it started.
+R3.1 Running "suta" and then "vajo" lands on the same tray as running "suta" alone.
+     ("vajo" leaves every tray that "suta" produces unchanged.)
+R3.2 Running "vajo" and then "vudo" gives the same result as running "vudo" alone.
+     ("vudo" cannot tell whether "vajo" was applied first.)
+R3.3 Running "vajo" twice in a row leaves every BIGU tray exactly where it started.
+R4.1 Running "vudo" and then "nuga" lands on the same tray as running "vudo" alone.
+     ("nuga" leaves every tray that "vudo" produces unchanged.)
+R4.2 Running "nuga" and then "javu" gives the same result as running "javu" alone.
+     ("javu" cannot tell whether "nuga" was applied first.)
+R4.3 Running "nuga" three times in a row leaves every DOLI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOGU has exactly one tray, called n1.
+- SIDO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SINU, GOVI, BIGU, DOLI):
+D1.1 List the trays of SINU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "guma" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of GOVI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "karo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of BIGU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "vajo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of DOLI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "nuga" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SINU = {q1_1, ..., q1_k}
+juro: n1 -> <SINU tray>
+guma: q1_1 -> <SINU tray>, ..., q1_k -> <SINU tray>
+GOVI = {q2_1, ..., q2_k}
+bolo: q1_1 -> <GOVI tray>, ... (one entry per SINU tray)
+karo: q2_1 -> <GOVI tray>, ..., q2_k -> <GOVI tray>
+BIGU = {q3_1, ..., q3_k}
+suta: q2_1 -> <BIGU tray>, ... (one entry per GOVI tray)
+vajo: q3_1 -> <BIGU tray>, ..., q3_k -> <BIGU tray>
+DOLI = {q4_1, ..., q4_k}
+vudo: q3_1 -> <DOLI tray>, ... (one entry per BIGU tray)
+nuga: q4_1 -> <DOLI tray>, ..., q4_k -> <DOLI tray>
+javu: q4_1 -> <SIDO tray>, ... (one entry per DOLI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: SINU, NAJO, SOTI, ZUZU, POBA, ZUTI. Books move SINU -> NAJO -> SOTI -> ZUZU -> POBA -> ZUTI.
+There are 9 moving steps:
+- "funi" carries each SINU tray to a NAJO tray.
+- "rito" is an internal rearrangement of NAJO: it carries each NAJO tray to a NAJO tray.
+- "gudu" carries each NAJO tray to a SOTI tray.
+- "dolu" is an internal rearrangement of SOTI: it carries each SOTI tray to a SOTI tray.
+- "fuvu" carries each SOTI tray to a ZUZU tray.
+- "tapi" is an internal rearrangement of ZUZU: it carries each ZUZU tray to a ZUZU tray.
+- "vovo" carries each ZUZU tray to a POBA tray.
+- "vopi" is an internal rearrangement of POBA: it carries each POBA tray to a POBA tray.
+- "mutu" carries each POBA tray to a ZUTI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "funi" and then "rito" lands on the same tray as running "funi" alone.
+     ("rito" leaves every tray that "funi" produces unchanged.)
+R1.2 Running "rito" and then "gudu" gives the same result as running "gudu" alone.
+     ("gudu" cannot tell whether "rito" was applied first.)
+R1.3 Running "rito" three times in a row leaves every NAJO tray exactly where it started.
+R2.1 Running "gudu" and then "dolu" lands on the same tray as running "gudu" alone.
+     ("dolu" leaves every tray that "gudu" produces unchanged.)
+R2.2 Running "dolu" and then "fuvu" gives the same result as running "fuvu" alone.
+     ("fuvu" cannot tell whether "dolu" was applied first.)
+R2.3 Running "dolu" twice in a row leaves every SOTI tray exactly where it started.
+R3.1 Running "fuvu" and then "tapi" lands on the same tray as running "fuvu" alone.
+     ("tapi" leaves every tray that "fuvu" produces unchanged.)
+R3.2 Running "tapi" and then "vovo" gives the same result as running "vovo" alone.
+     ("vovo" cannot tell whether "tapi" was applied first.)
+R3.3 Running "tapi" three times in a row leaves every ZUZU tray exactly where it started.
+R4.1 Running "vovo" and then "vopi" lands on the same tray as running "vovo" alone.
+     ("vopi" leaves every tray that "vovo" produces unchanged.)
+R4.2 Running "vopi" and then "mutu" gives the same result as running "mutu" alone.
+     ("mutu" cannot tell whether "vopi" was applied first.)
+R4.3 Running "vopi" twice in a row leaves every POBA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SINU has exactly one tray, called n1.
+- ZUTI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NAJO, SOTI, ZUZU, POBA):
+D1.1 NAJO must be a finite set with at most 4 trays.
+D1.2 "rito" must NOT be the do-nothing move (it must move at least one NAJO tray).
+D2.1 SOTI must be a finite set with at most 3 trays.
+D2.2 "dolu" must NOT be the do-nothing move (it must move at least one SOTI tray).
+D3.1 ZUZU must be a finite set with at most 4 trays.
+D3.2 "tapi" must NOT be the do-nothing move (it must move at least one ZUZU tray).
+D4.1 POBA must be a finite set with at most 3 trays.
+D4.2 "vopi" must NOT be the do-nothing move (it must move at least one POBA tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NAJO = {q1_1, ..., q1_k}
+funi: n1 -> <NAJO tray>
+rito: q1_1 -> <NAJO tray>, ..., q1_k -> <NAJO tray>
+SOTI = {q2_1, ..., q2_k}
+gudu: q1_1 -> <SOTI tray>, ... (one entry per NAJO tray)
+dolu: q2_1 -> <SOTI tray>, ..., q2_k -> <SOTI tray>
+ZUZU = {q3_1, ..., q3_k}
+fuvu: q2_1 -> <ZUZU tray>, ... (one entry per SOTI tray)
+tapi: q3_1 -> <ZUZU tray>, ..., q3_k -> <ZUZU tray>
+POBA = {q4_1, ..., q4_k}
+vovo: q3_1 -> <POBA tray>, ... (one entry per ZUZU tray)
+vopi: q4_1 -> <POBA tray>, ..., q4_k -> <POBA tray>
+mutu: q4_1 -> <ZUTI tray>, ... (one entry per POBA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

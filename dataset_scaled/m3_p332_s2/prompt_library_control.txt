@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MOPA, NAKA, SABA, SUTA, TARO. Books move MOPA -> NAKA -> SABA -> SUTA -> TARO.
+There are 7 moving steps:
+- "kura" carries each MOPA tray to a NAKA tray.
+- "nusi" is an internal rearrangement of NAKA: it carries each NAKA tray to a NAKA tray.
+- "rugi" carries each NAKA tray to a SABA tray.
+- "buju" is an internal rearrangement of SABA: it carries each SABA tray to a SABA tray.
+- "dubu" carries each SABA tray to a SUTA tray.
+- "libu" is an internal rearrangement of SUTA: it carries each SUTA tray to a SUTA tray.
+- "nopa" carries each SUTA tray to a TARO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "kura" and then "nusi" lands on the same tray as running "kura" alone.
+     ("nusi" leaves every tray that "kura" produces unchanged.)
+R1.2 Running "nusi" and then "rugi" gives the same result as running "rugi" alone.
+     ("rugi" cannot tell whether "nusi" was applied first.)
+R1.3 Running "nusi" three times in a row leaves every NAKA tray exactly where it started.
+R2.1 Running "rugi" and then "buju" lands on the same tray as running "rugi" alone.
+     ("buju" leaves every tray that "rugi" produces unchanged.)
+R2.2 Running "buju" and then "dubu" gives the same result as running "dubu" alone.
+     ("dubu" cannot tell whether "buju" was applied first.)
+R2.3 Running "buju" three times in a row leaves every SABA tray exactly where it started.
+R3.1 Running "dubu" and then "libu" lands on the same tray as running "dubu" alone.
+     ("libu" leaves every tray that "dubu" produces unchanged.)
+R3.2 Running "libu" and then "nopa" gives the same result as running "nopa" alone.
+     ("nopa" cannot tell whether "libu" was applied first.)
+R3.3 Running "libu" twice in a row leaves every SUTA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOPA has exactly one tray, called n1.
+- TARO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NAKA, SABA, SUTA):
+D1.1 NAKA must be a finite set with at most 1 tray.
+D1.2 List the "nusi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 SABA must be a finite set with at most 1 tray.
+D2.2 List the "buju" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 SUTA must be a finite set with at most 1 tray.
+D3.2 List the "libu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NAKA = {q1_1, ..., q1_k}
+kura: n1 -> <NAKA tray>
+nusi: q1_1 -> <NAKA tray>, ..., q1_k -> <NAKA tray>
+SABA = {q2_1, ..., q2_k}
+rugi: q1_1 -> <SABA tray>, ... (one entry per NAKA tray)
+buju: q2_1 -> <SABA tray>, ..., q2_k -> <SABA tray>
+SUTA = {q3_1, ..., q3_k}
+dubu: q2_1 -> <SUTA tray>, ... (one entry per SABA tray)
+libu: q3_1 -> <SUTA tray>, ..., q3_k -> <SUTA tray>
+nopa: q3_1 -> <TARO tray>, ... (one entry per SUTA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

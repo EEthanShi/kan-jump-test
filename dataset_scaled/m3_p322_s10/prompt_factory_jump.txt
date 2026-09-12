@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DODA, BAFO, MIZA, RANO, BUSA. Toys move DODA -> BAFO -> MIZA -> RANO -> BUSA.
+There are 7 moving steps:
+- "juli" carries each DODA slot to a BAFO slot.
+- "poru" is an internal reshuffle of BAFO: it carries each BAFO slot to a BAFO slot.
+- "pivu" carries each BAFO slot to a MIZA slot.
+- "domo" is an internal reshuffle of MIZA: it carries each MIZA slot to a MIZA slot.
+- "rasi" carries each MIZA slot to a RANO slot.
+- "juza" is an internal reshuffle of RANO: it carries each RANO slot to a RANO slot.
+- "pogu" carries each RANO slot to a BUSA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "juli" and then "poru" lands on the same slot as running "juli" alone.
+     ("poru" leaves every slot that "juli" produces unchanged.)
+R1.2 Running "poru" and then "pivu" gives the same result as running "pivu" alone.
+     ("pivu" cannot tell whether "poru" was applied first.)
+R1.3 Running "poru" three times in a row leaves every BAFO slot exactly where it started.
+R2.1 Running "pivu" and then "domo" lands on the same slot as running "pivu" alone.
+     ("domo" leaves every slot that "pivu" produces unchanged.)
+R2.2 Running "domo" and then "rasi" gives the same result as running "rasi" alone.
+     ("rasi" cannot tell whether "domo" was applied first.)
+R2.3 Running "domo" twice in a row leaves every MIZA slot exactly where it started.
+R3.1 Running "rasi" and then "juza" lands on the same slot as running "rasi" alone.
+     ("juza" leaves every slot that "rasi" produces unchanged.)
+R3.2 Running "juza" and then "pogu" gives the same result as running "pogu" alone.
+     ("pogu" cannot tell whether "juza" was applied first.)
+R3.3 Running "juza" twice in a row leaves every RANO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DODA has exactly one slot, called n1.
+- BUSA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (BAFO, MIZA, RANO):
+D1.1 BAFO must be a finite set with at most 4 slots.
+D1.2 "poru" must NOT be the do-nothing move (it must move at least one BAFO slot).
+D2.1 MIZA must be a finite set with at most 3 slots.
+D2.2 "domo" must NOT be the do-nothing move (it must move at least one MIZA slot).
+D3.1 RANO must be a finite set with at most 3 slots.
+D3.2 "juza" must NOT be the do-nothing move (it must move at least one RANO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+BAFO = {q1_1, ..., q1_k}
+juli: n1 -> <BAFO slot>
+poru: q1_1 -> <BAFO slot>, ..., q1_k -> <BAFO slot>
+MIZA = {q2_1, ..., q2_k}
+pivu: q1_1 -> <MIZA slot>, ... (one entry per BAFO slot)
+domo: q2_1 -> <MIZA slot>, ..., q2_k -> <MIZA slot>
+RANO = {q3_1, ..., q3_k}
+rasi: q2_1 -> <RANO slot>, ... (one entry per MIZA slot)
+juza: q3_1 -> <RANO slot>, ..., q3_k -> <RANO slot>
+pogu: q3_1 -> <BUSA slot>, ... (one entry per RANO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

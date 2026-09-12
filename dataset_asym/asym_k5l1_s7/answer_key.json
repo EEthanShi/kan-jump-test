@@ -1,0 +1,101 @@
+{
+ "family": "asym",
+ "k": 5,
+ "l": 1,
+ "N": 7,
+ "lan_size_b": 5,
+ "ran_size_b": 1,
+ "ext_count": 139693,
+ "adm_count": 2520,
+ "chance": 0.018039558173995832,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 5,
+    "l": 1,
+    "N": 7,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym5x1_s7",
+     "stations": [
+      "VORO",
+      "NOVO",
+      "RURI"
+     ],
+     "chain_moves": [
+      "rulo",
+      "zoku"
+     ],
+     "endo_moves": [
+      "vani"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4",
+      "n5"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 5,
+     "l": 1
+    }
+   },
+   "lan_answer": "NOVO = {q1_1, q1_2, q1_3, q1_4, q1_5}\nrulo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\nvani: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5\nzoku: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1",
+   "ran_answer": "NOVO = {q1_1}\nrulo: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1, n5 -> q1_1\nvani: q1_1 -> q1_1\nzoku: q1_1 -> s1",
+   "example_admissible_answer": "NOVO = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6, q1_7}\nrulo: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\nvani: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5, q1_6 -> q1_7, q1_7 -> q1_6\nzoku: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1, q1_7 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 5,
+    "l": 1,
+    "N": 7,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym5x1_s7",
+     "stations": [
+      "SOMI",
+      "BUJA",
+      "NAKI"
+     ],
+     "chain_moves": [
+      "vafa",
+      "duku"
+     ],
+     "endo_moves": [
+      "jonu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3",
+      "n4",
+      "n5"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 5,
+     "l": 1
+    }
+   },
+   "lan_answer": "BUJA = {q1_1, q1_2, q1_3, q1_4, q1_5}\nvafa: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\njonu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5\nduku: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1",
+   "ran_answer": "BUJA = {q1_1}\nvafa: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1, n4 -> q1_1, n5 -> q1_1\njonu: q1_1 -> q1_1\nduku: q1_1 -> s1",
+   "example_admissible_answer": "BUJA = {q1_1, q1_2, q1_3, q1_4, q1_5, q1_6, q1_7}\nvafa: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3, n4 -> q1_4, n5 -> q1_5\njonu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_4, q1_5 -> q1_5, q1_6 -> q1_7, q1_7 -> q1_6\nduku: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1, q1_6 -> s1, q1_7 -> s1"
+  }
+ }
+}

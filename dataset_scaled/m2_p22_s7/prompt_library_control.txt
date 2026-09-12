@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: FATO, PABA, TUTO, MUGA. Books move FATO -> PABA -> TUTO -> MUGA.
+There are 5 moving steps:
+- "nuka" carries each FATO tray to a PABA tray.
+- "taka" is an internal rearrangement of PABA: it carries each PABA tray to a PABA tray.
+- "zizo" carries each PABA tray to a TUTO tray.
+- "runo" is an internal rearrangement of TUTO: it carries each TUTO tray to a TUTO tray.
+- "zupi" carries each TUTO tray to a MUGA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nuka" and then "taka" lands on the same tray as running "nuka" alone.
+     ("taka" leaves every tray that "nuka" produces unchanged.)
+R1.2 Running "taka" and then "zizo" gives the same result as running "zizo" alone.
+     ("zizo" cannot tell whether "taka" was applied first.)
+R1.3 Running "taka" twice in a row leaves every PABA tray exactly where it started.
+R2.1 Running "zizo" and then "runo" lands on the same tray as running "zizo" alone.
+     ("runo" leaves every tray that "zizo" produces unchanged.)
+R2.2 Running "runo" and then "zupi" gives the same result as running "zupi" alone.
+     ("zupi" cannot tell whether "runo" was applied first.)
+R2.3 Running "runo" twice in a row leaves every TUTO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FATO has exactly one tray, called n1.
+- MUGA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PABA, TUTO):
+D1.1 PABA must be a finite set with at most 1 tray.
+D1.2 List the "taka" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 TUTO must be a finite set with at most 1 tray.
+D2.2 List the "runo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PABA = {q1_1, ..., q1_k}
+nuka: n1 -> <PABA tray>
+taka: q1_1 -> <PABA tray>, ..., q1_k -> <PABA tray>
+TUTO = {q2_1, ..., q2_k}
+zizo: q1_1 -> <TUTO tray>, ... (one entry per PABA tray)
+runo: q2_1 -> <TUTO tray>, ..., q2_k -> <TUTO tray>
+zupi: q2_1 -> <MUGA tray>, ... (one entry per TUTO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

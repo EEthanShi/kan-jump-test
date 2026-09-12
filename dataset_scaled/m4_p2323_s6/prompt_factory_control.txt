@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: MOVI, DIJA, ZAZO, KOSO, SAVA, NOLA. Toys move MOVI -> DIJA -> ZAZO -> KOSO -> SAVA -> NOLA.
+There are 9 moving steps:
+- "vunu" carries each MOVI slot to a DIJA slot.
+- "dupi" is an internal reshuffle of DIJA: it carries each DIJA slot to a DIJA slot.
+- "jofa" carries each DIJA slot to a ZAZO slot.
+- "rafo" is an internal reshuffle of ZAZO: it carries each ZAZO slot to a ZAZO slot.
+- "rupo" carries each ZAZO slot to a KOSO slot.
+- "titu" is an internal reshuffle of KOSO: it carries each KOSO slot to a KOSO slot.
+- "bani" carries each KOSO slot to a SAVA slot.
+- "lavi" is an internal reshuffle of SAVA: it carries each SAVA slot to a SAVA slot.
+- "pufi" carries each SAVA slot to a NOLA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vunu" and then "dupi" lands on the same slot as running "vunu" alone.
+     ("dupi" leaves every slot that "vunu" produces unchanged.)
+R1.2 Running "dupi" and then "jofa" gives the same result as running "jofa" alone.
+     ("jofa" cannot tell whether "dupi" was applied first.)
+R1.3 Running "dupi" twice in a row leaves every DIJA slot exactly where it started.
+R2.1 Running "jofa" and then "rafo" lands on the same slot as running "jofa" alone.
+     ("rafo" leaves every slot that "jofa" produces unchanged.)
+R2.2 Running "rafo" and then "rupo" gives the same result as running "rupo" alone.
+     ("rupo" cannot tell whether "rafo" was applied first.)
+R2.3 Running "rafo" three times in a row leaves every ZAZO slot exactly where it started.
+R3.1 Running "rupo" and then "titu" lands on the same slot as running "rupo" alone.
+     ("titu" leaves every slot that "rupo" produces unchanged.)
+R3.2 Running "titu" and then "bani" gives the same result as running "bani" alone.
+     ("bani" cannot tell whether "titu" was applied first.)
+R3.3 Running "titu" twice in a row leaves every KOSO slot exactly where it started.
+R4.1 Running "bani" and then "lavi" lands on the same slot as running "bani" alone.
+     ("lavi" leaves every slot that "bani" produces unchanged.)
+R4.2 Running "lavi" and then "pufi" gives the same result as running "pufi" alone.
+     ("pufi" cannot tell whether "lavi" was applied first.)
+R4.3 Running "lavi" three times in a row leaves every SAVA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MOVI has exactly one slot, called n1.
+- NOLA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DIJA, ZAZO, KOSO, SAVA):
+D1.1 DIJA must be a finite set with at most 1 slot.
+D1.2 List the "dupi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 ZAZO must be a finite set with at most 1 slot.
+D2.2 List the "rafo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 KOSO must be a finite set with at most 1 slot.
+D3.2 List the "titu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 SAVA must be a finite set with at most 1 slot.
+D4.2 List the "lavi" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DIJA = {q1_1, ..., q1_k}
+vunu: n1 -> <DIJA slot>
+dupi: q1_1 -> <DIJA slot>, ..., q1_k -> <DIJA slot>
+ZAZO = {q2_1, ..., q2_k}
+jofa: q1_1 -> <ZAZO slot>, ... (one entry per DIJA slot)
+rafo: q2_1 -> <ZAZO slot>, ..., q2_k -> <ZAZO slot>
+KOSO = {q3_1, ..., q3_k}
+rupo: q2_1 -> <KOSO slot>, ... (one entry per ZAZO slot)
+titu: q3_1 -> <KOSO slot>, ..., q3_k -> <KOSO slot>
+SAVA = {q4_1, ..., q4_k}
+bani: q3_1 -> <SAVA slot>, ... (one entry per KOSO slot)
+lavi: q4_1 -> <SAVA slot>, ..., q4_k -> <SAVA slot>
+pufi: q4_1 -> <NOLA slot>, ... (one entry per SAVA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

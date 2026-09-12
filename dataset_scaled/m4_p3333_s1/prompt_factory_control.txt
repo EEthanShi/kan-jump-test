@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: PUDA, MIBU, JONA, JUKI, VIRO, ZIJA. Toys move PUDA -> MIBU -> JONA -> JUKI -> VIRO -> ZIJA.
+There are 9 moving steps:
+- "tavo" carries each PUDA slot to a MIBU slot.
+- "foju" is an internal reshuffle of MIBU: it carries each MIBU slot to a MIBU slot.
+- "buri" carries each MIBU slot to a JONA slot.
+- "jumi" is an internal reshuffle of JONA: it carries each JONA slot to a JONA slot.
+- "sifo" carries each JONA slot to a JUKI slot.
+- "fata" is an internal reshuffle of JUKI: it carries each JUKI slot to a JUKI slot.
+- "diko" carries each JUKI slot to a VIRO slot.
+- "fazo" is an internal reshuffle of VIRO: it carries each VIRO slot to a VIRO slot.
+- "karu" carries each VIRO slot to a ZIJA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "tavo" and then "foju" lands on the same slot as running "tavo" alone.
+     ("foju" leaves every slot that "tavo" produces unchanged.)
+R1.2 Running "foju" and then "buri" gives the same result as running "buri" alone.
+     ("buri" cannot tell whether "foju" was applied first.)
+R1.3 Running "foju" three times in a row leaves every MIBU slot exactly where it started.
+R2.1 Running "buri" and then "jumi" lands on the same slot as running "buri" alone.
+     ("jumi" leaves every slot that "buri" produces unchanged.)
+R2.2 Running "jumi" and then "sifo" gives the same result as running "sifo" alone.
+     ("sifo" cannot tell whether "jumi" was applied first.)
+R2.3 Running "jumi" three times in a row leaves every JONA slot exactly where it started.
+R3.1 Running "sifo" and then "fata" lands on the same slot as running "sifo" alone.
+     ("fata" leaves every slot that "sifo" produces unchanged.)
+R3.2 Running "fata" and then "diko" gives the same result as running "diko" alone.
+     ("diko" cannot tell whether "fata" was applied first.)
+R3.3 Running "fata" three times in a row leaves every JUKI slot exactly where it started.
+R4.1 Running "diko" and then "fazo" lands on the same slot as running "diko" alone.
+     ("fazo" leaves every slot that "diko" produces unchanged.)
+R4.2 Running "fazo" and then "karu" gives the same result as running "karu" alone.
+     ("karu" cannot tell whether "fazo" was applied first.)
+R4.3 Running "fazo" three times in a row leaves every VIRO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUDA has exactly one slot, called n1.
+- ZIJA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MIBU, JONA, JUKI, VIRO):
+D1.1 MIBU must be a finite set with at most 1 slot.
+D1.2 List the "foju" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 JONA must be a finite set with at most 1 slot.
+D2.2 List the "jumi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 JUKI must be a finite set with at most 1 slot.
+D3.2 List the "fata" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 VIRO must be a finite set with at most 1 slot.
+D4.2 List the "fazo" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MIBU = {q1_1, ..., q1_k}
+tavo: n1 -> <MIBU slot>
+foju: q1_1 -> <MIBU slot>, ..., q1_k -> <MIBU slot>
+JONA = {q2_1, ..., q2_k}
+buri: q1_1 -> <JONA slot>, ... (one entry per MIBU slot)
+jumi: q2_1 -> <JONA slot>, ..., q2_k -> <JONA slot>
+JUKI = {q3_1, ..., q3_k}
+sifo: q2_1 -> <JUKI slot>, ... (one entry per JONA slot)
+fata: q3_1 -> <JUKI slot>, ..., q3_k -> <JUKI slot>
+VIRO = {q4_1, ..., q4_k}
+diko: q3_1 -> <VIRO slot>, ... (one entry per JUKI slot)
+fazo: q4_1 -> <VIRO slot>, ..., q4_k -> <VIRO slot>
+karu: q4_1 -> <ZIJA slot>, ... (one entry per VIRO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

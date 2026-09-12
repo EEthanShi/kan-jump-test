@@ -1,0 +1,39 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: MUZI, SIPU, SAJU. Toys move MUZI -> SIPU -> SAJU.
+There are 3 moving steps:
+- "rusi" carries each MUZI slot to a SIPU slot.
+- "jotu" is an internal reshuffle of SIPU: it carries each SIPU slot to a SIPU slot.
+- "garo" carries each SIPU slot to a SAJU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "rusi" and then "jotu" lands on the same slot as running "rusi" alone.
+     ("jotu" leaves every slot that "rusi" produces unchanged.)
+R1.2 Running "jotu" and then "garo" gives the same result as running "garo" alone.
+     ("garo" cannot tell whether "jotu" was applied first.)
+R1.3 Running "jotu" twice in a row leaves every SIPU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MUZI has exactly one slot, called n1.
+- SAJU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (SIPU):
+D1.1 SIPU must be a finite set with at most 1 slot.
+D1.2 List the "jotu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SIPU = {q1_1, ..., q1_k}
+rusi: n1 -> <SIPU slot>
+jotu: q1_1 -> <SIPU slot>, ..., q1_k -> <SIPU slot>
+garo: q1_1 -> <SAJU slot>, ... (one entry per SIPU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

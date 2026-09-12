@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KIPI, ZUMI, VUJA, LUTO, FOSA. Books move KIPI -> ZUMI -> VUJA -> LUTO -> FOSA.
+There are 7 moving steps:
+- "tunu" carries each KIPI tray to a ZUMI tray.
+- "jota" is an internal rearrangement of ZUMI: it carries each ZUMI tray to a ZUMI tray.
+- "patu" carries each ZUMI tray to a VUJA tray.
+- "kujo" is an internal rearrangement of VUJA: it carries each VUJA tray to a VUJA tray.
+- "mosi" carries each VUJA tray to a LUTO tray.
+- "tigi" is an internal rearrangement of LUTO: it carries each LUTO tray to a LUTO tray.
+- "rota" carries each LUTO tray to a FOSA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tunu" and then "jota" lands on the same tray as running "tunu" alone.
+     ("jota" leaves every tray that "tunu" produces unchanged.)
+R1.2 Running "jota" and then "patu" gives the same result as running "patu" alone.
+     ("patu" cannot tell whether "jota" was applied first.)
+R1.3 Running "jota" three times in a row leaves every ZUMI tray exactly where it started.
+R2.1 Running "patu" and then "kujo" lands on the same tray as running "patu" alone.
+     ("kujo" leaves every tray that "patu" produces unchanged.)
+R2.2 Running "kujo" and then "mosi" gives the same result as running "mosi" alone.
+     ("mosi" cannot tell whether "kujo" was applied first.)
+R2.3 Running "kujo" three times in a row leaves every VUJA tray exactly where it started.
+R3.1 Running "mosi" and then "tigi" lands on the same tray as running "mosi" alone.
+     ("tigi" leaves every tray that "mosi" produces unchanged.)
+R3.2 Running "tigi" and then "rota" gives the same result as running "rota" alone.
+     ("rota" cannot tell whether "tigi" was applied first.)
+R3.3 Running "tigi" three times in a row leaves every LUTO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KIPI has exactly one tray, called n1.
+- FOSA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZUMI, VUJA, LUTO):
+D1.1 ZUMI must be a finite set with at most 1 tray.
+D1.2 List the "jota" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VUJA must be a finite set with at most 1 tray.
+D2.2 List the "kujo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 LUTO must be a finite set with at most 1 tray.
+D3.2 List the "tigi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZUMI = {q1_1, ..., q1_k}
+tunu: n1 -> <ZUMI tray>
+jota: q1_1 -> <ZUMI tray>, ..., q1_k -> <ZUMI tray>
+VUJA = {q2_1, ..., q2_k}
+patu: q1_1 -> <VUJA tray>, ... (one entry per ZUMI tray)
+kujo: q2_1 -> <VUJA tray>, ..., q2_k -> <VUJA tray>
+LUTO = {q3_1, ..., q3_k}
+mosi: q2_1 -> <LUTO tray>, ... (one entry per VUJA tray)
+tigi: q3_1 -> <LUTO tray>, ..., q3_k -> <LUTO tray>
+rota: q3_1 -> <FOSA tray>, ... (one entry per LUTO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

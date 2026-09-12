@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: BISO, FIKI, FONU, KOVU, BULI. Toys move BISO -> FIKI -> FONU -> KOVU -> BULI.
+There are 7 moving steps:
+- "sopo" carries each BISO slot to a FIKI slot.
+- "gudu" is an internal reshuffle of FIKI: it carries each FIKI slot to a FIKI slot.
+- "tula" carries each FIKI slot to a FONU slot.
+- "ruri" is an internal reshuffle of FONU: it carries each FONU slot to a FONU slot.
+- "jana" carries each FONU slot to a KOVU slot.
+- "giri" is an internal reshuffle of KOVU: it carries each KOVU slot to a KOVU slot.
+- "bogo" carries each KOVU slot to a BULI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "sopo" and then "gudu" lands on the same slot as running "sopo" alone.
+     ("gudu" leaves every slot that "sopo" produces unchanged.)
+R1.2 Running "gudu" and then "tula" gives the same result as running "tula" alone.
+     ("tula" cannot tell whether "gudu" was applied first.)
+R1.3 Running "gudu" twice in a row leaves every FIKI slot exactly where it started.
+R2.1 Running "tula" and then "ruri" lands on the same slot as running "tula" alone.
+     ("ruri" leaves every slot that "tula" produces unchanged.)
+R2.2 Running "ruri" and then "jana" gives the same result as running "jana" alone.
+     ("jana" cannot tell whether "ruri" was applied first.)
+R2.3 Running "ruri" twice in a row leaves every FONU slot exactly where it started.
+R3.1 Running "jana" and then "giri" lands on the same slot as running "jana" alone.
+     ("giri" leaves every slot that "jana" produces unchanged.)
+R3.2 Running "giri" and then "bogo" gives the same result as running "bogo" alone.
+     ("bogo" cannot tell whether "giri" was applied first.)
+R3.3 Running "giri" twice in a row leaves every KOVU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BISO has exactly one slot, called n1.
+- BULI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (FIKI, FONU, KOVU):
+D1.1 FIKI must be a finite set with at most 3 slots.
+D1.2 "gudu" must NOT be the do-nothing move (it must move at least one FIKI slot).
+D2.1 FONU must be a finite set with at most 3 slots.
+D2.2 "ruri" must NOT be the do-nothing move (it must move at least one FONU slot).
+D3.1 KOVU must be a finite set with at most 3 slots.
+D3.2 "giri" must NOT be the do-nothing move (it must move at least one KOVU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+FIKI = {q1_1, ..., q1_k}
+sopo: n1 -> <FIKI slot>
+gudu: q1_1 -> <FIKI slot>, ..., q1_k -> <FIKI slot>
+FONU = {q2_1, ..., q2_k}
+tula: q1_1 -> <FONU slot>, ... (one entry per FIKI slot)
+ruri: q2_1 -> <FONU slot>, ..., q2_k -> <FONU slot>
+KOVU = {q3_1, ..., q3_k}
+jana: q2_1 -> <KOVU slot>, ... (one entry per FONU slot)
+giri: q3_1 -> <KOVU slot>, ..., q3_k -> <KOVU slot>
+bogo: q3_1 -> <BULI slot>, ... (one entry per KOVU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

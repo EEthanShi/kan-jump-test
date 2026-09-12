@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: FUPA, NUDU, LOJU, MIPI, MUZA, FIZA. Books move FUPA -> NUDU -> LOJU -> MIPI -> MUZA -> FIZA.
+There are 9 moving steps:
+- "rugu" carries each FUPA tray to a NUDU tray.
+- "lalo" is an internal rearrangement of NUDU: it carries each NUDU tray to a NUDU tray.
+- "rozi" carries each NUDU tray to a LOJU tray.
+- "sado" is an internal rearrangement of LOJU: it carries each LOJU tray to a LOJU tray.
+- "tidu" carries each LOJU tray to a MIPI tray.
+- "gimu" is an internal rearrangement of MIPI: it carries each MIPI tray to a MIPI tray.
+- "nuzi" carries each MIPI tray to a MUZA tray.
+- "buvu" is an internal rearrangement of MUZA: it carries each MUZA tray to a MUZA tray.
+- "zoga" carries each MUZA tray to a FIZA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "rugu" and then "lalo" lands on the same tray as running "rugu" alone.
+     ("lalo" leaves every tray that "rugu" produces unchanged.)
+R1.2 Running "lalo" and then "rozi" gives the same result as running "rozi" alone.
+     ("rozi" cannot tell whether "lalo" was applied first.)
+R1.3 Running "lalo" twice in a row leaves every NUDU tray exactly where it started.
+R2.1 Running "rozi" and then "sado" lands on the same tray as running "rozi" alone.
+     ("sado" leaves every tray that "rozi" produces unchanged.)
+R2.2 Running "sado" and then "tidu" gives the same result as running "tidu" alone.
+     ("tidu" cannot tell whether "sado" was applied first.)
+R2.3 Running "sado" twice in a row leaves every LOJU tray exactly where it started.
+R3.1 Running "tidu" and then "gimu" lands on the same tray as running "tidu" alone.
+     ("gimu" leaves every tray that "tidu" produces unchanged.)
+R3.2 Running "gimu" and then "nuzi" gives the same result as running "nuzi" alone.
+     ("nuzi" cannot tell whether "gimu" was applied first.)
+R3.3 Running "gimu" twice in a row leaves every MIPI tray exactly where it started.
+R4.1 Running "nuzi" and then "buvu" lands on the same tray as running "nuzi" alone.
+     ("buvu" leaves every tray that "nuzi" produces unchanged.)
+R4.2 Running "buvu" and then "zoga" gives the same result as running "zoga" alone.
+     ("zoga" cannot tell whether "buvu" was applied first.)
+R4.3 Running "buvu" twice in a row leaves every MUZA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FUPA has exactly one tray, called n1.
+- FIZA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NUDU, LOJU, MIPI, MUZA):
+D1.1 NUDU must be a finite set with at most 1 tray.
+D1.2 List the "lalo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 LOJU must be a finite set with at most 1 tray.
+D2.2 List the "sado" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 MIPI must be a finite set with at most 1 tray.
+D3.2 List the "gimu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 MUZA must be a finite set with at most 1 tray.
+D4.2 List the "buvu" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NUDU = {q1_1, ..., q1_k}
+rugu: n1 -> <NUDU tray>
+lalo: q1_1 -> <NUDU tray>, ..., q1_k -> <NUDU tray>
+LOJU = {q2_1, ..., q2_k}
+rozi: q1_1 -> <LOJU tray>, ... (one entry per NUDU tray)
+sado: q2_1 -> <LOJU tray>, ..., q2_k -> <LOJU tray>
+MIPI = {q3_1, ..., q3_k}
+tidu: q2_1 -> <MIPI tray>, ... (one entry per LOJU tray)
+gimu: q3_1 -> <MIPI tray>, ..., q3_k -> <MIPI tray>
+MUZA = {q4_1, ..., q4_k}
+nuzi: q3_1 -> <MUZA tray>, ... (one entry per MIPI tray)
+buvu: q4_1 -> <MUZA tray>, ..., q4_k -> <MUZA tray>
+zoga: q4_1 -> <FIZA tray>, ... (one entry per MUZA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

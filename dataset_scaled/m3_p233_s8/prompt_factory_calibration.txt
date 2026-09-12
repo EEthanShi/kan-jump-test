@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: ROFI, JUTU, RUMI, DATA, RUJU. Toys move ROFI -> JUTU -> RUMI -> DATA -> RUJU.
+There are 7 moving steps:
+- "mara" carries each ROFI slot to a JUTU slot.
+- "zilu" is an internal reshuffle of JUTU: it carries each JUTU slot to a JUTU slot.
+- "zaji" carries each JUTU slot to a RUMI slot.
+- "zafa" is an internal reshuffle of RUMI: it carries each RUMI slot to a RUMI slot.
+- "taga" carries each RUMI slot to a DATA slot.
+- "rapo" is an internal reshuffle of DATA: it carries each DATA slot to a DATA slot.
+- "juvu" carries each DATA slot to a RUJU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "mara" and then "zilu" lands on the same slot as running "mara" alone.
+     ("zilu" leaves every slot that "mara" produces unchanged.)
+R1.2 Running "zilu" and then "zaji" gives the same result as running "zaji" alone.
+     ("zaji" cannot tell whether "zilu" was applied first.)
+R1.3 Running "zilu" twice in a row leaves every JUTU slot exactly where it started.
+R2.1 Running "zaji" and then "zafa" lands on the same slot as running "zaji" alone.
+     ("zafa" leaves every slot that "zaji" produces unchanged.)
+R2.2 Running "zafa" and then "taga" gives the same result as running "taga" alone.
+     ("taga" cannot tell whether "zafa" was applied first.)
+R2.3 Running "zafa" three times in a row leaves every RUMI slot exactly where it started.
+R3.1 Running "taga" and then "rapo" lands on the same slot as running "taga" alone.
+     ("rapo" leaves every slot that "taga" produces unchanged.)
+R3.2 Running "rapo" and then "juvu" gives the same result as running "juvu" alone.
+     ("juvu" cannot tell whether "rapo" was applied first.)
+R3.3 Running "rapo" three times in a row leaves every DATA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ROFI has exactly one slot, called n1.
+- RUJU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (JUTU, RUMI, DATA):
+D1.1 List the slots of JUTU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zilu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of RUMI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zafa" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of DATA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "rapo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+JUTU = {q1_1, ..., q1_k}
+mara: n1 -> <JUTU slot>
+zilu: q1_1 -> <JUTU slot>, ..., q1_k -> <JUTU slot>
+RUMI = {q2_1, ..., q2_k}
+zaji: q1_1 -> <RUMI slot>, ... (one entry per JUTU slot)
+zafa: q2_1 -> <RUMI slot>, ..., q2_k -> <RUMI slot>
+DATA = {q3_1, ..., q3_k}
+taga: q2_1 -> <DATA slot>, ... (one entry per RUMI slot)
+rapo: q3_1 -> <DATA slot>, ..., q3_k -> <DATA slot>
+juvu: q3_1 -> <RUJU slot>, ... (one entry per DATA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

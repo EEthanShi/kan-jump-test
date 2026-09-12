@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: ROLU, DAZU, SOGO, TIRI. Toys move ROLU -> DAZU -> SOGO -> TIRI.
+There are 5 moving steps:
+- "zupu" carries each ROLU slot to a DAZU slot.
+- "gili" is an internal reshuffle of DAZU: it carries each DAZU slot to a DAZU slot.
+- "boli" carries each DAZU slot to a SOGO slot.
+- "tika" is an internal reshuffle of SOGO: it carries each SOGO slot to a SOGO slot.
+- "kini" carries each SOGO slot to a TIRI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "zupu" and then "gili" lands on the same slot as running "zupu" alone.
+     ("gili" leaves every slot that "zupu" produces unchanged.)
+R1.2 Running "gili" and then "boli" gives the same result as running "boli" alone.
+     ("boli" cannot tell whether "gili" was applied first.)
+R1.3 Running "gili" three times in a row leaves every DAZU slot exactly where it started.
+R2.1 Running "boli" and then "tika" lands on the same slot as running "boli" alone.
+     ("tika" leaves every slot that "boli" produces unchanged.)
+R2.2 Running "tika" and then "kini" gives the same result as running "kini" alone.
+     ("kini" cannot tell whether "tika" was applied first.)
+R2.3 Running "tika" three times in a row leaves every SOGO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ROLU has exactly one slot, called n1.
+- TIRI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DAZU, SOGO):
+D1.1 DAZU must be a finite set with at most 1 slot.
+D1.2 List the "gili" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 SOGO must be a finite set with at most 1 slot.
+D2.2 List the "tika" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DAZU = {q1_1, ..., q1_k}
+zupu: n1 -> <DAZU slot>
+gili: q1_1 -> <DAZU slot>, ..., q1_k -> <DAZU slot>
+SOGO = {q2_1, ..., q2_k}
+boli: q1_1 -> <SOGO slot>, ... (one entry per DAZU slot)
+tika: q2_1 -> <SOGO slot>, ..., q2_k -> <SOGO slot>
+kini: q2_1 -> <TIRI slot>, ... (one entry per SOGO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

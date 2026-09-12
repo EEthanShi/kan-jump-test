@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: BUJU, LULA, MUJA, VOTU, PIKU. Books move BUJU -> LULA -> MUJA -> VOTU -> PIKU.
+There are 7 moving steps:
+- "vodi" carries each BUJU tray to a LULA tray.
+- "viji" is an internal rearrangement of LULA: it carries each LULA tray to a LULA tray.
+- "rumi" carries each LULA tray to a MUJA tray.
+- "budo" is an internal rearrangement of MUJA: it carries each MUJA tray to a MUJA tray.
+- "numi" carries each MUJA tray to a VOTU tray.
+- "zono" is an internal rearrangement of VOTU: it carries each VOTU tray to a VOTU tray.
+- "luki" carries each VOTU tray to a PIKU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vodi" and then "viji" lands on the same tray as running "vodi" alone.
+     ("viji" leaves every tray that "vodi" produces unchanged.)
+R1.2 Running "viji" and then "rumi" gives the same result as running "rumi" alone.
+     ("rumi" cannot tell whether "viji" was applied first.)
+R1.3 Running "viji" three times in a row leaves every LULA tray exactly where it started.
+R2.1 Running "rumi" and then "budo" lands on the same tray as running "rumi" alone.
+     ("budo" leaves every tray that "rumi" produces unchanged.)
+R2.2 Running "budo" and then "numi" gives the same result as running "numi" alone.
+     ("numi" cannot tell whether "budo" was applied first.)
+R2.3 Running "budo" twice in a row leaves every MUJA tray exactly where it started.
+R3.1 Running "numi" and then "zono" lands on the same tray as running "numi" alone.
+     ("zono" leaves every tray that "numi" produces unchanged.)
+R3.2 Running "zono" and then "luki" gives the same result as running "luki" alone.
+     ("luki" cannot tell whether "zono" was applied first.)
+R3.3 Running "zono" twice in a row leaves every VOTU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUJU has exactly one tray, called n1.
+- PIKU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (LULA, MUJA, VOTU):
+D1.1 LULA must be a finite set with at most 4 trays.
+D1.2 "viji" must NOT be the do-nothing move (it must move at least one LULA tray).
+D2.1 MUJA must be a finite set with at most 3 trays.
+D2.2 "budo" must NOT be the do-nothing move (it must move at least one MUJA tray).
+D3.1 VOTU must be a finite set with at most 3 trays.
+D3.2 "zono" must NOT be the do-nothing move (it must move at least one VOTU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+LULA = {q1_1, ..., q1_k}
+vodi: n1 -> <LULA tray>
+viji: q1_1 -> <LULA tray>, ..., q1_k -> <LULA tray>
+MUJA = {q2_1, ..., q2_k}
+rumi: q1_1 -> <MUJA tray>, ... (one entry per LULA tray)
+budo: q2_1 -> <MUJA tray>, ..., q2_k -> <MUJA tray>
+VOTU = {q3_1, ..., q3_k}
+numi: q2_1 -> <VOTU tray>, ... (one entry per MUJA tray)
+zono: q3_1 -> <VOTU tray>, ..., q3_k -> <VOTU tray>
+luki: q3_1 -> <PIKU tray>, ... (one entry per VOTU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

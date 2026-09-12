@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: FILO, KUTA, VISI, VUVI. Books move FILO -> KUTA -> VISI -> VUVI.
+There are 5 moving steps:
+- "voso" carries each FILO tray to a KUTA tray.
+- "gusi" is an internal rearrangement of KUTA: it carries each KUTA tray to a KUTA tray.
+- "gona" carries each KUTA tray to a VISI tray.
+- "lajo" is an internal rearrangement of VISI: it carries each VISI tray to a VISI tray.
+- "vasa" carries each VISI tray to a VUVI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "voso" and then "gusi" lands on the same tray as running "voso" alone.
+     ("gusi" leaves every tray that "voso" produces unchanged.)
+R1.2 Running "gusi" and then "gona" gives the same result as running "gona" alone.
+     ("gona" cannot tell whether "gusi" was applied first.)
+R1.3 Running "gusi" three times in a row leaves every KUTA tray exactly where it started.
+R2.1 Running "gona" and then "lajo" lands on the same tray as running "gona" alone.
+     ("lajo" leaves every tray that "gona" produces unchanged.)
+R2.2 Running "lajo" and then "vasa" gives the same result as running "vasa" alone.
+     ("vasa" cannot tell whether "lajo" was applied first.)
+R2.3 Running "lajo" three times in a row leaves every VISI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FILO has exactly one tray, called n1.
+- VUVI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KUTA, VISI):
+D1.1 KUTA must be a finite set with at most 1 tray.
+D1.2 List the "gusi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VISI must be a finite set with at most 1 tray.
+D2.2 List the "lajo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KUTA = {q1_1, ..., q1_k}
+voso: n1 -> <KUTA tray>
+gusi: q1_1 -> <KUTA tray>, ..., q1_k -> <KUTA tray>
+VISI = {q2_1, ..., q2_k}
+gona: q1_1 -> <VISI tray>, ... (one entry per KUTA tray)
+lajo: q2_1 -> <VISI tray>, ..., q2_k -> <VISI tray>
+vasa: q2_1 -> <VUVI tray>, ... (one entry per VISI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

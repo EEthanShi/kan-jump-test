@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: JUNA, NONI, RAZO, MATA, FUPU. Books move JUNA -> NONI -> RAZO -> MATA -> FUPU.
+There are 7 moving steps:
+- "zani" carries each JUNA tray to a NONI tray.
+- "gaju" is an internal rearrangement of NONI: it carries each NONI tray to a NONI tray.
+- "lupu" carries each NONI tray to a RAZO tray.
+- "noza" is an internal rearrangement of RAZO: it carries each RAZO tray to a RAZO tray.
+- "davi" carries each RAZO tray to a MATA tray.
+- "kuku" is an internal rearrangement of MATA: it carries each MATA tray to a MATA tray.
+- "roji" carries each MATA tray to a FUPU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zani" and then "gaju" lands on the same tray as running "zani" alone.
+     ("gaju" leaves every tray that "zani" produces unchanged.)
+R1.2 Running "gaju" and then "lupu" gives the same result as running "lupu" alone.
+     ("lupu" cannot tell whether "gaju" was applied first.)
+R1.3 Running "gaju" three times in a row leaves every NONI tray exactly where it started.
+R2.1 Running "lupu" and then "noza" lands on the same tray as running "lupu" alone.
+     ("noza" leaves every tray that "lupu" produces unchanged.)
+R2.2 Running "noza" and then "davi" gives the same result as running "davi" alone.
+     ("davi" cannot tell whether "noza" was applied first.)
+R2.3 Running "noza" three times in a row leaves every RAZO tray exactly where it started.
+R3.1 Running "davi" and then "kuku" lands on the same tray as running "davi" alone.
+     ("kuku" leaves every tray that "davi" produces unchanged.)
+R3.2 Running "kuku" and then "roji" gives the same result as running "roji" alone.
+     ("roji" cannot tell whether "kuku" was applied first.)
+R3.3 Running "kuku" three times in a row leaves every MATA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JUNA has exactly one tray, called n1.
+- FUPU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NONI, RAZO, MATA):
+D1.1 List the trays of NONI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "gaju" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of RAZO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "noza" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of MATA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "kuku" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NONI = {q1_1, ..., q1_k}
+zani: n1 -> <NONI tray>
+gaju: q1_1 -> <NONI tray>, ..., q1_k -> <NONI tray>
+RAZO = {q2_1, ..., q2_k}
+lupu: q1_1 -> <RAZO tray>, ... (one entry per NONI tray)
+noza: q2_1 -> <RAZO tray>, ..., q2_k -> <RAZO tray>
+MATA = {q3_1, ..., q3_k}
+davi: q2_1 -> <MATA tray>, ... (one entry per RAZO tray)
+kuku: q3_1 -> <MATA tray>, ..., q3_k -> <MATA tray>
+roji: q3_1 -> <FUPU tray>, ... (one entry per MATA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

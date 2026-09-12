@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DULA, JAPO, JOGU, RIFA, VASA. Toys move DULA -> JAPO -> JOGU -> RIFA -> VASA.
+There are 7 moving steps:
+- "lajo" carries each DULA slot to a JAPO slot.
+- "movi" is an internal reshuffle of JAPO: it carries each JAPO slot to a JAPO slot.
+- "kudi" carries each JAPO slot to a JOGU slot.
+- "zimo" is an internal reshuffle of JOGU: it carries each JOGU slot to a JOGU slot.
+- "filu" carries each JOGU slot to a RIFA slot.
+- "bimo" is an internal reshuffle of RIFA: it carries each RIFA slot to a RIFA slot.
+- "mufo" carries each RIFA slot to a VASA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "lajo" and then "movi" lands on the same slot as running "lajo" alone.
+     ("movi" leaves every slot that "lajo" produces unchanged.)
+R1.2 Running "movi" and then "kudi" gives the same result as running "kudi" alone.
+     ("kudi" cannot tell whether "movi" was applied first.)
+R1.3 Running "movi" twice in a row leaves every JAPO slot exactly where it started.
+R2.1 Running "kudi" and then "zimo" lands on the same slot as running "kudi" alone.
+     ("zimo" leaves every slot that "kudi" produces unchanged.)
+R2.2 Running "zimo" and then "filu" gives the same result as running "filu" alone.
+     ("filu" cannot tell whether "zimo" was applied first.)
+R2.3 Running "zimo" three times in a row leaves every JOGU slot exactly where it started.
+R3.1 Running "filu" and then "bimo" lands on the same slot as running "filu" alone.
+     ("bimo" leaves every slot that "filu" produces unchanged.)
+R3.2 Running "bimo" and then "mufo" gives the same result as running "mufo" alone.
+     ("mufo" cannot tell whether "bimo" was applied first.)
+R3.3 Running "bimo" twice in a row leaves every RIFA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DULA has exactly one slot, called n1.
+- VASA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (JAPO, JOGU, RIFA):
+D1.1 List the slots of JAPO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "movi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of JOGU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zimo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of RIFA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "bimo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+JAPO = {q1_1, ..., q1_k}
+lajo: n1 -> <JAPO slot>
+movi: q1_1 -> <JAPO slot>, ..., q1_k -> <JAPO slot>
+JOGU = {q2_1, ..., q2_k}
+kudi: q1_1 -> <JOGU slot>, ... (one entry per JAPO slot)
+zimo: q2_1 -> <JOGU slot>, ..., q2_k -> <JOGU slot>
+RIFA = {q3_1, ..., q3_k}
+filu: q2_1 -> <RIFA slot>, ... (one entry per JOGU slot)
+bimo: q3_1 -> <RIFA slot>, ..., q3_k -> <RIFA slot>
+mufo: q3_1 -> <VASA slot>, ... (one entry per RIFA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

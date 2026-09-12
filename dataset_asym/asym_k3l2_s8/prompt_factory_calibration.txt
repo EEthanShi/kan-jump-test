@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: SOLU, RAJI, FUNA. Toys move SOLU -> RAJI -> FUNA.
+There are 3 moving steps:
+- "faza" carries each SOLU slot to a RAJI slot.
+- "zadi" is an internal reshuffle of RAJI: it carries each RAJI slot to a RAJI slot.
+- "juza" carries each RAJI slot to a FUNA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "faza" and then "zadi" lands on the same slot as running "faza" alone.
+     ("zadi" leaves every slot that "faza" produces unchanged.)
+R1.2 Running "zadi" and then "juza" gives the same result as running "juza" alone.
+     ("juza" cannot tell whether "zadi" was applied first.)
+R1.3 Running "zadi" twice in a row leaves every RAJI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOLU has exactly 3 slots, called n1, n2, n3.
+- FUNA has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle station (RAJI):
+D1.1 List the slots of RAJI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zadi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "faza" table entries in SOLU slot order n1, n2, n3.
+D1.4 List the "juza" table entries in RAJI slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+RAJI = {q1_1, ..., q1_k}
+faza: n1 -> <RAJI slot>, n2 -> <RAJI slot>, n3 -> <RAJI slot>
+zadi: q1_1 -> <RAJI slot>, ..., q1_k -> <RAJI slot>
+juza: q1_1 -> <FUNA slot>, ... (one entry per RAJI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

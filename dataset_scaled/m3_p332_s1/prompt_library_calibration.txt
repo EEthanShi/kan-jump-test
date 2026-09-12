@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KULI, FIVU, GIFA, BODI, NAZA. Books move KULI -> FIVU -> GIFA -> BODI -> NAZA.
+There are 7 moving steps:
+- "vaja" carries each KULI tray to a FIVU tray.
+- "kusu" is an internal rearrangement of FIVU: it carries each FIVU tray to a FIVU tray.
+- "pari" carries each FIVU tray to a GIFA tray.
+- "taru" is an internal rearrangement of GIFA: it carries each GIFA tray to a GIFA tray.
+- "pada" carries each GIFA tray to a BODI tray.
+- "lajo" is an internal rearrangement of BODI: it carries each BODI tray to a BODI tray.
+- "pinu" carries each BODI tray to a NAZA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vaja" and then "kusu" lands on the same tray as running "vaja" alone.
+     ("kusu" leaves every tray that "vaja" produces unchanged.)
+R1.2 Running "kusu" and then "pari" gives the same result as running "pari" alone.
+     ("pari" cannot tell whether "kusu" was applied first.)
+R1.3 Running "kusu" three times in a row leaves every FIVU tray exactly where it started.
+R2.1 Running "pari" and then "taru" lands on the same tray as running "pari" alone.
+     ("taru" leaves every tray that "pari" produces unchanged.)
+R2.2 Running "taru" and then "pada" gives the same result as running "pada" alone.
+     ("pada" cannot tell whether "taru" was applied first.)
+R2.3 Running "taru" three times in a row leaves every GIFA tray exactly where it started.
+R3.1 Running "pada" and then "lajo" lands on the same tray as running "pada" alone.
+     ("lajo" leaves every tray that "pada" produces unchanged.)
+R3.2 Running "lajo" and then "pinu" gives the same result as running "pinu" alone.
+     ("pinu" cannot tell whether "lajo" was applied first.)
+R3.3 Running "lajo" twice in a row leaves every BODI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KULI has exactly one tray, called n1.
+- NAZA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (FIVU, GIFA, BODI):
+D1.1 List the trays of FIVU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kusu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of GIFA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "taru" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of BODI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "lajo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FIVU = {q1_1, ..., q1_k}
+vaja: n1 -> <FIVU tray>
+kusu: q1_1 -> <FIVU tray>, ..., q1_k -> <FIVU tray>
+GIFA = {q2_1, ..., q2_k}
+pari: q1_1 -> <GIFA tray>, ... (one entry per FIVU tray)
+taru: q2_1 -> <GIFA tray>, ..., q2_k -> <GIFA tray>
+BODI = {q3_1, ..., q3_k}
+pada: q2_1 -> <BODI tray>, ... (one entry per GIFA tray)
+lajo: q3_1 -> <BODI tray>, ..., q3_k -> <BODI tray>
+pinu: q3_1 -> <NAZA tray>, ... (one entry per BODI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

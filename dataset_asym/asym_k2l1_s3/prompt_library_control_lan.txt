@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: PIKA, FOTI, TIZO. Books move PIKA -> FOTI -> TIZO.
+There are 3 moving steps:
+- "guro" carries each PIKA tray to a FOTI tray.
+- "sobu" is an internal rearrangement of FOTI: it carries each FOTI tray to a FOTI tray.
+- "bito" carries each FOTI tray to a TIZO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "guro" and then "sobu" lands on the same tray as running "guro" alone.
+     ("sobu" leaves every tray that "guro" produces unchanged.)
+R1.2 Running "sobu" and then "bito" gives the same result as running "bito" alone.
+     ("bito" cannot tell whether "sobu" was applied first.)
+R1.3 Running "sobu" twice in a row leaves every FOTI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PIKA has exactly 2 trays, called n1, n2.
+- TIZO has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (FOTI):
+D1.1 FOTI must be a finite set with at most 2 trays.
+D1.2 List the "sobu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 "guro" must carry different PIKA trays to different FOTI trays.
+D1.4 List the "bito" table entries in FOTI tray order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+FOTI = {q1_1, ..., q1_k}
+guro: n1 -> <FOTI tray>, n2 -> <FOTI tray>
+sobu: q1_1 -> <FOTI tray>, ..., q1_k -> <FOTI tray>
+bito: q1_1 -> <TIZO tray>, ... (one entry per FOTI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

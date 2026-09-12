@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: GIMI, LISO, DOFA, TUTA, SAFU. Toys move GIMI -> LISO -> DOFA -> TUTA -> SAFU.
+There are 7 moving steps:
+- "lura" carries each GIMI slot to a LISO slot.
+- "jotu" is an internal reshuffle of LISO: it carries each LISO slot to a LISO slot.
+- "foma" carries each LISO slot to a DOFA slot.
+- "giji" is an internal reshuffle of DOFA: it carries each DOFA slot to a DOFA slot.
+- "bofa" carries each DOFA slot to a TUTA slot.
+- "vujo" is an internal reshuffle of TUTA: it carries each TUTA slot to a TUTA slot.
+- "nivi" carries each TUTA slot to a SAFU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "lura" and then "jotu" lands on the same slot as running "lura" alone.
+     ("jotu" leaves every slot that "lura" produces unchanged.)
+R1.2 Running "jotu" and then "foma" gives the same result as running "foma" alone.
+     ("foma" cannot tell whether "jotu" was applied first.)
+R1.3 Running "jotu" three times in a row leaves every LISO slot exactly where it started.
+R2.1 Running "foma" and then "giji" lands on the same slot as running "foma" alone.
+     ("giji" leaves every slot that "foma" produces unchanged.)
+R2.2 Running "giji" and then "bofa" gives the same result as running "bofa" alone.
+     ("bofa" cannot tell whether "giji" was applied first.)
+R2.3 Running "giji" three times in a row leaves every DOFA slot exactly where it started.
+R3.1 Running "bofa" and then "vujo" lands on the same slot as running "bofa" alone.
+     ("vujo" leaves every slot that "bofa" produces unchanged.)
+R3.2 Running "vujo" and then "nivi" gives the same result as running "nivi" alone.
+     ("nivi" cannot tell whether "vujo" was applied first.)
+R3.3 Running "vujo" three times in a row leaves every TUTA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GIMI has exactly one slot, called n1.
+- SAFU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (LISO, DOFA, TUTA):
+D1.1 List the slots of LISO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "jotu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of DOFA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "giji" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of TUTA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "vujo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+LISO = {q1_1, ..., q1_k}
+lura: n1 -> <LISO slot>
+jotu: q1_1 -> <LISO slot>, ..., q1_k -> <LISO slot>
+DOFA = {q2_1, ..., q2_k}
+foma: q1_1 -> <DOFA slot>, ... (one entry per LISO slot)
+giji: q2_1 -> <DOFA slot>, ..., q2_k -> <DOFA slot>
+TUTA = {q3_1, ..., q3_k}
+bofa: q2_1 -> <TUTA slot>, ... (one entry per DOFA slot)
+vujo: q3_1 -> <TUTA slot>, ..., q3_k -> <TUTA slot>
+nivi: q3_1 -> <SAFU slot>, ... (one entry per TUTA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

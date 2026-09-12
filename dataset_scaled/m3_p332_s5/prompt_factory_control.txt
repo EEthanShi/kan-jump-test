@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: RABI, GURI, PARU, SIVU, DATA. Toys move RABI -> GURI -> PARU -> SIVU -> DATA.
+There are 7 moving steps:
+- "ravo" carries each RABI slot to a GURI slot.
+- "gota" is an internal reshuffle of GURI: it carries each GURI slot to a GURI slot.
+- "tumo" carries each GURI slot to a PARU slot.
+- "kavi" is an internal reshuffle of PARU: it carries each PARU slot to a PARU slot.
+- "lami" carries each PARU slot to a SIVU slot.
+- "pida" is an internal reshuffle of SIVU: it carries each SIVU slot to a SIVU slot.
+- "bado" carries each SIVU slot to a DATA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "ravo" and then "gota" lands on the same slot as running "ravo" alone.
+     ("gota" leaves every slot that "ravo" produces unchanged.)
+R1.2 Running "gota" and then "tumo" gives the same result as running "tumo" alone.
+     ("tumo" cannot tell whether "gota" was applied first.)
+R1.3 Running "gota" three times in a row leaves every GURI slot exactly where it started.
+R2.1 Running "tumo" and then "kavi" lands on the same slot as running "tumo" alone.
+     ("kavi" leaves every slot that "tumo" produces unchanged.)
+R2.2 Running "kavi" and then "lami" gives the same result as running "lami" alone.
+     ("lami" cannot tell whether "kavi" was applied first.)
+R2.3 Running "kavi" three times in a row leaves every PARU slot exactly where it started.
+R3.1 Running "lami" and then "pida" lands on the same slot as running "lami" alone.
+     ("pida" leaves every slot that "lami" produces unchanged.)
+R3.2 Running "pida" and then "bado" gives the same result as running "bado" alone.
+     ("bado" cannot tell whether "pida" was applied first.)
+R3.3 Running "pida" twice in a row leaves every SIVU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RABI has exactly one slot, called n1.
+- DATA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (GURI, PARU, SIVU):
+D1.1 GURI must be a finite set with at most 1 slot.
+D1.2 List the "gota" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 PARU must be a finite set with at most 1 slot.
+D2.2 List the "kavi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 SIVU must be a finite set with at most 1 slot.
+D3.2 List the "pida" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+GURI = {q1_1, ..., q1_k}
+ravo: n1 -> <GURI slot>
+gota: q1_1 -> <GURI slot>, ..., q1_k -> <GURI slot>
+PARU = {q2_1, ..., q2_k}
+tumo: q1_1 -> <PARU slot>, ... (one entry per GURI slot)
+kavi: q2_1 -> <PARU slot>, ..., q2_k -> <PARU slot>
+SIVU = {q3_1, ..., q3_k}
+lami: q2_1 -> <SIVU slot>, ... (one entry per PARU slot)
+pida: q3_1 -> <SIVU slot>, ..., q3_k -> <SIVU slot>
+bado: q3_1 -> <DATA slot>, ... (one entry per SIVU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

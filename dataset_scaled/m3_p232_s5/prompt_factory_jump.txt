@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: TIRI, ROLA, GOBU, LOKI, JIZA. Toys move TIRI -> ROLA -> GOBU -> LOKI -> JIZA.
+There are 7 moving steps:
+- "vula" carries each TIRI slot to a ROLA slot.
+- "vofa" is an internal reshuffle of ROLA: it carries each ROLA slot to a ROLA slot.
+- "doru" carries each ROLA slot to a GOBU slot.
+- "dogi" is an internal reshuffle of GOBU: it carries each GOBU slot to a GOBU slot.
+- "kivu" carries each GOBU slot to a LOKI slot.
+- "turu" is an internal reshuffle of LOKI: it carries each LOKI slot to a LOKI slot.
+- "nobi" carries each LOKI slot to a JIZA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "vula" and then "vofa" lands on the same slot as running "vula" alone.
+     ("vofa" leaves every slot that "vula" produces unchanged.)
+R1.2 Running "vofa" and then "doru" gives the same result as running "doru" alone.
+     ("doru" cannot tell whether "vofa" was applied first.)
+R1.3 Running "vofa" twice in a row leaves every ROLA slot exactly where it started.
+R2.1 Running "doru" and then "dogi" lands on the same slot as running "doru" alone.
+     ("dogi" leaves every slot that "doru" produces unchanged.)
+R2.2 Running "dogi" and then "kivu" gives the same result as running "kivu" alone.
+     ("kivu" cannot tell whether "dogi" was applied first.)
+R2.3 Running "dogi" three times in a row leaves every GOBU slot exactly where it started.
+R3.1 Running "kivu" and then "turu" lands on the same slot as running "kivu" alone.
+     ("turu" leaves every slot that "kivu" produces unchanged.)
+R3.2 Running "turu" and then "nobi" gives the same result as running "nobi" alone.
+     ("nobi" cannot tell whether "turu" was applied first.)
+R3.3 Running "turu" twice in a row leaves every LOKI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TIRI has exactly one slot, called n1.
+- JIZA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (ROLA, GOBU, LOKI):
+D1.1 ROLA must be a finite set with at most 3 slots.
+D1.2 "vofa" must NOT be the do-nothing move (it must move at least one ROLA slot).
+D2.1 GOBU must be a finite set with at most 4 slots.
+D2.2 "dogi" must NOT be the do-nothing move (it must move at least one GOBU slot).
+D3.1 LOKI must be a finite set with at most 3 slots.
+D3.2 "turu" must NOT be the do-nothing move (it must move at least one LOKI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+ROLA = {q1_1, ..., q1_k}
+vula: n1 -> <ROLA slot>
+vofa: q1_1 -> <ROLA slot>, ..., q1_k -> <ROLA slot>
+GOBU = {q2_1, ..., q2_k}
+doru: q1_1 -> <GOBU slot>, ... (one entry per ROLA slot)
+dogi: q2_1 -> <GOBU slot>, ..., q2_k -> <GOBU slot>
+LOKI = {q3_1, ..., q3_k}
+kivu: q2_1 -> <LOKI slot>, ... (one entry per GOBU slot)
+turu: q3_1 -> <LOKI slot>, ..., q3_k -> <LOKI slot>
+nobi: q3_1 -> <JIZA slot>, ... (one entry per LOKI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

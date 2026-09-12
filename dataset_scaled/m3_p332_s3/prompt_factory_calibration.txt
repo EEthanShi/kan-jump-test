@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DIMA, VIPA, BUZA, PAGA, RUSA. Toys move DIMA -> VIPA -> BUZA -> PAGA -> RUSA.
+There are 7 moving steps:
+- "kuti" carries each DIMA slot to a VIPA slot.
+- "roru" is an internal reshuffle of VIPA: it carries each VIPA slot to a VIPA slot.
+- "puvi" carries each VIPA slot to a BUZA slot.
+- "kusu" is an internal reshuffle of BUZA: it carries each BUZA slot to a BUZA slot.
+- "fida" carries each BUZA slot to a PAGA slot.
+- "gaso" is an internal reshuffle of PAGA: it carries each PAGA slot to a PAGA slot.
+- "bizo" carries each PAGA slot to a RUSA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kuti" and then "roru" lands on the same slot as running "kuti" alone.
+     ("roru" leaves every slot that "kuti" produces unchanged.)
+R1.2 Running "roru" and then "puvi" gives the same result as running "puvi" alone.
+     ("puvi" cannot tell whether "roru" was applied first.)
+R1.3 Running "roru" three times in a row leaves every VIPA slot exactly where it started.
+R2.1 Running "puvi" and then "kusu" lands on the same slot as running "puvi" alone.
+     ("kusu" leaves every slot that "puvi" produces unchanged.)
+R2.2 Running "kusu" and then "fida" gives the same result as running "fida" alone.
+     ("fida" cannot tell whether "kusu" was applied first.)
+R2.3 Running "kusu" three times in a row leaves every BUZA slot exactly where it started.
+R3.1 Running "fida" and then "gaso" lands on the same slot as running "fida" alone.
+     ("gaso" leaves every slot that "fida" produces unchanged.)
+R3.2 Running "gaso" and then "bizo" gives the same result as running "bizo" alone.
+     ("bizo" cannot tell whether "gaso" was applied first.)
+R3.3 Running "gaso" twice in a row leaves every PAGA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DIMA has exactly one slot, called n1.
+- RUSA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (VIPA, BUZA, PAGA):
+D1.1 List the slots of VIPA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "roru" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of BUZA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "kusu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of PAGA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "gaso" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+VIPA = {q1_1, ..., q1_k}
+kuti: n1 -> <VIPA slot>
+roru: q1_1 -> <VIPA slot>, ..., q1_k -> <VIPA slot>
+BUZA = {q2_1, ..., q2_k}
+puvi: q1_1 -> <BUZA slot>, ... (one entry per VIPA slot)
+kusu: q2_1 -> <BUZA slot>, ..., q2_k -> <BUZA slot>
+PAGA = {q3_1, ..., q3_k}
+fida: q2_1 -> <PAGA slot>, ... (one entry per BUZA slot)
+gaso: q3_1 -> <PAGA slot>, ..., q3_k -> <PAGA slot>
+bizo: q3_1 -> <RUSA slot>, ... (one entry per PAGA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

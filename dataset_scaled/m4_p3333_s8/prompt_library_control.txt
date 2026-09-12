@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: VOJU, RIMA, VODI, TASU, DUKU, BADI. Books move VOJU -> RIMA -> VODI -> TASU -> DUKU -> BADI.
+There are 9 moving steps:
+- "nazu" carries each VOJU tray to a RIMA tray.
+- "paka" is an internal rearrangement of RIMA: it carries each RIMA tray to a RIMA tray.
+- "damo" carries each RIMA tray to a VODI tray.
+- "tara" is an internal rearrangement of VODI: it carries each VODI tray to a VODI tray.
+- "zozi" carries each VODI tray to a TASU tray.
+- "kigu" is an internal rearrangement of TASU: it carries each TASU tray to a TASU tray.
+- "zoni" carries each TASU tray to a DUKU tray.
+- "dijo" is an internal rearrangement of DUKU: it carries each DUKU tray to a DUKU tray.
+- "rafo" carries each DUKU tray to a BADI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nazu" and then "paka" lands on the same tray as running "nazu" alone.
+     ("paka" leaves every tray that "nazu" produces unchanged.)
+R1.2 Running "paka" and then "damo" gives the same result as running "damo" alone.
+     ("damo" cannot tell whether "paka" was applied first.)
+R1.3 Running "paka" three times in a row leaves every RIMA tray exactly where it started.
+R2.1 Running "damo" and then "tara" lands on the same tray as running "damo" alone.
+     ("tara" leaves every tray that "damo" produces unchanged.)
+R2.2 Running "tara" and then "zozi" gives the same result as running "zozi" alone.
+     ("zozi" cannot tell whether "tara" was applied first.)
+R2.3 Running "tara" three times in a row leaves every VODI tray exactly where it started.
+R3.1 Running "zozi" and then "kigu" lands on the same tray as running "zozi" alone.
+     ("kigu" leaves every tray that "zozi" produces unchanged.)
+R3.2 Running "kigu" and then "zoni" gives the same result as running "zoni" alone.
+     ("zoni" cannot tell whether "kigu" was applied first.)
+R3.3 Running "kigu" three times in a row leaves every TASU tray exactly where it started.
+R4.1 Running "zoni" and then "dijo" lands on the same tray as running "zoni" alone.
+     ("dijo" leaves every tray that "zoni" produces unchanged.)
+R4.2 Running "dijo" and then "rafo" gives the same result as running "rafo" alone.
+     ("rafo" cannot tell whether "dijo" was applied first.)
+R4.3 Running "dijo" three times in a row leaves every DUKU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VOJU has exactly one tray, called n1.
+- BADI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RIMA, VODI, TASU, DUKU):
+D1.1 RIMA must be a finite set with at most 1 tray.
+D1.2 List the "paka" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 VODI must be a finite set with at most 1 tray.
+D2.2 List the "tara" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 TASU must be a finite set with at most 1 tray.
+D3.2 List the "kigu" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 DUKU must be a finite set with at most 1 tray.
+D4.2 List the "dijo" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RIMA = {q1_1, ..., q1_k}
+nazu: n1 -> <RIMA tray>
+paka: q1_1 -> <RIMA tray>, ..., q1_k -> <RIMA tray>
+VODI = {q2_1, ..., q2_k}
+damo: q1_1 -> <VODI tray>, ... (one entry per RIMA tray)
+tara: q2_1 -> <VODI tray>, ..., q2_k -> <VODI tray>
+TASU = {q3_1, ..., q3_k}
+zozi: q2_1 -> <TASU tray>, ... (one entry per VODI tray)
+kigu: q3_1 -> <TASU tray>, ..., q3_k -> <TASU tray>
+DUKU = {q4_1, ..., q4_k}
+zoni: q3_1 -> <DUKU tray>, ... (one entry per TASU tray)
+dijo: q4_1 -> <DUKU tray>, ..., q4_k -> <DUKU tray>
+rafo: q4_1 -> <BADI tray>, ... (one entry per DUKU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

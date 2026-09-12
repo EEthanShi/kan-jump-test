@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SIZI, RUVA, ZAGI, SUZU, BAKO. Toys move SIZI -> RUVA -> ZAGI -> SUZU -> BAKO.
+There are 7 moving steps:
+- "voji" carries each SIZI slot to a RUVA slot.
+- "sojo" is an internal reshuffle of RUVA: it carries each RUVA slot to a RUVA slot.
+- "pufu" carries each RUVA slot to a ZAGI slot.
+- "fika" is an internal reshuffle of ZAGI: it carries each ZAGI slot to a ZAGI slot.
+- "kovi" carries each ZAGI slot to a SUZU slot.
+- "zidi" is an internal reshuffle of SUZU: it carries each SUZU slot to a SUZU slot.
+- "luva" carries each SUZU slot to a BAKO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "voji" and then "sojo" lands on the same slot as running "voji" alone.
+     ("sojo" leaves every slot that "voji" produces unchanged.)
+R1.2 Running "sojo" and then "pufu" gives the same result as running "pufu" alone.
+     ("pufu" cannot tell whether "sojo" was applied first.)
+R1.3 Running "sojo" twice in a row leaves every RUVA slot exactly where it started.
+R2.1 Running "pufu" and then "fika" lands on the same slot as running "pufu" alone.
+     ("fika" leaves every slot that "pufu" produces unchanged.)
+R2.2 Running "fika" and then "kovi" gives the same result as running "kovi" alone.
+     ("kovi" cannot tell whether "fika" was applied first.)
+R2.3 Running "fika" three times in a row leaves every ZAGI slot exactly where it started.
+R3.1 Running "kovi" and then "zidi" lands on the same slot as running "kovi" alone.
+     ("zidi" leaves every slot that "kovi" produces unchanged.)
+R3.2 Running "zidi" and then "luva" gives the same result as running "luva" alone.
+     ("luva" cannot tell whether "zidi" was applied first.)
+R3.3 Running "zidi" three times in a row leaves every SUZU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SIZI has exactly one slot, called n1.
+- BAKO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (RUVA, ZAGI, SUZU):
+D1.1 RUVA must be a finite set with at most 3 slots.
+D1.2 "sojo" must NOT be the do-nothing move (it must move at least one RUVA slot).
+D2.1 ZAGI must be a finite set with at most 4 slots.
+D2.2 "fika" must NOT be the do-nothing move (it must move at least one ZAGI slot).
+D3.1 SUZU must be a finite set with at most 4 slots.
+D3.2 "zidi" must NOT be the do-nothing move (it must move at least one SUZU slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+RUVA = {q1_1, ..., q1_k}
+voji: n1 -> <RUVA slot>
+sojo: q1_1 -> <RUVA slot>, ..., q1_k -> <RUVA slot>
+ZAGI = {q2_1, ..., q2_k}
+pufu: q1_1 -> <ZAGI slot>, ... (one entry per RUVA slot)
+fika: q2_1 -> <ZAGI slot>, ..., q2_k -> <ZAGI slot>
+SUZU = {q3_1, ..., q3_k}
+kovi: q2_1 -> <SUZU slot>, ... (one entry per ZAGI slot)
+zidi: q3_1 -> <SUZU slot>, ..., q3_k -> <SUZU slot>
+luva: q3_1 -> <BAKO slot>, ... (one entry per SUZU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

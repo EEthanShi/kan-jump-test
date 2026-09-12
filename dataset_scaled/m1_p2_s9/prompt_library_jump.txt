@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: FOBI, FORI, DOBI. Books move FOBI -> FORI -> DOBI.
+There are 3 moving steps:
+- "tupo" carries each FOBI tray to a FORI tray.
+- "kodi" is an internal rearrangement of FORI: it carries each FORI tray to a FORI tray.
+- "kugo" carries each FORI tray to a DOBI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tupo" and then "kodi" lands on the same tray as running "tupo" alone.
+     ("kodi" leaves every tray that "tupo" produces unchanged.)
+R1.2 Running "kodi" and then "kugo" gives the same result as running "kugo" alone.
+     ("kugo" cannot tell whether "kodi" was applied first.)
+R1.3 Running "kodi" twice in a row leaves every FORI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FOBI has exactly one tray, called n1.
+- DOBI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (FORI):
+D1.1 FORI must be a finite set with at most 3 trays.
+D1.2 "kodi" must NOT be the do-nothing move (it must move at least one FORI tray).
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+FORI = {q1_1, ..., q1_k}
+tupo: n1 -> <FORI tray>
+kodi: q1_1 -> <FORI tray>, ..., q1_k -> <FORI tray>
+kugo: q1_1 -> <DOBI tray>, ... (one entry per FORI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

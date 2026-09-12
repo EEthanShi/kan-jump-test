@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: FANU, VOKU, VOBI, MAPO, SADA. Toys move FANU -> VOKU -> VOBI -> MAPO -> SADA.
+There are 7 moving steps:
+- "jiro" carries each FANU slot to a VOKU slot.
+- "zoda" is an internal reshuffle of VOKU: it carries each VOKU slot to a VOKU slot.
+- "ruli" carries each VOKU slot to a VOBI slot.
+- "rago" is an internal reshuffle of VOBI: it carries each VOBI slot to a VOBI slot.
+- "rafo" carries each VOBI slot to a MAPO slot.
+- "roti" is an internal reshuffle of MAPO: it carries each MAPO slot to a MAPO slot.
+- "firi" carries each MAPO slot to a SADA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "jiro" and then "zoda" lands on the same slot as running "jiro" alone.
+     ("zoda" leaves every slot that "jiro" produces unchanged.)
+R1.2 Running "zoda" and then "ruli" gives the same result as running "ruli" alone.
+     ("ruli" cannot tell whether "zoda" was applied first.)
+R1.3 Running "zoda" three times in a row leaves every VOKU slot exactly where it started.
+R2.1 Running "ruli" and then "rago" lands on the same slot as running "ruli" alone.
+     ("rago" leaves every slot that "ruli" produces unchanged.)
+R2.2 Running "rago" and then "rafo" gives the same result as running "rafo" alone.
+     ("rafo" cannot tell whether "rago" was applied first.)
+R2.3 Running "rago" twice in a row leaves every VOBI slot exactly where it started.
+R3.1 Running "rafo" and then "roti" lands on the same slot as running "rafo" alone.
+     ("roti" leaves every slot that "rafo" produces unchanged.)
+R3.2 Running "roti" and then "firi" gives the same result as running "firi" alone.
+     ("firi" cannot tell whether "roti" was applied first.)
+R3.3 Running "roti" three times in a row leaves every MAPO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FANU has exactly one slot, called n1.
+- SADA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (VOKU, VOBI, MAPO):
+D1.1 List the slots of VOKU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zoda" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of VOBI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "rago" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of MAPO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "roti" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+VOKU = {q1_1, ..., q1_k}
+jiro: n1 -> <VOKU slot>
+zoda: q1_1 -> <VOKU slot>, ..., q1_k -> <VOKU slot>
+VOBI = {q2_1, ..., q2_k}
+ruli: q1_1 -> <VOBI slot>, ... (one entry per VOKU slot)
+rago: q2_1 -> <VOBI slot>, ..., q2_k -> <VOBI slot>
+MAPO = {q3_1, ..., q3_k}
+rafo: q2_1 -> <MAPO slot>, ... (one entry per VOBI slot)
+roti: q3_1 -> <MAPO slot>, ..., q3_k -> <MAPO slot>
+firi: q3_1 -> <SADA slot>, ... (one entry per MAPO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

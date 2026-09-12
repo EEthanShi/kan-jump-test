@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: JIKA, NULU, SAKA, TOJO, GULI. Books move JIKA -> NULU -> SAKA -> TOJO -> GULI.
+There are 7 moving steps:
+- "japo" carries each JIKA tray to a NULU tray.
+- "mina" is an internal rearrangement of NULU: it carries each NULU tray to a NULU tray.
+- "ruja" carries each NULU tray to a SAKA tray.
+- "pira" is an internal rearrangement of SAKA: it carries each SAKA tray to a SAKA tray.
+- "fima" carries each SAKA tray to a TOJO tray.
+- "sini" is an internal rearrangement of TOJO: it carries each TOJO tray to a TOJO tray.
+- "lota" carries each TOJO tray to a GULI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "japo" and then "mina" lands on the same tray as running "japo" alone.
+     ("mina" leaves every tray that "japo" produces unchanged.)
+R1.2 Running "mina" and then "ruja" gives the same result as running "ruja" alone.
+     ("ruja" cannot tell whether "mina" was applied first.)
+R1.3 Running "mina" twice in a row leaves every NULU tray exactly where it started.
+R2.1 Running "ruja" and then "pira" lands on the same tray as running "ruja" alone.
+     ("pira" leaves every tray that "ruja" produces unchanged.)
+R2.2 Running "pira" and then "fima" gives the same result as running "fima" alone.
+     ("fima" cannot tell whether "pira" was applied first.)
+R2.3 Running "pira" twice in a row leaves every SAKA tray exactly where it started.
+R3.1 Running "fima" and then "sini" lands on the same tray as running "fima" alone.
+     ("sini" leaves every tray that "fima" produces unchanged.)
+R3.2 Running "sini" and then "lota" gives the same result as running "lota" alone.
+     ("lota" cannot tell whether "sini" was applied first.)
+R3.3 Running "sini" three times in a row leaves every TOJO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JIKA has exactly one tray, called n1.
+- GULI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NULU, SAKA, TOJO):
+D1.1 List the trays of NULU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "mina" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of SAKA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "pira" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of TOJO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "sini" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NULU = {q1_1, ..., q1_k}
+japo: n1 -> <NULU tray>
+mina: q1_1 -> <NULU tray>, ..., q1_k -> <NULU tray>
+SAKA = {q2_1, ..., q2_k}
+ruja: q1_1 -> <SAKA tray>, ... (one entry per NULU tray)
+pira: q2_1 -> <SAKA tray>, ..., q2_k -> <SAKA tray>
+TOJO = {q3_1, ..., q3_k}
+fima: q2_1 -> <TOJO tray>, ... (one entry per SAKA tray)
+sini: q3_1 -> <TOJO tray>, ..., q3_k -> <TOJO tray>
+lota: q3_1 -> <GULI tray>, ... (one entry per TOJO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

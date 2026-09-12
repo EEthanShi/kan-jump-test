@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DIFA, NIRI, ZOJI, DAFU, ROBO. Toys move DIFA -> NIRI -> ZOJI -> DAFU -> ROBO.
+There are 7 moving steps:
+- "bifi" carries each DIFA slot to a NIRI slot.
+- "kosi" is an internal reshuffle of NIRI: it carries each NIRI slot to a NIRI slot.
+- "gabi" carries each NIRI slot to a ZOJI slot.
+- "gusi" is an internal reshuffle of ZOJI: it carries each ZOJI slot to a ZOJI slot.
+- "fobo" carries each ZOJI slot to a DAFU slot.
+- "lizo" is an internal reshuffle of DAFU: it carries each DAFU slot to a DAFU slot.
+- "sota" carries each DAFU slot to a ROBO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "bifi" and then "kosi" lands on the same slot as running "bifi" alone.
+     ("kosi" leaves every slot that "bifi" produces unchanged.)
+R1.2 Running "kosi" and then "gabi" gives the same result as running "gabi" alone.
+     ("gabi" cannot tell whether "kosi" was applied first.)
+R1.3 Running "kosi" twice in a row leaves every NIRI slot exactly where it started.
+R2.1 Running "gabi" and then "gusi" lands on the same slot as running "gabi" alone.
+     ("gusi" leaves every slot that "gabi" produces unchanged.)
+R2.2 Running "gusi" and then "fobo" gives the same result as running "fobo" alone.
+     ("fobo" cannot tell whether "gusi" was applied first.)
+R2.3 Running "gusi" twice in a row leaves every ZOJI slot exactly where it started.
+R3.1 Running "fobo" and then "lizo" lands on the same slot as running "fobo" alone.
+     ("lizo" leaves every slot that "fobo" produces unchanged.)
+R3.2 Running "lizo" and then "sota" gives the same result as running "sota" alone.
+     ("sota" cannot tell whether "lizo" was applied first.)
+R3.3 Running "lizo" three times in a row leaves every DAFU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DIFA has exactly one slot, called n1.
+- ROBO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NIRI, ZOJI, DAFU):
+D1.1 NIRI must be a finite set with at most 1 slot.
+D1.2 List the "kosi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 ZOJI must be a finite set with at most 1 slot.
+D2.2 List the "gusi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 DAFU must be a finite set with at most 1 slot.
+D3.2 List the "lizo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NIRI = {q1_1, ..., q1_k}
+bifi: n1 -> <NIRI slot>
+kosi: q1_1 -> <NIRI slot>, ..., q1_k -> <NIRI slot>
+ZOJI = {q2_1, ..., q2_k}
+gabi: q1_1 -> <ZOJI slot>, ... (one entry per NIRI slot)
+gusi: q2_1 -> <ZOJI slot>, ..., q2_k -> <ZOJI slot>
+DAFU = {q3_1, ..., q3_k}
+fobo: q2_1 -> <DAFU slot>, ... (one entry per ZOJI slot)
+lizo: q3_1 -> <DAFU slot>, ..., q3_k -> <DAFU slot>
+sota: q3_1 -> <ROBO slot>, ... (one entry per DAFU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

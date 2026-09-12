@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: DIFA, BUMU, ZAZU, KUKO. Books move DIFA -> BUMU -> ZAZU -> KUKO.
+There are 5 moving steps:
+- "vaka" carries each DIFA tray to a BUMU tray.
+- "jisi" is an internal rearrangement of BUMU: it carries each BUMU tray to a BUMU tray.
+- "saza" carries each BUMU tray to a ZAZU tray.
+- "vodi" is an internal rearrangement of ZAZU: it carries each ZAZU tray to a ZAZU tray.
+- "junu" carries each ZAZU tray to a KUKO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vaka" and then "jisi" lands on the same tray as running "vaka" alone.
+     ("jisi" leaves every tray that "vaka" produces unchanged.)
+R1.2 Running "jisi" and then "saza" gives the same result as running "saza" alone.
+     ("saza" cannot tell whether "jisi" was applied first.)
+R1.3 Running "jisi" twice in a row leaves every BUMU tray exactly where it started.
+R2.1 Running "saza" and then "vodi" lands on the same tray as running "saza" alone.
+     ("vodi" leaves every tray that "saza" produces unchanged.)
+R2.2 Running "vodi" and then "junu" gives the same result as running "junu" alone.
+     ("junu" cannot tell whether "vodi" was applied first.)
+R2.3 Running "vodi" twice in a row leaves every ZAZU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DIFA has exactly one tray, called n1.
+- KUKO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (BUMU, ZAZU):
+D1.1 BUMU must be a finite set with at most 1 tray.
+D1.2 List the "jisi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 ZAZU must be a finite set with at most 1 tray.
+D2.2 List the "vodi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+BUMU = {q1_1, ..., q1_k}
+vaka: n1 -> <BUMU tray>
+jisi: q1_1 -> <BUMU tray>, ..., q1_k -> <BUMU tray>
+ZAZU = {q2_1, ..., q2_k}
+saza: q1_1 -> <ZAZU tray>, ... (one entry per BUMU tray)
+vodi: q2_1 -> <ZAZU tray>, ..., q2_k -> <ZAZU tray>
+junu: q2_1 -> <KUKO tray>, ... (one entry per ZAZU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

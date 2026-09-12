@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: BIPI, VUZA, TANO, SURA, TATU, GILA. Books move BIPI -> VUZA -> TANO -> SURA -> TATU -> GILA.
+There are 9 moving steps:
+- "zuda" carries each BIPI tray to a VUZA tray.
+- "luta" is an internal rearrangement of VUZA: it carries each VUZA tray to a VUZA tray.
+- "fatu" carries each VUZA tray to a TANO tray.
+- "nolo" is an internal rearrangement of TANO: it carries each TANO tray to a TANO tray.
+- "tuvu" carries each TANO tray to a SURA tray.
+- "lasi" is an internal rearrangement of SURA: it carries each SURA tray to a SURA tray.
+- "ponu" carries each SURA tray to a TATU tray.
+- "vugi" is an internal rearrangement of TATU: it carries each TATU tray to a TATU tray.
+- "givo" carries each TATU tray to a GILA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zuda" and then "luta" lands on the same tray as running "zuda" alone.
+     ("luta" leaves every tray that "zuda" produces unchanged.)
+R1.2 Running "luta" and then "fatu" gives the same result as running "fatu" alone.
+     ("fatu" cannot tell whether "luta" was applied first.)
+R1.3 Running "luta" three times in a row leaves every VUZA tray exactly where it started.
+R2.1 Running "fatu" and then "nolo" lands on the same tray as running "fatu" alone.
+     ("nolo" leaves every tray that "fatu" produces unchanged.)
+R2.2 Running "nolo" and then "tuvu" gives the same result as running "tuvu" alone.
+     ("tuvu" cannot tell whether "nolo" was applied first.)
+R2.3 Running "nolo" twice in a row leaves every TANO tray exactly where it started.
+R3.1 Running "tuvu" and then "lasi" lands on the same tray as running "tuvu" alone.
+     ("lasi" leaves every tray that "tuvu" produces unchanged.)
+R3.2 Running "lasi" and then "ponu" gives the same result as running "ponu" alone.
+     ("ponu" cannot tell whether "lasi" was applied first.)
+R3.3 Running "lasi" three times in a row leaves every SURA tray exactly where it started.
+R4.1 Running "ponu" and then "vugi" lands on the same tray as running "ponu" alone.
+     ("vugi" leaves every tray that "ponu" produces unchanged.)
+R4.2 Running "vugi" and then "givo" gives the same result as running "givo" alone.
+     ("givo" cannot tell whether "vugi" was applied first.)
+R4.3 Running "vugi" twice in a row leaves every TATU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BIPI has exactly one tray, called n1.
+- GILA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VUZA, TANO, SURA, TATU):
+D1.1 VUZA must be a finite set with at most 1 tray.
+D1.2 List the "luta" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 TANO must be a finite set with at most 1 tray.
+D2.2 List the "nolo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 SURA must be a finite set with at most 1 tray.
+D3.2 List the "lasi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 TATU must be a finite set with at most 1 tray.
+D4.2 List the "vugi" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VUZA = {q1_1, ..., q1_k}
+zuda: n1 -> <VUZA tray>
+luta: q1_1 -> <VUZA tray>, ..., q1_k -> <VUZA tray>
+TANO = {q2_1, ..., q2_k}
+fatu: q1_1 -> <TANO tray>, ... (one entry per VUZA tray)
+nolo: q2_1 -> <TANO tray>, ..., q2_k -> <TANO tray>
+SURA = {q3_1, ..., q3_k}
+tuvu: q2_1 -> <SURA tray>, ... (one entry per TANO tray)
+lasi: q3_1 -> <SURA tray>, ..., q3_k -> <SURA tray>
+TATU = {q4_1, ..., q4_k}
+ponu: q3_1 -> <TATU tray>, ... (one entry per SURA tray)
+vugi: q4_1 -> <TATU tray>, ..., q4_k -> <TATU tray>
+givo: q4_1 -> <GILA tray>, ... (one entry per TATU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

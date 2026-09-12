@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: BURI, POPA, DUFO, KUTO, TUKA. Books move BURI -> POPA -> DUFO -> KUTO -> TUKA.
+There are 7 moving steps:
+- "moga" carries each BURI tray to a POPA tray.
+- "noji" is an internal rearrangement of POPA: it carries each POPA tray to a POPA tray.
+- "tufu" carries each POPA tray to a DUFO tray.
+- "rora" is an internal rearrangement of DUFO: it carries each DUFO tray to a DUFO tray.
+- "vato" carries each DUFO tray to a KUTO tray.
+- "zida" is an internal rearrangement of KUTO: it carries each KUTO tray to a KUTO tray.
+- "sazu" carries each KUTO tray to a TUKA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "moga" and then "noji" lands on the same tray as running "moga" alone.
+     ("noji" leaves every tray that "moga" produces unchanged.)
+R1.2 Running "noji" and then "tufu" gives the same result as running "tufu" alone.
+     ("tufu" cannot tell whether "noji" was applied first.)
+R1.3 Running "noji" three times in a row leaves every POPA tray exactly where it started.
+R2.1 Running "tufu" and then "rora" lands on the same tray as running "tufu" alone.
+     ("rora" leaves every tray that "tufu" produces unchanged.)
+R2.2 Running "rora" and then "vato" gives the same result as running "vato" alone.
+     ("vato" cannot tell whether "rora" was applied first.)
+R2.3 Running "rora" three times in a row leaves every DUFO tray exactly where it started.
+R3.1 Running "vato" and then "zida" lands on the same tray as running "vato" alone.
+     ("zida" leaves every tray that "vato" produces unchanged.)
+R3.2 Running "zida" and then "sazu" gives the same result as running "sazu" alone.
+     ("sazu" cannot tell whether "zida" was applied first.)
+R3.3 Running "zida" three times in a row leaves every KUTO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BURI has exactly one tray, called n1.
+- TUKA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (POPA, DUFO, KUTO):
+D1.1 POPA must be a finite set with at most 4 trays.
+D1.2 "noji" must NOT be the do-nothing move (it must move at least one POPA tray).
+D2.1 DUFO must be a finite set with at most 4 trays.
+D2.2 "rora" must NOT be the do-nothing move (it must move at least one DUFO tray).
+D3.1 KUTO must be a finite set with at most 4 trays.
+D3.2 "zida" must NOT be the do-nothing move (it must move at least one KUTO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+POPA = {q1_1, ..., q1_k}
+moga: n1 -> <POPA tray>
+noji: q1_1 -> <POPA tray>, ..., q1_k -> <POPA tray>
+DUFO = {q2_1, ..., q2_k}
+tufu: q1_1 -> <DUFO tray>, ... (one entry per POPA tray)
+rora: q2_1 -> <DUFO tray>, ..., q2_k -> <DUFO tray>
+KUTO = {q3_1, ..., q3_k}
+vato: q2_1 -> <KUTO tray>, ... (one entry per DUFO tray)
+zida: q3_1 -> <KUTO tray>, ..., q3_k -> <KUTO tray>
+sazu: q3_1 -> <TUKA tray>, ... (one entry per KUTO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

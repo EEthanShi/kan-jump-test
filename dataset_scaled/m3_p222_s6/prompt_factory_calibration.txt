@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: ZUFO, POLU, LUMI, VOJI, NUFU. Toys move ZUFO -> POLU -> LUMI -> VOJI -> NUFU.
+There are 7 moving steps:
+- "fozo" carries each ZUFO slot to a POLU slot.
+- "kaso" is an internal reshuffle of POLU: it carries each POLU slot to a POLU slot.
+- "buri" carries each POLU slot to a LUMI slot.
+- "somi" is an internal reshuffle of LUMI: it carries each LUMI slot to a LUMI slot.
+- "goka" carries each LUMI slot to a VOJI slot.
+- "mogo" is an internal reshuffle of VOJI: it carries each VOJI slot to a VOJI slot.
+- "zojo" carries each VOJI slot to a NUFU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "fozo" and then "kaso" lands on the same slot as running "fozo" alone.
+     ("kaso" leaves every slot that "fozo" produces unchanged.)
+R1.2 Running "kaso" and then "buri" gives the same result as running "buri" alone.
+     ("buri" cannot tell whether "kaso" was applied first.)
+R1.3 Running "kaso" twice in a row leaves every POLU slot exactly where it started.
+R2.1 Running "buri" and then "somi" lands on the same slot as running "buri" alone.
+     ("somi" leaves every slot that "buri" produces unchanged.)
+R2.2 Running "somi" and then "goka" gives the same result as running "goka" alone.
+     ("goka" cannot tell whether "somi" was applied first.)
+R2.3 Running "somi" twice in a row leaves every LUMI slot exactly where it started.
+R3.1 Running "goka" and then "mogo" lands on the same slot as running "goka" alone.
+     ("mogo" leaves every slot that "goka" produces unchanged.)
+R3.2 Running "mogo" and then "zojo" gives the same result as running "zojo" alone.
+     ("zojo" cannot tell whether "mogo" was applied first.)
+R3.3 Running "mogo" twice in a row leaves every VOJI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZUFO has exactly one slot, called n1.
+- NUFU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (POLU, LUMI, VOJI):
+D1.1 List the slots of POLU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kaso" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of LUMI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "somi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of VOJI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "mogo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+POLU = {q1_1, ..., q1_k}
+fozo: n1 -> <POLU slot>
+kaso: q1_1 -> <POLU slot>, ..., q1_k -> <POLU slot>
+LUMI = {q2_1, ..., q2_k}
+buri: q1_1 -> <LUMI slot>, ... (one entry per POLU slot)
+somi: q2_1 -> <LUMI slot>, ..., q2_k -> <LUMI slot>
+VOJI = {q3_1, ..., q3_k}
+goka: q2_1 -> <VOJI slot>, ... (one entry per LUMI slot)
+mogo: q3_1 -> <VOJI slot>, ..., q3_k -> <VOJI slot>
+zojo: q3_1 -> <NUFU slot>, ... (one entry per VOJI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

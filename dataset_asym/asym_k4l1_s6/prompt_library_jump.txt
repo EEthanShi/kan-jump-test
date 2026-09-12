@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: SOTA, MUVA, LIVO. Books move SOTA -> MUVA -> LIVO.
+There are 3 moving steps:
+- "zovo" carries each SOTA tray to a MUVA tray.
+- "vama" is an internal rearrangement of MUVA: it carries each MUVA tray to a MUVA tray.
+- "biba" carries each MUVA tray to a LIVO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zovo" and then "vama" lands on the same tray as running "zovo" alone.
+     ("vama" leaves every tray that "zovo" produces unchanged.)
+R1.2 Running "vama" and then "biba" gives the same result as running "biba" alone.
+     ("biba" cannot tell whether "vama" was applied first.)
+R1.3 Running "vama" twice in a row leaves every MUVA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOTA has exactly 4 trays, called n1, n2, n3, n4.
+- LIVO has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1, n4 to s1.
+
+Requirements for the middle cart (MUVA):
+D1.1 MUVA must be a finite set with at most 6 trays.
+D1.2 "vama" must NOT be the do-nothing move (it must move at least one MUVA tray).
+D1.3 "zovo" must carry different SOTA trays to different MUVA trays.
+D1.4 Every LIVO tray must be reached by "biba" from at least one MUVA tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 6 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+MUVA = {q1_1, ..., q1_k}
+zovo: n1 -> <MUVA tray>, n2 -> <MUVA tray>, n3 -> <MUVA tray>, n4 -> <MUVA tray>
+vama: q1_1 -> <MUVA tray>, ..., q1_k -> <MUVA tray>
+biba: q1_1 -> <LIVO tray>, ... (one entry per MUVA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

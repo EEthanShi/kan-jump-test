@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: ZOBI, DOPI, BOTO, FUPA, LUDU. Toys move ZOBI -> DOPI -> BOTO -> FUPA -> LUDU.
+There are 7 moving steps:
+- "koku" carries each ZOBI slot to a DOPI slot.
+- "sibu" is an internal reshuffle of DOPI: it carries each DOPI slot to a DOPI slot.
+- "luso" carries each DOPI slot to a BOTO slot.
+- "laba" is an internal reshuffle of BOTO: it carries each BOTO slot to a BOTO slot.
+- "navu" carries each BOTO slot to a FUPA slot.
+- "tala" is an internal reshuffle of FUPA: it carries each FUPA slot to a FUPA slot.
+- "pala" carries each FUPA slot to a LUDU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "koku" and then "sibu" lands on the same slot as running "koku" alone.
+     ("sibu" leaves every slot that "koku" produces unchanged.)
+R1.2 Running "sibu" and then "luso" gives the same result as running "luso" alone.
+     ("luso" cannot tell whether "sibu" was applied first.)
+R1.3 Running "sibu" three times in a row leaves every DOPI slot exactly where it started.
+R2.1 Running "luso" and then "laba" lands on the same slot as running "luso" alone.
+     ("laba" leaves every slot that "luso" produces unchanged.)
+R2.2 Running "laba" and then "navu" gives the same result as running "navu" alone.
+     ("navu" cannot tell whether "laba" was applied first.)
+R2.3 Running "laba" three times in a row leaves every BOTO slot exactly where it started.
+R3.1 Running "navu" and then "tala" lands on the same slot as running "navu" alone.
+     ("tala" leaves every slot that "navu" produces unchanged.)
+R3.2 Running "tala" and then "pala" gives the same result as running "pala" alone.
+     ("pala" cannot tell whether "tala" was applied first.)
+R3.3 Running "tala" twice in a row leaves every FUPA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZOBI has exactly one slot, called n1.
+- LUDU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DOPI, BOTO, FUPA):
+D1.1 DOPI must be a finite set with at most 4 slots.
+D1.2 "sibu" must NOT be the do-nothing move (it must move at least one DOPI slot).
+D2.1 BOTO must be a finite set with at most 4 slots.
+D2.2 "laba" must NOT be the do-nothing move (it must move at least one BOTO slot).
+D3.1 FUPA must be a finite set with at most 3 slots.
+D3.2 "tala" must NOT be the do-nothing move (it must move at least one FUPA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DOPI = {q1_1, ..., q1_k}
+koku: n1 -> <DOPI slot>
+sibu: q1_1 -> <DOPI slot>, ..., q1_k -> <DOPI slot>
+BOTO = {q2_1, ..., q2_k}
+luso: q1_1 -> <BOTO slot>, ... (one entry per DOPI slot)
+laba: q2_1 -> <BOTO slot>, ..., q2_k -> <BOTO slot>
+FUPA = {q3_1, ..., q3_k}
+navu: q2_1 -> <FUPA slot>, ... (one entry per BOTO slot)
+tala: q3_1 -> <FUPA slot>, ..., q3_k -> <FUPA slot>
+pala: q3_1 -> <LUDU slot>, ... (one entry per FUPA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

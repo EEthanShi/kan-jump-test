@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: PIDO, MUSO, PUTI, FUJU, NUTU. Toys move PIDO -> MUSO -> PUTI -> FUJU -> NUTU.
+There are 7 moving steps:
+- "nofa" carries each PIDO slot to a MUSO slot.
+- "milu" is an internal reshuffle of MUSO: it carries each MUSO slot to a MUSO slot.
+- "tiju" carries each MUSO slot to a PUTI slot.
+- "boki" is an internal reshuffle of PUTI: it carries each PUTI slot to a PUTI slot.
+- "pugo" carries each PUTI slot to a FUJU slot.
+- "topo" is an internal reshuffle of FUJU: it carries each FUJU slot to a FUJU slot.
+- "fizo" carries each FUJU slot to a NUTU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nofa" and then "milu" lands on the same slot as running "nofa" alone.
+     ("milu" leaves every slot that "nofa" produces unchanged.)
+R1.2 Running "milu" and then "tiju" gives the same result as running "tiju" alone.
+     ("tiju" cannot tell whether "milu" was applied first.)
+R1.3 Running "milu" three times in a row leaves every MUSO slot exactly where it started.
+R2.1 Running "tiju" and then "boki" lands on the same slot as running "tiju" alone.
+     ("boki" leaves every slot that "tiju" produces unchanged.)
+R2.2 Running "boki" and then "pugo" gives the same result as running "pugo" alone.
+     ("pugo" cannot tell whether "boki" was applied first.)
+R2.3 Running "boki" three times in a row leaves every PUTI slot exactly where it started.
+R3.1 Running "pugo" and then "topo" lands on the same slot as running "pugo" alone.
+     ("topo" leaves every slot that "pugo" produces unchanged.)
+R3.2 Running "topo" and then "fizo" gives the same result as running "fizo" alone.
+     ("fizo" cannot tell whether "topo" was applied first.)
+R3.3 Running "topo" three times in a row leaves every FUJU slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PIDO has exactly one slot, called n1.
+- NUTU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MUSO, PUTI, FUJU):
+D1.1 List the slots of MUSO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "milu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of PUTI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "boki" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of FUJU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "topo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MUSO = {q1_1, ..., q1_k}
+nofa: n1 -> <MUSO slot>
+milu: q1_1 -> <MUSO slot>, ..., q1_k -> <MUSO slot>
+PUTI = {q2_1, ..., q2_k}
+tiju: q1_1 -> <PUTI slot>, ... (one entry per MUSO slot)
+boki: q2_1 -> <PUTI slot>, ..., q2_k -> <PUTI slot>
+FUJU = {q3_1, ..., q3_k}
+pugo: q2_1 -> <FUJU slot>, ... (one entry per PUTI slot)
+topo: q3_1 -> <FUJU slot>, ..., q3_k -> <FUJU slot>
+fizo: q3_1 -> <NUTU slot>, ... (one entry per FUJU slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

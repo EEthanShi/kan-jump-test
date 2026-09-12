@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: NUDA, ZOSI, LAFO, VAKA, RIRA. Books move NUDA -> ZOSI -> LAFO -> VAKA -> RIRA.
+There are 7 moving steps:
+- "lija" carries each NUDA tray to a ZOSI tray.
+- "zogo" is an internal rearrangement of ZOSI: it carries each ZOSI tray to a ZOSI tray.
+- "juru" carries each ZOSI tray to a LAFO tray.
+- "bigu" is an internal rearrangement of LAFO: it carries each LAFO tray to a LAFO tray.
+- "zavi" carries each LAFO tray to a VAKA tray.
+- "vovi" is an internal rearrangement of VAKA: it carries each VAKA tray to a VAKA tray.
+- "kopo" carries each VAKA tray to a RIRA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "lija" and then "zogo" lands on the same tray as running "lija" alone.
+     ("zogo" leaves every tray that "lija" produces unchanged.)
+R1.2 Running "zogo" and then "juru" gives the same result as running "juru" alone.
+     ("juru" cannot tell whether "zogo" was applied first.)
+R1.3 Running "zogo" twice in a row leaves every ZOSI tray exactly where it started.
+R2.1 Running "juru" and then "bigu" lands on the same tray as running "juru" alone.
+     ("bigu" leaves every tray that "juru" produces unchanged.)
+R2.2 Running "bigu" and then "zavi" gives the same result as running "zavi" alone.
+     ("zavi" cannot tell whether "bigu" was applied first.)
+R2.3 Running "bigu" twice in a row leaves every LAFO tray exactly where it started.
+R3.1 Running "zavi" and then "vovi" lands on the same tray as running "zavi" alone.
+     ("vovi" leaves every tray that "zavi" produces unchanged.)
+R3.2 Running "vovi" and then "kopo" gives the same result as running "kopo" alone.
+     ("kopo" cannot tell whether "vovi" was applied first.)
+R3.3 Running "vovi" twice in a row leaves every VAKA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NUDA has exactly one tray, called n1.
+- RIRA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZOSI, LAFO, VAKA):
+D1.1 List the trays of ZOSI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zogo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of LAFO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "bigu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of VAKA in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "vovi" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZOSI = {q1_1, ..., q1_k}
+lija: n1 -> <ZOSI tray>
+zogo: q1_1 -> <ZOSI tray>, ..., q1_k -> <ZOSI tray>
+LAFO = {q2_1, ..., q2_k}
+juru: q1_1 -> <LAFO tray>, ... (one entry per ZOSI tray)
+bigu: q2_1 -> <LAFO tray>, ..., q2_k -> <LAFO tray>
+VAKA = {q3_1, ..., q3_k}
+zavi: q2_1 -> <VAKA tray>, ... (one entry per LAFO tray)
+vovi: q3_1 -> <VAKA tray>, ..., q3_k -> <VAKA tray>
+kopo: q3_1 -> <RIRA tray>, ... (one entry per VAKA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

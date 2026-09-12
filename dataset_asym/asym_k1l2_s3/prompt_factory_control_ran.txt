@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: NUNU, DOSA, NATA. Toys move NUNU -> DOSA -> NATA.
+There are 3 moving steps:
+- "roto" carries each NUNU slot to a DOSA slot.
+- "poso" is an internal reshuffle of DOSA: it carries each DOSA slot to a DOSA slot.
+- "sabi" carries each DOSA slot to a NATA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "roto" and then "poso" lands on the same slot as running "roto" alone.
+     ("poso" leaves every slot that "roto" produces unchanged.)
+R1.2 Running "poso" and then "sabi" gives the same result as running "sabi" alone.
+     ("sabi" cannot tell whether "poso" was applied first.)
+R1.3 Running "poso" twice in a row leaves every DOSA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NUNU has exactly 1 slot, called n1.
+- NATA has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (DOSA):
+D1.1 DOSA must be a finite set with at most 2 slots.
+D1.2 List the "poso" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "roto" table entries in NUNU slot order n1.
+D1.4 Every NATA slot must be reached by "sabi" from at least one DOSA slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 3 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+DOSA = {q1_1, ..., q1_k}
+roto: n1 -> <DOSA slot>
+poso: q1_1 -> <DOSA slot>, ..., q1_k -> <DOSA slot>
+sabi: q1_1 -> <NATA slot>, ... (one entry per DOSA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

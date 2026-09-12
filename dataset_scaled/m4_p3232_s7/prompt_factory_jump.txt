@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: LULA, KUJA, PIRI, ZUKO, BIMA, KAMO. Toys move LULA -> KUJA -> PIRI -> ZUKO -> BIMA -> KAMO.
+There are 9 moving steps:
+- "rifa" carries each LULA slot to a KUJA slot.
+- "podu" is an internal reshuffle of KUJA: it carries each KUJA slot to a KUJA slot.
+- "jufo" carries each KUJA slot to a PIRI slot.
+- "gono" is an internal reshuffle of PIRI: it carries each PIRI slot to a PIRI slot.
+- "dori" carries each PIRI slot to a ZUKO slot.
+- "rigi" is an internal reshuffle of ZUKO: it carries each ZUKO slot to a ZUKO slot.
+- "nafo" carries each ZUKO slot to a BIMA slot.
+- "fira" is an internal reshuffle of BIMA: it carries each BIMA slot to a BIMA slot.
+- "vili" carries each BIMA slot to a KAMO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "rifa" and then "podu" lands on the same slot as running "rifa" alone.
+     ("podu" leaves every slot that "rifa" produces unchanged.)
+R1.2 Running "podu" and then "jufo" gives the same result as running "jufo" alone.
+     ("jufo" cannot tell whether "podu" was applied first.)
+R1.3 Running "podu" three times in a row leaves every KUJA slot exactly where it started.
+R2.1 Running "jufo" and then "gono" lands on the same slot as running "jufo" alone.
+     ("gono" leaves every slot that "jufo" produces unchanged.)
+R2.2 Running "gono" and then "dori" gives the same result as running "dori" alone.
+     ("dori" cannot tell whether "gono" was applied first.)
+R2.3 Running "gono" twice in a row leaves every PIRI slot exactly where it started.
+R3.1 Running "dori" and then "rigi" lands on the same slot as running "dori" alone.
+     ("rigi" leaves every slot that "dori" produces unchanged.)
+R3.2 Running "rigi" and then "nafo" gives the same result as running "nafo" alone.
+     ("nafo" cannot tell whether "rigi" was applied first.)
+R3.3 Running "rigi" three times in a row leaves every ZUKO slot exactly where it started.
+R4.1 Running "nafo" and then "fira" lands on the same slot as running "nafo" alone.
+     ("fira" leaves every slot that "nafo" produces unchanged.)
+R4.2 Running "fira" and then "vili" gives the same result as running "vili" alone.
+     ("vili" cannot tell whether "fira" was applied first.)
+R4.3 Running "fira" twice in a row leaves every BIMA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LULA has exactly one slot, called n1.
+- KAMO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KUJA, PIRI, ZUKO, BIMA):
+D1.1 KUJA must be a finite set with at most 4 slots.
+D1.2 "podu" must NOT be the do-nothing move (it must move at least one KUJA slot).
+D2.1 PIRI must be a finite set with at most 3 slots.
+D2.2 "gono" must NOT be the do-nothing move (it must move at least one PIRI slot).
+D3.1 ZUKO must be a finite set with at most 4 slots.
+D3.2 "rigi" must NOT be the do-nothing move (it must move at least one ZUKO slot).
+D4.1 BIMA must be a finite set with at most 3 slots.
+D4.2 "fira" must NOT be the do-nothing move (it must move at least one BIMA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KUJA = {q1_1, ..., q1_k}
+rifa: n1 -> <KUJA slot>
+podu: q1_1 -> <KUJA slot>, ..., q1_k -> <KUJA slot>
+PIRI = {q2_1, ..., q2_k}
+jufo: q1_1 -> <PIRI slot>, ... (one entry per KUJA slot)
+gono: q2_1 -> <PIRI slot>, ..., q2_k -> <PIRI slot>
+ZUKO = {q3_1, ..., q3_k}
+dori: q2_1 -> <ZUKO slot>, ... (one entry per PIRI slot)
+rigi: q3_1 -> <ZUKO slot>, ..., q3_k -> <ZUKO slot>
+BIMA = {q4_1, ..., q4_k}
+nafo: q3_1 -> <BIMA slot>, ... (one entry per ZUKO slot)
+fira: q4_1 -> <BIMA slot>, ..., q4_k -> <BIMA slot>
+vili: q4_1 -> <KAMO slot>, ... (one entry per BIMA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

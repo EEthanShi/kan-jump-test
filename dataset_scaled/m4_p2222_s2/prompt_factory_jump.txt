@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: RUBU, KUKI, BASO, FUJU, PIZA, NIJU. Toys move RUBU -> KUKI -> BASO -> FUJU -> PIZA -> NIJU.
+There are 9 moving steps:
+- "livu" carries each RUBU slot to a KUKI slot.
+- "tija" is an internal reshuffle of KUKI: it carries each KUKI slot to a KUKI slot.
+- "timi" carries each KUKI slot to a BASO slot.
+- "riju" is an internal reshuffle of BASO: it carries each BASO slot to a BASO slot.
+- "buzu" carries each BASO slot to a FUJU slot.
+- "loju" is an internal reshuffle of FUJU: it carries each FUJU slot to a FUJU slot.
+- "noma" carries each FUJU slot to a PIZA slot.
+- "tojo" is an internal reshuffle of PIZA: it carries each PIZA slot to a PIZA slot.
+- "ponu" carries each PIZA slot to a NIJU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "livu" and then "tija" lands on the same slot as running "livu" alone.
+     ("tija" leaves every slot that "livu" produces unchanged.)
+R1.2 Running "tija" and then "timi" gives the same result as running "timi" alone.
+     ("timi" cannot tell whether "tija" was applied first.)
+R1.3 Running "tija" twice in a row leaves every KUKI slot exactly where it started.
+R2.1 Running "timi" and then "riju" lands on the same slot as running "timi" alone.
+     ("riju" leaves every slot that "timi" produces unchanged.)
+R2.2 Running "riju" and then "buzu" gives the same result as running "buzu" alone.
+     ("buzu" cannot tell whether "riju" was applied first.)
+R2.3 Running "riju" twice in a row leaves every BASO slot exactly where it started.
+R3.1 Running "buzu" and then "loju" lands on the same slot as running "buzu" alone.
+     ("loju" leaves every slot that "buzu" produces unchanged.)
+R3.2 Running "loju" and then "noma" gives the same result as running "noma" alone.
+     ("noma" cannot tell whether "loju" was applied first.)
+R3.3 Running "loju" twice in a row leaves every FUJU slot exactly where it started.
+R4.1 Running "noma" and then "tojo" lands on the same slot as running "noma" alone.
+     ("tojo" leaves every slot that "noma" produces unchanged.)
+R4.2 Running "tojo" and then "ponu" gives the same result as running "ponu" alone.
+     ("ponu" cannot tell whether "tojo" was applied first.)
+R4.3 Running "tojo" twice in a row leaves every PIZA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RUBU has exactly one slot, called n1.
+- NIJU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KUKI, BASO, FUJU, PIZA):
+D1.1 KUKI must be a finite set with at most 3 slots.
+D1.2 "tija" must NOT be the do-nothing move (it must move at least one KUKI slot).
+D2.1 BASO must be a finite set with at most 3 slots.
+D2.2 "riju" must NOT be the do-nothing move (it must move at least one BASO slot).
+D3.1 FUJU must be a finite set with at most 3 slots.
+D3.2 "loju" must NOT be the do-nothing move (it must move at least one FUJU slot).
+D4.1 PIZA must be a finite set with at most 3 slots.
+D4.2 "tojo" must NOT be the do-nothing move (it must move at least one PIZA slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KUKI = {q1_1, ..., q1_k}
+livu: n1 -> <KUKI slot>
+tija: q1_1 -> <KUKI slot>, ..., q1_k -> <KUKI slot>
+BASO = {q2_1, ..., q2_k}
+timi: q1_1 -> <BASO slot>, ... (one entry per KUKI slot)
+riju: q2_1 -> <BASO slot>, ..., q2_k -> <BASO slot>
+FUJU = {q3_1, ..., q3_k}
+buzu: q2_1 -> <FUJU slot>, ... (one entry per BASO slot)
+loju: q3_1 -> <FUJU slot>, ..., q3_k -> <FUJU slot>
+PIZA = {q4_1, ..., q4_k}
+noma: q3_1 -> <PIZA slot>, ... (one entry per FUJU slot)
+tojo: q4_1 -> <PIZA slot>, ..., q4_k -> <PIZA slot>
+ponu: q4_1 -> <NIJU slot>, ... (one entry per PIZA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

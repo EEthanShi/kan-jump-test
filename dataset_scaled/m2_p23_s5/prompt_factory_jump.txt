@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: SOTA, NITO, ZINI, MIZA. Toys move SOTA -> NITO -> ZINI -> MIZA.
+There are 5 moving steps:
+- "raki" carries each SOTA slot to a NITO slot.
+- "lato" is an internal reshuffle of NITO: it carries each NITO slot to a NITO slot.
+- "gopo" carries each NITO slot to a ZINI slot.
+- "falo" is an internal reshuffle of ZINI: it carries each ZINI slot to a ZINI slot.
+- "fopu" carries each ZINI slot to a MIZA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "raki" and then "lato" lands on the same slot as running "raki" alone.
+     ("lato" leaves every slot that "raki" produces unchanged.)
+R1.2 Running "lato" and then "gopo" gives the same result as running "gopo" alone.
+     ("gopo" cannot tell whether "lato" was applied first.)
+R1.3 Running "lato" twice in a row leaves every NITO slot exactly where it started.
+R2.1 Running "gopo" and then "falo" lands on the same slot as running "gopo" alone.
+     ("falo" leaves every slot that "gopo" produces unchanged.)
+R2.2 Running "falo" and then "fopu" gives the same result as running "fopu" alone.
+     ("fopu" cannot tell whether "falo" was applied first.)
+R2.3 Running "falo" three times in a row leaves every ZINI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOTA has exactly one slot, called n1.
+- MIZA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NITO, ZINI):
+D1.1 NITO must be a finite set with at most 3 slots.
+D1.2 "lato" must NOT be the do-nothing move (it must move at least one NITO slot).
+D2.1 ZINI must be a finite set with at most 4 slots.
+D2.2 "falo" must NOT be the do-nothing move (it must move at least one ZINI slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NITO = {q1_1, ..., q1_k}
+raki: n1 -> <NITO slot>
+lato: q1_1 -> <NITO slot>, ..., q1_k -> <NITO slot>
+ZINI = {q2_1, ..., q2_k}
+gopo: q1_1 -> <ZINI slot>, ... (one entry per NITO slot)
+falo: q2_1 -> <ZINI slot>, ..., q2_k -> <ZINI slot>
+fopu: q2_1 -> <MIZA slot>, ... (one entry per ZINI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

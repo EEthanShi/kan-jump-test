@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: KUTO, FINO, SAPI. Books move KUTO -> FINO -> SAPI.
+There are 3 moving steps:
+- "falu" carries each KUTO tray to a FINO tray.
+- "poba" is an internal rearrangement of FINO: it carries each FINO tray to a FINO tray.
+- "givi" carries each FINO tray to a SAPI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "falu" and then "poba" lands on the same tray as running "falu" alone.
+     ("poba" leaves every tray that "falu" produces unchanged.)
+R1.2 Running "poba" and then "givi" gives the same result as running "givi" alone.
+     ("givi" cannot tell whether "poba" was applied first.)
+R1.3 Running "poba" twice in a row leaves every FINO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KUTO has exactly 3 trays, called n1, n2, n3.
+- SAPI has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1, n3 to s1.
+
+Requirements for the middle cart (FINO):
+D1.1 FINO must be a finite set with at most 5 trays.
+D1.2 "poba" must NOT be the do-nothing move (it must move at least one FINO tray).
+D1.3 "falu" must carry different KUTO trays to different FINO trays.
+D1.4 Every SAPI tray must be reached by "givi" from at least one FINO tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+FINO = {q1_1, ..., q1_k}
+falu: n1 -> <FINO tray>, n2 -> <FINO tray>, n3 -> <FINO tray>
+poba: q1_1 -> <FINO tray>, ..., q1_k -> <FINO tray>
+givi: q1_1 -> <SAPI tray>, ... (one entry per FINO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

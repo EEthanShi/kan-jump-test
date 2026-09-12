@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: VOZO, MIRA, LAPU, MODA, NADO. Books move VOZO -> MIRA -> LAPU -> MODA -> NADO.
+There are 7 moving steps:
+- "dasi" carries each VOZO tray to a MIRA tray.
+- "janu" is an internal rearrangement of MIRA: it carries each MIRA tray to a MIRA tray.
+- "toru" carries each MIRA tray to a LAPU tray.
+- "vuru" is an internal rearrangement of LAPU: it carries each LAPU tray to a LAPU tray.
+- "namo" carries each LAPU tray to a MODA tray.
+- "zuso" is an internal rearrangement of MODA: it carries each MODA tray to a MODA tray.
+- "tizu" carries each MODA tray to a NADO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "dasi" and then "janu" lands on the same tray as running "dasi" alone.
+     ("janu" leaves every tray that "dasi" produces unchanged.)
+R1.2 Running "janu" and then "toru" gives the same result as running "toru" alone.
+     ("toru" cannot tell whether "janu" was applied first.)
+R1.3 Running "janu" twice in a row leaves every MIRA tray exactly where it started.
+R2.1 Running "toru" and then "vuru" lands on the same tray as running "toru" alone.
+     ("vuru" leaves every tray that "toru" produces unchanged.)
+R2.2 Running "vuru" and then "namo" gives the same result as running "namo" alone.
+     ("namo" cannot tell whether "vuru" was applied first.)
+R2.3 Running "vuru" twice in a row leaves every LAPU tray exactly where it started.
+R3.1 Running "namo" and then "zuso" lands on the same tray as running "namo" alone.
+     ("zuso" leaves every tray that "namo" produces unchanged.)
+R3.2 Running "zuso" and then "tizu" gives the same result as running "tizu" alone.
+     ("tizu" cannot tell whether "zuso" was applied first.)
+R3.3 Running "zuso" three times in a row leaves every MODA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- VOZO has exactly one tray, called n1.
+- NADO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MIRA, LAPU, MODA):
+D1.1 MIRA must be a finite set with at most 3 trays.
+D1.2 "janu" must NOT be the do-nothing move (it must move at least one MIRA tray).
+D2.1 LAPU must be a finite set with at most 3 trays.
+D2.2 "vuru" must NOT be the do-nothing move (it must move at least one LAPU tray).
+D3.1 MODA must be a finite set with at most 4 trays.
+D3.2 "zuso" must NOT be the do-nothing move (it must move at least one MODA tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MIRA = {q1_1, ..., q1_k}
+dasi: n1 -> <MIRA tray>
+janu: q1_1 -> <MIRA tray>, ..., q1_k -> <MIRA tray>
+LAPU = {q2_1, ..., q2_k}
+toru: q1_1 -> <LAPU tray>, ... (one entry per MIRA tray)
+vuru: q2_1 -> <LAPU tray>, ..., q2_k -> <LAPU tray>
+MODA = {q3_1, ..., q3_k}
+namo: q2_1 -> <MODA tray>, ... (one entry per LAPU tray)
+zuso: q3_1 -> <MODA tray>, ..., q3_k -> <MODA tray>
+tizu: q3_1 -> <NADO tray>, ... (one entry per MODA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

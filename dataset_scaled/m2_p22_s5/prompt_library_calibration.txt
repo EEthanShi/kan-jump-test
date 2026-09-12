@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: GIPU, SURI, NIDI, KILU. Books move GIPU -> SURI -> NIDI -> KILU.
+There are 5 moving steps:
+- "sasu" carries each GIPU tray to a SURI tray.
+- "lora" is an internal rearrangement of SURI: it carries each SURI tray to a SURI tray.
+- "novo" carries each SURI tray to a NIDI tray.
+- "pimu" is an internal rearrangement of NIDI: it carries each NIDI tray to a NIDI tray.
+- "vubi" carries each NIDI tray to a KILU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sasu" and then "lora" lands on the same tray as running "sasu" alone.
+     ("lora" leaves every tray that "sasu" produces unchanged.)
+R1.2 Running "lora" and then "novo" gives the same result as running "novo" alone.
+     ("novo" cannot tell whether "lora" was applied first.)
+R1.3 Running "lora" twice in a row leaves every SURI tray exactly where it started.
+R2.1 Running "novo" and then "pimu" lands on the same tray as running "novo" alone.
+     ("pimu" leaves every tray that "novo" produces unchanged.)
+R2.2 Running "pimu" and then "vubi" gives the same result as running "vubi" alone.
+     ("vubi" cannot tell whether "pimu" was applied first.)
+R2.3 Running "pimu" twice in a row leaves every NIDI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GIPU has exactly one tray, called n1.
+- KILU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SURI, NIDI):
+D1.1 List the trays of SURI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "lora" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of NIDI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "pimu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SURI = {q1_1, ..., q1_k}
+sasu: n1 -> <SURI tray>
+lora: q1_1 -> <SURI tray>, ..., q1_k -> <SURI tray>
+NIDI = {q2_1, ..., q2_k}
+novo: q1_1 -> <NIDI tray>, ... (one entry per SURI tray)
+pimu: q2_1 -> <NIDI tray>, ..., q2_k -> <NIDI tray>
+vubi: q2_1 -> <KILU tray>, ... (one entry per NIDI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: TIJI, KIKO, PIKU, VAPA, ZIBI. Toys move TIJI -> KIKO -> PIKU -> VAPA -> ZIBI.
+There are 7 moving steps:
+- "botu" carries each TIJI slot to a KIKO slot.
+- "zubi" is an internal reshuffle of KIKO: it carries each KIKO slot to a KIKO slot.
+- "zumi" carries each KIKO slot to a PIKU slot.
+- "gilu" is an internal reshuffle of PIKU: it carries each PIKU slot to a PIKU slot.
+- "jobo" carries each PIKU slot to a VAPA slot.
+- "tifa" is an internal reshuffle of VAPA: it carries each VAPA slot to a VAPA slot.
+- "bara" carries each VAPA slot to a ZIBI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "botu" and then "zubi" lands on the same slot as running "botu" alone.
+     ("zubi" leaves every slot that "botu" produces unchanged.)
+R1.2 Running "zubi" and then "zumi" gives the same result as running "zumi" alone.
+     ("zumi" cannot tell whether "zubi" was applied first.)
+R1.3 Running "zubi" twice in a row leaves every KIKO slot exactly where it started.
+R2.1 Running "zumi" and then "gilu" lands on the same slot as running "zumi" alone.
+     ("gilu" leaves every slot that "zumi" produces unchanged.)
+R2.2 Running "gilu" and then "jobo" gives the same result as running "jobo" alone.
+     ("jobo" cannot tell whether "gilu" was applied first.)
+R2.3 Running "gilu" twice in a row leaves every PIKU slot exactly where it started.
+R3.1 Running "jobo" and then "tifa" lands on the same slot as running "jobo" alone.
+     ("tifa" leaves every slot that "jobo" produces unchanged.)
+R3.2 Running "tifa" and then "bara" gives the same result as running "bara" alone.
+     ("bara" cannot tell whether "tifa" was applied first.)
+R3.3 Running "tifa" twice in a row leaves every VAPA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TIJI has exactly one slot, called n1.
+- ZIBI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (KIKO, PIKU, VAPA):
+D1.1 KIKO must be a finite set with at most 1 slot.
+D1.2 List the "zubi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 PIKU must be a finite set with at most 1 slot.
+D2.2 List the "gilu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 VAPA must be a finite set with at most 1 slot.
+D3.2 List the "tifa" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+KIKO = {q1_1, ..., q1_k}
+botu: n1 -> <KIKO slot>
+zubi: q1_1 -> <KIKO slot>, ..., q1_k -> <KIKO slot>
+PIKU = {q2_1, ..., q2_k}
+zumi: q1_1 -> <PIKU slot>, ... (one entry per KIKO slot)
+gilu: q2_1 -> <PIKU slot>, ..., q2_k -> <PIKU slot>
+VAPA = {q3_1, ..., q3_k}
+jobo: q2_1 -> <VAPA slot>, ... (one entry per PIKU slot)
+tifa: q3_1 -> <VAPA slot>, ..., q3_k -> <VAPA slot>
+bara: q3_1 -> <ZIBI slot>, ... (one entry per VAPA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,112 @@
+{
+  "m": 4,
+  "ps": [
+    2,
+    3,
+    2,
+    3
+  ],
+  "N": 5,
+  "certification_mode": "theorem",
+  "category_ok": true,
+  "c0_full_ok": true,
+  "f0_ok": true,
+  "ext_count": 938167008837,
+  "lan_sizes": {
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1
+  },
+  "ran_sizes": {
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1
+  },
+  "lan_eq_ran": true,
+  "kan_trivial": true,
+  "lan_in_ext": true,
+  "ran_in_ext": true,
+  "adm_count": 576,
+  "chance": 6.13963179875659e-10,
+  "adm_count_formula": 576,
+  "adm_count_matches_formula": true,
+  "J1": true,
+  "kan_violations": {
+    "Lan*": [
+      "K1_1",
+      "K1_2",
+      "K1_3",
+      "K1_4"
+    ],
+    "Ran*": [
+      "K1_1",
+      "K1_2",
+      "K1_3",
+      "K1_4"
+    ]
+  },
+  "J2_each_kan_violates": true,
+  "J2": true,
+  "J3": true,
+  "J4": true,
+  "J4_strong": true,
+  "adm_structure_ok": true,
+  "bound_entailed": true,
+  "non_pinning": {
+    "K1_1": {
+      "alive": 519650560482,
+      "fraction": 0.5538998446835021
+    },
+    "K2_1": {
+      "alive": 12855034483,
+      "fraction": 0.013702287931586682
+    },
+    "K1_2": {
+      "alive": 21571342080,
+      "fraction": 0.022993072530594464
+    },
+    "K2_2": {
+      "alive": 79275190902,
+      "fraction": 0.08450008383930874
+    },
+    "K1_3": {
+      "alive": 159567215958,
+      "fraction": 0.17008401964145778
+    },
+    "K2_3": {
+      "alive": 4949542899,
+      "fraction": 0.00527575884930734
+    },
+    "K1_4": {
+      "alive": 149477476944,
+      "fraction": 0.15932928309779296
+    },
+    "K2_4": {
+      "alive": 246201207432,
+      "fraction": 0.26242791007669697
+    }
+  },
+  "non_pinning_floor": 0.1,
+  "non_pinning_ok": false,
+  "certified": true,
+  "control": {
+    "m": 4,
+    "ps": [
+      2,
+      3,
+      2,
+      3
+    ],
+    "N": 5,
+    "certification_mode": "theorem",
+    "adm_count": 1,
+    "J1": true,
+    "adm_equals_lan_component": true,
+    "lan_eq_ran": true,
+    "J3": true,
+    "J4_strong": true,
+    "certified": true
+  }
+}

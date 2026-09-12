@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KAMA, DOTO, LAJO, GIZI, GUBU. Books move KAMA -> DOTO -> LAJO -> GIZI -> GUBU.
+There are 7 moving steps:
+- "vuna" carries each KAMA tray to a DOTO tray.
+- "kagi" is an internal rearrangement of DOTO: it carries each DOTO tray to a DOTO tray.
+- "tafi" carries each DOTO tray to a LAJO tray.
+- "tovo" is an internal rearrangement of LAJO: it carries each LAJO tray to a LAJO tray.
+- "fagu" carries each LAJO tray to a GIZI tray.
+- "fura" is an internal rearrangement of GIZI: it carries each GIZI tray to a GIZI tray.
+- "dibi" carries each GIZI tray to a GUBU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vuna" and then "kagi" lands on the same tray as running "vuna" alone.
+     ("kagi" leaves every tray that "vuna" produces unchanged.)
+R1.2 Running "kagi" and then "tafi" gives the same result as running "tafi" alone.
+     ("tafi" cannot tell whether "kagi" was applied first.)
+R1.3 Running "kagi" three times in a row leaves every DOTO tray exactly where it started.
+R2.1 Running "tafi" and then "tovo" lands on the same tray as running "tafi" alone.
+     ("tovo" leaves every tray that "tafi" produces unchanged.)
+R2.2 Running "tovo" and then "fagu" gives the same result as running "fagu" alone.
+     ("fagu" cannot tell whether "tovo" was applied first.)
+R2.3 Running "tovo" twice in a row leaves every LAJO tray exactly where it started.
+R3.1 Running "fagu" and then "fura" lands on the same tray as running "fagu" alone.
+     ("fura" leaves every tray that "fagu" produces unchanged.)
+R3.2 Running "fura" and then "dibi" gives the same result as running "dibi" alone.
+     ("dibi" cannot tell whether "fura" was applied first.)
+R3.3 Running "fura" three times in a row leaves every GIZI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KAMA has exactly one tray, called n1.
+- GUBU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DOTO, LAJO, GIZI):
+D1.1 DOTO must be a finite set with at most 4 trays.
+D1.2 "kagi" must NOT be the do-nothing move (it must move at least one DOTO tray).
+D2.1 LAJO must be a finite set with at most 3 trays.
+D2.2 "tovo" must NOT be the do-nothing move (it must move at least one LAJO tray).
+D3.1 GIZI must be a finite set with at most 4 trays.
+D3.2 "fura" must NOT be the do-nothing move (it must move at least one GIZI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DOTO = {q1_1, ..., q1_k}
+vuna: n1 -> <DOTO tray>
+kagi: q1_1 -> <DOTO tray>, ..., q1_k -> <DOTO tray>
+LAJO = {q2_1, ..., q2_k}
+tafi: q1_1 -> <LAJO tray>, ... (one entry per DOTO tray)
+tovo: q2_1 -> <LAJO tray>, ..., q2_k -> <LAJO tray>
+GIZI = {q3_1, ..., q3_k}
+fagu: q2_1 -> <GIZI tray>, ... (one entry per LAJO tray)
+fura: q3_1 -> <GIZI tray>, ..., q3_k -> <GIZI tray>
+dibi: q3_1 -> <GUBU tray>, ... (one entry per GIZI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

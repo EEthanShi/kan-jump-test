@@ -1,0 +1,97 @@
+{
+ "family": "asym",
+ "k": 3,
+ "l": 1,
+ "N": 5,
+ "lan_size_b": 3,
+ "ran_size_b": 1,
+ "ext_count": 561,
+ "adm_count": 60,
+ "chance": 0.10695187165775401,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym3x1_s8",
+     "stations": [
+      "PUSU",
+      "VONA",
+      "KUBA"
+     ],
+     "chain_moves": [
+      "tamu",
+      "kumu"
+     ],
+     "endo_moves": [
+      "liga"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "VONA = {q1_1, q1_2, q1_3}\ntamu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nliga: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nkumu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "VONA = {q1_1}\ntamu: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nliga: q1_1 -> q1_1\nkumu: q1_1 -> s1",
+   "example_admissible_answer": "VONA = {q1_1, q1_2, q1_3, q1_4, q1_5}\ntamu: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nliga: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nkumu: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 1,
+    "N": 5,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym3x1_s8",
+     "stations": [
+      "KOMA",
+      "RIFU",
+      "NALI"
+     ],
+     "chain_moves": [
+      "kiba",
+      "kufo"
+     ],
+     "endo_moves": [
+      "kisu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1"
+     ],
+     "k": 3,
+     "l": 1
+    }
+   },
+   "lan_answer": "RIFU = {q1_1, q1_2, q1_3}\nkiba: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nkisu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nkufo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "RIFU = {q1_1}\nkiba: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nkisu: q1_1 -> q1_1\nkufo: q1_1 -> s1",
+   "example_admissible_answer": "RIFU = {q1_1, q1_2, q1_3, q1_4, q1_5}\nkiba: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nkisu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nkufo: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s1, q1_5 -> s1"
+  }
+ }
+}

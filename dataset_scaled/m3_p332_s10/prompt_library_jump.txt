@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: KAGA, JARO, VISI, DUMO, KAZO. Books move KAGA -> JARO -> VISI -> DUMO -> KAZO.
+There are 7 moving steps:
+- "muji" carries each KAGA tray to a JARO tray.
+- "rudu" is an internal rearrangement of JARO: it carries each JARO tray to a JARO tray.
+- "gila" carries each JARO tray to a VISI tray.
+- "mala" is an internal rearrangement of VISI: it carries each VISI tray to a VISI tray.
+- "kina" carries each VISI tray to a DUMO tray.
+- "faka" is an internal rearrangement of DUMO: it carries each DUMO tray to a DUMO tray.
+- "suba" carries each DUMO tray to a KAZO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "muji" and then "rudu" lands on the same tray as running "muji" alone.
+     ("rudu" leaves every tray that "muji" produces unchanged.)
+R1.2 Running "rudu" and then "gila" gives the same result as running "gila" alone.
+     ("gila" cannot tell whether "rudu" was applied first.)
+R1.3 Running "rudu" three times in a row leaves every JARO tray exactly where it started.
+R2.1 Running "gila" and then "mala" lands on the same tray as running "gila" alone.
+     ("mala" leaves every tray that "gila" produces unchanged.)
+R2.2 Running "mala" and then "kina" gives the same result as running "kina" alone.
+     ("kina" cannot tell whether "mala" was applied first.)
+R2.3 Running "mala" three times in a row leaves every VISI tray exactly where it started.
+R3.1 Running "kina" and then "faka" lands on the same tray as running "kina" alone.
+     ("faka" leaves every tray that "kina" produces unchanged.)
+R3.2 Running "faka" and then "suba" gives the same result as running "suba" alone.
+     ("suba" cannot tell whether "faka" was applied first.)
+R3.3 Running "faka" twice in a row leaves every DUMO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- KAGA has exactly one tray, called n1.
+- KAZO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (JARO, VISI, DUMO):
+D1.1 JARO must be a finite set with at most 4 trays.
+D1.2 "rudu" must NOT be the do-nothing move (it must move at least one JARO tray).
+D2.1 VISI must be a finite set with at most 4 trays.
+D2.2 "mala" must NOT be the do-nothing move (it must move at least one VISI tray).
+D3.1 DUMO must be a finite set with at most 3 trays.
+D3.2 "faka" must NOT be the do-nothing move (it must move at least one DUMO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+JARO = {q1_1, ..., q1_k}
+muji: n1 -> <JARO tray>
+rudu: q1_1 -> <JARO tray>, ..., q1_k -> <JARO tray>
+VISI = {q2_1, ..., q2_k}
+gila: q1_1 -> <VISI tray>, ... (one entry per JARO tray)
+mala: q2_1 -> <VISI tray>, ..., q2_k -> <VISI tray>
+DUMO = {q3_1, ..., q3_k}
+kina: q2_1 -> <DUMO tray>, ... (one entry per VISI tray)
+faka: q3_1 -> <DUMO tray>, ..., q3_k -> <DUMO tray>
+suba: q3_1 -> <KAZO tray>, ... (one entry per DUMO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

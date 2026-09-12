@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: NAPU, DABA, TAFA, SIKA, FUTA. Toys move NAPU -> DABA -> TAFA -> SIKA -> FUTA.
+There are 7 moving steps:
+- "kido" carries each NAPU slot to a DABA slot.
+- "vadi" is an internal reshuffle of DABA: it carries each DABA slot to a DABA slot.
+- "nodo" carries each DABA slot to a TAFA slot.
+- "kuvi" is an internal reshuffle of TAFA: it carries each TAFA slot to a TAFA slot.
+- "bobu" carries each TAFA slot to a SIKA slot.
+- "juzu" is an internal reshuffle of SIKA: it carries each SIKA slot to a SIKA slot.
+- "muro" carries each SIKA slot to a FUTA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kido" and then "vadi" lands on the same slot as running "kido" alone.
+     ("vadi" leaves every slot that "kido" produces unchanged.)
+R1.2 Running "vadi" and then "nodo" gives the same result as running "nodo" alone.
+     ("nodo" cannot tell whether "vadi" was applied first.)
+R1.3 Running "vadi" twice in a row leaves every DABA slot exactly where it started.
+R2.1 Running "nodo" and then "kuvi" lands on the same slot as running "nodo" alone.
+     ("kuvi" leaves every slot that "nodo" produces unchanged.)
+R2.2 Running "kuvi" and then "bobu" gives the same result as running "bobu" alone.
+     ("bobu" cannot tell whether "kuvi" was applied first.)
+R2.3 Running "kuvi" twice in a row leaves every TAFA slot exactly where it started.
+R3.1 Running "bobu" and then "juzu" lands on the same slot as running "bobu" alone.
+     ("juzu" leaves every slot that "bobu" produces unchanged.)
+R3.2 Running "juzu" and then "muro" gives the same result as running "muro" alone.
+     ("muro" cannot tell whether "juzu" was applied first.)
+R3.3 Running "juzu" three times in a row leaves every SIKA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NAPU has exactly one slot, called n1.
+- FUTA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (DABA, TAFA, SIKA):
+D1.1 DABA must be a finite set with at most 1 slot.
+D1.2 List the "vadi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 TAFA must be a finite set with at most 1 slot.
+D2.2 List the "kuvi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 SIKA must be a finite set with at most 1 slot.
+D3.2 List the "juzu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+DABA = {q1_1, ..., q1_k}
+kido: n1 -> <DABA slot>
+vadi: q1_1 -> <DABA slot>, ..., q1_k -> <DABA slot>
+TAFA = {q2_1, ..., q2_k}
+nodo: q1_1 -> <TAFA slot>, ... (one entry per DABA slot)
+kuvi: q2_1 -> <TAFA slot>, ..., q2_k -> <TAFA slot>
+SIKA = {q3_1, ..., q3_k}
+bobu: q2_1 -> <SIKA slot>, ... (one entry per TAFA slot)
+juzu: q3_1 -> <SIKA slot>, ..., q3_k -> <SIKA slot>
+muro: q3_1 -> <FUTA slot>, ... (one entry per SIKA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: PUDI, RIDO, LUMA, KULI. Books move PUDI -> RIDO -> LUMA -> KULI.
+There are 5 moving steps:
+- "tago" carries each PUDI tray to a RIDO tray.
+- "majo" is an internal rearrangement of RIDO: it carries each RIDO tray to a RIDO tray.
+- "duga" carries each RIDO tray to a LUMA tray.
+- "soji" is an internal rearrangement of LUMA: it carries each LUMA tray to a LUMA tray.
+- "jufu" carries each LUMA tray to a KULI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tago" and then "majo" lands on the same tray as running "tago" alone.
+     ("majo" leaves every tray that "tago" produces unchanged.)
+R1.2 Running "majo" and then "duga" gives the same result as running "duga" alone.
+     ("duga" cannot tell whether "majo" was applied first.)
+R1.3 Running "majo" three times in a row leaves every RIDO tray exactly where it started.
+R2.1 Running "duga" and then "soji" lands on the same tray as running "duga" alone.
+     ("soji" leaves every tray that "duga" produces unchanged.)
+R2.2 Running "soji" and then "jufu" gives the same result as running "jufu" alone.
+     ("jufu" cannot tell whether "soji" was applied first.)
+R2.3 Running "soji" three times in a row leaves every LUMA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PUDI has exactly one tray, called n1.
+- KULI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RIDO, LUMA):
+D1.1 List the trays of RIDO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "majo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of LUMA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "soji" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RIDO = {q1_1, ..., q1_k}
+tago: n1 -> <RIDO tray>
+majo: q1_1 -> <RIDO tray>, ..., q1_k -> <RIDO tray>
+LUMA = {q2_1, ..., q2_k}
+duga: q1_1 -> <LUMA tray>, ... (one entry per RIDO tray)
+soji: q2_1 -> <LUMA tray>, ..., q2_k -> <LUMA tray>
+jufu: q2_1 -> <KULI tray>, ... (one entry per LUMA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

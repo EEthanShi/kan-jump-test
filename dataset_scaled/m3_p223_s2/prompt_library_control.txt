@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: PARO, PATA, DAFO, FABU, ROMA. Books move PARO -> PATA -> DAFO -> FABU -> ROMA.
+There are 7 moving steps:
+- "zala" carries each PARO tray to a PATA tray.
+- "gufu" is an internal rearrangement of PATA: it carries each PATA tray to a PATA tray.
+- "faga" carries each PATA tray to a DAFO tray.
+- "fafi" is an internal rearrangement of DAFO: it carries each DAFO tray to a DAFO tray.
+- "poza" carries each DAFO tray to a FABU tray.
+- "lata" is an internal rearrangement of FABU: it carries each FABU tray to a FABU tray.
+- "mino" carries each FABU tray to a ROMA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zala" and then "gufu" lands on the same tray as running "zala" alone.
+     ("gufu" leaves every tray that "zala" produces unchanged.)
+R1.2 Running "gufu" and then "faga" gives the same result as running "faga" alone.
+     ("faga" cannot tell whether "gufu" was applied first.)
+R1.3 Running "gufu" twice in a row leaves every PATA tray exactly where it started.
+R2.1 Running "faga" and then "fafi" lands on the same tray as running "faga" alone.
+     ("fafi" leaves every tray that "faga" produces unchanged.)
+R2.2 Running "fafi" and then "poza" gives the same result as running "poza" alone.
+     ("poza" cannot tell whether "fafi" was applied first.)
+R2.3 Running "fafi" twice in a row leaves every DAFO tray exactly where it started.
+R3.1 Running "poza" and then "lata" lands on the same tray as running "poza" alone.
+     ("lata" leaves every tray that "poza" produces unchanged.)
+R3.2 Running "lata" and then "mino" gives the same result as running "mino" alone.
+     ("mino" cannot tell whether "lata" was applied first.)
+R3.3 Running "lata" three times in a row leaves every FABU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PARO has exactly one tray, called n1.
+- ROMA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (PATA, DAFO, FABU):
+D1.1 PATA must be a finite set with at most 1 tray.
+D1.2 List the "gufu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 DAFO must be a finite set with at most 1 tray.
+D2.2 List the "fafi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 FABU must be a finite set with at most 1 tray.
+D3.2 List the "lata" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+PATA = {q1_1, ..., q1_k}
+zala: n1 -> <PATA tray>
+gufu: q1_1 -> <PATA tray>, ..., q1_k -> <PATA tray>
+DAFO = {q2_1, ..., q2_k}
+faga: q1_1 -> <DAFO tray>, ... (one entry per PATA tray)
+fafi: q2_1 -> <DAFO tray>, ..., q2_k -> <DAFO tray>
+FABU = {q3_1, ..., q3_k}
+poza: q2_1 -> <FABU tray>, ... (one entry per DAFO tray)
+lata: q3_1 -> <FABU tray>, ..., q3_k -> <FABU tray>
+mino: q3_1 -> <ROMA tray>, ... (one entry per FABU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

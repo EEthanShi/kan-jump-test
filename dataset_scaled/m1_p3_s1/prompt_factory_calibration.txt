@@ -1,0 +1,39 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: GARO, PUVI, GAZA. Toys move GARO -> PUVI -> GAZA.
+There are 3 moving steps:
+- "pulo" carries each GARO slot to a PUVI slot.
+- "juso" is an internal reshuffle of PUVI: it carries each PUVI slot to a PUVI slot.
+- "dova" carries each PUVI slot to a GAZA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pulo" and then "juso" lands on the same slot as running "pulo" alone.
+     ("juso" leaves every slot that "pulo" produces unchanged.)
+R1.2 Running "juso" and then "dova" gives the same result as running "dova" alone.
+     ("dova" cannot tell whether "juso" was applied first.)
+R1.3 Running "juso" three times in a row leaves every PUVI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- GARO has exactly one slot, called n1.
+- GAZA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (PUVI):
+D1.1 List the slots of PUVI in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "juso" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PUVI = {q1_1, ..., q1_k}
+pulo: n1 -> <PUVI slot>
+juso: q1_1 -> <PUVI slot>, ..., q1_k -> <PUVI slot>
+dova: q1_1 -> <GAZA slot>, ... (one entry per PUVI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

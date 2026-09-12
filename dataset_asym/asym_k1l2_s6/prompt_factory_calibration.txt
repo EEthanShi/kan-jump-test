@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: JOZI, ZIJO, JIRA. Toys move JOZI -> ZIJO -> JIRA.
+There are 3 moving steps:
+- "fato" carries each JOZI slot to a ZIJO slot.
+- "lafa" is an internal reshuffle of ZIJO: it carries each ZIJO slot to a ZIJO slot.
+- "fira" carries each ZIJO slot to a JIRA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "fato" and then "lafa" lands on the same slot as running "fato" alone.
+     ("lafa" leaves every slot that "fato" produces unchanged.)
+R1.2 Running "lafa" and then "fira" gives the same result as running "fira" alone.
+     ("fira" cannot tell whether "lafa" was applied first.)
+R1.3 Running "lafa" twice in a row leaves every ZIJO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JOZI has exactly 1 slot, called n1.
+- JIRA has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (ZIJO):
+D1.1 List the slots of ZIJO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "lafa" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "fato" table entries in JOZI slot order n1.
+D1.4 List the "fira" table entries in ZIJO slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 3 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+ZIJO = {q1_1, ..., q1_k}
+fato: n1 -> <ZIJO slot>
+lafa: q1_1 -> <ZIJO slot>, ..., q1_k -> <ZIJO slot>
+fira: q1_1 -> <JIRA slot>, ... (one entry per ZIJO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

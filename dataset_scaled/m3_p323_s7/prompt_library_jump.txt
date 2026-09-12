@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: RUFO, RUSO, PAVU, JIGI, LOZA. Books move RUFO -> RUSO -> PAVU -> JIGI -> LOZA.
+There are 7 moving steps:
+- "tigu" carries each RUFO tray to a RUSO tray.
+- "nami" is an internal rearrangement of RUSO: it carries each RUSO tray to a RUSO tray.
+- "mibo" carries each RUSO tray to a PAVU tray.
+- "voba" is an internal rearrangement of PAVU: it carries each PAVU tray to a PAVU tray.
+- "dasa" carries each PAVU tray to a JIGI tray.
+- "nivu" is an internal rearrangement of JIGI: it carries each JIGI tray to a JIGI tray.
+- "nupu" carries each JIGI tray to a LOZA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "tigu" and then "nami" lands on the same tray as running "tigu" alone.
+     ("nami" leaves every tray that "tigu" produces unchanged.)
+R1.2 Running "nami" and then "mibo" gives the same result as running "mibo" alone.
+     ("mibo" cannot tell whether "nami" was applied first.)
+R1.3 Running "nami" three times in a row leaves every RUSO tray exactly where it started.
+R2.1 Running "mibo" and then "voba" lands on the same tray as running "mibo" alone.
+     ("voba" leaves every tray that "mibo" produces unchanged.)
+R2.2 Running "voba" and then "dasa" gives the same result as running "dasa" alone.
+     ("dasa" cannot tell whether "voba" was applied first.)
+R2.3 Running "voba" twice in a row leaves every PAVU tray exactly where it started.
+R3.1 Running "dasa" and then "nivu" lands on the same tray as running "dasa" alone.
+     ("nivu" leaves every tray that "dasa" produces unchanged.)
+R3.2 Running "nivu" and then "nupu" gives the same result as running "nupu" alone.
+     ("nupu" cannot tell whether "nivu" was applied first.)
+R3.3 Running "nivu" three times in a row leaves every JIGI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RUFO has exactly one tray, called n1.
+- LOZA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RUSO, PAVU, JIGI):
+D1.1 RUSO must be a finite set with at most 4 trays.
+D1.2 "nami" must NOT be the do-nothing move (it must move at least one RUSO tray).
+D2.1 PAVU must be a finite set with at most 3 trays.
+D2.2 "voba" must NOT be the do-nothing move (it must move at least one PAVU tray).
+D3.1 JIGI must be a finite set with at most 4 trays.
+D3.2 "nivu" must NOT be the do-nothing move (it must move at least one JIGI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RUSO = {q1_1, ..., q1_k}
+tigu: n1 -> <RUSO tray>
+nami: q1_1 -> <RUSO tray>, ..., q1_k -> <RUSO tray>
+PAVU = {q2_1, ..., q2_k}
+mibo: q1_1 -> <PAVU tray>, ... (one entry per RUSO tray)
+voba: q2_1 -> <PAVU tray>, ..., q2_k -> <PAVU tray>
+JIGI = {q3_1, ..., q3_k}
+dasa: q2_1 -> <JIGI tray>, ... (one entry per PAVU tray)
+nivu: q3_1 -> <JIGI tray>, ..., q3_k -> <JIGI tray>
+nupu: q3_1 -> <LOZA tray>, ... (one entry per JIGI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

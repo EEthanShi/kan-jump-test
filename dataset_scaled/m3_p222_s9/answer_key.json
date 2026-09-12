@@ -1,0 +1,108 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 3,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          2,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s9",
+          "stations": [
+            "MINA",
+            "KOKA",
+            "PITA",
+            "KODI",
+            "BAZI"
+          ],
+          "chain_moves": [
+            "zapa",
+            "mofo",
+            "fovo",
+            "naka"
+          ],
+          "endo_moves": [
+            "niko",
+            "raku",
+            "zipa"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "KOKA = {q1_1, q1_2, q1_3}\nzapa: n1 -> q1_1\nniko: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nPITA = {q2_1, q2_2, q2_3}\nmofo: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nraku: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nKODI = {q3_1, q3_2, q3_3}\nfovo: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\nzipa: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\nnaka: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1",
+      "kan_answer": "KOKA = {q1_1}\nzapa: n1 -> q1_1\nniko: q1_1 -> q1_1\nPITA = {q2_1}\nmofo: q1_1 -> q2_1\nraku: q2_1 -> q2_1\nKODI = {q3_1}\nfovo: q2_1 -> q3_1\nzipa: q3_1 -> q3_1\nnaka: q3_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 3,
+        "ps": [
+          2,
+          2,
+          2
+        ],
+        "N": 4,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s9",
+          "stations": [
+            "NUDA",
+            "ZOSI",
+            "LAFO",
+            "VAKA",
+            "RIRA"
+          ],
+          "chain_moves": [
+            "lija",
+            "juru",
+            "zavi",
+            "kopo"
+          ],
+          "endo_moves": [
+            "zogo",
+            "bigu",
+            "vovi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_",
+            "q3_"
+          ]
+        }
+      },
+      "example_admissible_answer": "ZOSI = {q1_1, q1_2, q1_3}\nlija: n1 -> q1_1\nzogo: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nLAFO = {q2_1, q2_2, q2_3}\njuru: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nbigu: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_2\nVAKA = {q3_1, q3_2, q3_3}\nzavi: q2_1 -> q3_1, q2_2 -> q3_1, q2_3 -> q3_1\nvovi: q3_1 -> q3_1, q3_2 -> q3_3, q3_3 -> q3_2\nkopo: q3_1 -> s1, q3_2 -> s1, q3_3 -> s1",
+      "kan_answer": "ZOSI = {q1_1}\nlija: n1 -> q1_1\nzogo: q1_1 -> q1_1\nLAFO = {q2_1}\njuru: q1_1 -> q2_1\nbigu: q2_1 -> q2_1\nVAKA = {q3_1}\nzavi: q2_1 -> q3_1\nvovi: q3_1 -> q3_1\nkopo: q3_1 -> s1"
+    }
+  }
+}

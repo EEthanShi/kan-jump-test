@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZIRA, RUPU, MUVU, NAGI, PALI. Books move ZIRA -> RUPU -> MUVU -> NAGI -> PALI.
+There are 7 moving steps:
+- "gomu" carries each ZIRA tray to a RUPU tray.
+- "kiza" is an internal rearrangement of RUPU: it carries each RUPU tray to a RUPU tray.
+- "buzo" carries each RUPU tray to a MUVU tray.
+- "baso" is an internal rearrangement of MUVU: it carries each MUVU tray to a MUVU tray.
+- "tolu" carries each MUVU tray to a NAGI tray.
+- "vuza" is an internal rearrangement of NAGI: it carries each NAGI tray to a NAGI tray.
+- "pubo" carries each NAGI tray to a PALI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gomu" and then "kiza" lands on the same tray as running "gomu" alone.
+     ("kiza" leaves every tray that "gomu" produces unchanged.)
+R1.2 Running "kiza" and then "buzo" gives the same result as running "buzo" alone.
+     ("buzo" cannot tell whether "kiza" was applied first.)
+R1.3 Running "kiza" three times in a row leaves every RUPU tray exactly where it started.
+R2.1 Running "buzo" and then "baso" lands on the same tray as running "buzo" alone.
+     ("baso" leaves every tray that "buzo" produces unchanged.)
+R2.2 Running "baso" and then "tolu" gives the same result as running "tolu" alone.
+     ("tolu" cannot tell whether "baso" was applied first.)
+R2.3 Running "baso" three times in a row leaves every MUVU tray exactly where it started.
+R3.1 Running "tolu" and then "vuza" lands on the same tray as running "tolu" alone.
+     ("vuza" leaves every tray that "tolu" produces unchanged.)
+R3.2 Running "vuza" and then "pubo" gives the same result as running "pubo" alone.
+     ("pubo" cannot tell whether "vuza" was applied first.)
+R3.3 Running "vuza" twice in a row leaves every NAGI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZIRA has exactly one tray, called n1.
+- PALI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (RUPU, MUVU, NAGI):
+D1.1 List the trays of RUPU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kiza" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of MUVU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "baso" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of NAGI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "vuza" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+RUPU = {q1_1, ..., q1_k}
+gomu: n1 -> <RUPU tray>
+kiza: q1_1 -> <RUPU tray>, ..., q1_k -> <RUPU tray>
+MUVU = {q2_1, ..., q2_k}
+buzo: q1_1 -> <MUVU tray>, ... (one entry per RUPU tray)
+baso: q2_1 -> <MUVU tray>, ..., q2_k -> <MUVU tray>
+NAGI = {q3_1, ..., q3_k}
+tolu: q2_1 -> <NAGI tray>, ... (one entry per MUVU tray)
+vuza: q3_1 -> <NAGI tray>, ..., q3_k -> <NAGI tray>
+pubo: q3_1 -> <PALI tray>, ... (one entry per NAGI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

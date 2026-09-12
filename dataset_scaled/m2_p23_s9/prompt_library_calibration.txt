@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: FUKU, KUPU, GINA, FIJU. Books move FUKU -> KUPU -> GINA -> FIJU.
+There are 5 moving steps:
+- "noba" carries each FUKU tray to a KUPU tray.
+- "dupi" is an internal rearrangement of KUPU: it carries each KUPU tray to a KUPU tray.
+- "lago" carries each KUPU tray to a GINA tray.
+- "nuti" is an internal rearrangement of GINA: it carries each GINA tray to a GINA tray.
+- "kala" carries each GINA tray to a FIJU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "noba" and then "dupi" lands on the same tray as running "noba" alone.
+     ("dupi" leaves every tray that "noba" produces unchanged.)
+R1.2 Running "dupi" and then "lago" gives the same result as running "lago" alone.
+     ("lago" cannot tell whether "dupi" was applied first.)
+R1.3 Running "dupi" twice in a row leaves every KUPU tray exactly where it started.
+R2.1 Running "lago" and then "nuti" lands on the same tray as running "lago" alone.
+     ("nuti" leaves every tray that "lago" produces unchanged.)
+R2.2 Running "nuti" and then "kala" gives the same result as running "kala" alone.
+     ("kala" cannot tell whether "nuti" was applied first.)
+R2.3 Running "nuti" three times in a row leaves every GINA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FUKU has exactly one tray, called n1.
+- FIJU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KUPU, GINA):
+D1.1 List the trays of KUPU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "dupi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of GINA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "nuti" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KUPU = {q1_1, ..., q1_k}
+noba: n1 -> <KUPU tray>
+dupi: q1_1 -> <KUPU tray>, ..., q1_k -> <KUPU tray>
+GINA = {q2_1, ..., q2_k}
+lago: q1_1 -> <GINA tray>, ... (one entry per KUPU tray)
+nuti: q2_1 -> <GINA tray>, ..., q2_k -> <GINA tray>
+kala: q2_1 -> <FIJU tray>, ... (one entry per GINA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,51 @@
+You are completing the design of a small toy sorting line with 4 stations.
+
+The stations are: BUDO, TOFA, JUBI, VUMA. Toys move BUDO -> TOFA -> JUBI -> VUMA.
+There are 5 moving steps:
+- "pomo" carries each BUDO slot to a TOFA slot.
+- "vuro" is an internal reshuffle of TOFA: it carries each TOFA slot to a TOFA slot.
+- "lalu" carries each TOFA slot to a JUBI slot.
+- "guda" is an internal reshuffle of JUBI: it carries each JUBI slot to a JUBI slot.
+- "buro" carries each JUBI slot to a VUMA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "pomo" and then "vuro" lands on the same slot as running "pomo" alone.
+     ("vuro" leaves every slot that "pomo" produces unchanged.)
+R1.2 Running "vuro" and then "lalu" gives the same result as running "lalu" alone.
+     ("lalu" cannot tell whether "vuro" was applied first.)
+R1.3 Running "vuro" three times in a row leaves every TOFA slot exactly where it started.
+R2.1 Running "lalu" and then "guda" lands on the same slot as running "lalu" alone.
+     ("guda" leaves every slot that "lalu" produces unchanged.)
+R2.2 Running "guda" and then "buro" gives the same result as running "buro" alone.
+     ("buro" cannot tell whether "guda" was applied first.)
+R2.3 Running "guda" twice in a row leaves every JUBI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BUDO has exactly one slot, called n1.
+- VUMA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TOFA, JUBI):
+D1.1 List the slots of TOFA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "vuro" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of JUBI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "guda" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TOFA = {q1_1, ..., q1_k}
+pomo: n1 -> <TOFA slot>
+vuro: q1_1 -> <TOFA slot>, ..., q1_k -> <TOFA slot>
+JUBI = {q2_1, ..., q2_k}
+lalu: q1_1 -> <JUBI slot>, ... (one entry per TOFA slot)
+guda: q2_1 -> <JUBI slot>, ..., q2_k -> <JUBI slot>
+buro: q2_1 -> <VUMA slot>, ... (one entry per JUBI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

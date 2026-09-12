@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: BADO, PURO, MUNA, MAPA, DURU. Toys move BADO -> PURO -> MUNA -> MAPA -> DURU.
+There are 7 moving steps:
+- "dula" carries each BADO slot to a PURO slot.
+- "poza" is an internal reshuffle of PURO: it carries each PURO slot to a PURO slot.
+- "pibo" carries each PURO slot to a MUNA slot.
+- "noma" is an internal reshuffle of MUNA: it carries each MUNA slot to a MUNA slot.
+- "boji" carries each MUNA slot to a MAPA slot.
+- "bisi" is an internal reshuffle of MAPA: it carries each MAPA slot to a MAPA slot.
+- "tosu" carries each MAPA slot to a DURU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "dula" and then "poza" lands on the same slot as running "dula" alone.
+     ("poza" leaves every slot that "dula" produces unchanged.)
+R1.2 Running "poza" and then "pibo" gives the same result as running "pibo" alone.
+     ("pibo" cannot tell whether "poza" was applied first.)
+R1.3 Running "poza" twice in a row leaves every PURO slot exactly where it started.
+R2.1 Running "pibo" and then "noma" lands on the same slot as running "pibo" alone.
+     ("noma" leaves every slot that "pibo" produces unchanged.)
+R2.2 Running "noma" and then "boji" gives the same result as running "boji" alone.
+     ("boji" cannot tell whether "noma" was applied first.)
+R2.3 Running "noma" three times in a row leaves every MUNA slot exactly where it started.
+R3.1 Running "boji" and then "bisi" lands on the same slot as running "boji" alone.
+     ("bisi" leaves every slot that "boji" produces unchanged.)
+R3.2 Running "bisi" and then "tosu" gives the same result as running "tosu" alone.
+     ("tosu" cannot tell whether "bisi" was applied first.)
+R3.3 Running "bisi" twice in a row leaves every MAPA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- BADO has exactly one slot, called n1.
+- DURU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (PURO, MUNA, MAPA):
+D1.1 PURO must be a finite set with at most 1 slot.
+D1.2 List the "poza" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 MUNA must be a finite set with at most 1 slot.
+D2.2 List the "noma" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 MAPA must be a finite set with at most 1 slot.
+D3.2 List the "bisi" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+PURO = {q1_1, ..., q1_k}
+dula: n1 -> <PURO slot>
+poza: q1_1 -> <PURO slot>, ..., q1_k -> <PURO slot>
+MUNA = {q2_1, ..., q2_k}
+pibo: q1_1 -> <MUNA slot>, ... (one entry per PURO slot)
+noma: q2_1 -> <MUNA slot>, ..., q2_k -> <MUNA slot>
+MAPA = {q3_1, ..., q3_k}
+boji: q2_1 -> <MAPA slot>, ... (one entry per MUNA slot)
+bisi: q3_1 -> <MAPA slot>, ..., q3_k -> <MAPA slot>
+tosu: q3_1 -> <DURU slot>, ... (one entry per MAPA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

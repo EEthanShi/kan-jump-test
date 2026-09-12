@@ -1,0 +1,92 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "p": 2,
+      "required_size": 3,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 2-cycle on the remaining 2 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    },
+    {
+      "station": 2,
+      "p": 3,
+      "required_size": 4,
+      "structure": "one fixed point (= image of the constant incoming map) plus one 3-cycle on the remaining 3 states; incoming map constant onto the fixed point; outgoing map constant on orbits"
+    }
+  ],
+  "renderings": {
+    "factory": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "factory",
+          "seed_tag": "s4",
+          "stations": [
+            "GAPI",
+            "PAVU",
+            "NODU",
+            "NAKI"
+          ],
+          "chain_moves": [
+            "kano",
+            "buri",
+            "pupi"
+          ],
+          "endo_moves": [
+            "duba",
+            "vudi"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "PAVU = {q1_1, q1_2, q1_3}\nkano: n1 -> q1_1\nduba: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nNODU = {q2_1, q2_2, q2_3, q2_4}\nburi: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nvudi: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\npupi: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "PAVU = {q1_1}\nkano: n1 -> q1_1\nduba: q1_1 -> q1_1\nNODU = {q2_1}\nburi: q1_1 -> q2_1\nvudi: q2_1 -> q2_1\npupi: q2_1 -> s1"
+    },
+    "library": {
+      "grade_meta": {
+        "m": 2,
+        "ps": [
+          2,
+          3
+        ],
+        "N": 5,
+        "naming": {
+          "rendering": "library",
+          "seed_tag": "s4",
+          "stations": [
+            "MOKI",
+            "DAKO",
+            "KIKA",
+            "ZUGI"
+          ],
+          "chain_moves": [
+            "luzu",
+            "mado",
+            "nila"
+          ],
+          "endo_moves": [
+            "muku",
+            "vuva"
+          ],
+          "in_slot": "n1",
+          "out_slot": "s1",
+          "slot_prefixes": [
+            "q1_",
+            "q2_"
+          ]
+        }
+      },
+      "example_admissible_answer": "DAKO = {q1_1, q1_2, q1_3}\nluzu: n1 -> q1_1\nmuku: q1_1 -> q1_1, q1_2 -> q1_3, q1_3 -> q1_2\nKIKA = {q2_1, q2_2, q2_3, q2_4}\nmado: q1_1 -> q2_1, q1_2 -> q2_1, q1_3 -> q2_1\nvuva: q2_1 -> q2_1, q2_2 -> q2_3, q2_3 -> q2_4, q2_4 -> q2_2\nnila: q2_1 -> s1, q2_2 -> s1, q2_3 -> s1, q2_4 -> s1",
+      "kan_answer": "DAKO = {q1_1}\nluzu: n1 -> q1_1\nmuku: q1_1 -> q1_1\nKIKA = {q2_1}\nmado: q1_1 -> q2_1\nvuva: q2_1 -> q2_1\nnila: q2_1 -> s1"
+    }
+  }
+}

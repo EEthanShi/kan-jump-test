@@ -1,0 +1,99 @@
+{
+ "family": "asym",
+ "k": 3,
+ "l": 2,
+ "N": 5,
+ "lan_size_b": 3,
+ "ran_size_b": 2,
+ "ext_count": 2355,
+ "adm_count": 60,
+ "chance": 0.025477707006369428,
+ "renderings": {
+  "factory": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 2,
+    "N": 5,
+    "naming": {
+     "rendering": "factory",
+     "seed_tag": "asym3x2_s9",
+     "stations": [
+      "PIKO",
+      "DORU",
+      "KAVU"
+     ],
+     "chain_moves": [
+      "kozi",
+      "vona"
+     ],
+     "endo_moves": [
+      "pozu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 3,
+     "l": 2
+    }
+   },
+   "lan_answer": "DORU = {q1_1, q1_2, q1_3}\nkozi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\npozu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nvona: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "DORU = {q1_1, q1_2}\nkozi: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\npozu: q1_1 -> q1_1, q1_2 -> q1_2\nvona: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "DORU = {q1_1, q1_2, q1_3, q1_4, q1_5}\nkozi: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\npozu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nvona: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s2, q1_5 -> s2"
+  },
+  "library": {
+   "grade_meta": {
+    "family": "asym",
+    "k": 3,
+    "l": 2,
+    "N": 5,
+    "naming": {
+     "rendering": "library",
+     "seed_tag": "asym3x2_s9",
+     "stations": [
+      "SIFO",
+      "GUNO",
+      "TIBI"
+     ],
+     "chain_moves": [
+      "zina",
+      "boka"
+     ],
+     "endo_moves": [
+      "losu"
+     ],
+     "in_slot": "n1",
+     "out_slot": "s1",
+     "slot_prefixes": [
+      "q1_"
+     ],
+     "in_slots": [
+      "n1",
+      "n2",
+      "n3"
+     ],
+     "out_slots": [
+      "s1",
+      "s2"
+     ],
+     "k": 3,
+     "l": 2
+    }
+   },
+   "lan_answer": "GUNO = {q1_1, q1_2, q1_3}\nzina: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nlosu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3\nboka: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1",
+   "ran_answer": "GUNO = {q1_1, q1_2}\nzina: n1 -> q1_1, n2 -> q1_1, n3 -> q1_1\nlosu: q1_1 -> q1_1, q1_2 -> q1_2\nboka: q1_1 -> s1, q1_2 -> s2",
+   "example_admissible_answer": "GUNO = {q1_1, q1_2, q1_3, q1_4, q1_5}\nzina: n1 -> q1_1, n2 -> q1_2, n3 -> q1_3\nlosu: q1_1 -> q1_1, q1_2 -> q1_2, q1_3 -> q1_3, q1_4 -> q1_5, q1_5 -> q1_4\nboka: q1_1 -> s1, q1_2 -> s1, q1_3 -> s1, q1_4 -> s2, q1_5 -> s2"
+  }
+ }
+}

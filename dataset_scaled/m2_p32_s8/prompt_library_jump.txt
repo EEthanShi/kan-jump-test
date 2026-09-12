@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: TITU, ZAPI, KABI, LUBA. Books move TITU -> ZAPI -> KABI -> LUBA.
+There are 5 moving steps:
+- "goki" carries each TITU tray to a ZAPI tray.
+- "papu" is an internal rearrangement of ZAPI: it carries each ZAPI tray to a ZAPI tray.
+- "libo" carries each ZAPI tray to a KABI tray.
+- "kara" is an internal rearrangement of KABI: it carries each KABI tray to a KABI tray.
+- "liko" carries each KABI tray to a LUBA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "goki" and then "papu" lands on the same tray as running "goki" alone.
+     ("papu" leaves every tray that "goki" produces unchanged.)
+R1.2 Running "papu" and then "libo" gives the same result as running "libo" alone.
+     ("libo" cannot tell whether "papu" was applied first.)
+R1.3 Running "papu" three times in a row leaves every ZAPI tray exactly where it started.
+R2.1 Running "libo" and then "kara" lands on the same tray as running "libo" alone.
+     ("kara" leaves every tray that "libo" produces unchanged.)
+R2.2 Running "kara" and then "liko" gives the same result as running "liko" alone.
+     ("liko" cannot tell whether "kara" was applied first.)
+R2.3 Running "kara" twice in a row leaves every KABI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TITU has exactly one tray, called n1.
+- LUBA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZAPI, KABI):
+D1.1 ZAPI must be a finite set with at most 4 trays.
+D1.2 "papu" must NOT be the do-nothing move (it must move at least one ZAPI tray).
+D2.1 KABI must be a finite set with at most 3 trays.
+D2.2 "kara" must NOT be the do-nothing move (it must move at least one KABI tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZAPI = {q1_1, ..., q1_k}
+goki: n1 -> <ZAPI tray>
+papu: q1_1 -> <ZAPI tray>, ..., q1_k -> <ZAPI tray>
+KABI = {q2_1, ..., q2_k}
+libo: q1_1 -> <KABI tray>, ... (one entry per ZAPI tray)
+kara: q2_1 -> <KABI tray>, ..., q2_k -> <KABI tray>
+liko: q2_1 -> <LUBA tray>, ... (one entry per KABI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

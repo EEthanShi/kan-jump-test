@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: TARA, DODI, ZUFA, TAVU, FAFO. Books move TARA -> DODI -> ZUFA -> TAVU -> FAFO.
+There are 7 moving steps:
+- "vika" carries each TARA tray to a DODI tray.
+- "pafu" is an internal rearrangement of DODI: it carries each DODI tray to a DODI tray.
+- "foto" carries each DODI tray to a ZUFA tray.
+- "timi" is an internal rearrangement of ZUFA: it carries each ZUFA tray to a ZUFA tray.
+- "jiza" carries each ZUFA tray to a TAVU tray.
+- "kado" is an internal rearrangement of TAVU: it carries each TAVU tray to a TAVU tray.
+- "mavi" carries each TAVU tray to a FAFO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vika" and then "pafu" lands on the same tray as running "vika" alone.
+     ("pafu" leaves every tray that "vika" produces unchanged.)
+R1.2 Running "pafu" and then "foto" gives the same result as running "foto" alone.
+     ("foto" cannot tell whether "pafu" was applied first.)
+R1.3 Running "pafu" twice in a row leaves every DODI tray exactly where it started.
+R2.1 Running "foto" and then "timi" lands on the same tray as running "foto" alone.
+     ("timi" leaves every tray that "foto" produces unchanged.)
+R2.2 Running "timi" and then "jiza" gives the same result as running "jiza" alone.
+     ("jiza" cannot tell whether "timi" was applied first.)
+R2.3 Running "timi" three times in a row leaves every ZUFA tray exactly where it started.
+R3.1 Running "jiza" and then "kado" lands on the same tray as running "jiza" alone.
+     ("kado" leaves every tray that "jiza" produces unchanged.)
+R3.2 Running "kado" and then "mavi" gives the same result as running "mavi" alone.
+     ("mavi" cannot tell whether "kado" was applied first.)
+R3.3 Running "kado" three times in a row leaves every TAVU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- TARA has exactly one tray, called n1.
+- FAFO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DODI, ZUFA, TAVU):
+D1.1 DODI must be a finite set with at most 1 tray.
+D1.2 List the "pafu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 ZUFA must be a finite set with at most 1 tray.
+D2.2 List the "timi" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 TAVU must be a finite set with at most 1 tray.
+D3.2 List the "kado" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DODI = {q1_1, ..., q1_k}
+vika: n1 -> <DODI tray>
+pafu: q1_1 -> <DODI tray>, ..., q1_k -> <DODI tray>
+ZUFA = {q2_1, ..., q2_k}
+foto: q1_1 -> <ZUFA tray>, ... (one entry per DODI tray)
+timi: q2_1 -> <ZUFA tray>, ..., q2_k -> <ZUFA tray>
+TAVU = {q3_1, ..., q3_k}
+jiza: q2_1 -> <TAVU tray>, ... (one entry per ZUFA tray)
+kado: q3_1 -> <TAVU tray>, ..., q3_k -> <TAVU tray>
+mavi: q3_1 -> <FAFO tray>, ... (one entry per TAVU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

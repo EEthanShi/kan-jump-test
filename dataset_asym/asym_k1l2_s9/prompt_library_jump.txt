@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: LAFI, PAPI, RAVA. Books move LAFI -> PAPI -> RAVA.
+There are 3 moving steps:
+- "vuro" carries each LAFI tray to a PAPI tray.
+- "zuvo" is an internal rearrangement of PAPI: it carries each PAPI tray to a PAPI tray.
+- "rupo" carries each PAPI tray to a RAVA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vuro" and then "zuvo" lands on the same tray as running "vuro" alone.
+     ("zuvo" leaves every tray that "vuro" produces unchanged.)
+R1.2 Running "zuvo" and then "rupo" gives the same result as running "rupo" alone.
+     ("rupo" cannot tell whether "zuvo" was applied first.)
+R1.3 Running "zuvo" twice in a row leaves every PAPI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LAFI has exactly 1 tray, called n1.
+- RAVA has exactly 2 trays, called s1, s2.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (PAPI):
+D1.1 PAPI must be a finite set with at most 3 trays.
+D1.2 "zuvo" must NOT be the do-nothing move (it must move at least one PAPI tray).
+D1.3 "vuro" must carry different LAFI trays to different PAPI trays.
+D1.4 Every RAVA tray must be reached by "rupo" from at least one PAPI tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 3 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+PAPI = {q1_1, ..., q1_k}
+vuro: n1 -> <PAPI tray>
+zuvo: q1_1 -> <PAPI tray>, ..., q1_k -> <PAPI tray>
+rupo: q1_1 -> <RAVA tray>, ... (one entry per PAPI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

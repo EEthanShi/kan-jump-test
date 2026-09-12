@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: ZIVO, DUGA, LIJO, TUPI. Books move ZIVO -> DUGA -> LIJO -> TUPI.
+There are 5 moving steps:
+- "sodi" carries each ZIVO tray to a DUGA tray.
+- "baji" is an internal rearrangement of DUGA: it carries each DUGA tray to a DUGA tray.
+- "ruta" carries each DUGA tray to a LIJO tray.
+- "ruda" is an internal rearrangement of LIJO: it carries each LIJO tray to a LIJO tray.
+- "gilu" carries each LIJO tray to a TUPI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sodi" and then "baji" lands on the same tray as running "sodi" alone.
+     ("baji" leaves every tray that "sodi" produces unchanged.)
+R1.2 Running "baji" and then "ruta" gives the same result as running "ruta" alone.
+     ("ruta" cannot tell whether "baji" was applied first.)
+R1.3 Running "baji" three times in a row leaves every DUGA tray exactly where it started.
+R2.1 Running "ruta" and then "ruda" lands on the same tray as running "ruta" alone.
+     ("ruda" leaves every tray that "ruta" produces unchanged.)
+R2.2 Running "ruda" and then "gilu" gives the same result as running "gilu" alone.
+     ("gilu" cannot tell whether "ruda" was applied first.)
+R2.3 Running "ruda" twice in a row leaves every LIJO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZIVO has exactly one tray, called n1.
+- TUPI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DUGA, LIJO):
+D1.1 DUGA must be a finite set with at most 4 trays.
+D1.2 "baji" must NOT be the do-nothing move (it must move at least one DUGA tray).
+D2.1 LIJO must be a finite set with at most 3 trays.
+D2.2 "ruda" must NOT be the do-nothing move (it must move at least one LIJO tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DUGA = {q1_1, ..., q1_k}
+sodi: n1 -> <DUGA tray>
+baji: q1_1 -> <DUGA tray>, ..., q1_k -> <DUGA tray>
+LIJO = {q2_1, ..., q2_k}
+ruta: q1_1 -> <LIJO tray>, ... (one entry per DUGA tray)
+ruda: q2_1 -> <LIJO tray>, ..., q2_k -> <LIJO tray>
+gilu: q2_1 -> <TUPI tray>, ... (one entry per LIJO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

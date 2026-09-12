@@ -1,0 +1,51 @@
+You are completing the design of a small book sorting row of carts with 4 carts.
+
+The carts are: MUMI, KAPU, SUKO, BUPA. Books move MUMI -> KAPU -> SUKO -> BUPA.
+There are 5 moving steps:
+- "mupu" carries each MUMI tray to a KAPU tray.
+- "jaju" is an internal rearrangement of KAPU: it carries each KAPU tray to a KAPU tray.
+- "voza" carries each KAPU tray to a SUKO tray.
+- "vodo" is an internal rearrangement of SUKO: it carries each SUKO tray to a SUKO tray.
+- "pava" carries each SUKO tray to a BUPA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "mupu" and then "jaju" lands on the same tray as running "mupu" alone.
+     ("jaju" leaves every tray that "mupu" produces unchanged.)
+R1.2 Running "jaju" and then "voza" gives the same result as running "voza" alone.
+     ("voza" cannot tell whether "jaju" was applied first.)
+R1.3 Running "jaju" three times in a row leaves every KAPU tray exactly where it started.
+R2.1 Running "voza" and then "vodo" lands on the same tray as running "voza" alone.
+     ("vodo" leaves every tray that "voza" produces unchanged.)
+R2.2 Running "vodo" and then "pava" gives the same result as running "pava" alone.
+     ("pava" cannot tell whether "vodo" was applied first.)
+R2.3 Running "vodo" twice in a row leaves every SUKO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MUMI has exactly one tray, called n1.
+- BUPA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (KAPU, SUKO):
+D1.1 KAPU must be a finite set with at most 1 tray.
+D1.2 List the "jaju" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 SUKO must be a finite set with at most 1 tray.
+D2.2 List the "vodo" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+KAPU = {q1_1, ..., q1_k}
+mupu: n1 -> <KAPU tray>
+jaju: q1_1 -> <KAPU tray>, ..., q1_k -> <KAPU tray>
+SUKO = {q2_1, ..., q2_k}
+voza: q1_1 -> <SUKO tray>, ... (one entry per KAPU tray)
+vodo: q2_1 -> <SUKO tray>, ..., q2_k -> <SUKO tray>
+pava: q2_1 -> <BUPA tray>, ... (one entry per SUKO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

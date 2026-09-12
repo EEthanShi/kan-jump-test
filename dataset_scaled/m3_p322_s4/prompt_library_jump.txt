@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MUBO, NIPA, TIBO, NAPA, NIKA. Books move MUBO -> NIPA -> TIBO -> NAPA -> NIKA.
+There are 7 moving steps:
+- "nifi" carries each MUBO tray to a NIPA tray.
+- "zafa" is an internal rearrangement of NIPA: it carries each NIPA tray to a NIPA tray.
+- "joma" carries each NIPA tray to a TIBO tray.
+- "dana" is an internal rearrangement of TIBO: it carries each TIBO tray to a TIBO tray.
+- "fova" carries each TIBO tray to a NAPA tray.
+- "miza" is an internal rearrangement of NAPA: it carries each NAPA tray to a NAPA tray.
+- "gula" carries each NAPA tray to a NIKA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nifi" and then "zafa" lands on the same tray as running "nifi" alone.
+     ("zafa" leaves every tray that "nifi" produces unchanged.)
+R1.2 Running "zafa" and then "joma" gives the same result as running "joma" alone.
+     ("joma" cannot tell whether "zafa" was applied first.)
+R1.3 Running "zafa" three times in a row leaves every NIPA tray exactly where it started.
+R2.1 Running "joma" and then "dana" lands on the same tray as running "joma" alone.
+     ("dana" leaves every tray that "joma" produces unchanged.)
+R2.2 Running "dana" and then "fova" gives the same result as running "fova" alone.
+     ("fova" cannot tell whether "dana" was applied first.)
+R2.3 Running "dana" twice in a row leaves every TIBO tray exactly where it started.
+R3.1 Running "fova" and then "miza" lands on the same tray as running "fova" alone.
+     ("miza" leaves every tray that "fova" produces unchanged.)
+R3.2 Running "miza" and then "gula" gives the same result as running "gula" alone.
+     ("gula" cannot tell whether "miza" was applied first.)
+R3.3 Running "miza" twice in a row leaves every NAPA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MUBO has exactly one tray, called n1.
+- NIKA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (NIPA, TIBO, NAPA):
+D1.1 NIPA must be a finite set with at most 4 trays.
+D1.2 "zafa" must NOT be the do-nothing move (it must move at least one NIPA tray).
+D2.1 TIBO must be a finite set with at most 3 trays.
+D2.2 "dana" must NOT be the do-nothing move (it must move at least one TIBO tray).
+D3.1 NAPA must be a finite set with at most 3 trays.
+D3.2 "miza" must NOT be the do-nothing move (it must move at least one NAPA tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+NIPA = {q1_1, ..., q1_k}
+nifi: n1 -> <NIPA tray>
+zafa: q1_1 -> <NIPA tray>, ..., q1_k -> <NIPA tray>
+TIBO = {q2_1, ..., q2_k}
+joma: q1_1 -> <TIBO tray>, ... (one entry per NIPA tray)
+dana: q2_1 -> <TIBO tray>, ..., q2_k -> <TIBO tray>
+NAPA = {q3_1, ..., q3_k}
+fova: q2_1 -> <NAPA tray>, ... (one entry per TIBO tray)
+miza: q3_1 -> <NAPA tray>, ..., q3_k -> <NAPA tray>
+gula: q3_1 -> <NIKA tray>, ... (one entry per NAPA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

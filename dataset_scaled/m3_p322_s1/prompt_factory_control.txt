@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: RIJI, SOKI, MIBA, JUSI, FUVO. Toys move RIJI -> SOKI -> MIBA -> JUSI -> FUVO.
+There are 7 moving steps:
+- "kita" carries each RIJI slot to a SOKI slot.
+- "bumu" is an internal reshuffle of SOKI: it carries each SOKI slot to a SOKI slot.
+- "guna" carries each SOKI slot to a MIBA slot.
+- "dotu" is an internal reshuffle of MIBA: it carries each MIBA slot to a MIBA slot.
+- "jaki" carries each MIBA slot to a JUSI slot.
+- "vibu" is an internal reshuffle of JUSI: it carries each JUSI slot to a JUSI slot.
+- "gijo" carries each JUSI slot to a FUVO slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kita" and then "bumu" lands on the same slot as running "kita" alone.
+     ("bumu" leaves every slot that "kita" produces unchanged.)
+R1.2 Running "bumu" and then "guna" gives the same result as running "guna" alone.
+     ("guna" cannot tell whether "bumu" was applied first.)
+R1.3 Running "bumu" three times in a row leaves every SOKI slot exactly where it started.
+R2.1 Running "guna" and then "dotu" lands on the same slot as running "guna" alone.
+     ("dotu" leaves every slot that "guna" produces unchanged.)
+R2.2 Running "dotu" and then "jaki" gives the same result as running "jaki" alone.
+     ("jaki" cannot tell whether "dotu" was applied first.)
+R2.3 Running "dotu" twice in a row leaves every MIBA slot exactly where it started.
+R3.1 Running "jaki" and then "vibu" lands on the same slot as running "jaki" alone.
+     ("vibu" leaves every slot that "jaki" produces unchanged.)
+R3.2 Running "vibu" and then "gijo" gives the same result as running "gijo" alone.
+     ("gijo" cannot tell whether "vibu" was applied first.)
+R3.3 Running "vibu" twice in a row leaves every JUSI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RIJI has exactly one slot, called n1.
+- FUVO has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (SOKI, MIBA, JUSI):
+D1.1 SOKI must be a finite set with at most 1 slot.
+D1.2 List the "bumu" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 MIBA must be a finite set with at most 1 slot.
+D2.2 List the "dotu" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 JUSI must be a finite set with at most 1 slot.
+D3.2 List the "vibu" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+SOKI = {q1_1, ..., q1_k}
+kita: n1 -> <SOKI slot>
+bumu: q1_1 -> <SOKI slot>, ..., q1_k -> <SOKI slot>
+MIBA = {q2_1, ..., q2_k}
+guna: q1_1 -> <MIBA slot>, ... (one entry per SOKI slot)
+dotu: q2_1 -> <MIBA slot>, ..., q2_k -> <MIBA slot>
+JUSI = {q3_1, ..., q3_k}
+jaki: q2_1 -> <JUSI slot>, ... (one entry per MIBA slot)
+vibu: q3_1 -> <JUSI slot>, ..., q3_k -> <JUSI slot>
+gijo: q3_1 -> <FUVO slot>, ... (one entry per JUSI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

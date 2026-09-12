@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: RAJI, TIDA, DIBI. Books move RAJI -> TIDA -> DIBI.
+There are 3 moving steps:
+- "galo" carries each RAJI tray to a TIDA tray.
+- "lupi" is an internal rearrangement of TIDA: it carries each TIDA tray to a TIDA tray.
+- "kana" carries each TIDA tray to a DIBI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "galo" and then "lupi" lands on the same tray as running "galo" alone.
+     ("lupi" leaves every tray that "galo" produces unchanged.)
+R1.2 Running "lupi" and then "kana" gives the same result as running "kana" alone.
+     ("kana" cannot tell whether "lupi" was applied first.)
+R1.3 Running "lupi" three times in a row leaves every TIDA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- RAJI has exactly one tray, called n1.
+- DIBI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (TIDA):
+D1.1 TIDA must be a finite set with at most 1 tray.
+D1.2 List the "lupi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TIDA = {q1_1, ..., q1_k}
+galo: n1 -> <TIDA tray>
+lupi: q1_1 -> <TIDA tray>, ..., q1_k -> <TIDA tray>
+kana: q1_1 -> <DIBI tray>, ... (one entry per TIDA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

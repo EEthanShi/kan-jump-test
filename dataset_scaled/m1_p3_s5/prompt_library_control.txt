@@ -1,0 +1,39 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: LILI, MUKU, BATI. Books move LILI -> MUKU -> BATI.
+There are 3 moving steps:
+- "vasu" carries each LILI tray to a MUKU tray.
+- "jiro" is an internal rearrangement of MUKU: it carries each MUKU tray to a MUKU tray.
+- "limi" carries each MUKU tray to a BATI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "vasu" and then "jiro" lands on the same tray as running "vasu" alone.
+     ("jiro" leaves every tray that "vasu" produces unchanged.)
+R1.2 Running "jiro" and then "limi" gives the same result as running "limi" alone.
+     ("limi" cannot tell whether "jiro" was applied first.)
+R1.3 Running "jiro" three times in a row leaves every MUKU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LILI has exactly one tray, called n1.
+- BATI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle cart (MUKU):
+D1.1 MUKU must be a finite set with at most 1 tray.
+D1.2 List the "jiro" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MUKU = {q1_1, ..., q1_k}
+vasu: n1 -> <MUKU tray>
+jiro: q1_1 -> <MUKU tray>, ..., q1_k -> <MUKU tray>
+limi: q1_1 -> <BATI tray>, ... (one entry per MUKU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

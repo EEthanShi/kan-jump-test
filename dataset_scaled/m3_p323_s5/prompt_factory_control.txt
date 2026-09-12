@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: LOTA, RUGA, BAFU, JOJA, VUFI. Toys move LOTA -> RUGA -> BAFU -> JOJA -> VUFI.
+There are 7 moving steps:
+- "sibo" carries each LOTA slot to a RUGA slot.
+- "kagi" is an internal reshuffle of RUGA: it carries each RUGA slot to a RUGA slot.
+- "duba" carries each RUGA slot to a BAFU slot.
+- "gosi" is an internal reshuffle of BAFU: it carries each BAFU slot to a BAFU slot.
+- "rara" carries each BAFU slot to a JOJA slot.
+- "zasi" is an internal reshuffle of JOJA: it carries each JOJA slot to a JOJA slot.
+- "naga" carries each JOJA slot to a VUFI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "sibo" and then "kagi" lands on the same slot as running "sibo" alone.
+     ("kagi" leaves every slot that "sibo" produces unchanged.)
+R1.2 Running "kagi" and then "duba" gives the same result as running "duba" alone.
+     ("duba" cannot tell whether "kagi" was applied first.)
+R1.3 Running "kagi" three times in a row leaves every RUGA slot exactly where it started.
+R2.1 Running "duba" and then "gosi" lands on the same slot as running "duba" alone.
+     ("gosi" leaves every slot that "duba" produces unchanged.)
+R2.2 Running "gosi" and then "rara" gives the same result as running "rara" alone.
+     ("rara" cannot tell whether "gosi" was applied first.)
+R2.3 Running "gosi" twice in a row leaves every BAFU slot exactly where it started.
+R3.1 Running "rara" and then "zasi" lands on the same slot as running "rara" alone.
+     ("zasi" leaves every slot that "rara" produces unchanged.)
+R3.2 Running "zasi" and then "naga" gives the same result as running "naga" alone.
+     ("naga" cannot tell whether "zasi" was applied first.)
+R3.3 Running "zasi" three times in a row leaves every JOJA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LOTA has exactly one slot, called n1.
+- VUFI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (RUGA, BAFU, JOJA):
+D1.1 RUGA must be a finite set with at most 1 slot.
+D1.2 List the "kagi" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 BAFU must be a finite set with at most 1 slot.
+D2.2 List the "gosi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 JOJA must be a finite set with at most 1 slot.
+D3.2 List the "zasi" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+RUGA = {q1_1, ..., q1_k}
+sibo: n1 -> <RUGA slot>
+kagi: q1_1 -> <RUGA slot>, ..., q1_k -> <RUGA slot>
+BAFU = {q2_1, ..., q2_k}
+duba: q1_1 -> <BAFU slot>, ... (one entry per RUGA slot)
+gosi: q2_1 -> <BAFU slot>, ..., q2_k -> <BAFU slot>
+JOJA = {q3_1, ..., q3_k}
+rara: q2_1 -> <JOJA slot>, ... (one entry per BAFU slot)
+zasi: q3_1 -> <JOJA slot>, ..., q3_k -> <JOJA slot>
+naga: q3_1 -> <VUFI slot>, ... (one entry per JOJA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

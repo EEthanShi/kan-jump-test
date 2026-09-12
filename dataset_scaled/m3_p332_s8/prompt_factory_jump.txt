@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: DABU, TILA, PITU, SIPO, MATI. Toys move DABU -> TILA -> PITU -> SIPO -> MATI.
+There are 7 moving steps:
+- "kamo" carries each DABU slot to a TILA slot.
+- "ruvi" is an internal reshuffle of TILA: it carries each TILA slot to a TILA slot.
+- "loki" carries each TILA slot to a PITU slot.
+- "fumu" is an internal reshuffle of PITU: it carries each PITU slot to a PITU slot.
+- "zusa" carries each PITU slot to a SIPO slot.
+- "nima" is an internal reshuffle of SIPO: it carries each SIPO slot to a SIPO slot.
+- "funi" carries each SIPO slot to a MATI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "kamo" and then "ruvi" lands on the same slot as running "kamo" alone.
+     ("ruvi" leaves every slot that "kamo" produces unchanged.)
+R1.2 Running "ruvi" and then "loki" gives the same result as running "loki" alone.
+     ("loki" cannot tell whether "ruvi" was applied first.)
+R1.3 Running "ruvi" three times in a row leaves every TILA slot exactly where it started.
+R2.1 Running "loki" and then "fumu" lands on the same slot as running "loki" alone.
+     ("fumu" leaves every slot that "loki" produces unchanged.)
+R2.2 Running "fumu" and then "zusa" gives the same result as running "zusa" alone.
+     ("zusa" cannot tell whether "fumu" was applied first.)
+R2.3 Running "fumu" three times in a row leaves every PITU slot exactly where it started.
+R3.1 Running "zusa" and then "nima" lands on the same slot as running "zusa" alone.
+     ("nima" leaves every slot that "zusa" produces unchanged.)
+R3.2 Running "nima" and then "funi" gives the same result as running "funi" alone.
+     ("funi" cannot tell whether "nima" was applied first.)
+R3.3 Running "nima" twice in a row leaves every SIPO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- DABU has exactly one slot, called n1.
+- MATI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (TILA, PITU, SIPO):
+D1.1 TILA must be a finite set with at most 4 slots.
+D1.2 "ruvi" must NOT be the do-nothing move (it must move at least one TILA slot).
+D2.1 PITU must be a finite set with at most 4 slots.
+D2.2 "fumu" must NOT be the do-nothing move (it must move at least one PITU slot).
+D3.1 SIPO must be a finite set with at most 3 slots.
+D3.2 "nima" must NOT be the do-nothing move (it must move at least one SIPO slot).
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+TILA = {q1_1, ..., q1_k}
+kamo: n1 -> <TILA slot>
+ruvi: q1_1 -> <TILA slot>, ..., q1_k -> <TILA slot>
+PITU = {q2_1, ..., q2_k}
+loki: q1_1 -> <PITU slot>, ... (one entry per TILA slot)
+fumu: q2_1 -> <PITU slot>, ..., q2_k -> <PITU slot>
+SIPO = {q3_1, ..., q3_k}
+zusa: q2_1 -> <SIPO slot>, ... (one entry per PITU slot)
+nima: q3_1 -> <SIPO slot>, ..., q3_k -> <SIPO slot>
+funi: q3_1 -> <MATI slot>, ... (one entry per SIPO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

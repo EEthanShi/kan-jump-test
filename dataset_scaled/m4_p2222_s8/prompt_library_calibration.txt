@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: JAGA, DITO, KIJA, FIZO, GUMO, BILI. Books move JAGA -> DITO -> KIJA -> FIZO -> GUMO -> BILI.
+There are 9 moving steps:
+- "sado" carries each JAGA tray to a DITO tray.
+- "kifo" is an internal rearrangement of DITO: it carries each DITO tray to a DITO tray.
+- "fobo" carries each DITO tray to a KIJA tray.
+- "zuro" is an internal rearrangement of KIJA: it carries each KIJA tray to a KIJA tray.
+- "tabu" carries each KIJA tray to a FIZO tray.
+- "fisa" is an internal rearrangement of FIZO: it carries each FIZO tray to a FIZO tray.
+- "tidu" carries each FIZO tray to a GUMO tray.
+- "fiba" is an internal rearrangement of GUMO: it carries each GUMO tray to a GUMO tray.
+- "kova" carries each GUMO tray to a BILI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "sado" and then "kifo" lands on the same tray as running "sado" alone.
+     ("kifo" leaves every tray that "sado" produces unchanged.)
+R1.2 Running "kifo" and then "fobo" gives the same result as running "fobo" alone.
+     ("fobo" cannot tell whether "kifo" was applied first.)
+R1.3 Running "kifo" twice in a row leaves every DITO tray exactly where it started.
+R2.1 Running "fobo" and then "zuro" lands on the same tray as running "fobo" alone.
+     ("zuro" leaves every tray that "fobo" produces unchanged.)
+R2.2 Running "zuro" and then "tabu" gives the same result as running "tabu" alone.
+     ("tabu" cannot tell whether "zuro" was applied first.)
+R2.3 Running "zuro" twice in a row leaves every KIJA tray exactly where it started.
+R3.1 Running "tabu" and then "fisa" lands on the same tray as running "tabu" alone.
+     ("fisa" leaves every tray that "tabu" produces unchanged.)
+R3.2 Running "fisa" and then "tidu" gives the same result as running "tidu" alone.
+     ("tidu" cannot tell whether "fisa" was applied first.)
+R3.3 Running "fisa" twice in a row leaves every FIZO tray exactly where it started.
+R4.1 Running "tidu" and then "fiba" lands on the same tray as running "tidu" alone.
+     ("fiba" leaves every tray that "tidu" produces unchanged.)
+R4.2 Running "fiba" and then "kova" gives the same result as running "kova" alone.
+     ("kova" cannot tell whether "fiba" was applied first.)
+R4.3 Running "fiba" twice in a row leaves every GUMO tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JAGA has exactly one tray, called n1.
+- BILI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (DITO, KIJA, FIZO, GUMO):
+D1.1 List the trays of DITO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "kifo" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of KIJA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zuro" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of FIZO in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "fisa" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+D4.1 List the trays of GUMO in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "fiba" table entries in tray order q4_1, q4_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 4 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+DITO = {q1_1, ..., q1_k}
+sado: n1 -> <DITO tray>
+kifo: q1_1 -> <DITO tray>, ..., q1_k -> <DITO tray>
+KIJA = {q2_1, ..., q2_k}
+fobo: q1_1 -> <KIJA tray>, ... (one entry per DITO tray)
+zuro: q2_1 -> <KIJA tray>, ..., q2_k -> <KIJA tray>
+FIZO = {q3_1, ..., q3_k}
+tabu: q2_1 -> <FIZO tray>, ... (one entry per KIJA tray)
+fisa: q3_1 -> <FIZO tray>, ..., q3_k -> <FIZO tray>
+GUMO = {q4_1, ..., q4_k}
+tidu: q3_1 -> <GUMO tray>, ... (one entry per FIZO tray)
+fiba: q4_1 -> <GUMO tray>, ..., q4_k -> <GUMO tray>
+kova: q4_1 -> <BILI tray>, ... (one entry per GUMO tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

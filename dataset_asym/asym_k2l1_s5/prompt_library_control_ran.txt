@@ -1,0 +1,41 @@
+You are completing the design of a small book sorting row of carts with 3 carts.
+
+The carts are: NORU, RARI, MIGA. Books move NORU -> RARI -> MIGA.
+There are 3 moving steps:
+- "guki" carries each NORU tray to a RARI tray.
+- "luzu" is an internal rearrangement of RARI: it carries each RARI tray to a RARI tray.
+- "dido" carries each RARI tray to a MIGA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "guki" and then "luzu" lands on the same tray as running "guki" alone.
+     ("luzu" leaves every tray that "guki" produces unchanged.)
+R1.2 Running "luzu" and then "dido" gives the same result as running "dido" alone.
+     ("dido" cannot tell whether "luzu" was applied first.)
+R1.3 Running "luzu" twice in a row leaves every RARI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- NORU has exactly 2 trays, called n1, n2.
+- MIGA has exactly 1 tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1, n2 to s1.
+
+Requirements for the middle cart (RARI):
+D1.1 RARI must be a finite set with at most 1 tray.
+D1.2 List the "luzu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D1.3 List the "guki" table entries in NORU tray order n1, n2.
+D1.4 Every MIGA tray must be reached by "dido" from at least one RARI tray.
+
+Your task: give one complete concrete design of the middle cart.
+
+Answer format bound: designs with up to 4 trays in the middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+use tray names q1_1, q1_2, ... for the middle cart):
+
+RARI = {q1_1, ..., q1_k}
+guki: n1 -> <RARI tray>, n2 -> <RARI tray>
+luzu: q1_1 -> <RARI tray>, ..., q1_k -> <RARI tray>
+dido: q1_1 -> <MIGA tray>, ... (one entry per RARI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

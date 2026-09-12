@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: SUTA, FOBA, LOJA, KOKU, LIPI, MUDU. Toys move SUTA -> FOBA -> LOJA -> KOKU -> LIPI -> MUDU.
+There are 9 moving steps:
+- "nisi" carries each SUTA slot to a FOBA slot.
+- "dazo" is an internal reshuffle of FOBA: it carries each FOBA slot to a FOBA slot.
+- "duju" carries each FOBA slot to a LOJA slot.
+- "fivi" is an internal reshuffle of LOJA: it carries each LOJA slot to a LOJA slot.
+- "zasa" carries each LOJA slot to a KOKU slot.
+- "zupa" is an internal reshuffle of KOKU: it carries each KOKU slot to a KOKU slot.
+- "pumu" carries each KOKU slot to a LIPI slot.
+- "nifu" is an internal reshuffle of LIPI: it carries each LIPI slot to a LIPI slot.
+- "rumo" carries each LIPI slot to a MUDU slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nisi" and then "dazo" lands on the same slot as running "nisi" alone.
+     ("dazo" leaves every slot that "nisi" produces unchanged.)
+R1.2 Running "dazo" and then "duju" gives the same result as running "duju" alone.
+     ("duju" cannot tell whether "dazo" was applied first.)
+R1.3 Running "dazo" twice in a row leaves every FOBA slot exactly where it started.
+R2.1 Running "duju" and then "fivi" lands on the same slot as running "duju" alone.
+     ("fivi" leaves every slot that "duju" produces unchanged.)
+R2.2 Running "fivi" and then "zasa" gives the same result as running "zasa" alone.
+     ("zasa" cannot tell whether "fivi" was applied first.)
+R2.3 Running "fivi" twice in a row leaves every LOJA slot exactly where it started.
+R3.1 Running "zasa" and then "zupa" lands on the same slot as running "zasa" alone.
+     ("zupa" leaves every slot that "zasa" produces unchanged.)
+R3.2 Running "zupa" and then "pumu" gives the same result as running "pumu" alone.
+     ("pumu" cannot tell whether "zupa" was applied first.)
+R3.3 Running "zupa" twice in a row leaves every KOKU slot exactly where it started.
+R4.1 Running "pumu" and then "nifu" lands on the same slot as running "pumu" alone.
+     ("nifu" leaves every slot that "pumu" produces unchanged.)
+R4.2 Running "nifu" and then "rumo" gives the same result as running "rumo" alone.
+     ("rumo" cannot tell whether "nifu" was applied first.)
+R4.3 Running "nifu" twice in a row leaves every LIPI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUTA has exactly one slot, called n1.
+- MUDU has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (FOBA, LOJA, KOKU, LIPI):
+D1.1 List the slots of FOBA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "dazo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of LOJA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "fivi" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of KOKU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "zupa" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of LIPI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "nifu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 4 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+FOBA = {q1_1, ..., q1_k}
+nisi: n1 -> <FOBA slot>
+dazo: q1_1 -> <FOBA slot>, ..., q1_k -> <FOBA slot>
+LOJA = {q2_1, ..., q2_k}
+duju: q1_1 -> <LOJA slot>, ... (one entry per FOBA slot)
+fivi: q2_1 -> <LOJA slot>, ..., q2_k -> <LOJA slot>
+KOKU = {q3_1, ..., q3_k}
+zasa: q2_1 -> <KOKU slot>, ... (one entry per LOJA slot)
+zupa: q3_1 -> <KOKU slot>, ..., q3_k -> <KOKU slot>
+LIPI = {q4_1, ..., q4_k}
+pumu: q3_1 -> <LIPI slot>, ... (one entry per KOKU slot)
+nifu: q4_1 -> <LIPI slot>, ..., q4_k -> <LIPI slot>
+rumo: q4_1 -> <MUDU slot>, ... (one entry per LIPI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

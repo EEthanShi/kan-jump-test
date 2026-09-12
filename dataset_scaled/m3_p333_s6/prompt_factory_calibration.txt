@@ -1,0 +1,63 @@
+You are completing the design of a small toy sorting line with 5 stations.
+
+The stations are: SUZA, NABU, GOSU, VUFI, MIMA. Toys move SUZA -> NABU -> GOSU -> VUFI -> MIMA.
+There are 7 moving steps:
+- "moki" carries each SUZA slot to a NABU slot.
+- "bido" is an internal reshuffle of NABU: it carries each NABU slot to a NABU slot.
+- "dazu" carries each NABU slot to a GOSU slot.
+- "pabo" is an internal reshuffle of GOSU: it carries each GOSU slot to a GOSU slot.
+- "ranu" carries each GOSU slot to a VUFI slot.
+- "tuga" is an internal reshuffle of VUFI: it carries each VUFI slot to a VUFI slot.
+- "pigi" carries each VUFI slot to a MIMA slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "moki" and then "bido" lands on the same slot as running "moki" alone.
+     ("bido" leaves every slot that "moki" produces unchanged.)
+R1.2 Running "bido" and then "dazu" gives the same result as running "dazu" alone.
+     ("dazu" cannot tell whether "bido" was applied first.)
+R1.3 Running "bido" three times in a row leaves every NABU slot exactly where it started.
+R2.1 Running "dazu" and then "pabo" lands on the same slot as running "dazu" alone.
+     ("pabo" leaves every slot that "dazu" produces unchanged.)
+R2.2 Running "pabo" and then "ranu" gives the same result as running "ranu" alone.
+     ("ranu" cannot tell whether "pabo" was applied first.)
+R2.3 Running "pabo" three times in a row leaves every GOSU slot exactly where it started.
+R3.1 Running "ranu" and then "tuga" lands on the same slot as running "ranu" alone.
+     ("tuga" leaves every slot that "ranu" produces unchanged.)
+R3.2 Running "tuga" and then "pigi" gives the same result as running "pigi" alone.
+     ("pigi" cannot tell whether "tuga" was applied first.)
+R3.3 Running "tuga" three times in a row leaves every VUFI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SUZA has exactly one slot, called n1.
+- MIMA has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (NABU, GOSU, VUFI):
+D1.1 List the slots of NABU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "bido" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of GOSU in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "pabo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of VUFI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "tuga" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+NABU = {q1_1, ..., q1_k}
+moki: n1 -> <NABU slot>
+bido: q1_1 -> <NABU slot>, ..., q1_k -> <NABU slot>
+GOSU = {q2_1, ..., q2_k}
+dazu: q1_1 -> <GOSU slot>, ... (one entry per NABU slot)
+pabo: q2_1 -> <GOSU slot>, ..., q2_k -> <GOSU slot>
+VUFI = {q3_1, ..., q3_k}
+ranu: q2_1 -> <VUFI slot>, ... (one entry per GOSU slot)
+tuga: q3_1 -> <VUFI slot>, ..., q3_k -> <VUFI slot>
+pigi: q3_1 -> <MIMA slot>, ... (one entry per VUFI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: ZANI, SAVU, BOLO, LALI, LONA. Books move ZANI -> SAVU -> BOLO -> LALI -> LONA.
+There are 7 moving steps:
+- "biki" carries each ZANI tray to a SAVU tray.
+- "zipi" is an internal rearrangement of SAVU: it carries each SAVU tray to a SAVU tray.
+- "kigu" carries each SAVU tray to a BOLO tray.
+- "zasu" is an internal rearrangement of BOLO: it carries each BOLO tray to a BOLO tray.
+- "runu" carries each BOLO tray to a LALI tray.
+- "lujo" is an internal rearrangement of LALI: it carries each LALI tray to a LALI tray.
+- "misu" carries each LALI tray to a LONA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "biki" and then "zipi" lands on the same tray as running "biki" alone.
+     ("zipi" leaves every tray that "biki" produces unchanged.)
+R1.2 Running "zipi" and then "kigu" gives the same result as running "kigu" alone.
+     ("kigu" cannot tell whether "zipi" was applied first.)
+R1.3 Running "zipi" three times in a row leaves every SAVU tray exactly where it started.
+R2.1 Running "kigu" and then "zasu" lands on the same tray as running "kigu" alone.
+     ("zasu" leaves every tray that "kigu" produces unchanged.)
+R2.2 Running "zasu" and then "runu" gives the same result as running "runu" alone.
+     ("runu" cannot tell whether "zasu" was applied first.)
+R2.3 Running "zasu" three times in a row leaves every BOLO tray exactly where it started.
+R3.1 Running "runu" and then "lujo" lands on the same tray as running "runu" alone.
+     ("lujo" leaves every tray that "runu" produces unchanged.)
+R3.2 Running "lujo" and then "misu" gives the same result as running "misu" alone.
+     ("misu" cannot tell whether "lujo" was applied first.)
+R3.3 Running "lujo" three times in a row leaves every LALI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- ZANI has exactly one tray, called n1.
+- LONA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (SAVU, BOLO, LALI):
+D1.1 List the trays of SAVU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "zipi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of BOLO in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zasu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of LALI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "lujo" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+SAVU = {q1_1, ..., q1_k}
+biki: n1 -> <SAVU tray>
+zipi: q1_1 -> <SAVU tray>, ..., q1_k -> <SAVU tray>
+BOLO = {q2_1, ..., q2_k}
+kigu: q1_1 -> <BOLO tray>, ... (one entry per SAVU tray)
+zasu: q2_1 -> <BOLO tray>, ..., q2_k -> <BOLO tray>
+LALI = {q3_1, ..., q3_k}
+runu: q2_1 -> <LALI tray>, ... (one entry per BOLO tray)
+lujo: q3_1 -> <LALI tray>, ..., q3_k -> <LALI tray>
+misu: q3_1 -> <LONA tray>, ... (one entry per LALI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

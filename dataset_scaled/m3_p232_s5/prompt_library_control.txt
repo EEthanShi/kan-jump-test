@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: MIZA, MIVO, MUKU, NOLA, RUDU. Books move MIZA -> MIVO -> MUKU -> NOLA -> RUDU.
+There are 7 moving steps:
+- "papo" carries each MIZA tray to a MIVO tray.
+- "figi" is an internal rearrangement of MIVO: it carries each MIVO tray to a MIVO tray.
+- "sari" carries each MIVO tray to a MUKU tray.
+- "duma" is an internal rearrangement of MUKU: it carries each MUKU tray to a MUKU tray.
+- "muti" carries each MUKU tray to a NOLA tray.
+- "roro" is an internal rearrangement of NOLA: it carries each NOLA tray to a NOLA tray.
+- "pivi" carries each NOLA tray to a RUDU tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "papo" and then "figi" lands on the same tray as running "papo" alone.
+     ("figi" leaves every tray that "papo" produces unchanged.)
+R1.2 Running "figi" and then "sari" gives the same result as running "sari" alone.
+     ("sari" cannot tell whether "figi" was applied first.)
+R1.3 Running "figi" twice in a row leaves every MIVO tray exactly where it started.
+R2.1 Running "sari" and then "duma" lands on the same tray as running "sari" alone.
+     ("duma" leaves every tray that "sari" produces unchanged.)
+R2.2 Running "duma" and then "muti" gives the same result as running "muti" alone.
+     ("muti" cannot tell whether "duma" was applied first.)
+R2.3 Running "duma" three times in a row leaves every MUKU tray exactly where it started.
+R3.1 Running "muti" and then "roro" lands on the same tray as running "muti" alone.
+     ("roro" leaves every tray that "muti" produces unchanged.)
+R3.2 Running "roro" and then "pivi" gives the same result as running "pivi" alone.
+     ("pivi" cannot tell whether "roro" was applied first.)
+R3.3 Running "roro" twice in a row leaves every NOLA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MIZA has exactly one tray, called n1.
+- RUDU has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (MIVO, MUKU, NOLA):
+D1.1 MIVO must be a finite set with at most 1 tray.
+D1.2 List the "figi" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 MUKU must be a finite set with at most 1 tray.
+D2.2 List the "duma" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 NOLA must be a finite set with at most 1 tray.
+D3.2 List the "roro" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+MIVO = {q1_1, ..., q1_k}
+papo: n1 -> <MIVO tray>
+figi: q1_1 -> <MIVO tray>, ..., q1_k -> <MIVO tray>
+MUKU = {q2_1, ..., q2_k}
+sari: q1_1 -> <MUKU tray>, ... (one entry per MIVO tray)
+duma: q2_1 -> <MUKU tray>, ..., q2_k -> <MUKU tray>
+NOLA = {q3_1, ..., q3_k}
+muti: q2_1 -> <NOLA tray>, ... (one entry per MUKU tray)
+roro: q3_1 -> <NOLA tray>, ..., q3_k -> <NOLA tray>
+pivi: q3_1 -> <RUDU tray>, ... (one entry per NOLA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

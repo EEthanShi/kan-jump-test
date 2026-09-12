@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: FUZA, GIJA, DAMI. Toys move FUZA -> GIJA -> DAMI.
+There are 3 moving steps:
+- "losa" carries each FUZA slot to a GIJA slot.
+- "doji" is an internal reshuffle of GIJA: it carries each GIJA slot to a GIJA slot.
+- "taru" carries each GIJA slot to a DAMI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "losa" and then "doji" lands on the same slot as running "losa" alone.
+     ("doji" leaves every slot that "losa" produces unchanged.)
+R1.2 Running "doji" and then "taru" gives the same result as running "taru" alone.
+     ("taru" cannot tell whether "doji" was applied first.)
+R1.3 Running "doji" twice in a row leaves every GIJA slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- FUZA has exactly 1 slot, called n1.
+- DAMI has exactly 2 slots, called s1, s2.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle station (GIJA):
+D1.1 List the slots of GIJA in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "doji" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 List the "losa" table entries in FUZA slot order n1.
+D1.4 List the "taru" table entries in GIJA slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 3 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+GIJA = {q1_1, ..., q1_k}
+losa: n1 -> <GIJA slot>
+doji: q1_1 -> <GIJA slot>, ..., q1_k -> <GIJA slot>
+taru: q1_1 -> <DAMI slot>, ... (one entry per GIJA slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

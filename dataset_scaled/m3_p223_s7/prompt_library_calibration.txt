@@ -1,0 +1,63 @@
+You are completing the design of a small book sorting row of carts with 5 carts.
+
+The carts are: PIZU, TOJU, VUPI, NOVI, TAGI. Books move PIZU -> TOJU -> VUPI -> NOVI -> TAGI.
+There are 7 moving steps:
+- "zulo" carries each PIZU tray to a TOJU tray.
+- "jalu" is an internal rearrangement of TOJU: it carries each TOJU tray to a TOJU tray.
+- "rigi" carries each TOJU tray to a VUPI tray.
+- "matu" is an internal rearrangement of VUPI: it carries each VUPI tray to a VUPI tray.
+- "tibu" carries each VUPI tray to a NOVI tray.
+- "kuno" is an internal rearrangement of NOVI: it carries each NOVI tray to a NOVI tray.
+- "sujo" carries each NOVI tray to a TAGI tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "zulo" and then "jalu" lands on the same tray as running "zulo" alone.
+     ("jalu" leaves every tray that "zulo" produces unchanged.)
+R1.2 Running "jalu" and then "rigi" gives the same result as running "rigi" alone.
+     ("rigi" cannot tell whether "jalu" was applied first.)
+R1.3 Running "jalu" twice in a row leaves every TOJU tray exactly where it started.
+R2.1 Running "rigi" and then "matu" lands on the same tray as running "rigi" alone.
+     ("matu" leaves every tray that "rigi" produces unchanged.)
+R2.2 Running "matu" and then "tibu" gives the same result as running "tibu" alone.
+     ("tibu" cannot tell whether "matu" was applied first.)
+R2.3 Running "matu" twice in a row leaves every VUPI tray exactly where it started.
+R3.1 Running "tibu" and then "kuno" lands on the same tray as running "tibu" alone.
+     ("kuno" leaves every tray that "tibu" produces unchanged.)
+R3.2 Running "kuno" and then "sujo" gives the same result as running "sujo" alone.
+     ("sujo" cannot tell whether "kuno" was applied first.)
+R3.3 Running "kuno" three times in a row leaves every NOVI tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- PIZU has exactly one tray, called n1.
+- TAGI has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (TOJU, VUPI, NOVI):
+D1.1 List the trays of TOJU in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "jalu" table entries in tray order q1_1, q1_2, ..., one entry per tray.
+D2.1 List the trays of VUPI in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "matu" table entries in tray order q2_1, q2_2, ..., one entry per tray.
+D3.1 List the trays of NOVI in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "kuno" table entries in tray order q3_1, q3_2, ..., one entry per tray.
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+TOJU = {q1_1, ..., q1_k}
+zulo: n1 -> <TOJU tray>
+jalu: q1_1 -> <TOJU tray>, ..., q1_k -> <TOJU tray>
+VUPI = {q2_1, ..., q2_k}
+rigi: q1_1 -> <VUPI tray>, ... (one entry per TOJU tray)
+matu: q2_1 -> <VUPI tray>, ..., q2_k -> <VUPI tray>
+NOVI = {q3_1, ..., q3_k}
+tibu: q2_1 -> <NOVI tray>, ... (one entry per VUPI tray)
+kuno: q3_1 -> <NOVI tray>, ..., q3_k -> <NOVI tray>
+sujo: q3_1 -> <TAGI tray>, ... (one entry per NOVI tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

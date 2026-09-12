@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: JIZU, VOMO, NATA, LARA, MIZU, GILA. Books move JIZU -> VOMO -> NATA -> LARA -> MIZU -> GILA.
+There are 9 moving steps:
+- "nura" carries each JIZU tray to a VOMO tray.
+- "gapi" is an internal rearrangement of VOMO: it carries each VOMO tray to a VOMO tray.
+- "ruru" carries each VOMO tray to a NATA tray.
+- "zona" is an internal rearrangement of NATA: it carries each NATA tray to a NATA tray.
+- "palu" carries each NATA tray to a LARA tray.
+- "ragu" is an internal rearrangement of LARA: it carries each LARA tray to a LARA tray.
+- "nupa" carries each LARA tray to a MIZU tray.
+- "guna" is an internal rearrangement of MIZU: it carries each MIZU tray to a MIZU tray.
+- "ribu" carries each MIZU tray to a GILA tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "nura" and then "gapi" lands on the same tray as running "nura" alone.
+     ("gapi" leaves every tray that "nura" produces unchanged.)
+R1.2 Running "gapi" and then "ruru" gives the same result as running "ruru" alone.
+     ("ruru" cannot tell whether "gapi" was applied first.)
+R1.3 Running "gapi" three times in a row leaves every VOMO tray exactly where it started.
+R2.1 Running "ruru" and then "zona" lands on the same tray as running "ruru" alone.
+     ("zona" leaves every tray that "ruru" produces unchanged.)
+R2.2 Running "zona" and then "palu" gives the same result as running "palu" alone.
+     ("palu" cannot tell whether "zona" was applied first.)
+R2.3 Running "zona" twice in a row leaves every NATA tray exactly where it started.
+R3.1 Running "palu" and then "ragu" lands on the same tray as running "palu" alone.
+     ("ragu" leaves every tray that "palu" produces unchanged.)
+R3.2 Running "ragu" and then "nupa" gives the same result as running "nupa" alone.
+     ("nupa" cannot tell whether "ragu" was applied first.)
+R3.3 Running "ragu" three times in a row leaves every LARA tray exactly where it started.
+R4.1 Running "nupa" and then "guna" lands on the same tray as running "nupa" alone.
+     ("guna" leaves every tray that "nupa" produces unchanged.)
+R4.2 Running "guna" and then "ribu" gives the same result as running "ribu" alone.
+     ("ribu" cannot tell whether "guna" was applied first.)
+R4.3 Running "guna" twice in a row leaves every MIZU tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- JIZU has exactly one tray, called n1.
+- GILA has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (VOMO, NATA, LARA, MIZU):
+D1.1 VOMO must be a finite set with at most 4 trays.
+D1.2 "gapi" must NOT be the do-nothing move (it must move at least one VOMO tray).
+D2.1 NATA must be a finite set with at most 3 trays.
+D2.2 "zona" must NOT be the do-nothing move (it must move at least one NATA tray).
+D3.1 LARA must be a finite set with at most 4 trays.
+D3.2 "ragu" must NOT be the do-nothing move (it must move at least one LARA tray).
+D4.1 MIZU must be a finite set with at most 3 trays.
+D4.2 "guna" must NOT be the do-nothing move (it must move at least one MIZU tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+VOMO = {q1_1, ..., q1_k}
+nura: n1 -> <VOMO tray>
+gapi: q1_1 -> <VOMO tray>, ..., q1_k -> <VOMO tray>
+NATA = {q2_1, ..., q2_k}
+ruru: q1_1 -> <NATA tray>, ... (one entry per VOMO tray)
+zona: q2_1 -> <NATA tray>, ..., q2_k -> <NATA tray>
+LARA = {q3_1, ..., q3_k}
+palu: q2_1 -> <LARA tray>, ... (one entry per NATA tray)
+ragu: q3_1 -> <LARA tray>, ..., q3_k -> <LARA tray>
+MIZU = {q4_1, ..., q4_k}
+nupa: q3_1 -> <MIZU tray>, ... (one entry per LARA tray)
+guna: q4_1 -> <MIZU tray>, ..., q4_k -> <MIZU tray>
+ribu: q4_1 -> <GILA tray>, ... (one entry per MIZU tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

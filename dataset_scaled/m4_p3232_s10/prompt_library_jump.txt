@@ -1,0 +1,75 @@
+You are completing the design of a small book sorting row of carts with 6 carts.
+
+The carts are: LALA, ZANI, PUKI, JOVU, SOMA, LINO. Books move LALA -> ZANI -> PUKI -> JOVU -> SOMA -> LINO.
+There are 9 moving steps:
+- "gifo" carries each LALA tray to a ZANI tray.
+- "mibu" is an internal rearrangement of ZANI: it carries each ZANI tray to a ZANI tray.
+- "lajo" carries each ZANI tray to a PUKI tray.
+- "tulu" is an internal rearrangement of PUKI: it carries each PUKI tray to a PUKI tray.
+- "jubu" carries each PUKI tray to a JOVU tray.
+- "sini" is an internal rearrangement of JOVU: it carries each JOVU tray to a JOVU tray.
+- "fiza" carries each JOVU tray to a SOMA tray.
+- "bigu" is an internal rearrangement of SOMA: it carries each SOMA tray to a SOMA tray.
+- "dufa" carries each SOMA tray to a LINO tray.
+
+The row's operating rules. These must hold exactly, tray by tray:
+R1.1 Running "gifo" and then "mibu" lands on the same tray as running "gifo" alone.
+     ("mibu" leaves every tray that "gifo" produces unchanged.)
+R1.2 Running "mibu" and then "lajo" gives the same result as running "lajo" alone.
+     ("lajo" cannot tell whether "mibu" was applied first.)
+R1.3 Running "mibu" three times in a row leaves every ZANI tray exactly where it started.
+R2.1 Running "lajo" and then "tulu" lands on the same tray as running "lajo" alone.
+     ("tulu" leaves every tray that "lajo" produces unchanged.)
+R2.2 Running "tulu" and then "jubu" gives the same result as running "jubu" alone.
+     ("jubu" cannot tell whether "tulu" was applied first.)
+R2.3 Running "tulu" twice in a row leaves every PUKI tray exactly where it started.
+R3.1 Running "jubu" and then "sini" lands on the same tray as running "jubu" alone.
+     ("sini" leaves every tray that "jubu" produces unchanged.)
+R3.2 Running "sini" and then "fiza" gives the same result as running "fiza" alone.
+     ("fiza" cannot tell whether "sini" was applied first.)
+R3.3 Running "sini" three times in a row leaves every JOVU tray exactly where it started.
+R4.1 Running "fiza" and then "bigu" lands on the same tray as running "fiza" alone.
+     ("bigu" leaves every tray that "fiza" produces unchanged.)
+R4.2 Running "bigu" and then "dufa" gives the same result as running "dufa" alone.
+     ("dufa" cannot tell whether "bigu" was applied first.)
+R4.3 Running "bigu" twice in a row leaves every SOMA tray exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- LALA has exactly one tray, called n1.
+- LINO has exactly one tray, called s1.
+- The observed end-to-end behavior of the row sends n1 to s1.
+
+Requirements for the middle carts (ZANI, PUKI, JOVU, SOMA):
+D1.1 ZANI must be a finite set with at most 4 trays.
+D1.2 "mibu" must NOT be the do-nothing move (it must move at least one ZANI tray).
+D2.1 PUKI must be a finite set with at most 3 trays.
+D2.2 "tulu" must NOT be the do-nothing move (it must move at least one PUKI tray).
+D3.1 JOVU must be a finite set with at most 4 trays.
+D3.2 "sini" must NOT be the do-nothing move (it must move at least one JOVU tray).
+D4.1 SOMA must be a finite set with at most 3 trays.
+D4.2 "bigu" must NOT be the do-nothing move (it must move at least one SOMA tray).
+
+Your task: give one complete concrete design of the middle carts.
+
+Answer format bound: designs with up to 5 trays per middle cart
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every tray and every table entry;
+for cart number i in the row, use tray names qi_1, qi_2, ...):
+
+ZANI = {q1_1, ..., q1_k}
+gifo: n1 -> <ZANI tray>
+mibu: q1_1 -> <ZANI tray>, ..., q1_k -> <ZANI tray>
+PUKI = {q2_1, ..., q2_k}
+lajo: q1_1 -> <PUKI tray>, ... (one entry per ZANI tray)
+tulu: q2_1 -> <PUKI tray>, ..., q2_k -> <PUKI tray>
+JOVU = {q3_1, ..., q3_k}
+jubu: q2_1 -> <JOVU tray>, ... (one entry per PUKI tray)
+sini: q3_1 -> <JOVU tray>, ..., q3_k -> <JOVU tray>
+SOMA = {q4_1, ..., q4_k}
+fiza: q3_1 -> <SOMA tray>, ... (one entry per JOVU tray)
+bigu: q4_1 -> <SOMA tray>, ..., q4_k -> <SOMA tray>
+dufa: q4_1 -> <LINO tray>, ... (one entry per SOMA tray)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

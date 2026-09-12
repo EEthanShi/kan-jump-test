@@ -1,0 +1,75 @@
+You are completing the design of a small toy sorting line with 6 stations.
+
+The stations are: MUJU, MIDO, NIDA, DIRU, BIRI, JAVI. Toys move MUJU -> MIDO -> NIDA -> DIRU -> BIRI -> JAVI.
+There are 9 moving steps:
+- "nito" carries each MUJU slot to a MIDO slot.
+- "pigo" is an internal reshuffle of MIDO: it carries each MIDO slot to a MIDO slot.
+- "nofi" carries each MIDO slot to a NIDA slot.
+- "zudo" is an internal reshuffle of NIDA: it carries each NIDA slot to a NIDA slot.
+- "kibo" carries each NIDA slot to a DIRU slot.
+- "talo" is an internal reshuffle of DIRU: it carries each DIRU slot to a DIRU slot.
+- "fuda" carries each DIRU slot to a BIRI slot.
+- "jigu" is an internal reshuffle of BIRI: it carries each BIRI slot to a BIRI slot.
+- "vuro" carries each BIRI slot to a JAVI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nito" and then "pigo" lands on the same slot as running "nito" alone.
+     ("pigo" leaves every slot that "nito" produces unchanged.)
+R1.2 Running "pigo" and then "nofi" gives the same result as running "nofi" alone.
+     ("nofi" cannot tell whether "pigo" was applied first.)
+R1.3 Running "pigo" three times in a row leaves every MIDO slot exactly where it started.
+R2.1 Running "nofi" and then "zudo" lands on the same slot as running "nofi" alone.
+     ("zudo" leaves every slot that "nofi" produces unchanged.)
+R2.2 Running "zudo" and then "kibo" gives the same result as running "kibo" alone.
+     ("kibo" cannot tell whether "zudo" was applied first.)
+R2.3 Running "zudo" twice in a row leaves every NIDA slot exactly where it started.
+R3.1 Running "kibo" and then "talo" lands on the same slot as running "kibo" alone.
+     ("talo" leaves every slot that "kibo" produces unchanged.)
+R3.2 Running "talo" and then "fuda" gives the same result as running "fuda" alone.
+     ("fuda" cannot tell whether "talo" was applied first.)
+R3.3 Running "talo" three times in a row leaves every DIRU slot exactly where it started.
+R4.1 Running "fuda" and then "jigu" lands on the same slot as running "fuda" alone.
+     ("jigu" leaves every slot that "fuda" produces unchanged.)
+R4.2 Running "jigu" and then "vuro" gives the same result as running "vuro" alone.
+     ("vuro" cannot tell whether "jigu" was applied first.)
+R4.3 Running "jigu" twice in a row leaves every BIRI slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- MUJU has exactly one slot, called n1.
+- JAVI has exactly one slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1.
+
+Requirements for the middle stations (MIDO, NIDA, DIRU, BIRI):
+D1.1 List the slots of MIDO in increasing index order q1_1, q1_2, ... in its set line.
+D1.2 List the "pigo" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D2.1 List the slots of NIDA in increasing index order q2_1, q2_2, ... in its set line.
+D2.2 List the "zudo" table entries in slot order q2_1, q2_2, ..., one entry per slot.
+D3.1 List the slots of DIRU in increasing index order q3_1, q3_2, ... in its set line.
+D3.2 List the "talo" table entries in slot order q3_1, q3_2, ..., one entry per slot.
+D4.1 List the slots of BIRI in increasing index order q4_1, q4_2, ... in its set line.
+D4.2 List the "jigu" table entries in slot order q4_1, q4_2, ..., one entry per slot.
+
+Your task: give one complete concrete design of the middle stations.
+
+Answer format bound: designs with up to 5 slots per middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+for station number i in the row, use slot names qi_1, qi_2, ...):
+
+MIDO = {q1_1, ..., q1_k}
+nito: n1 -> <MIDO slot>
+pigo: q1_1 -> <MIDO slot>, ..., q1_k -> <MIDO slot>
+NIDA = {q2_1, ..., q2_k}
+nofi: q1_1 -> <NIDA slot>, ... (one entry per MIDO slot)
+zudo: q2_1 -> <NIDA slot>, ..., q2_k -> <NIDA slot>
+DIRU = {q3_1, ..., q3_k}
+kibo: q2_1 -> <DIRU slot>, ... (one entry per NIDA slot)
+talo: q3_1 -> <DIRU slot>, ..., q3_k -> <DIRU slot>
+BIRI = {q4_1, ..., q4_k}
+fuda: q3_1 -> <BIRI slot>, ... (one entry per DIRU slot)
+jigu: q4_1 -> <BIRI slot>, ..., q4_k -> <BIRI slot>
+vuro: q4_1 -> <JAVI slot>, ... (one entry per BIRI slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.

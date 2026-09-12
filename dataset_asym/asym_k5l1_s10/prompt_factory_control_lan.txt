@@ -1,0 +1,41 @@
+You are completing the design of a small toy sorting line with 3 stations.
+
+The stations are: SOPI, SUVO, BARI. Toys move SOPI -> SUVO -> BARI.
+There are 3 moving steps:
+- "nasi" carries each SOPI slot to a SUVO slot.
+- "nuso" is an internal reshuffle of SUVO: it carries each SUVO slot to a SUVO slot.
+- "fizu" carries each SUVO slot to a BARI slot.
+
+The line's operating rules. These must hold exactly, slot by slot:
+R1.1 Running "nasi" and then "nuso" lands on the same slot as running "nasi" alone.
+     ("nuso" leaves every slot that "nasi" produces unchanged.)
+R1.2 Running "nuso" and then "fizu" gives the same result as running "fizu" alone.
+     ("fizu" cannot tell whether "nuso" was applied first.)
+R1.3 Running "nuso" twice in a row leaves every SUVO slot exactly where it started.
+
+Recorded observations (fixed; your design must reproduce them exactly):
+- SOPI has exactly 5 slots, called n1, n2, n3, n4, n5.
+- BARI has exactly 1 slot, called s1.
+- The observed end-to-end behavior of the line sends n1 to s1, n2 to s1, n3 to s1, n4 to s1, n5 to s1.
+
+Requirements for the middle station (SUVO):
+D1.1 SUVO must be a finite set with at most 5 slots.
+D1.2 List the "nuso" table entries in slot order q1_1, q1_2, ..., one entry per slot.
+D1.3 "nasi" must carry different SOPI slots to different SUVO slots.
+D1.4 List the "fizu" table entries in SUVO slot order q1_1, q1_2, ...
+
+Your task: give one complete concrete design of the middle station.
+
+Answer format bound: designs with up to 7 slots in the middle station
+are well-formed answers (the requirements above may restrict this further).
+
+Answer in exactly this format (listing every slot and every table entry;
+use slot names q1_1, q1_2, ... for the middle station):
+
+SUVO = {q1_1, ..., q1_k}
+nasi: n1 -> <SUVO slot>, n2 -> <SUVO slot>, n3 -> <SUVO slot>, n4 -> <SUVO slot>, n5 -> <SUVO slot>
+nuso: q1_1 -> <SUVO slot>, ..., q1_k -> <SUVO slot>
+fizu: q1_1 -> <BARI slot>, ... (one entry per SUVO slot)
+
+Every rule and requirement above must hold exactly for your tables. Do not
+explain; output only the lines in the format above.
